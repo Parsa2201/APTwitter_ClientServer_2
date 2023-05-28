@@ -6,13 +6,19 @@ import com.twitter.entities.exception.password.PasswordHashException;
 import com.twitter.entities.exception.text.TextTooLongException;
 import com.twitter.entities.image.Avatar;
 import com.twitter.entities.image.Header;
+import jakarta.persistence.*;
+import org.hibernate.annotations.IdGeneratorType;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
+@Entity
+@Table(name = "users")
 public class User implements Serializable
 {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected String userName;
     protected Password passHash;
     protected String name;

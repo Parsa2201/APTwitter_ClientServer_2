@@ -80,6 +80,12 @@ public class ServerConnectionHandler implements Closeable
 //        }
     }
 
+    public void sendFile(File file)
+    {
+        // TODO: convert the file to byte -> convert the bytes to an encoded string
+        // byte[] fileContent = FileUtils
+    }
+
     public Respond getRespond() throws ServerRespondFailedException
     {
         try
