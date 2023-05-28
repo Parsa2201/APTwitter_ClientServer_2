@@ -4,11 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e6f89f22-8f2b-446d-b25f-81599946cb8d" name="Changes" comment="added sendFile to the ServerConnectionHandler.java">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/user/FollowRelation.java" afterDir="false" />
+    <list default="true" id="e6f89f22-8f2b-446d-b25f-81599946cb8d" name="Changes" comment="added FollowRelation.java and made ConnectedUsers iterable">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/twitter/client/controller/Data.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/twitter/client/controller/Program.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/twitter/client/view/Command.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/twitter/client/view/MenuOption.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/twitter/client/view/Option.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/twitter/client/view/ProgramState.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/twitter/client/view/TwitterLog.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/user/ConnectedUsers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/user/ConnectedUsers.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/user/Followers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/user/Followers.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/client/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/client/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,6 +23,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
@@ -78,7 +84,7 @@
       <updated>1685267331979</updated>
       <workItem from="1685267333248" duration="2226000" />
       <workItem from="1685276923341" duration="3427000" />
-      <workItem from="1685298558511" duration="1937000" />
+      <workItem from="1685298558511" duration="6486000" />
     </task>
     <task id="LOCAL-00001" summary="added sendFile to the ServerConnectionHandler.java">
       <created>1685298475313</created>
@@ -87,7 +93,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685298475313</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="added FollowRelation.java and made ConnectedUsers iterable">
+      <created>1685303337678</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1685303337678</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -106,6 +119,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added sendFile to the ServerConnectionHandler.java" />
-    <option name="LAST_COMMIT_MESSAGE" value="added sendFile to the ServerConnectionHandler.java" />
+    <MESSAGE value="added FollowRelation.java and made ConnectedUsers iterable" />
+    <option name="LAST_COMMIT_MESSAGE" value="added FollowRelation.java and made ConnectedUsers iterable" />
   </component>
 </project>
