@@ -23,8 +23,8 @@ public class ModelCommands
 
     public ModelCommands()
     {
-        //databaseManager = new DatabaseManager();
-        databaseManager = null;
+        databaseManager = new DatabaseManager();
+//        databaseManager = null;
     }
 
     public Respond signUp(ObjectInputStream objectInputStream) throws ServerInvalidObjectException

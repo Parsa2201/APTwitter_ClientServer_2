@@ -14,12 +14,20 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
-@Table(name = "users")
+@Table
+(
+    name = "users" ,
+    uniqueConstraints =
+    {
+            @UniqueConstraint(columnNames = "userName")
+    }
+)
 public class User implements Serializable
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected String userName;
+    @Embedded
     protected Password passHash;
     protected String name;
     protected String family;
@@ -29,8 +37,11 @@ public class User implements Serializable
     protected LocalDate birthDate;
     protected LocalDate signUpDate;
     protected LocalDate lastChangeDate;
+    @Embedded
     protected Avatar avatar;
+    @Embedded
     protected Header header;
+    @Embedded
     protected Bio bio;
     protected String location;
     protected String website;
@@ -47,8 +58,8 @@ public class User implements Serializable
         this.signUpDate = null;
         this.birthDate = null;
         this.lastChangeDate = null;
-        this.avatar = null;
-        this.header = null;
+        this.avatar = new Avatar();
+        this.header = new Header();
         this.bio = new Bio();
         this.location = "";
         this.website = "";

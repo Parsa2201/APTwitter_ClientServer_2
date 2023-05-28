@@ -1,9 +1,11 @@
 package com.twitter.entities.user;
 
 import com.twitter.entities.exception.text.TextTooLongException;
+import jakarta.persistence.Embeddable;
 
 import java.io.Serializable;
 
+@Embeddable
 public class Bio implements Serializable
 {
     private String text;

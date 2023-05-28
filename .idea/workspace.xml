@@ -5,10 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e6f89f22-8f2b-446d-b25f-81599946cb8d" name="Changes" comment="added sendFile to the ServerConnectionHandler.java">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/user/FollowRelation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jpa-buddy.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/user/ConnectedUsers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/user/ConnectedUsers.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/user/Followers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/user/Followers.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/image/Avatar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/image/Avatar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/image/Header.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/image/Header.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/image/TwitterImage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/image/TwitterImage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/user/Bio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/user/Bio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/user/Password.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/user/Password.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/user/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/server/model/ModelCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/server/model/ModelCommands.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/twitter/assets/Parsa Salamatipour 400X400.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/twitterTest/assets/Parsa Salamatipour 400X400.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/twitter/assets/Parsa Salamatipour.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/twitterTest/assets/Parsa Salamatipour.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/twitter/client/controller/ControllerCommandsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/twitterTest/client/controller/ControllerCommandsTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/twitter/entities/user/UserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/twitterTest/entities/user/UserTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,6 +38,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="JpbToolWindowState">
+    <option name="isToolWindowVisible" value="false" />
+  </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -36,30 +52,44 @@
   <component name="ProjectId" id="2QPu2b64T0m0YyA0AoiqgIg7rRQ" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
+    <option name="autoscrollToSource" value="true" />
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/parsa/Documents/دانشگاه امیرکبیر/ترم 2/تکلیف/AP/پروژه/APTwitter_ClientServer_2/pom.xml&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/Sazgar/Desktop/Home Work/TERM 2/APTwitter_ClientServer_2",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Global Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
+    ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Sazgar\Desktop\Home Work\TERM 2\APTwitter_ClientServer_2\src\main\resources" />
       <recent name="$PROJECT_DIR$/src/main/java/com/twitter/server" />
       <recent name="$PROJECT_DIR$/src/test/java/twitter" />
       <recent name="$PROJECT_DIR$/src/test/java/twitter/client" />
       <recent name="$PROJECT_DIR$/src/main/java/com/twitter/client" />
-      <recent name="$PROJECT_DIR$/src/main/java/com/twitter/entities" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.twitter.entities.exception.password" />
@@ -67,6 +97,43 @@
       <recent name="twitter.entities.user" />
       <recent name="com.twitter.client" />
     </key>
+  </component>
+  <component name="RunManager" selected="JUnit.ControllerCommandsTest.signUp1">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.twitter.server.Main" />
+      <module name="APTwitter_ClientServer_2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.twitter.server.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ControllerCommandsTest.signUp1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="APTwitter_ClientServer_2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="twitterTest.client.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="twitterTest.client.controller" />
+      <option name="MAIN_CLASS_NAME" value="twitterTest.client.controller.ControllerCommandsTest" />
+      <option name="METHOD_NAME" value="signUp1" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.ControllerCommandsTest.signUp1" />
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -79,6 +146,8 @@
       <workItem from="1685267333248" duration="2226000" />
       <workItem from="1685276923341" duration="3427000" />
       <workItem from="1685298558511" duration="1937000" />
+      <workItem from="1685304661009" duration="5772000" />
+      <workItem from="1685312165152" duration="1803000" />
     </task>
     <task id="LOCAL-00001" summary="added sendFile to the ServerConnectionHandler.java">
       <created>1685298475313</created>

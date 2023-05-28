@@ -1,4 +1,4 @@
-package twitter.entities.user;
+package twitterTest.entities.user;
 
 import com.twitter.entities.exception.email.EmailFormatException;
 import com.twitter.entities.exception.password.PasswordFormatException;

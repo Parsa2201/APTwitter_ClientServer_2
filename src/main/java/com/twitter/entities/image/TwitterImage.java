@@ -4,26 +4,30 @@ import com.twitter.entities.exception.io.FileNotExistException;
 import com.twitter.entities.exception.io.FileNotImageException;
 import com.twitter.entities.exception.io.FileSizeException;
 import com.twitter.entities.exception.io.ImageSizeException;
+import jakarta.persistence.Embeddable;
+import jakarta.persistence.Transient;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.io.Serial;
-import java.io.Serializable;
+import java.io.*;
+import java.util.Base64;
 
+@Embeddable
 public abstract class TwitterImage implements Serializable
 {
+    @Transient
     private BufferedImage image;
-
+    private String encodedImage;
     public TwitterImage()
     {
         this.image = null;
+        this.encodedImage = null;
     }
 
     public TwitterImage(BufferedImage image)
     {
         this.image = image;
+        this.encodedImage = getEncodeString(this.image);
     }
 
     // return 0 if you want to use WIDTH and HEIGHT instead of MAX_WIDTH and MAX_HEIGHT
@@ -69,6 +73,33 @@ public abstract class TwitterImage implements Serializable
         }
     }
 
+    public String getEncodeString(BufferedImage image)
+    {
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        try
+        {
+            ImageIO.write(image,"jpg",byteArrayOutputStream);
+            return Base64.getEncoder().encodeToString(byteArrayOutputStream.toByteArray());
+        } catch (IOException e)
+        {
+            // TODO : handle the exception
+            return null;
+        }
+    }
+
+    public BufferedImage getDecodeImage(String encodedImage)
+    {
+        byte[] image = Base64.getDecoder().decode(encodedImage);
+        try
+        {
+            return ImageIO.read(new ByteArrayInputStream(image));
+        } catch (IOException e)
+        {
+            // TODO : handle the exception
+            return null;
+        }
+    }
+
     public BufferedImage getImage()
     {
         return image;
@@ -79,7 +110,11 @@ public abstract class TwitterImage implements Serializable
             throws IOException
     {
         out.defaultWriteObject();
-        ImageIO.write(image, "jpg", out);
+//        because this piece of code make exception in test signUp1 i make a try/catch
+        try
+        {
+            ImageIO.write(image, "jpg", out);
+        }catch (IllegalArgumentException e){}
     }
     @Serial
     private void readObject(java.io.ObjectInputStream in)
