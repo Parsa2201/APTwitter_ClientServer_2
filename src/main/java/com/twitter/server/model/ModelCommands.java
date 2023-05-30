@@ -21,10 +21,12 @@ import java.util.List;
 public class ModelCommands
 {
     private final DatabaseManager databaseManager;
+    private final DatabaseCommands databaseCommands;
 
     public ModelCommands()
     {
         databaseManager = new DatabaseManager();
+        databaseCommands = new DatabaseCommands();
 //        databaseManager = null;
     }
 
@@ -33,16 +35,7 @@ public class ModelCommands
         User user = ObjectGetter.getObject(objectInputStream, User.class);
 
         // TODO: save to database, throw exception if failed
-        try(Session session = databaseManager.sessionFactory.openSession())
-        {
-            session.beginTransaction();
-            session.persist(user);
-            session.getTransaction().commit();
-        } catch (ConstraintViolationException e) {
-            // TODO: print suitable error
-        } catch (PersistenceException e){
-            System.out.println("this user already exist");
-        }
+        databaseCommands.signUp(user);
 
         // TODO: add the newly created exceptions to both the client and the server project!!!
 
@@ -58,17 +51,8 @@ public class ModelCommands
         Password passwordHash = ObjectGetter.getObject(objectInputStream, Password.class);
 
         // TODO: get user from database, throw exception if not found or some other error
-        Session session = databaseManager.sessionFactory.openSession();
-        List<User> users = session.createQuery("select u from User u", User.class).list();
-        User user = databaseManager.find(users, userName);
-        if(user.getPassHash().equals(passwordHash))
-        {
-            return new Respond(RespondCode.SUCCESS,user);
-        }
-        else
-        {
-            throw new InvalidPasswordException();
-        }
+        User user = databaseCommands.signIn(userName, passwordHash);
+        return new Respond(RespondCode.SUCCESS, user);
         // TODO: add the newly created exceptions to both the client and the server project!!!
 
         // temporary user (because we don't have a database yet)
@@ -85,14 +69,7 @@ public class ModelCommands
         Avatar avatar = ObjectGetter.getObject(objectInputStream, Avatar.class);
 
         // TODO: save to database, throw exception if failed
-        Session session = databaseManager.sessionFactory.openSession();
-        List<User> users = session.createQuery("select u from User u", User.class).list();
-        User user = databaseManager.find(users, userName);
-        user.setAvatar(avatar);
-        session.beginTransaction();
-        session.update(user);
-        session.getTransaction().commit();
-        session.close();
+        databaseCommands.setAvatar(userName, avatar);
         // TODO: add the newly created exceptions to both the client and the server project!!!
 
         // temporary showing the username (because we don't have a database yet)
@@ -107,14 +84,7 @@ public class ModelCommands
         Header header = ObjectGetter.getObject(objectInputStream, Header.class);
 
         // TODO: save to database, throw exception if failed
-        Session session = databaseManager.sessionFactory.openSession();
-        List<User> users = session.createQuery("select u from User u", User.class).list();
-        User user = databaseManager.find(users, userName);
-        user.setHeader(header);
-        session.beginTransaction();
-        session.update(user);
-        session.getTransaction().commit();
-        session.close();
+        databaseCommands.setHeader(userName, header);
         // TODO: add the newly created exceptions to both the client and the server project!!!
 
         // temporary showing the username (because we don't have a database yet)
@@ -131,16 +101,7 @@ public class ModelCommands
         String website = ObjectGetter.getObject(objectInputStream, String.class);
 
         // TODO: change user information in database, throw exception if not found or some other error
-        Session session = databaseManager.sessionFactory.openSession();
-        List<User> users = session.createQuery("select u from User u", User.class).list();
-        User user = databaseManager.find(users, userName);
-        user.setBio(bio);
-        user.setLocation(location);
-        user.setWebsite(website);
-        session.beginTransaction();
-        session.update(user);
-        session.getTransaction().commit();
-        session.close();
+        databaseCommands.changeUserInformation(userName, bio, location, website);
         // TODO: add the newly created exceptions to both the client and the server project!!!
 
         // temporary showing the user information (because we don't have a database yet)
