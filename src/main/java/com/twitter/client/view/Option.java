@@ -2,7 +2,7 @@ package com.twitter.client.view;
 
 public enum Option
 {
-    LOGIN,
+    SIGN_IN,
     SIGN_UP,
     SHOW_USER_INFO
     ;
@@ -13,8 +13,8 @@ public enum Option
     {
         return switch (this)
         {
-            case LOGIN -> "Login";
-            case SIGN_UP -> "Sign-UP";
+            case SIGN_IN -> "SignIn";
+            case SIGN_UP -> "SignUP";
             case SHOW_USER_INFO -> "Show my user information";
         };
     }

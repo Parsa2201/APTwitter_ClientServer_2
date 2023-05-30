@@ -106,13 +106,12 @@ public class ModelCommands
         }
     }
 
-    public void follow(String userName, String followingUserName) throws ServerConnectionFailedException, ServerInvalidObjectException, ServerRespondFailedException, DatabaseFailedException
+    public void follow(FollowRelation followRelation) throws ServerConnectionFailedException, ServerInvalidObjectException, ServerRespondFailedException, DatabaseFailedException
     {
         try (ServerConnectionHandler serverConnectionHandler = new ServerConnectionHandler())
         {
             serverConnectionHandler.sendCommend("follow");
-            serverConnectionHandler.sendObject(userName);
-            serverConnectionHandler.sendObject(followingUserName);
+            serverConnectionHandler.sendObject(followRelation);
             Respond respond = serverConnectionHandler.getRespond();
             respond.check();
         }

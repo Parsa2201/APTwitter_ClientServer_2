@@ -26,7 +26,7 @@ public class ControllerCommands
         modelCommands = new ModelCommands();
     }
 
-    public void signUp(String id, String name, String family,
+    public void signUp(String userName, String name, String family,
                        String email, String phoneNumber, String password, String passwordConfirm,
                        String Country, int year, int month, int day)
             throws EmailOrPhoneRequiredException, PasswordConfirmException, EmailFormatException, PasswordFormatException,
@@ -39,7 +39,7 @@ public class ControllerCommands
             throw new PasswordConfirmException();
 
         User user = new User();
-        user.setUserName(id);
+        user.setUserName(userName);
         user.setName(name);
         user.setFamily(family);
         user.setEmail(email);
@@ -102,7 +102,8 @@ public class ControllerCommands
 
     public void follow(User user, MiniUser miniUser) throws ServerConnectionFailedException, ServerRespondFailedException, DatabaseFailedException, ServerInvalidObjectException
     {
-        modelCommands.follow(user.getUserName(), miniUser.getUserName());
+        FollowRelation followRelation = new FollowRelation(user.getUserName(), miniUser.getUserName());
+        modelCommands.follow(followRelation);
     }
 
     public void unfollow(User user, MiniUser miniUser) throws ServerConnectionFailedException, ServerRespondFailedException, DatabaseFailedException, ServerInvalidObjectException

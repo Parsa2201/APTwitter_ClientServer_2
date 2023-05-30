@@ -56,13 +56,19 @@ public class MenuOption
     public void doCommand()
     {
         // TODO: check for different commands and call the proper function from Command.java
+        Command commandObject = new Command();
+        switch (command)
+        {
+            case SIGN_UP -> commandObject.signUp();
+            case SIGN_IN -> commandObject.signIn();
+        }
     }
 
     private void setLoggedOutOptions()
     {
         options.clear();
-        options.add(Option.LOGIN);
         options.add(Option.SIGN_UP);
+        options.add(Option.SIGN_IN);
     }
 
     private void setLoggedInOptions()

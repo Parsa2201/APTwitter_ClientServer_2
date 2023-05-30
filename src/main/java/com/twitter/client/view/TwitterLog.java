@@ -35,4 +35,10 @@ public class TwitterLog
         scannerInit();
         return scanner.nextLine();
     }
+
+    public static String nextLine(String str)
+    {
+        print(str);
+        return nextLine();
+    }
 }
