@@ -4,13 +4,27 @@ import com.twitter.entities.exception.io.FileNotExistException;
 import com.twitter.entities.exception.io.FileNotImageException;
 import com.twitter.entities.exception.io.FileSizeException;
 import com.twitter.entities.exception.io.ImageSizeException;
-import jakarta.persistence.Embeddable;
+import jakarta.persistence.*;
 
 import java.awt.image.BufferedImage;
 
-@Embeddable
+@Entity
 public class Avatar extends TwitterImage
 {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    public Long getId()
+    {
+        return id;
+    }
+
+    public void setId(Long id)
+    {
+        this.id = id;
+    }
+
     public Avatar()
     {
         super();

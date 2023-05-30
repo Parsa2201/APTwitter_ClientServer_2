@@ -7,6 +7,7 @@ import com.twitter.entities.exception.text.TextTooLongException;
 import com.twitter.entities.image.Avatar;
 import com.twitter.entities.image.Header;
 import jakarta.persistence.*;
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.hibernate.annotations.IdGeneratorType;
 
 import java.io.Serializable;
@@ -19,13 +20,14 @@ import java.util.Objects;
     name = "users" ,
     uniqueConstraints =
     {
-            @UniqueConstraint(columnNames = "userName")
+            @UniqueConstraint(columnNames = "username")
     }
 )
 public class User implements Serializable
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
     protected String userName;
     @Embedded
     protected Password passHash;
@@ -37,11 +39,11 @@ public class User implements Serializable
     protected LocalDate birthDate;
     protected LocalDate signUpDate;
     protected LocalDate lastChangeDate;
-    @Embedded
+    @OneToOne@Nullable
     protected Avatar avatar;
-    @Embedded
+    @OneToOne@Nullable
     protected Header header;
-    @Embedded
+    @Embedded@Nullable
     protected Bio bio;
     protected String location;
     protected String website;
@@ -58,9 +60,9 @@ public class User implements Serializable
         this.signUpDate = null;
         this.birthDate = null;
         this.lastChangeDate = null;
-        this.avatar = new Avatar();
-        this.header = new Header();
-        this.bio = new Bio();
+        this.avatar = null;
+        this.header = null;
+        this.bio = null;
         this.location = "";
         this.website = "";
     }

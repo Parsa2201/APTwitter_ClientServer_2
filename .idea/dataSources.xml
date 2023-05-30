@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="postgresAPTwitter" uuid="2efadccb-209f-4349-869e-609c026e5da5">
+    <data-source source="LOCAL" name="hibernate.cfg.xml/Hibernate" uuid="caf8434a-de98-4531-8686-6a090d98a8a5">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>Hibernate
+
+C:/Users/Sazgar/Desktop/Home Work/TERM 2/APTwitter_ClientServer_2/src/main/resources/hibernate.cfg.xml</remarks>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://localhost:5432/postgres</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>

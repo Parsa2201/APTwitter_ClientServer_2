@@ -11,6 +11,7 @@ import com.twitter.entities.server.RespondCode;
 import com.twitter.entities.user.Bio;
 import com.twitter.entities.user.Password;
 import com.twitter.entities.user.User;
+import jakarta.persistence.PersistenceException;
 import org.hibernate.Session;
 import org.hibernate.exception.ConstraintViolationException;
 
@@ -39,6 +40,8 @@ public class ModelCommands
             session.getTransaction().commit();
         } catch (ConstraintViolationException e) {
             // TODO: print suitable error
+        } catch (PersistenceException e){
+            System.out.println("this user already exist");
         }
 
         // TODO: add the newly created exceptions to both the client and the server project!!!

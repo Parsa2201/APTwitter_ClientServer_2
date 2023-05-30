@@ -5,13 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e6f89f22-8f2b-446d-b25f-81599946cb8d" name="Changes" comment="made the Program class and implemented a console view">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/2efadccb-209f-4349-869e-609c026e5da5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/2efadccb-209f-4349-869e-609c026e5da5.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/2efadccb-209f-4349-869e-609c026e5da5/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/2efadccb-209f-4349-869e-609c026e5da5/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jpa-buddy.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jpa-buddy.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/client/controller/ControllerCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/client/controller/ControllerCommands.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/client/model/ModelCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/client/model/ModelCommands.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/client/view/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/client/view/Command.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/client/view/MenuOption.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/client/view/MenuOption.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/client/view/Option.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/client/view/Option.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/client/view/TwitterLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/client/view/TwitterLog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/image/Avatar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/image/Avatar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/image/Header.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/image/Header.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/image/TwitterImage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/image/TwitterImage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/user/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/server/model/ModelCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/server/model/ModelCommands.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,6 +34,12 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitToolBoxStore">
+    <option name="projectConfigVersion" value="5" />
+  </component>
+  <component name="JpbToolWindowState">
+    <option name="isToolWindowVisible" value="false" />
+  </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -40,23 +51,30 @@
   <component name="ProjectId" id="2QPu2b64T0m0YyA0AoiqgIg7rRQ" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
+    <option name="autoscrollToSource" value="true" />
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/parsa/Documents/دانشگاه امیرکبیر/ترم 2/تکلیف/AP/پروژه/APTwitter_ClientServer_2/pom.xml&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/Sazgar/Desktop/demoHibernate",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "settings.editor.selected.configurable": "com.haulmont.jpb.viewMode",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
+    ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/java/com/twitter/server" />
@@ -72,7 +90,7 @@
       <recent name="com.twitter.client" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ControllerCommandsTest.signUp1">
+  <component name="RunManager" selected="JUnit.ControllerCommandsTest.signUp1 (1)">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.twitter.server.Main" />
       <module name="APTwitter_ClientServer_2" />
@@ -82,6 +100,22 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ControllerCommandsTest.signUp1 (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="APTwitter_ClientServer_2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="twitterTest.client.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="twitterTest.client.controller" />
+      <option name="MAIN_CLASS_NAME" value="twitterTest.client.controller.ControllerCommandsTest" />
+      <option name="METHOD_NAME" value="signUp1" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -104,8 +138,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ControllerCommandsTest.signUp1" />
+        <item itemvalue="JUnit.ControllerCommandsTest.signUp1 (1)" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.ControllerCommandsTest.signUp1" />
       </list>
     </recent_temporary>
   </component>
@@ -122,6 +157,7 @@
       <workItem from="1685298558511" duration="6744000" />
       <workItem from="1685340437043" duration="1819000" />
       <workItem from="1685370707956" duration="3009000" />
+      <workItem from="1685455836382" duration="1173000" />
     </task>
     <task id="LOCAL-00001" summary="added sendFile to the ServerConnectionHandler.java">
       <created>1685298475313</created>
@@ -166,16 +202,5 @@
     <MESSAGE value="added FollowRelation.java and made ConnectedUsers iterable" />
     <MESSAGE value="made the Program class and implemented a console view" />
     <option name="LAST_COMMIT_MESSAGE" value="made the Program class and implemented a console view" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/twitter/server/model/ModelCommands.java</url>
-          <line>31</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

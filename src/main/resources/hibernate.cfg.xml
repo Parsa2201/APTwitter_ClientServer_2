@@ -22,5 +22,7 @@
         <property name="hbm2ddl.auto">update</property>
         <!--mapping classes -->
         <mapping class = "com.twitter.entities.user.User"/>
+        <mapping class= "com.twitter.entities.image.Header"/>
+        <mapping class= "com.twitter.entities.image.Avatar"/>
     </session-factory>
 </hibernate-configuration>
