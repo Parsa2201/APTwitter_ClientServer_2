@@ -108,7 +108,8 @@ public class ControllerCommands
 
     public void unfollow(User user, MiniUser miniUser) throws ServerConnectionFailedException, ServerRespondFailedException, DatabaseFailedException, ServerInvalidObjectException
     {
-        modelCommands.unfollow(user.getUserName(), miniUser.getUserName());
+        FollowRelation followRelation = new FollowRelation(user.getUserName(), miniUser.getUserName());
+        modelCommands.unfollow(followRelation);
     }
 
     public MiniUser showUser(MiniUser miniUser) throws ServerConnectionFailedException, ServerRespondFailedException, DatabaseFailedException, ServerInvalidObjectException

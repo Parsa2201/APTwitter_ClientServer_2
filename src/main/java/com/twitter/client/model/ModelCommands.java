@@ -117,13 +117,12 @@ public class ModelCommands
         }
     }
 
-    public void unfollow(String userName, String followingUserName) throws ServerConnectionFailedException, ServerInvalidObjectException, ServerRespondFailedException, DatabaseFailedException
+    public void unfollow(FollowRelation followRelation) throws ServerConnectionFailedException, ServerInvalidObjectException, ServerRespondFailedException, DatabaseFailedException
     {
         try (ServerConnectionHandler serverConnectionHandler = new ServerConnectionHandler())
         {
             serverConnectionHandler.sendCommend("unfollow");
-            serverConnectionHandler.sendObject(userName);
-            serverConnectionHandler.sendObject(followingUserName);
+            serverConnectionHandler.sendObject(followRelation);
             Respond respond = serverConnectionHandler.getRespond();
             respond.check();
         }
