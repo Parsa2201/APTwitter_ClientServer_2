@@ -1,4 +1,4 @@
-package com.twitter.entities.exception.password;
+package com.twitter.entities.exception.user.password;
 
 public class PasswordFormatException extends PasswordException
 {

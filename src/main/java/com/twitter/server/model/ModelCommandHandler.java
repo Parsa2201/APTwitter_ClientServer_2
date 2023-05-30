@@ -2,7 +2,7 @@ package com.twitter.server.model;
 
 import com.twitter.entities.exception.io.server.ServerInvalidObjectException;
 import com.twitter.entities.exception.io.server.DataNotFoundException;
-import com.twitter.entities.exception.password.InvalidPasswordException;
+import com.twitter.entities.exception.user.password.InvalidPasswordException;
 import com.twitter.entities.exception.text.TextTooLongException;
 import com.twitter.entities.server.Respond;
 import com.twitter.entities.server.RespondCode;

@@ -1,6 +1,6 @@
 package com.twitter.entities.user;
 
-import com.twitter.entities.exception.password.PasswordHashException;
+import com.twitter.entities.exception.user.password.PasswordHashException;
 import jakarta.persistence.Embeddable;
 
 import java.io.Serializable;

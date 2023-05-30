@@ -2,7 +2,7 @@ package com.twitter.server.model;
 
 import com.twitter.entities.exception.io.server.ServerInvalidObjectException;
 import com.twitter.entities.exception.io.server.DataNotFoundException;
-import com.twitter.entities.exception.password.InvalidPasswordException;
+import com.twitter.entities.exception.user.password.InvalidPasswordException;
 import com.twitter.entities.exception.text.TextTooLongException;
 import com.twitter.entities.image.Avatar;
 import com.twitter.entities.image.Header;
@@ -11,12 +11,8 @@ import com.twitter.entities.server.RespondCode;
 import com.twitter.entities.user.Bio;
 import com.twitter.entities.user.Password;
 import com.twitter.entities.user.User;
-import jakarta.persistence.PersistenceException;
-import org.hibernate.Session;
-import org.hibernate.exception.ConstraintViolationException;
 
 import java.io.ObjectInputStream;
-import java.util.List;
 
 public class ModelCommands
 {

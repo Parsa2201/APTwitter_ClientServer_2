@@ -1,14 +1,14 @@
 package com.twitter.entities.user;
 
-import com.twitter.entities.exception.email.EmailFormatException;
-import com.twitter.entities.exception.password.PasswordFormatException;
-import com.twitter.entities.exception.password.PasswordHashException;
+import com.twitter.entities.exception.user.CountryException;
+import com.twitter.entities.exception.user.email.EmailFormatException;
+import com.twitter.entities.exception.user.password.PasswordFormatException;
+import com.twitter.entities.exception.user.password.PasswordHashException;
 import com.twitter.entities.exception.text.TextTooLongException;
 import com.twitter.entities.image.Avatar;
 import com.twitter.entities.image.Header;
 import jakarta.persistence.*;
 import org.checkerframework.checker.nullness.qual.Nullable;
-import org.hibernate.annotations.IdGeneratorType;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -139,8 +139,9 @@ public class User implements Serializable
         return country;
     }
 
-    public void setCountry(String country)
+    public void setCountry(String country) throws CountryException
     {
+        Country.getInstance().validateCountry(country);
         this.country = country;
     }
 

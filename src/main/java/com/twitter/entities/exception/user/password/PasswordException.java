@@ -1,4 +1,4 @@
-package com.twitter.entities.exception.password;
+package com.twitter.entities.exception.user.password;
 
 import com.twitter.entities.exception.TwitException;
 

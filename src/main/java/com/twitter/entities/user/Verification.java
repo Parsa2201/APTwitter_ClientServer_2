@@ -1,7 +1,7 @@
 package com.twitter.entities.user;
 
-import com.twitter.entities.exception.email.EmailFormatException;
-import com.twitter.entities.exception.password.PasswordFormatException;
+import com.twitter.entities.exception.user.email.EmailFormatException;
+import com.twitter.entities.exception.user.password.PasswordFormatException;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

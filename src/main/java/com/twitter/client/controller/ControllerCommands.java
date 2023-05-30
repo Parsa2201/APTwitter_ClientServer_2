@@ -1,15 +1,16 @@
 package com.twitter.client.controller;
 
 import com.twitter.entities.exception.EmailOrPhoneRequiredException;
-import com.twitter.entities.exception.email.EmailFormatException;
+import com.twitter.entities.exception.user.CountryException;
+import com.twitter.entities.exception.user.email.EmailFormatException;
 import com.twitter.entities.exception.io.*;
 import com.twitter.entities.exception.io.server.DatabaseFailedException;
 import com.twitter.entities.exception.io.server.ServerConnectionFailedException;
 import com.twitter.entities.exception.io.server.ServerInvalidObjectException;
 import com.twitter.entities.exception.io.server.ServerRespondFailedException;
-import com.twitter.entities.exception.password.PasswordConfirmException;
-import com.twitter.entities.exception.password.PasswordFormatException;
-import com.twitter.entities.exception.password.PasswordHashException;
+import com.twitter.entities.exception.user.password.PasswordConfirmException;
+import com.twitter.entities.exception.user.password.PasswordFormatException;
+import com.twitter.entities.exception.user.password.PasswordHashException;
 import com.twitter.entities.exception.text.TextTooLongException;
 import com.twitter.entities.image.Avatar;
 import com.twitter.entities.image.Header;
@@ -28,9 +29,9 @@ public class ControllerCommands
 
     public void signUp(String userName, String name, String family,
                        String email, String phoneNumber, String password, String passwordConfirm,
-                       String Country, int year, int month, int day)
+                       String country, int year, int month, int day)
             throws EmailOrPhoneRequiredException, PasswordConfirmException, EmailFormatException, PasswordFormatException,
-            PasswordHashException, ServerConnectionFailedException, ServerRespondFailedException, ServerInvalidObjectException, DatabaseFailedException
+            PasswordHashException, ServerConnectionFailedException, ServerRespondFailedException, ServerInvalidObjectException, DatabaseFailedException, CountryException
     {
         if (email.equals("") && phoneNumber.equals(""))
             throw new EmailOrPhoneRequiredException();
@@ -45,7 +46,7 @@ public class ControllerCommands
         user.setEmail(email);
         user.setPhoneNumber(phoneNumber);
         user.setPassword(password);
-        user.setCountry(Country);
+        user.setCountry(country);
         user.setBirthDate(LocalDate.of(year, month, day));
         user.setSignUpDate(LocalDate.now());
         user.setLastChangeDate(LocalDate.now());

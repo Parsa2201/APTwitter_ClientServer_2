@@ -1,4 +1,4 @@
-package com.twitter.entities.exception.email;
+package com.twitter.entities.exception.user.email;
 
 import com.twitter.entities.exception.TwitException;
 
