@@ -47,7 +47,6 @@ public class Program
         try
         {
             menuOption.getCommand();
-
         }
         catch (IllegalArgumentException e)
         {

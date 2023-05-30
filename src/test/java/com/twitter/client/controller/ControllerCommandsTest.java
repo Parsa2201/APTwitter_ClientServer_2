@@ -1,4 +1,4 @@
-package twitterTest.client.controller;
+package com.twitter.client.controller;
 
 import com.twitter.client.controller.ControllerCommands;
 import com.twitter.entities.user.User;

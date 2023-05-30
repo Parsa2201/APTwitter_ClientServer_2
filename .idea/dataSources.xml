@@ -12,5 +12,16 @@ C:/Users/Sazgar/Desktop/Home Work/TERM 2/APTwitter_ClientServer_2/src/main/resou
       <jdbc-url>jdbc:postgresql://localhost:5432/postgres</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="hibernate.cfg.xml/Hibernate" uuid="87be4bc8-ff2a-4c21-85f4-56c790d25f98">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>Hibernate
+
+/Users/parsa/Documents/دانشگاه امیرکبیر/ترم 2/تکلیف/AP/پروژه/APTwitter_ClientServer_2/src/main/resources/hibernate.cfg.xml</remarks>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/postgres</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>
