@@ -4,7 +4,6 @@ import com.twitter.entities.exception.io.FileNotExistException;
 import com.twitter.entities.exception.io.FileNotImageException;
 import com.twitter.entities.exception.io.FileSizeException;
 import com.twitter.entities.exception.io.ImageSizeException;
-import jakarta.persistence.Embeddable;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.Transient;
 
@@ -19,6 +18,7 @@ public abstract class TwitterImage implements Serializable
     @Transient
     private BufferedImage image;
     private String encodedImage;
+
     public TwitterImage()
     {
         this.image = null;
@@ -28,12 +28,12 @@ public abstract class TwitterImage implements Serializable
     public TwitterImage(BufferedImage image)
     {
         this.image = image;
-        this.encodedImage = getEncodeString(this.image);
+        generateEncodedImage();
     }
 
     // return 0 if you want to use WIDTH and HEIGHT instead of MAX_WIDTH and MAX_HEIGHT
-    public abstract int getWidth();
 
+    public abstract int getWidth();
     public abstract int getHeight();
 
 
@@ -54,7 +54,7 @@ public abstract class TwitterImage implements Serializable
 
         try
         {
-            image = ImageIO.read(file);
+            setImage(ImageIO.read(file));
         } catch (IOException e)
         {
             throw new FileNotImageException("File is not an image");
@@ -74,31 +74,42 @@ public abstract class TwitterImage implements Serializable
         }
     }
 
-    public String getEncodeString(BufferedImage image)
+    private void generateEncodedImage()
     {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         try
         {
             ImageIO.write(image,"jpg",byteArrayOutputStream);
-            return Base64.getEncoder().encodeToString(byteArrayOutputStream.toByteArray());
+            encodedImage = Base64.getEncoder().encodeToString(byteArrayOutputStream.toByteArray());
         } catch (IOException e)
         {
             // TODO : handle the exception
-            return null;
+            encodedImage = null;
         }
     }
 
-    public BufferedImage getDecodeImage(String encodedImage)
+    private void generateDecodedImage()
     {
-        byte[] image = Base64.getDecoder().decode(encodedImage);
+        byte[] imageBytes = Base64.getDecoder().decode(encodedImage);
         try
         {
-            return ImageIO.read(new ByteArrayInputStream(image));
+            this.image = ImageIO.read(new ByteArrayInputStream(imageBytes));
         } catch (IOException e)
         {
             // TODO : handle the exception
-            return null;
+            image = null;
         }
+    }
+
+    public String getEncodedImage()
+    {
+        return encodedImage;
+    }
+
+    public void setEncodedImage(String encodedImage)
+    {
+        this.encodedImage = encodedImage;
+        generateDecodedImage();
     }
 
     public BufferedImage getImage()
@@ -106,22 +117,28 @@ public abstract class TwitterImage implements Serializable
         return image;
     }
 
-    @Serial
-    private void writeObject(java.io.ObjectOutputStream out)
-            throws IOException
+    private void setImage(BufferedImage image)
     {
-        out.defaultWriteObject();
-//        because this piece of code make exception in test signUp1 i make a try/catch
-        try
-        {
-            ImageIO.write(image, "jpg", out);
-        }catch (IllegalArgumentException e){}
+        this.image = image;
+        generateEncodedImage();
     }
-    @Serial
-    private void readObject(java.io.ObjectInputStream in)
-            throws IOException, ClassNotFoundException
-    {
-        in.defaultReadObject();
-        image = ImageIO.read(in);
-    }
+
+//    @Serial
+//    private void writeObject(ObjectOutputStream out)
+//            throws IOException
+//    {
+//        out.defaultWriteObject();
+////        because this piece of code make exception in test signUp1 i make a try/catch
+//        try
+//        {
+//            ImageIO.write(image, "jpg", out);
+//        }catch (IllegalArgumentException e){}
+//    }
+//    @Serial
+//    private void readObject(ObjectInputStream in)
+//            throws IOException, ClassNotFoundException
+//    {
+//        in.defaultReadObject();
+//        image = ImageIO.read(in);
+//    }
 }
