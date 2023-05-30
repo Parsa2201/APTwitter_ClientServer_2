@@ -122,23 +122,4 @@ public abstract class TwitterImage implements Serializable
         this.image = image;
         generateEncodedImage();
     }
-
-//    @Serial
-//    private void writeObject(ObjectOutputStream out)
-//            throws IOException
-//    {
-//        out.defaultWriteObject();
-////        because this piece of code make exception in test signUp1 i make a try/catch
-//        try
-//        {
-//            ImageIO.write(image, "jpg", out);
-//        }catch (IllegalArgumentException e){}
-//    }
-//    @Serial
-//    private void readObject(ObjectInputStream in)
-//            throws IOException, ClassNotFoundException
-//    {
-//        in.defaultReadObject();
-//        image = ImageIO.read(in);
-//    }
 }
