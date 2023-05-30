@@ -4,9 +4,11 @@ import com.twitter.entities.exception.io.FileNotExistException;
 import com.twitter.entities.exception.io.FileNotImageException;
 import com.twitter.entities.exception.io.FileSizeException;
 import com.twitter.entities.exception.io.ImageSizeException;
+import jakarta.persistence.Embeddable;
 
 import java.awt.image.BufferedImage;
 
+@Embeddable
 public class Avatar extends TwitterImage
 {
     public Avatar()
