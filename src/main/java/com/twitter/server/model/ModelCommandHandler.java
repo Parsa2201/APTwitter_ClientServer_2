@@ -1,5 +1,6 @@
 package com.twitter.server.model;
 
+import com.twitter.entities.exception.io.server.ServerInvalidCommandException;
 import com.twitter.entities.exception.io.server.ServerInvalidObjectException;
 import com.twitter.entities.exception.io.server.DataNotFoundException;
 import com.twitter.entities.exception.user.password.InvalidPasswordException;
@@ -36,8 +37,8 @@ public class ModelCommandHandler
                 case "set-header" -> modelCommands.setHeader(objectInputStream);
                 case "change-user-information" -> modelCommands.changeUserInformation(objectInputStream);
 
-                // TODO: make an exception for a wrong commend in the server side in the default case
-                default -> new Respond(RespondCode.UNKNOWN);
+
+                default -> new Respond(new ServerInvalidCommandException());
             };
         }
         catch (ServerInvalidObjectException | DataNotFoundException | InvalidPasswordException | TextTooLongException e)

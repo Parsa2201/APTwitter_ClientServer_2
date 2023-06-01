@@ -18,7 +18,7 @@ public class ModelCommands
 
     }
 
-    public void signUp(User user) throws ServerRespondFailedException, ServerConnectionFailedException, ServerInvalidObjectException, DatabaseFailedException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException
+    public void signUp(User user) throws ServerRespondFailedException, ServerConnectionFailedException, ServerInvalidObjectException, DatabaseFailedException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException, ServerInvalidCommandException
     {
         try (ServerConnectionHandler serverConnectionHandler = new ServerConnectionHandler())
         {
@@ -32,7 +32,7 @@ public class ModelCommands
         }
     }
 
-    public User signIn(String userName, Password passwordHash) throws ServerRespondFailedException, ServerConnectionFailedException, ServerInvalidObjectException, DatabaseFailedException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException
+    public User signIn(String userName, Password passwordHash) throws ServerRespondFailedException, ServerConnectionFailedException, ServerInvalidObjectException, DatabaseFailedException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException, ServerInvalidCommandException
     {
         try (ServerConnectionHandler serverConnectionHandler = new ServerConnectionHandler())
         {
@@ -46,7 +46,7 @@ public class ModelCommands
         }
     }
 
-    public void setAvatar(String userName, Avatar avatar) throws ServerRespondFailedException, ServerConnectionFailedException, ServerInvalidObjectException, DatabaseFailedException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException
+    public void setAvatar(String userName, Avatar avatar) throws ServerRespondFailedException, ServerConnectionFailedException, ServerInvalidObjectException, DatabaseFailedException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException, ServerInvalidCommandException
     {
         try (ServerConnectionHandler serverConnectionHandler = new ServerConnectionHandler())
         {
@@ -58,7 +58,7 @@ public class ModelCommands
         }
     }
 
-    public void setHeader(String userName, Header header) throws ServerRespondFailedException, ServerConnectionFailedException, ServerInvalidObjectException, DatabaseFailedException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException
+    public void setHeader(String userName, Header header) throws ServerRespondFailedException, ServerConnectionFailedException, ServerInvalidObjectException, DatabaseFailedException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException, ServerInvalidCommandException
     {
         try (ServerConnectionHandler serverConnectionHandler = new ServerConnectionHandler())
         {
@@ -70,8 +70,8 @@ public class ModelCommands
         }
     }
 
-public void changePassword(String userName, Password newPasswordHash) throws ServerRespondFailedException, ServerConnectionFailedException, ServerInvalidObjectException, DatabaseFailedException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException
-    {
+public void changePassword(String userName, Password newPasswordHash) throws ServerRespondFailedException, ServerConnectionFailedException, ServerInvalidObjectException, DatabaseFailedException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException, ServerInvalidCommandException
+{
         try (ServerConnectionHandler serverConnectionHandler = new ServerConnectionHandler())
         {
             serverConnectionHandler.sendCommend("change-password");
@@ -82,7 +82,7 @@ public void changePassword(String userName, Password newPasswordHash) throws Ser
         }
     }
 
-    public void changeName(String userName, String name) throws ServerRespondFailedException, ServerConnectionFailedException, ServerInvalidObjectException, DatabaseFailedException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException
+    public void changeName(String userName, String name) throws ServerRespondFailedException, ServerConnectionFailedException, ServerInvalidObjectException, DatabaseFailedException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException, ServerInvalidCommandException
     {
         try (ServerConnectionHandler serverConnectionHandler = new ServerConnectionHandler())
         {
@@ -94,7 +94,7 @@ public void changePassword(String userName, Password newPasswordHash) throws Ser
         }
     }
 
-    public void changeFamily(String userName, String family) throws ServerRespondFailedException, ServerConnectionFailedException, ServerInvalidObjectException, DatabaseFailedException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException
+    public void changeFamily(String userName, String family) throws ServerRespondFailedException, ServerConnectionFailedException, ServerInvalidObjectException, DatabaseFailedException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException, ServerInvalidCommandException
     {
         try (ServerConnectionHandler serverConnectionHandler = new ServerConnectionHandler())
         {
@@ -106,7 +106,7 @@ public void changePassword(String userName, Password newPasswordHash) throws Ser
         }
     }
 
-    public void changeEmail(String userName, String email) throws ServerRespondFailedException, ServerConnectionFailedException, ServerInvalidObjectException, DatabaseFailedException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException
+    public void changeEmail(String userName, String email) throws ServerRespondFailedException, ServerConnectionFailedException, ServerInvalidObjectException, DatabaseFailedException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException, ServerInvalidCommandException
     {
         try (ServerConnectionHandler serverConnectionHandler = new ServerConnectionHandler())
         {
@@ -118,7 +118,7 @@ public void changePassword(String userName, Password newPasswordHash) throws Ser
         }
     }
 
-    public void changePhoneNumber(String userName, String phoneNumber) throws ServerRespondFailedException, ServerConnectionFailedException, ServerInvalidObjectException, DatabaseFailedException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException
+    public void changePhoneNumber(String userName, String phoneNumber) throws ServerRespondFailedException, ServerConnectionFailedException, ServerInvalidObjectException, DatabaseFailedException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException, ServerInvalidCommandException
     {
         try (ServerConnectionHandler serverConnectionHandler = new ServerConnectionHandler())
         {
@@ -130,7 +130,7 @@ public void changePassword(String userName, Password newPasswordHash) throws Ser
         }
     }
 
-    public void changeBirthDate(String userName, LocalDate birthDate) throws ServerRespondFailedException, ServerConnectionFailedException, ServerInvalidObjectException, DatabaseFailedException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException
+    public void changeBirthDate(String userName, LocalDate birthDate) throws ServerRespondFailedException, ServerConnectionFailedException, ServerInvalidObjectException, DatabaseFailedException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException, ServerInvalidCommandException
     {
         try (ServerConnectionHandler serverConnectionHandler = new ServerConnectionHandler())
         {
@@ -142,7 +142,7 @@ public void changePassword(String userName, Password newPasswordHash) throws Ser
         }
     }
 
-    public void changeCountry(String userName, String country) throws ServerRespondFailedException, ServerConnectionFailedException, ServerInvalidObjectException, DatabaseFailedException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException
+    public void changeCountry(String userName, String country) throws ServerRespondFailedException, ServerConnectionFailedException, ServerInvalidObjectException, DatabaseFailedException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException, ServerInvalidCommandException
     {
         try (ServerConnectionHandler serverConnectionHandler = new ServerConnectionHandler())
         {
@@ -154,7 +154,7 @@ public void changePassword(String userName, Password newPasswordHash) throws Ser
         }
     }
 
-    public void changeBio(String userName, Bio bio) throws ServerRespondFailedException, ServerConnectionFailedException, ServerInvalidObjectException, DatabaseFailedException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException
+    public void changeBio(String userName, Bio bio) throws ServerRespondFailedException, ServerConnectionFailedException, ServerInvalidObjectException, DatabaseFailedException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException, ServerInvalidCommandException
     {
         try (ServerConnectionHandler serverConnectionHandler = new ServerConnectionHandler())
         {
@@ -166,7 +166,7 @@ public void changePassword(String userName, Password newPasswordHash) throws Ser
         }
     }
 
-    public void changeLocation(String userName, String location) throws ServerRespondFailedException, ServerConnectionFailedException, ServerInvalidObjectException, DatabaseFailedException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException
+    public void changeLocation(String userName, String location) throws ServerRespondFailedException, ServerConnectionFailedException, ServerInvalidObjectException, DatabaseFailedException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException, ServerInvalidCommandException
     {
         try (ServerConnectionHandler serverConnectionHandler = new ServerConnectionHandler())
         {
@@ -178,7 +178,7 @@ public void changePassword(String userName, Password newPasswordHash) throws Ser
         }
     }
 
-    public void changeWebsite(String userName, String website) throws ServerRespondFailedException, ServerConnectionFailedException, ServerInvalidObjectException, DatabaseFailedException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException
+    public void changeWebsite(String userName, String website) throws ServerRespondFailedException, ServerConnectionFailedException, ServerInvalidObjectException, DatabaseFailedException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException, ServerInvalidCommandException
     {
         try (ServerConnectionHandler serverConnectionHandler = new ServerConnectionHandler())
         {
@@ -204,7 +204,7 @@ public void changePassword(String userName, Password newPasswordHash) throws Ser
 //        }
 //    }
 
-    public Followers showFollowers(String userName) throws ServerConnectionFailedException, ServerInvalidObjectException, ServerRespondFailedException, DatabaseFailedException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException
+    public Followers showFollowers(String userName) throws ServerConnectionFailedException, ServerInvalidObjectException, ServerRespondFailedException, DatabaseFailedException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException, ServerInvalidCommandException
     {
         try (ServerConnectionHandler serverConnectionHandler = new ServerConnectionHandler())
         {
@@ -216,7 +216,7 @@ public void changePassword(String userName, Password newPasswordHash) throws Ser
         }
     }
 
-    public Followings showFollowings(String userName) throws ServerConnectionFailedException, ServerInvalidObjectException, ServerRespondFailedException, DatabaseFailedException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException
+    public Followings showFollowings(String userName) throws ServerConnectionFailedException, ServerInvalidObjectException, ServerRespondFailedException, DatabaseFailedException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException, ServerInvalidCommandException
     {
         try (ServerConnectionHandler serverConnectionHandler = new ServerConnectionHandler())
         {
@@ -228,7 +228,7 @@ public void changePassword(String userName, Password newPasswordHash) throws Ser
         }
     }
 
-    public void follow(FollowRelation followRelation) throws ServerConnectionFailedException, ServerInvalidObjectException, ServerRespondFailedException, DatabaseFailedException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException
+    public void follow(FollowRelation followRelation) throws ServerConnectionFailedException, ServerInvalidObjectException, ServerRespondFailedException, DatabaseFailedException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException, ServerInvalidCommandException
     {
         try (ServerConnectionHandler serverConnectionHandler = new ServerConnectionHandler())
         {
@@ -239,7 +239,7 @@ public void changePassword(String userName, Password newPasswordHash) throws Ser
         }
     }
 
-    public void unfollow(FollowRelation followRelation) throws ServerConnectionFailedException, ServerInvalidObjectException, ServerRespondFailedException, DatabaseFailedException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException
+    public void unfollow(FollowRelation followRelation) throws ServerConnectionFailedException, ServerInvalidObjectException, ServerRespondFailedException, DatabaseFailedException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException, ServerInvalidCommandException
     {
         try (ServerConnectionHandler serverConnectionHandler = new ServerConnectionHandler())
         {
@@ -250,7 +250,7 @@ public void changePassword(String userName, Password newPasswordHash) throws Ser
         }
     }
 
-    public MiniUser showUser(String miniUserUsername) throws ServerConnectionFailedException, ServerInvalidObjectException, ServerRespondFailedException, DatabaseFailedException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException
+    public MiniUser showUser(String miniUserUsername) throws ServerConnectionFailedException, ServerInvalidObjectException, ServerRespondFailedException, DatabaseFailedException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException, ServerInvalidCommandException
     {
         try (ServerConnectionHandler serverConnectionHandler = new ServerConnectionHandler())
         {

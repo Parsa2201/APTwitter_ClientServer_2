@@ -4,6 +4,7 @@ import com.twitter.entities.exception.TwitException;
 import com.twitter.entities.exception.UnknownException;
 import com.twitter.entities.exception.io.server.DataNotFoundException;
 import com.twitter.entities.exception.io.server.DatabaseFailedException;
+import com.twitter.entities.exception.io.server.ServerInvalidCommandException;
 import com.twitter.entities.exception.io.server.ServerInvalidObjectException;
 import com.twitter.entities.exception.text.TextTooLongException;
 import com.twitter.entities.exception.user.password.InvalidPasswordException;
@@ -75,7 +76,7 @@ public class Respond implements Serializable
         }
     }
 
-    public void check() throws UnknownException, DatabaseFailedException, ServerInvalidObjectException, DataNotFoundException, InvalidPasswordException, TextTooLongException
+    public void check() throws UnknownException, DatabaseFailedException, ServerInvalidObjectException, DataNotFoundException, InvalidPasswordException, TextTooLongException, ServerInvalidCommandException
     {
         if(respondCode == RespondCode.FAIL)
         {
@@ -93,6 +94,8 @@ public class Respond implements Serializable
                 throw (InvalidPasswordException) exception;
             else if(exception instanceof TextTooLongException)
                 throw (TextTooLongException) exception;
+            else if(exception instanceof ServerInvalidCommandException)
+                throw (ServerInvalidCommandException) exception;
             else if (exception instanceof UnknownException)
                 throw (UnknownException) exception;
             else

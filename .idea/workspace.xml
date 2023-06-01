@@ -4,21 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e6f89f22-8f2b-446d-b25f-81599946cb8d" name="Changes" comment="print error the errors in the view">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/exception/user/PermissionDeniedException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+    <list default="true" id="e6f89f22-8f2b-446d-b25f-81599946cb8d" name="Changes" comment="added all the individual changes to the user in the client">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/exception/io/server/ServerInvalidCommandException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/client/controller/ControllerCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/client/controller/ControllerCommands.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/client/model/ModelCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/client/model/ModelCommands.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/client/model/ServerConnectionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/client/model/ServerConnectionHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/client/view/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/client/view/Command.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/client/view/MenuOption.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/client/view/MenuOption.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/client/view/Option.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/client/view/Option.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/client/view/TwitterLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/client/view/TwitterLog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/user/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/user/Verification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/user/Verification.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/server/ClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/server/ClientHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/server/Respond.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/server/Respond.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/server/model/ModelCommandHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/server/model/ModelCommandHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -225,7 +219,7 @@
       <workItem from="1685606749636" duration="1010000" />
       <workItem from="1685609658029" duration="3907000" />
       <workItem from="1685615959031" duration="7249000" />
-      <workItem from="1685623434548" duration="5480000" />
+      <workItem from="1685623434548" duration="7963000" />
     </task>
     <task id="LOCAL-00001" summary="added sendFile to the ServerConnectionHandler.java">
       <created>1685298475313</created>
@@ -290,7 +284,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685623070430</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="added all the individual changes to the user in the client">
+      <created>1685628970357</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1685628970357</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -317,6 +318,7 @@
     <MESSAGE value="added signIn to the view" />
     <MESSAGE value="made the ServerException extent TwitIOException instead of IOException" />
     <MESSAGE value="print error the errors in the view" />
-    <option name="LAST_COMMIT_MESSAGE" value="print error the errors in the view" />
+    <MESSAGE value="added all the individual changes to the user in the client" />
+    <option name="LAST_COMMIT_MESSAGE" value="added all the individual changes to the user in the client" />
   </component>
 </project>

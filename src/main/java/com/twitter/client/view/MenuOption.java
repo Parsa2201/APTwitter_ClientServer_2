@@ -163,6 +163,9 @@ public class MenuOption
         } catch (FileNotImageException e)
         {
             TwitterLog.printlnError("File is not an image!");
+        } catch (ServerInvalidCommandException e)
+        {
+            TwitterLog.printlnError("Server got invalid command!");
         }
     }
 
