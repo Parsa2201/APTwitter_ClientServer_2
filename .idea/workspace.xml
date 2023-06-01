@@ -4,12 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e6f89f22-8f2b-446d-b25f-81599946cb8d" name="Changes" comment="database without bug accept signUp1 test">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/twitter/server/model/DatabaseCommands.java" afterDir="false" />
+    <list default="true" id="e6f89f22-8f2b-446d-b25f-81599946cb8d" name="Changes" comment="DatabaseCommands commit">
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/image/TwitterImage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/image/TwitterImage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/server/model/ModelCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/server/model/ModelCommands.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/user/Country.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/user/Country.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/twitter/client/controller/ControllerCommandsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/twitter/client/controller/ControllerCommandsTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,6 +59,9 @@
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
@@ -83,7 +86,7 @@
       <recent name="com.twitter.client" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ControllerCommandsTest.signUp1 (1)">
+  <component name="RunManager" selected="JUnit.ControllerCommandsTest.signUp1 (2)">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.twitter.server.Main" />
       <module name="APTwitter_ClientServer_2" />
@@ -113,6 +116,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ControllerCommandsTest.signUp1 (2)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="APTwitter_ClientServer_2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.twitter.client.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.twitter.client.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.twitter.client.controller.ControllerCommandsTest" />
+      <option name="METHOD_NAME" value="signUp1" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ControllerCommandsTest.signUp1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="APTwitter_ClientServer_2" />
       <extension name="coverage">
@@ -131,8 +150,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ControllerCommandsTest.signUp1 (1)" />
+        <item itemvalue="JUnit.ControllerCommandsTest.signUp1 (2)" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.ControllerCommandsTest.signUp1 (1)" />
         <item itemvalue="JUnit.ControllerCommandsTest.signUp1" />
       </list>
     </recent_temporary>
@@ -152,7 +172,11 @@
       <workItem from="1685370707956" duration="3009000" />
       <workItem from="1685455836382" duration="2036000" />
       <workItem from="1685470615691" duration="44000" />
-      <workItem from="1685475563878" duration="2466000" />
+      <workItem from="1685475563878" duration="3178000" />
+      <workItem from="1685490202592" duration="2439000" />
+      <workItem from="1685542630436" duration="383000" />
+      <workItem from="1685544850807" duration="30000" />
+      <workItem from="1685606749636" duration="880000" />
     </task>
     <task id="LOCAL-00001" summary="added sendFile to the ServerConnectionHandler.java">
       <created>1685298475313</created>
@@ -182,7 +206,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685457488871</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="DatabaseCommands commit">
+      <created>1685478697302</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1685478697302</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -204,6 +235,23 @@
     <MESSAGE value="added FollowRelation.java and made ConnectedUsers iterable" />
     <MESSAGE value="made the Program class and implemented a console view" />
     <MESSAGE value="database without bug accept signUp1 test" />
-    <option name="LAST_COMMIT_MESSAGE" value="database without bug accept signUp1 test" />
+    <MESSAGE value="DatabaseCommands commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="DatabaseCommands commit" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/twitter/entities/user/Country.java</url>
+          <line>226</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/twitter/entities/user/Country.java</url>
+          <line>228</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

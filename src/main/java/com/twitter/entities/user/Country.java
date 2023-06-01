@@ -211,7 +211,7 @@ public class Country
         countries = new ArrayList<>();
         String[] locales = Locale.getISOCountries();
         for(String countryCode : locales)
-            countries.add(new Locale("", countryCode).getCountry());
+            countries.add(new Locale("", countryCode).getDisplayCountry());
     }
 
     public static Country getInstance()
@@ -224,7 +224,7 @@ public class Country
     public void validateCountry(String countryName) throws CountryException
     {
         for(String country : countries)
-            if(countryName.equals(country))
+            if(countryName.equalsIgnoreCase(country))
                 return;
         throw new CountryException();
     }

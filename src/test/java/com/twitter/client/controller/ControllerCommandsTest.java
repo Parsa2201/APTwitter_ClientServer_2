@@ -16,7 +16,7 @@ public class ControllerCommandsTest
         String phoneNumber = "1234567890";
         String password = "NaNoOOl;#329";
         String passwordConfirm = "NaNoOOl;#329";
-        String country = "iran";
+        String country = "Iran";
         int year = 2000;
         int month = 1;
         int day = 1;
