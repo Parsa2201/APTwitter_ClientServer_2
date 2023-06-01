@@ -35,21 +35,14 @@ public class ModelCommandHandler
                 case "set-avatar" -> modelCommands.setAvatar(objectInputStream);
                 case "set-header" -> modelCommands.setHeader(objectInputStream);
                 case "change-user-information" -> modelCommands.changeUserInformation(objectInputStream);
-                default -> new Respond(RespondCode.INVALID_COMMAND);
+
+                // TODO: make an exception for a wrong commend in the server side in the default case
+                default -> new Respond(RespondCode.UNKNOWN);
             };
         }
-        catch (ServerInvalidObjectException e)
+        catch (ServerInvalidObjectException | DataNotFoundException | InvalidPasswordException | TextTooLongException e)
         {
-            return new Respond(RespondCode.INVALID_OBJECT, e.getMessage());
-        } catch (DataNotFoundException e)
-        {
-            return new Respond(RespondCode.INVALID_OBJECT, e.getMessage());
-        } catch (InvalidPasswordException e)
-        {
-            return new Respond(RespondCode.INVALID_OBJECT, e.getMessage());
-        } catch (TextTooLongException e)
-        {
-            return new Respond(RespondCode.INVALID_OBJECT, e.getMessage());
+            return new Respond(e);
         }
 
     }

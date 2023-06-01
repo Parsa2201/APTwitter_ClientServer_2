@@ -1,6 +1,8 @@
 package com.twitter.entities.exception;
 
-public class TwitException extends Exception
+import java.io.Serializable;
+
+public class TwitException extends Exception implements Serializable
 {
     public TwitException()
     {

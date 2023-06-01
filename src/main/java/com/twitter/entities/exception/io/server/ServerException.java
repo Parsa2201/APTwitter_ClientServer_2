@@ -1,8 +1,8 @@
 package com.twitter.entities.exception.io.server;
 
-import java.io.IOException;
+import com.twitter.entities.exception.io.TwitIOException;
 
-public class ServerException extends IOException
+public class ServerException extends TwitIOException
 {
     public ServerException()
     {
