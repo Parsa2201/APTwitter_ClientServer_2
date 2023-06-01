@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e6f89f22-8f2b-446d-b25f-81599946cb8d" name="Changes" comment="DatabaseCommands commit">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/user/Country.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/user/Country.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/twitter/client/controller/ControllerCommandsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/twitter/client/controller/ControllerCommandsTest.java" afterDir="false" />
-    </list>
+    <list default="true" id="e6f89f22-8f2b-446d-b25f-81599946cb8d" name="Changes" comment="Country bugfix" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -176,7 +170,7 @@
       <workItem from="1685490202592" duration="2439000" />
       <workItem from="1685542630436" duration="383000" />
       <workItem from="1685544850807" duration="30000" />
-      <workItem from="1685606749636" duration="880000" />
+      <workItem from="1685606749636" duration="1010000" />
     </task>
     <task id="LOCAL-00001" summary="added sendFile to the ServerConnectionHandler.java">
       <created>1685298475313</created>
@@ -213,7 +207,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685478697302</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Country bugfix">
+      <created>1685607730620</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1685607730620</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -236,7 +237,8 @@
     <MESSAGE value="made the Program class and implemented a console view" />
     <MESSAGE value="database without bug accept signUp1 test" />
     <MESSAGE value="DatabaseCommands commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="DatabaseCommands commit" />
+    <MESSAGE value="Country bugfix" />
+    <option name="LAST_COMMIT_MESSAGE" value="Country bugfix" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

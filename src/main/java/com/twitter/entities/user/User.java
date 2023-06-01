@@ -8,7 +8,6 @@ import com.twitter.entities.exception.text.TextTooLongException;
 import com.twitter.entities.image.Avatar;
 import com.twitter.entities.image.Header;
 import jakarta.persistence.*;
-import org.checkerframework.checker.nullness.qual.Nullable;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -39,11 +38,11 @@ public class User implements Serializable
     protected LocalDate birthDate;
     protected LocalDate signUpDate;
     protected LocalDate lastChangeDate;
-    @OneToOne@Nullable
+    @OneToOne
     protected Avatar avatar;
-    @OneToOne@Nullable
+    @OneToOne
     protected Header header;
-    @Embedded@Nullable
+    @Embedded
     protected Bio bio;
     protected String location;
     protected String website;
