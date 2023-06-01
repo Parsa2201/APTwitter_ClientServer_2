@@ -5,12 +5,12 @@ import com.twitter.client.controller.Data;
 import com.twitter.client.controller.Program;
 import com.twitter.entities.exception.EmailOrPhoneRequiredException;
 import com.twitter.entities.exception.TwitException;
-import com.twitter.entities.exception.io.server.DatabaseFailedException;
-import com.twitter.entities.exception.io.server.ServerConnectionFailedException;
-import com.twitter.entities.exception.io.server.ServerInvalidObjectException;
-import com.twitter.entities.exception.io.server.ServerRespondFailedException;
+import com.twitter.entities.exception.UnknownException;
+import com.twitter.entities.exception.io.server.*;
+import com.twitter.entities.exception.text.TextTooLongException;
 import com.twitter.entities.exception.user.CountryException;
 import com.twitter.entities.exception.user.email.EmailFormatException;
+import com.twitter.entities.exception.user.password.InvalidPasswordException;
 import com.twitter.entities.exception.user.password.PasswordConfirmException;
 import com.twitter.entities.exception.user.password.PasswordFormatException;
 import com.twitter.entities.exception.user.password.PasswordHashException;
@@ -30,7 +30,7 @@ public class Command
         controllerCommands = new ControllerCommands();
     }
 
-    public void signUp() throws ServerConnectionFailedException, ServerRespondFailedException, DatabaseFailedException, ServerInvalidObjectException, PasswordHashException
+    public void signUp() throws ServerConnectionFailedException, ServerRespondFailedException, DatabaseFailedException, ServerInvalidObjectException, PasswordHashException, PasswordConfirmException, CountryException, EmailFormatException, DataNotFoundException, PasswordFormatException, EmailOrPhoneRequiredException, UnknownException, InvalidPasswordException, TextTooLongException
     {
         String userName, name, family, email, phoneNumber, password, passwordConfirm, country;
         int year, month, day;
@@ -62,28 +62,11 @@ public class Command
         month = localDate.getMonthValue();
         day = localDate.getDayOfMonth();
 
-        try
-        {
-            controllerCommands.signUp(userName, name, family, email, phoneNumber, password, passwordConfirm, country, year, month, day);
-        } catch (PasswordConfirmException e)
-        {
-            // TODO: handle the exceptions
-        }catch (CountryException e)
-        {
-            TwitterLog.printlnError("Wrong Country!");
-        } catch (EmailFormatException e)
-        {
-            TwitterLog.printlnError("Wrong Email Format!");
-        } catch (PasswordFormatException e)
-        {
-            TwitterLog.printlnError("Wrong Password Format!");
-        } catch (EmailOrPhoneRequiredException e)
-        {
-            TwitterLog.printlnError("Email or Phone Number is required!");
-        }
+
+        controllerCommands.signUp(userName, name, family, email, phoneNumber, password, passwordConfirm, country, year, month, day);
     }
 
-    public void signIn() throws ServerConnectionFailedException, ServerRespondFailedException, DatabaseFailedException, ServerInvalidObjectException, PasswordHashException
+    public void signIn() throws ServerConnectionFailedException, ServerRespondFailedException, DatabaseFailedException, ServerInvalidObjectException, PasswordHashException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException
     {
         String username, password;
 
@@ -110,8 +93,10 @@ public class Command
         TwitterLog.println("Phone Number: " + user.getPhoneNumber());
         TwitterLog.println("Country: " + user.getCountry());
         TwitterLog.println("Birth Date: " + user.getBirthDate());
+
         if(!user.getBio().toString().equals(""))
             TwitterLog.println("Bio: " + user.getBio());
+
         if(!user.getLocation().equals(""))
             TwitterLog.println("Location: " + user.getLocation());
     }

@@ -2,7 +2,7 @@ package com.twitter.entities.exception;
 
 import java.io.Serializable;
 
-public class TwitException extends Exception implements Serializable
+public abstract class TwitException extends Exception implements Serializable
 {
     public TwitException()
     {

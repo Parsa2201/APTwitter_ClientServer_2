@@ -1,9 +1,12 @@
 package com.twitter.entities.server;
 
-import com.twitter.client.view.TwitterLog;
 import com.twitter.entities.exception.TwitException;
+import com.twitter.entities.exception.UnknownException;
+import com.twitter.entities.exception.io.server.DataNotFoundException;
 import com.twitter.entities.exception.io.server.DatabaseFailedException;
 import com.twitter.entities.exception.io.server.ServerInvalidObjectException;
+import com.twitter.entities.exception.text.TextTooLongException;
+import com.twitter.entities.exception.user.password.InvalidPasswordException;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -13,41 +16,41 @@ public class Respond implements Serializable
 {
     private final RespondCode respondCode;
     private final Object object;
-    private final TwitException e;
+    private final TwitException exception;
 
     public Respond(RespondCode respondCode)
     {
         this.respondCode = respondCode;
         object = null;
-        e = null;
+        exception = null;
     }
 
     public Respond(RespondCode respondCode, String message)
     {
         this.respondCode = respondCode;
         object = null;
-        e = null;
+        exception = null;
     }
 
     public Respond(RespondCode respondCode, Object object)
     {
         this.respondCode = respondCode;
         this.object = object;
-        e = null;
+        exception = null;
     }
 
     public Respond(RespondCode respondCode, Object object, TwitException e)
     {
         this.respondCode = respondCode;
         this.object = object;
-        this.e = e;
+        this.exception = e;
     }
 
     public Respond(TwitException e)
     {
         this.respondCode = RespondCode.FAIL;
         object = null;
-        this.e = e;
+        this.exception = e;
     }
 
     public RespondCode getRespondCode()
@@ -72,9 +75,28 @@ public class Respond implements Serializable
         }
     }
 
-    public void check() throws DatabaseFailedException
+    public void check() throws UnknownException, DatabaseFailedException, ServerInvalidObjectException, DataNotFoundException, InvalidPasswordException, TextTooLongException
     {
         if(respondCode == RespondCode.FAIL)
-            throw new DatabaseFailedException();
+        {
+            if(exception == null)
+                throw new UnknownException();
+
+            // throw the exact type of the exception
+            if(exception instanceof DatabaseFailedException)
+                throw (DatabaseFailedException) exception;
+            else if(exception instanceof ServerInvalidObjectException)
+                throw (ServerInvalidObjectException) exception;
+            else if (exception instanceof DataNotFoundException)
+                throw (DataNotFoundException) exception;
+            else if(exception instanceof InvalidPasswordException)
+                throw (InvalidPasswordException) exception;
+            else if(exception instanceof TextTooLongException)
+                throw (TextTooLongException) exception;
+            else if (exception instanceof UnknownException)
+                throw (UnknownException) exception;
+            else
+                throw new UnknownException();
+        }
     }
 }

@@ -1,13 +1,12 @@
 package com.twitter.client.controller;
 
 import com.twitter.entities.exception.EmailOrPhoneRequiredException;
+import com.twitter.entities.exception.UnknownException;
+import com.twitter.entities.exception.io.server.*;
 import com.twitter.entities.exception.user.CountryException;
 import com.twitter.entities.exception.user.email.EmailFormatException;
 import com.twitter.entities.exception.io.*;
-import com.twitter.entities.exception.io.server.DatabaseFailedException;
-import com.twitter.entities.exception.io.server.ServerConnectionFailedException;
-import com.twitter.entities.exception.io.server.ServerInvalidObjectException;
-import com.twitter.entities.exception.io.server.ServerRespondFailedException;
+import com.twitter.entities.exception.user.password.InvalidPasswordException;
 import com.twitter.entities.exception.user.password.PasswordConfirmException;
 import com.twitter.entities.exception.user.password.PasswordFormatException;
 import com.twitter.entities.exception.user.password.PasswordHashException;
@@ -31,7 +30,7 @@ public class ControllerCommands
                        String email, String phoneNumber, String password, String passwordConfirm,
                        String country, int year, int month, int day)
             throws EmailOrPhoneRequiredException, PasswordConfirmException, EmailFormatException, PasswordFormatException,
-            PasswordHashException, ServerConnectionFailedException, ServerRespondFailedException, ServerInvalidObjectException, DatabaseFailedException, CountryException
+            PasswordHashException, ServerConnectionFailedException, ServerRespondFailedException, ServerInvalidObjectException, DatabaseFailedException, CountryException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException
     {
         if (email.equals("") && phoneNumber.equals(""))
             throw new EmailOrPhoneRequiredException();
@@ -54,7 +53,7 @@ public class ControllerCommands
         modelCommands.signUp(user);
     }
 
-    public User signIn(String userName, String password) throws PasswordHashException, ServerConnectionFailedException, ServerRespondFailedException, DatabaseFailedException, ServerInvalidObjectException
+    public User signIn(String userName, String password) throws PasswordHashException, ServerConnectionFailedException, ServerRespondFailedException, DatabaseFailedException, ServerInvalidObjectException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException
     {
         Password passwordHash = new Password(password);
 
@@ -62,7 +61,7 @@ public class ControllerCommands
     }
 
     public Avatar setAvatar(User user, String path)
-            throws FileSizeException, FileNotExistException, FileNotImageException, ImageSizeException, ServerConnectionFailedException, ServerRespondFailedException, DatabaseFailedException, ServerInvalidObjectException
+            throws FileSizeException, FileNotExistException, FileNotImageException, ImageSizeException, ServerConnectionFailedException, ServerRespondFailedException, DatabaseFailedException, ServerInvalidObjectException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException
     {
         Avatar avatar = new Avatar(path);
         modelCommands.setAvatar(user.getUserName(), avatar);
@@ -72,7 +71,7 @@ public class ControllerCommands
     }
 
     public Header setHeader(User user, String path)
-            throws ImageSizeException, FileSizeException, FileNotExistException, FileNotImageException, ServerConnectionFailedException, ServerRespondFailedException, DatabaseFailedException, ServerInvalidObjectException
+            throws ImageSizeException, FileSizeException, FileNotExistException, FileNotImageException, ServerConnectionFailedException, ServerRespondFailedException, DatabaseFailedException, ServerInvalidObjectException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException
     {
         Header header = new Header(path);
         modelCommands.setHeader(user.getUserName(), header);
@@ -81,7 +80,7 @@ public class ControllerCommands
         return header;
     }
 
-    public void changeUserInformation(User user, String bioText, String location, String website) throws TextTooLongException, ServerConnectionFailedException, ServerRespondFailedException, DatabaseFailedException, ServerInvalidObjectException
+    public void changeUserInformation(User user, String bioText, String location, String website) throws TextTooLongException, ServerConnectionFailedException, ServerRespondFailedException, DatabaseFailedException, ServerInvalidObjectException, DataNotFoundException, UnknownException, InvalidPasswordException
     {
         Bio bio = new Bio(bioText);
         modelCommands.changeUserInformation(user.getUserName(), bio, location, website);
@@ -91,29 +90,29 @@ public class ControllerCommands
         user.setWebsite(website);
     }
 
-    public Followers showFollowers(User user) throws ServerConnectionFailedException, ServerRespondFailedException, DatabaseFailedException, ServerInvalidObjectException
+    public Followers showFollowers(User user) throws ServerConnectionFailedException, ServerRespondFailedException, DatabaseFailedException, ServerInvalidObjectException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException
     {
         return modelCommands.showFollowers(user.getUserName());
     }
 
-    public Followings showFollowings(User user) throws ServerConnectionFailedException, ServerRespondFailedException, DatabaseFailedException, ServerInvalidObjectException
+    public Followings showFollowings(User user) throws ServerConnectionFailedException, ServerRespondFailedException, DatabaseFailedException, ServerInvalidObjectException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException
     {
         return modelCommands.showFollowings(user.getUserName());
     }
 
-    public void follow(User user, MiniUser miniUser) throws ServerConnectionFailedException, ServerRespondFailedException, DatabaseFailedException, ServerInvalidObjectException
+    public void follow(User user, MiniUser miniUser) throws ServerConnectionFailedException, ServerRespondFailedException, DatabaseFailedException, ServerInvalidObjectException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException
     {
         FollowRelation followRelation = new FollowRelation(user.getUserName(), miniUser.getUserName());
         modelCommands.follow(followRelation);
     }
 
-    public void unfollow(User user, MiniUser miniUser) throws ServerConnectionFailedException, ServerRespondFailedException, DatabaseFailedException, ServerInvalidObjectException
+    public void unfollow(User user, MiniUser miniUser) throws ServerConnectionFailedException, ServerRespondFailedException, DatabaseFailedException, ServerInvalidObjectException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException
     {
         FollowRelation followRelation = new FollowRelation(user.getUserName(), miniUser.getUserName());
         modelCommands.unfollow(followRelation);
     }
 
-    public MiniUser showUser(MiniUser miniUser) throws ServerConnectionFailedException, ServerRespondFailedException, DatabaseFailedException, ServerInvalidObjectException
+    public MiniUser showUser(MiniUser miniUser) throws ServerConnectionFailedException, ServerRespondFailedException, DatabaseFailedException, ServerInvalidObjectException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException
     {
         return modelCommands.showUser(miniUser.getUserName());
     }

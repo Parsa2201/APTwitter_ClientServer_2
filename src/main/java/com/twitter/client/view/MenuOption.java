@@ -1,10 +1,15 @@
 package com.twitter.client.view;
 
 import com.twitter.client.controller.Data;
-import com.twitter.entities.exception.io.server.DatabaseFailedException;
-import com.twitter.entities.exception.io.server.ServerConnectionFailedException;
-import com.twitter.entities.exception.io.server.ServerInvalidObjectException;
-import com.twitter.entities.exception.io.server.ServerRespondFailedException;
+import com.twitter.entities.exception.EmailOrPhoneRequiredException;
+import com.twitter.entities.exception.UnknownException;
+import com.twitter.entities.exception.io.server.*;
+import com.twitter.entities.exception.text.TextTooLongException;
+import com.twitter.entities.exception.user.CountryException;
+import com.twitter.entities.exception.user.email.EmailFormatException;
+import com.twitter.entities.exception.user.password.InvalidPasswordException;
+import com.twitter.entities.exception.user.password.PasswordConfirmException;
+import com.twitter.entities.exception.user.password.PasswordFormatException;
 import com.twitter.entities.exception.user.password.PasswordHashException;
 
 import java.util.ArrayList;
@@ -87,6 +92,33 @@ public class MenuOption
         } catch (PasswordHashException e)
         {
             TwitterLog.printlnError("Password hash failed!");
+        } catch (PasswordConfirmException e)
+        {
+            TwitterLog.printlnError("Password confirm failed!");
+        } catch (CountryException e)
+        {
+            TwitterLog.printlnError("Country is not valid!");
+        } catch (EmailFormatException e)
+        {
+            TwitterLog.printlnError("Email format is not valid!");
+        } catch (DataNotFoundException e)
+        {
+            TwitterLog.printlnError("Data not found!");
+        } catch (PasswordFormatException e)
+        {
+            TwitterLog.printlnError("Password format is not valid!");
+        } catch (EmailOrPhoneRequiredException e)
+        {
+            TwitterLog.printlnError("Email or phone is required!");
+        } catch (UnknownException e)
+        {
+            TwitterLog.printlnError("Unknown error!");
+        } catch (InvalidPasswordException e)
+        {
+            TwitterLog.printlnError("Invalid password!");
+        } catch (TextTooLongException e)
+        {
+            TwitterLog.printlnError("Text is too long!");
         }
     }
 

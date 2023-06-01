@@ -4,22 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e6f89f22-8f2b-446d-b25f-81599946cb8d" name="Changes" comment="Country bugfix">
-      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+    <list default="true" id="e6f89f22-8f2b-446d-b25f-81599946cb8d" name="Changes" comment="made the ServerException extent TwitIOException instead of IOException">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/exception/UnknownException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/client/controller/ControllerCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/client/controller/ControllerCommands.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/client/controller/Data.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/client/controller/Data.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/client/model/ModelCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/client/model/ModelCommands.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/client/view/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/client/view/Command.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/client/view/MenuOption.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/client/view/MenuOption.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/client/view/ProgramState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/client/view/ProgramState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/client/view/TwitterLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/client/view/TwitterLog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/user/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/twitter/client/controller/ControllerCommandsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/twitter/client/controller/ControllerCommandsTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/exception/TwitException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/exception/TwitException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/server/Respond.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/server/Respond.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/server/model/ObjectGetter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/server/model/ObjectGetter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +26,7 @@
       <list>
         <option value="Enum" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -224,7 +220,7 @@
       <workItem from="1685544850807" duration="30000" />
       <workItem from="1685606749636" duration="1010000" />
       <workItem from="1685609658029" duration="3907000" />
-      <workItem from="1685615959031" duration="2453000" />
+      <workItem from="1685615959031" duration="6856000" />
     </task>
     <task id="LOCAL-00001" summary="added sendFile to the ServerConnectionHandler.java">
       <created>1685298475313</created>
@@ -268,7 +264,21 @@
       <option name="project" value="LOCAL" />
       <updated>1685607730620</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="added signIn to the view">
+      <created>1685618652084</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1685618652084</updated>
+    </task>
+    <task id="LOCAL-00008" summary="made the ServerException extent TwitIOException instead of IOException">
+      <created>1685619542670</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1685619542670</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -292,7 +302,9 @@
     <MESSAGE value="database without bug accept signUp1 test" />
     <MESSAGE value="DatabaseCommands commit" />
     <MESSAGE value="Country bugfix" />
-    <option name="LAST_COMMIT_MESSAGE" value="Country bugfix" />
+    <MESSAGE value="added signIn to the view" />
+    <MESSAGE value="made the ServerException extent TwitIOException instead of IOException" />
+    <option name="LAST_COMMIT_MESSAGE" value="made the ServerException extent TwitIOException instead of IOException" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

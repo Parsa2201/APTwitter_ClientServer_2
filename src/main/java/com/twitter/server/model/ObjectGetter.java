@@ -3,13 +3,14 @@ package com.twitter.server.model;
 import com.twitter.entities.exception.io.server.ServerInvalidObjectException;
 
 import java.io.IOException;
+import java.io.InvalidClassException;
 import java.io.ObjectInputStream;
 
 public class ObjectGetter
 {
-    public static <T> T getObject(ObjectInputStream objectInputStream, Class<T> type) throws ServerInvalidObjectException
+    public static <T> T getObject(ObjectInputStream objectInputStream, Class<T> clazz) throws ServerInvalidObjectException
     {
-        T t = null;
+        T t;
         try
         {
             t = (T) objectInputStream.readObject();
@@ -23,9 +24,4 @@ public class ObjectGetter
 
         return t;
     }
-
-//    public static <T> T getLargeObject(ObjectInputStream objectInputStream, Class<T> type) throws ServerInvalidObjectException
-//    {
-//        // gets objects like ImageBuilder
-//    }
 }

@@ -1,9 +1,9 @@
 package com.twitter.client.model;
 
-import com.twitter.entities.exception.io.server.DatabaseFailedException;
-import com.twitter.entities.exception.io.server.ServerConnectionFailedException;
-import com.twitter.entities.exception.io.server.ServerInvalidObjectException;
-import com.twitter.entities.exception.io.server.ServerRespondFailedException;
+import com.twitter.entities.exception.UnknownException;
+import com.twitter.entities.exception.io.server.*;
+import com.twitter.entities.exception.text.TextTooLongException;
+import com.twitter.entities.exception.user.password.InvalidPasswordException;
 import com.twitter.entities.image.Avatar;
 import com.twitter.entities.image.Header;
 import com.twitter.entities.server.Respond;
@@ -16,7 +16,7 @@ public class ModelCommands
 
     }
 
-    public void signUp(User user) throws ServerRespondFailedException, ServerConnectionFailedException, ServerInvalidObjectException, DatabaseFailedException
+    public void signUp(User user) throws ServerRespondFailedException, ServerConnectionFailedException, ServerInvalidObjectException, DatabaseFailedException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException
     {
         try (ServerConnectionHandler serverConnectionHandler = new ServerConnectionHandler())
         {
@@ -30,7 +30,7 @@ public class ModelCommands
         }
     }
 
-    public User signIn(String userName, Password passwordHash) throws ServerRespondFailedException, ServerConnectionFailedException, ServerInvalidObjectException, DatabaseFailedException
+    public User signIn(String userName, Password passwordHash) throws ServerRespondFailedException, ServerConnectionFailedException, ServerInvalidObjectException, DatabaseFailedException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException
     {
         try (ServerConnectionHandler serverConnectionHandler = new ServerConnectionHandler())
         {
@@ -44,7 +44,7 @@ public class ModelCommands
         }
     }
 
-    public void setAvatar(String userName, Avatar avatar) throws ServerRespondFailedException, ServerConnectionFailedException, ServerInvalidObjectException, DatabaseFailedException
+    public void setAvatar(String userName, Avatar avatar) throws ServerRespondFailedException, ServerConnectionFailedException, ServerInvalidObjectException, DatabaseFailedException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException
     {
         try (ServerConnectionHandler serverConnectionHandler = new ServerConnectionHandler())
         {
@@ -56,7 +56,7 @@ public class ModelCommands
         }
     }
 
-    public void setHeader(String userName, Header header) throws ServerRespondFailedException, ServerConnectionFailedException, ServerInvalidObjectException, DatabaseFailedException
+    public void setHeader(String userName, Header header) throws ServerRespondFailedException, ServerConnectionFailedException, ServerInvalidObjectException, DatabaseFailedException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException
     {
         try (ServerConnectionHandler serverConnectionHandler = new ServerConnectionHandler())
         {
@@ -68,7 +68,7 @@ public class ModelCommands
         }
     }
 
-    public void changeUserInformation(String userName, Bio bio, String address, String website) throws ServerConnectionFailedException, ServerInvalidObjectException, ServerRespondFailedException, DatabaseFailedException
+    public void changeUserInformation(String userName, Bio bio, String address, String website) throws ServerConnectionFailedException, ServerInvalidObjectException, ServerRespondFailedException, DatabaseFailedException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException
     {
         try (ServerConnectionHandler serverConnectionHandler = new ServerConnectionHandler())
         {
@@ -82,7 +82,7 @@ public class ModelCommands
         }
     }
 
-    public Followers showFollowers(String userName) throws ServerConnectionFailedException, ServerInvalidObjectException, ServerRespondFailedException, DatabaseFailedException
+    public Followers showFollowers(String userName) throws ServerConnectionFailedException, ServerInvalidObjectException, ServerRespondFailedException, DatabaseFailedException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException
     {
         try (ServerConnectionHandler serverConnectionHandler = new ServerConnectionHandler())
         {
@@ -94,7 +94,7 @@ public class ModelCommands
         }
     }
 
-    public Followings showFollowings(String userName) throws ServerConnectionFailedException, ServerInvalidObjectException, ServerRespondFailedException, DatabaseFailedException
+    public Followings showFollowings(String userName) throws ServerConnectionFailedException, ServerInvalidObjectException, ServerRespondFailedException, DatabaseFailedException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException
     {
         try (ServerConnectionHandler serverConnectionHandler = new ServerConnectionHandler())
         {
@@ -106,7 +106,7 @@ public class ModelCommands
         }
     }
 
-    public void follow(FollowRelation followRelation) throws ServerConnectionFailedException, ServerInvalidObjectException, ServerRespondFailedException, DatabaseFailedException
+    public void follow(FollowRelation followRelation) throws ServerConnectionFailedException, ServerInvalidObjectException, ServerRespondFailedException, DatabaseFailedException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException
     {
         try (ServerConnectionHandler serverConnectionHandler = new ServerConnectionHandler())
         {
@@ -117,7 +117,7 @@ public class ModelCommands
         }
     }
 
-    public void unfollow(FollowRelation followRelation) throws ServerConnectionFailedException, ServerInvalidObjectException, ServerRespondFailedException, DatabaseFailedException
+    public void unfollow(FollowRelation followRelation) throws ServerConnectionFailedException, ServerInvalidObjectException, ServerRespondFailedException, DatabaseFailedException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException
     {
         try (ServerConnectionHandler serverConnectionHandler = new ServerConnectionHandler())
         {
@@ -128,7 +128,7 @@ public class ModelCommands
         }
     }
 
-    public MiniUser showUser(String miniUserUsername) throws ServerConnectionFailedException, ServerInvalidObjectException, ServerRespondFailedException, DatabaseFailedException
+    public MiniUser showUser(String miniUserUsername) throws ServerConnectionFailedException, ServerInvalidObjectException, ServerRespondFailedException, DatabaseFailedException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException
     {
         try (ServerConnectionHandler serverConnectionHandler = new ServerConnectionHandler())
         {
