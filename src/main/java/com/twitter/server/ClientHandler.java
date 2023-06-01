@@ -1,5 +1,6 @@
 package com.twitter.server;
 
+import com.twitter.entities.exception.io.server.ServerInvalidObjectException;
 import com.twitter.entities.server.Respond;
 import com.twitter.server.model.ModelCommandHandler;
 
@@ -29,6 +30,9 @@ public class ClientHandler implements Runnable
         } catch (ClassNotFoundException e)
         {
             System.out.println("Command not found!");
+        } catch (ServerInvalidObjectException e)
+        {
+            System.out.println("Invalid object!");
         }
 
         try
@@ -40,7 +44,7 @@ public class ClientHandler implements Runnable
         }
     }
 
-    public void handleClient() throws IOException, ClassNotFoundException
+    public void handleClient() throws IOException, ClassNotFoundException, ServerInvalidObjectException
     {
         InputStream inputStream = connectionSocket.getInputStream();
         OutputStream outputStream = connectionSocket.getOutputStream();

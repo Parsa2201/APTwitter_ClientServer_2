@@ -99,14 +99,14 @@ public class ServerConnectionHandler implements Closeable
     }
 
     @Override
-    public void close() throws ServerConnectionFailedException
+    public void close()
     {
         try
         {
             socket.close();
         } catch (IOException e)
         {
-            throw new ServerConnectionFailedException(e.getMessage());
+            e.printStackTrace();
         }
     }
 }

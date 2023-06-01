@@ -1,9 +1,11 @@
 package com.twitter.client.controller;
 
+import com.twitter.client.view.ProgramState;
 import com.twitter.entities.exception.EmailOrPhoneRequiredException;
 import com.twitter.entities.exception.UnknownException;
 import com.twitter.entities.exception.io.server.*;
 import com.twitter.entities.exception.user.CountryException;
+import com.twitter.entities.exception.user.PermissionDeniedException;
 import com.twitter.entities.exception.user.email.EmailFormatException;
 import com.twitter.entities.exception.io.*;
 import com.twitter.entities.exception.user.password.InvalidPasswordException;
@@ -24,6 +26,15 @@ public class ControllerCommands
     public ControllerCommands()
     {
         modelCommands = new ModelCommands();
+    }
+
+    private User getCurrentUser() throws PermissionDeniedException
+    {
+        User user = Data.getInstance().getUser();
+        if(user == null || Data.getInstance().getProgramState() == ProgramState.LOGGED_OUT)
+            throw new PermissionDeniedException();
+
+        return user;
     }
 
     public void signUp(String userName, String name, String family,
@@ -55,14 +66,26 @@ public class ControllerCommands
 
     public User signIn(String userName, String password) throws PasswordHashException, ServerConnectionFailedException, ServerRespondFailedException, DatabaseFailedException, ServerInvalidObjectException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException
     {
-        Password passwordHash = new Password(password);
+            Password passwordHash = new Password(password);
 
-        return modelCommands.signIn(userName, passwordHash);
+            User user = modelCommands.signIn(userName, passwordHash);
+
+            Data.getInstance().setUser(user);
+            Data.getInstance().setProgramState(ProgramState.MAIN_MENU);
+            return user;
     }
 
-    public Avatar setAvatar(User user, String path)
-            throws FileSizeException, FileNotExistException, FileNotImageException, ImageSizeException, ServerConnectionFailedException, ServerRespondFailedException, DatabaseFailedException, ServerInvalidObjectException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException
+    public void signOut() throws PermissionDeniedException
     {
+        getCurrentUser();
+        Data.getInstance().setUser(null);
+        Data.getInstance().setProgramState(ProgramState.LOGGED_OUT);
+    }
+
+    public Avatar setAvatar(String path)
+            throws FileSizeException, FileNotExistException, FileNotImageException, ImageSizeException, ServerConnectionFailedException, ServerRespondFailedException, DatabaseFailedException, ServerInvalidObjectException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException, PermissionDeniedException
+    {
+        User user = getCurrentUser();
         Avatar avatar = new Avatar(path);
         modelCommands.setAvatar(user.getUserName(), avatar);
 
@@ -70,9 +93,10 @@ public class ControllerCommands
         return avatar;
     }
 
-    public Header setHeader(User user, String path)
-            throws ImageSizeException, FileSizeException, FileNotExistException, FileNotImageException, ServerConnectionFailedException, ServerRespondFailedException, DatabaseFailedException, ServerInvalidObjectException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException
+    public Header setHeader(String path)
+            throws ImageSizeException, FileSizeException, FileNotExistException, FileNotImageException, ServerConnectionFailedException, ServerRespondFailedException, DatabaseFailedException, ServerInvalidObjectException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException, PermissionDeniedException
     {
+        User user = getCurrentUser();
         Header header = new Header(path);
         modelCommands.setHeader(user.getUserName(), header);
 
@@ -80,34 +104,137 @@ public class ControllerCommands
         return header;
     }
 
-    public void changeUserInformation(User user, String bioText, String location, String website) throws TextTooLongException, ServerConnectionFailedException, ServerRespondFailedException, DatabaseFailedException, ServerInvalidObjectException, DataNotFoundException, UnknownException, InvalidPasswordException
+    public void changePassword(String oldPassword, String newPassword, String newPasswordConfirm) throws PermissionDeniedException, PasswordFormatException, PasswordHashException, InvalidPasswordException, ServerConnectionFailedException, DataNotFoundException, ServerRespondFailedException, UnknownException, TextTooLongException, DatabaseFailedException, ServerInvalidObjectException, PasswordConfirmException
     {
-        Bio bio = new Bio(bioText);
-        modelCommands.changeUserInformation(user.getUserName(), bio, location, website);
+        User user = getCurrentUser();
 
-        user.setBio(bio);
-        user.setLocation(location);
-        user.setWebsite(website);
+        if(!user.getPassHash().equals(new Password(oldPassword)))
+            throw new InvalidPasswordException();
+        Verification.verifyPassword(newPassword);
+        if(!newPassword.equals(newPasswordConfirm))
+            throw new PasswordConfirmException();
+
+        modelCommands.changePassword(user.getUserName(), new Password(newPassword));
+
+        user.setPassword(new Password(newPassword));
     }
 
-    public Followers showFollowers(User user) throws ServerConnectionFailedException, ServerRespondFailedException, DatabaseFailedException, ServerInvalidObjectException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException
+    public void changeName(String newName) throws PermissionDeniedException, ServerConnectionFailedException, DataNotFoundException, ServerRespondFailedException, UnknownException, InvalidPasswordException, TextTooLongException, DatabaseFailedException, ServerInvalidObjectException
     {
+        User user = getCurrentUser();
+        modelCommands.changeName(user.getUserName(), newName);
+
+        user.setName(newName);
+    }
+
+    public void changeFamily(String newFamily) throws PermissionDeniedException, ServerConnectionFailedException, DataNotFoundException, ServerRespondFailedException, UnknownException, InvalidPasswordException, TextTooLongException, DatabaseFailedException, ServerInvalidObjectException
+    {
+        User user = getCurrentUser();
+        modelCommands.changeFamily(user.getUserName(), newFamily);
+
+        user.setFamily(newFamily);
+    }
+
+    public void changeEmail(String newEmail) throws PermissionDeniedException, EmailFormatException, ServerConnectionFailedException, DataNotFoundException, ServerRespondFailedException, UnknownException, InvalidPasswordException, TextTooLongException, DatabaseFailedException, ServerInvalidObjectException
+    {
+        User user = getCurrentUser();
+
+        Verification.verifyEmail(newEmail);
+
+        modelCommands.changeEmail(user.getUserName(), newEmail);
+
+        user.setEmail(newEmail);
+    }
+
+    public void changePhoneNumber(String newPhoneNumber) throws PermissionDeniedException, ServerConnectionFailedException, DataNotFoundException, ServerRespondFailedException, UnknownException, InvalidPasswordException, TextTooLongException, DatabaseFailedException, ServerInvalidObjectException
+    {
+        User user = getCurrentUser();
+        modelCommands.changePhoneNumber(user.getUserName(), newPhoneNumber);
+
+        user.setPhoneNumber(newPhoneNumber);
+    }
+
+    public void changeBirthDate(int year, int month, int day) throws PermissionDeniedException, ServerConnectionFailedException, DataNotFoundException, ServerRespondFailedException, UnknownException, InvalidPasswordException, TextTooLongException, DatabaseFailedException, ServerInvalidObjectException
+    {
+        User user = getCurrentUser();
+        modelCommands.changeBirthDate(user.getUserName(), LocalDate.of(year, month, day));
+
+        user.setBirthDate(LocalDate.of(year, month, day));
+    }
+
+    public void changeCountry(String newCountry) throws PermissionDeniedException, CountryException, ServerConnectionFailedException, DataNotFoundException, ServerRespondFailedException, UnknownException, InvalidPasswordException, TextTooLongException, DatabaseFailedException, ServerInvalidObjectException
+    {
+        User user = getCurrentUser();
+
+        Verification.verifyCountry(newCountry);
+
+        modelCommands.changeCountry(user.getUserName(), newCountry);
+
+        user.setCountry(newCountry);
+    }
+
+    public void changeBio(String newBio) throws PermissionDeniedException, TextTooLongException, ServerConnectionFailedException, DataNotFoundException, ServerRespondFailedException, UnknownException, InvalidPasswordException, DatabaseFailedException, ServerInvalidObjectException
+    {
+        User user = getCurrentUser();
+
+        Verification.verifyBio(newBio);
+
+        modelCommands.changeBio(user.getUserName(), new Bio(newBio));
+
+        user.setBio(new Bio(newBio));
+    }
+
+    public void changeLocation(String newLocation) throws PermissionDeniedException, ServerConnectionFailedException, DataNotFoundException, ServerRespondFailedException, UnknownException, InvalidPasswordException, TextTooLongException, DatabaseFailedException, ServerInvalidObjectException
+    {
+        User user = getCurrentUser();
+
+        modelCommands.changeLocation(user.getUserName(), newLocation);
+
+        user.setLocation(newLocation);
+    }
+
+    public void changeWebsite(String newWebsite) throws PermissionDeniedException, ServerConnectionFailedException, DataNotFoundException, ServerRespondFailedException, UnknownException, InvalidPasswordException, TextTooLongException, DatabaseFailedException, ServerInvalidObjectException
+    {
+        User user = getCurrentUser();
+
+        modelCommands.changeWebsite(user.getUserName(), newWebsite);
+
+        user.setWebsite(newWebsite);
+    }
+
+//    public void changeUserInformation(String bioText, String location, String website) throws TextTooLongException, ServerConnectionFailedException, ServerRespondFailedException, DatabaseFailedException, ServerInvalidObjectException, DataNotFoundException, UnknownException, InvalidPasswordException, PermissionDeniedException
+//    {
+//        User user = getCurrentUser();
+//        Bio bio = new Bio(bioText);
+//        modelCommands.changeUserInformation(user.getUserName(), bio, location, website);
+//
+//        user.setBio(bio);
+//        user.setLocation(location);
+//        user.setWebsite(website);
+//    }
+
+    public Followers showFollowers() throws ServerConnectionFailedException, ServerRespondFailedException, DatabaseFailedException, ServerInvalidObjectException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException, PermissionDeniedException
+    {
+        User user = getCurrentUser();
         return modelCommands.showFollowers(user.getUserName());
     }
 
-    public Followings showFollowings(User user) throws ServerConnectionFailedException, ServerRespondFailedException, DatabaseFailedException, ServerInvalidObjectException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException
+    public Followings showFollowings() throws ServerConnectionFailedException, ServerRespondFailedException, DatabaseFailedException, ServerInvalidObjectException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException, PermissionDeniedException
     {
+        User user = getCurrentUser();
         return modelCommands.showFollowings(user.getUserName());
     }
 
-    public void follow(User user, MiniUser miniUser) throws ServerConnectionFailedException, ServerRespondFailedException, DatabaseFailedException, ServerInvalidObjectException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException
+    public void follow(MiniUser miniUser) throws ServerConnectionFailedException, ServerRespondFailedException, DatabaseFailedException, ServerInvalidObjectException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException, PermissionDeniedException
     {
+        User user = getCurrentUser();
         FollowRelation followRelation = new FollowRelation(user.getUserName(), miniUser.getUserName());
         modelCommands.follow(followRelation);
     }
 
-    public void unfollow(User user, MiniUser miniUser) throws ServerConnectionFailedException, ServerRespondFailedException, DatabaseFailedException, ServerInvalidObjectException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException
+    public void unfollow(MiniUser miniUser) throws ServerConnectionFailedException, ServerRespondFailedException, DatabaseFailedException, ServerInvalidObjectException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException, PermissionDeniedException
     {
+        User user = getCurrentUser();
         FollowRelation followRelation = new FollowRelation(user.getUserName(), miniUser.getUserName());
         modelCommands.unfollow(followRelation);
     }

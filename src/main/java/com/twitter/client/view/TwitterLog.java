@@ -33,13 +33,25 @@ public class TwitterLog
     public static void printlnError(String str)
     {
         if(showLog)
+        {
             System.err.println(str);
+            try
+            {
+                Thread.sleep(100);
+            } catch (InterruptedException ignored){}
+        }
     }
 
     public static void printError(String str)
     {
         if(showLog)
+        {
             System.err.print(str);
+            try
+            {
+                Thread.sleep(100);
+            } catch (InterruptedException ignored){}
+        }
     }
 
     public static String nextLine()

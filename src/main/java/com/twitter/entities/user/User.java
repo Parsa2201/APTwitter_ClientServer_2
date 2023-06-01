@@ -51,9 +51,9 @@ public class User implements Serializable
     {
         this.userName = null;
         this.passHash = null;
-        this.name = null;
+        this.name = "";
         this.family = null;
-        this.country = null;
+        this.country = "";
         this.email = null;
         this.phoneNumber = null;
         this.signUpDate = null;
@@ -61,7 +61,7 @@ public class User implements Serializable
         this.lastChangeDate = null;
         this.avatar = null;
         this.header = null;
-        this.bio = null;
+        this.bio = new Bio();
         this.location = "";
         this.website = "";
     }

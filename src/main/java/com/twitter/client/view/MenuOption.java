@@ -3,21 +3,28 @@ package com.twitter.client.view;
 import com.twitter.client.controller.Data;
 import com.twitter.entities.exception.EmailOrPhoneRequiredException;
 import com.twitter.entities.exception.UnknownException;
+import com.twitter.entities.exception.io.FileNotExistException;
+import com.twitter.entities.exception.io.FileNotImageException;
+import com.twitter.entities.exception.io.FileSizeException;
+import com.twitter.entities.exception.io.ImageSizeException;
 import com.twitter.entities.exception.io.server.*;
 import com.twitter.entities.exception.text.TextTooLongException;
 import com.twitter.entities.exception.user.CountryException;
+import com.twitter.entities.exception.user.PermissionDeniedException;
 import com.twitter.entities.exception.user.email.EmailFormatException;
 import com.twitter.entities.exception.user.password.InvalidPasswordException;
 import com.twitter.entities.exception.user.password.PasswordConfirmException;
 import com.twitter.entities.exception.user.password.PasswordFormatException;
 import com.twitter.entities.exception.user.password.PasswordHashException;
 
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
 public class MenuOption
 {
     private final ArrayList<Option> options;
     private Option command;
+    private boolean showNestedOptions = false;
 
     public MenuOption()
     {
@@ -26,11 +33,12 @@ public class MenuOption
 
     public void showOptions()
     {
-        switch (Data.getInstance().getProgramState())
-        {
-            case LOGGED_OUT -> setLoggedOutOptions();
-            case MAIN_MENU -> setMainMenuOptions();
-        }
+        if(!showNestedOptions)
+            switch (Data.getInstance().getProgramState())
+            {
+                case LOGGED_OUT -> setLoggedOutOptions();
+                case MAIN_MENU -> setMainMenuOptions();
+            }
 
         for(int i = 0; i < options.size(); i++)
         {
@@ -41,7 +49,7 @@ public class MenuOption
 
     public void getCommand() throws IllegalArgumentException
     {
-        String rawCommand = TwitterLog.nextLine();
+        String rawCommand = TwitterLog.nextLine("||>  ");
 
         int optionIndex;
         try
@@ -72,12 +80,33 @@ public class MenuOption
         {
             switch (command)
             {
+                case BACK -> back();
+
                 case SIGN_UP -> commandObject.signUp();
                 case SIGN_IN -> commandObject.signIn();
+
                 case SHOW_USER_INFO -> commandObject.showUserInfo();
+                case CHANGE_USER_INFO -> setChangeUserInformationOptions();
+                case SIGN_OUT -> commandObject.signOut();
+
+                case SET_AVATAR -> commandObject.setAvatar();
+                case SET_HEADER -> commandObject.setHeader();
+                case CHANGE_PASSWORD -> commandObject.changePassword();
+                case CHANGE_NAME -> commandObject.changeName();
+                case CHANGE_FAMILY -> commandObject.changeFamily();
+                case CHANGE_EMAIL -> commandObject.changeEmail();
+                case CHANGE_PHONE_NUMBER -> commandObject.changePhoneNumber();
+                case CHANGE_BIRTH_DATE -> commandObject.changeBirthDate();
+                case CHANGE_COUNTRY -> commandObject.changeCountry();
+                case CHANGE_BIO -> commandObject.changeBio();
+                case CHANGE_LOCATION -> commandObject.changeLocation();
+                case CHANGE_WEBSITE -> commandObject.changeWebsite();
             }
         }
-        catch (ServerConnectionFailedException e)
+        catch (DateTimeParseException e)
+        {
+            TwitterLog.printlnError("Date format is not valid!");
+        } catch (ServerConnectionFailedException e)
         {
             TwitterLog.printlnError("Server connection failed!");
         } catch (ServerRespondFailedException e)
@@ -119,6 +148,21 @@ public class MenuOption
         } catch (TextTooLongException e)
         {
             TwitterLog.printlnError("Text is too long!");
+        } catch (PermissionDeniedException e)
+        {
+            TwitterLog.printlnError("Permission denied!");
+        } catch (ImageSizeException e)
+        {
+            TwitterLog.printlnError("Image size is not valid!");
+        } catch (FileNotExistException e)
+        {
+            TwitterLog.printlnError("File doesn't exist!");
+        } catch (FileSizeException e)
+        {
+            TwitterLog.printlnError("File size is not valid!");
+        } catch (FileNotImageException e)
+        {
+            TwitterLog.printlnError("File is not an image!");
         }
     }
 
@@ -127,11 +171,43 @@ public class MenuOption
         options.clear();
         options.add(Option.SIGN_UP);
         options.add(Option.SIGN_IN);
+
+        showNestedOptions = false;
     }
 
     private void setMainMenuOptions()
     {
         options.clear();
         options.add(Option.SHOW_USER_INFO);
+        options.add(Option.CHANGE_USER_INFO);
+        options.add(Option.SIGN_OUT);
+
+        showNestedOptions = false;
+    }
+
+    private void setChangeUserInformationOptions()
+    {
+        options.clear();
+        options.add(Option.SET_AVATAR);
+        options.add(Option.SET_HEADER);
+        options.add(Option.CHANGE_PASSWORD);
+        options.add(Option.CHANGE_NAME);
+        options.add(Option.CHANGE_FAMILY);
+        options.add(Option.CHANGE_EMAIL);
+        options.add(Option.CHANGE_PHONE_NUMBER);
+        options.add(Option.CHANGE_BIRTH_DATE);
+        options.add(Option.CHANGE_COUNTRY);
+        options.add(Option.CHANGE_BIO);
+        options.add(Option.CHANGE_LOCATION);
+        options.add(Option.CHANGE_WEBSITE);
+
+        options.add(Option.BACK);
+
+        showNestedOptions = true;
+    }
+
+    private void back()
+    {
+        showNestedOptions = false;
     }
 }

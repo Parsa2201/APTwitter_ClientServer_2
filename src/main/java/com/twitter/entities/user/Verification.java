@@ -1,5 +1,7 @@
 package com.twitter.entities.user;
 
+import com.twitter.entities.exception.text.TextTooLongException;
+import com.twitter.entities.exception.user.CountryException;
 import com.twitter.entities.exception.user.email.EmailFormatException;
 import com.twitter.entities.exception.user.password.PasswordFormatException;
 
@@ -27,5 +29,15 @@ public class Verification
 
         if(!matcher.matches())
             throw new PasswordFormatException("The given password format is incorrect");
+    }
+
+    public static void verifyCountry(String country) throws CountryException
+    {
+        Country.getInstance().validateCountry(country);
+    }
+
+    public static void verifyBio(String bio) throws TextTooLongException
+    {
+        new Bio(bio);
     }
 }
