@@ -1,6 +1,7 @@
 package com.twitter.client.controller;
 
 import com.twitter.client.view.ProgramState;
+import com.twitter.entities.user.User;
 
 public class Data
 {
@@ -8,9 +9,12 @@ public class Data
 
     private ProgramState programState;
 
+    private User user;
+
     private Data()
     {
         programState = ProgramState.LOGGED_OUT;
+        user = null;
     }
 
     public static Data getInstance()
@@ -23,5 +27,20 @@ public class Data
     public ProgramState getProgramState()
     {
         return programState;
+    }
+
+    public void setProgramState(ProgramState programState)
+    {
+        this.programState = programState;
+    }
+
+    public User getUser()
+    {
+        return user;
+    }
+
+    public void setUser(User user)
+    {
+        this.user = user;
     }
 }

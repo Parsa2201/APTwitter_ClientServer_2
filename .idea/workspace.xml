@@ -4,7 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e6f89f22-8f2b-446d-b25f-81599946cb8d" name="Changes" comment="Country bugfix" />
+    <list default="true" id="e6f89f22-8f2b-446d-b25f-81599946cb8d" name="Changes" comment="Country bugfix">
+      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/client/controller/ControllerCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/client/controller/ControllerCommands.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/client/controller/Data.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/client/controller/Data.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/client/view/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/client/view/Command.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/client/view/MenuOption.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/client/view/MenuOption.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/client/view/ProgramState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/client/view/ProgramState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/client/view/TwitterLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/client/view/TwitterLog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/user/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/twitter/client/controller/ControllerCommandsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/twitter/client/controller/ControllerCommandsTest.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -42,29 +58,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Sazgar/Desktop/Home Work/TERM 2/AP_WorkShop10&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "full.screen.before.presentation.mode": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/Sazgar/Desktop/Home Work/TERM 2/AP_WorkShop10",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Global Libraries",
+    "project.structure.proportion": "0.18359375",
+    "project.structure.side.proportion": "0.36886227",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;postgresql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/java/com/twitter/server" />
@@ -80,8 +102,21 @@
       <recent name="com.twitter.client" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ControllerCommandsTest.signUp1 (2)">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Application.Client">
+    <configuration name="Client" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="com.twitter.client.Main" />
+      <module name="APTwitter_ClientServer_2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.twitter.client.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Server" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="com.twitter.server.Main" />
       <module name="APTwitter_ClientServer_2" />
       <extension name="coverage">
@@ -90,6 +125,22 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ControllerCommandsTest.changeUserInformation1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="APTwitter_ClientServer_2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.twitter.client.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.twitter.client.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.twitter.client.controller.ControllerCommandsTest" />
+      <option name="METHOD_NAME" value="changeUserInformation1" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -144,10 +195,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ControllerCommandsTest.changeUserInformation1" />
+        <item itemvalue="Application.Server" />
         <item itemvalue="JUnit.ControllerCommandsTest.signUp1 (2)" />
-        <item itemvalue="Application.Main" />
-        <item itemvalue="JUnit.ControllerCommandsTest.signUp1 (1)" />
         <item itemvalue="JUnit.ControllerCommandsTest.signUp1" />
+        <item itemvalue="JUnit.ControllerCommandsTest.signUp1 (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -171,6 +223,8 @@
       <workItem from="1685542630436" duration="383000" />
       <workItem from="1685544850807" duration="30000" />
       <workItem from="1685606749636" duration="1010000" />
+      <workItem from="1685609658029" duration="3907000" />
+      <workItem from="1685615959031" duration="2453000" />
     </task>
     <task id="LOCAL-00001" summary="added sendFile to the ServerConnectionHandler.java">
       <created>1685298475313</created>

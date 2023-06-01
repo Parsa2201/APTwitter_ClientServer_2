@@ -1,6 +1,7 @@
 package com.twitter.client.controller;
 
-import com.twitter.client.controller.ControllerCommands;
+import com.twitter.entities.exception.user.password.PasswordFormatException;
+import com.twitter.entities.exception.user.password.PasswordHashException;
 import com.twitter.entities.user.User;
 import org.junit.jupiter.api.Test;
 
@@ -84,6 +85,35 @@ public class ControllerCommandsTest
         try
         {
             controllerCommands.setHeader(user, path);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            assert (false);
+        }
+    }
+
+    @Test
+    void changeUserInformation1()
+    {
+        User user = new User();
+        user.setUserName("1");
+        try
+        {
+            user.setPassword("NaNoOOl;#329");
+        } catch (PasswordFormatException | PasswordHashException ignored) {}
+
+
+        String bioText, location, website;
+        bioText = "Hello World!" +
+                "I'm hello world";
+        location = "Iran";
+        website = "https://www.google.com";
+
+        ControllerCommands controllerCommands = new ControllerCommands();
+        try
+        {
+            controllerCommands.changeUserInformation(user, bioText, location, website);
         }
         catch (Exception e)
         {

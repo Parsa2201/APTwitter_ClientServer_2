@@ -30,6 +30,18 @@ public class TwitterLog
             System.out.print(str);
     }
 
+    public static void printlnError(String str)
+    {
+        if(showLog)
+            System.err.println(str);
+    }
+
+    public static void printError(String str)
+    {
+        if(showLog)
+            System.err.print(str);
+    }
+
     public static String nextLine()
     {
         scannerInit();

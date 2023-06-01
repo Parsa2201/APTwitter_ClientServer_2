@@ -2,6 +2,7 @@ package com.twitter.client.view;
 
 import com.twitter.client.controller.ControllerCommands;
 import com.twitter.client.controller.Data;
+import com.twitter.client.controller.Program;
 import com.twitter.entities.exception.EmailOrPhoneRequiredException;
 import com.twitter.entities.exception.TwitException;
 import com.twitter.entities.exception.io.server.DatabaseFailedException;
@@ -29,7 +30,7 @@ public class Command
         controllerCommands = new ControllerCommands();
     }
 
-    public void signUp()
+    public void signUp() throws ServerConnectionFailedException, ServerRespondFailedException, DatabaseFailedException, ServerInvalidObjectException, PasswordHashException
     {
         String userName, name, family, email, phoneNumber, password, passwordConfirm, country;
         int year, month, day;
@@ -67,38 +68,51 @@ public class Command
         } catch (PasswordConfirmException e)
         {
             // TODO: handle the exceptions
-        } catch (ServerConnectionFailedException e)
+        }catch (CountryException e)
         {
-            throw new RuntimeException(e);
-        } catch (CountryException e)
-        {
-            throw new RuntimeException(e);
+            TwitterLog.printlnError("Wrong Country!");
         } catch (EmailFormatException e)
         {
-            throw new RuntimeException(e);
+            TwitterLog.printlnError("Wrong Email Format!");
         } catch (PasswordFormatException e)
         {
-            throw new RuntimeException(e);
+            TwitterLog.printlnError("Wrong Password Format!");
         } catch (EmailOrPhoneRequiredException e)
         {
-            throw new RuntimeException(e);
-        } catch (ServerRespondFailedException e)
-        {
-            throw new RuntimeException(e);
-        } catch (PasswordHashException e)
-        {
-            throw new RuntimeException(e);
-        } catch (DatabaseFailedException e)
-        {
-            throw new RuntimeException(e);
-        } catch (ServerInvalidObjectException e)
-        {
-            throw new RuntimeException(e);
+            TwitterLog.printlnError("Email or Phone Number is required!");
         }
     }
 
-    public void signIn()
+    public void signIn() throws ServerConnectionFailedException, ServerRespondFailedException, DatabaseFailedException, ServerInvalidObjectException, PasswordHashException
     {
+        String username, password;
 
+        username = TwitterLog.nextLine("Username: ");
+        password = TwitterLog.nextLine("Password: ");
+
+
+        User user = controllerCommands.signIn(username, password);
+
+        TwitterLog.println("You successfully logged in as : " + user.getName() + " " + user.getFamily());
+        Data.getInstance().setUser(user);
+
+        Data.getInstance().setProgramState(ProgramState.MAIN_MENU);
+    }
+
+    public void showUserInfo()
+    {
+        User user = Data.getInstance().getUser();
+
+        TwitterLog.println("Username: " + user.getUserName());
+        TwitterLog.println("Name: " + user.getName());
+        TwitterLog.println("Family: " + user.getFamily());
+        TwitterLog.println("Email: " + user.getEmail());
+        TwitterLog.println("Phone Number: " + user.getPhoneNumber());
+        TwitterLog.println("Country: " + user.getCountry());
+        TwitterLog.println("Birth Date: " + user.getBirthDate());
+        if(!user.getBio().toString().equals(""))
+            TwitterLog.println("Bio: " + user.getBio());
+        if(!user.getLocation().equals(""))
+            TwitterLog.println("Location: " + user.getLocation());
     }
 }

@@ -54,11 +54,11 @@ public class ControllerCommands
         modelCommands.signUp(user);
     }
 
-    public User signIn(String id, String password) throws PasswordHashException, ServerConnectionFailedException, ServerRespondFailedException, DatabaseFailedException, ServerInvalidObjectException
+    public User signIn(String userName, String password) throws PasswordHashException, ServerConnectionFailedException, ServerRespondFailedException, DatabaseFailedException, ServerInvalidObjectException
     {
         Password passwordHash = new Password(password);
 
-        return modelCommands.signIn(id, passwordHash);
+        return modelCommands.signIn(userName, passwordHash);
     }
 
     public Avatar setAvatar(User user, String path)

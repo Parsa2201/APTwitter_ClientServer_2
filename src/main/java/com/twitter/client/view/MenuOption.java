@@ -1,6 +1,11 @@
 package com.twitter.client.view;
 
 import com.twitter.client.controller.Data;
+import com.twitter.entities.exception.io.server.DatabaseFailedException;
+import com.twitter.entities.exception.io.server.ServerConnectionFailedException;
+import com.twitter.entities.exception.io.server.ServerInvalidObjectException;
+import com.twitter.entities.exception.io.server.ServerRespondFailedException;
+import com.twitter.entities.exception.user.password.PasswordHashException;
 
 import java.util.ArrayList;
 
@@ -19,7 +24,7 @@ public class MenuOption
         switch (Data.getInstance().getProgramState())
         {
             case LOGGED_OUT -> setLoggedOutOptions();
-            case LOGGED_IN -> setLoggedInOptions();
+            case MAIN_MENU -> setMainMenuOptions();
         }
 
         for(int i = 0; i < options.size(); i++)
@@ -57,10 +62,31 @@ public class MenuOption
     {
         // TODO: check for different commands and call the proper function from Command.java
         Command commandObject = new Command();
-        switch (command)
+
+        try
         {
-            case SIGN_UP -> commandObject.signUp();
-            case SIGN_IN -> commandObject.signIn();
+            switch (command)
+            {
+                case SIGN_UP -> commandObject.signUp();
+                case SIGN_IN -> commandObject.signIn();
+                case SHOW_USER_INFO -> commandObject.showUserInfo();
+            }
+        }
+        catch (ServerConnectionFailedException e)
+        {
+            TwitterLog.printlnError("Server connection failed!");
+        } catch (ServerRespondFailedException e)
+        {
+            TwitterLog.printlnError("Server respond failed!");
+        } catch (DatabaseFailedException e)
+        {
+            TwitterLog.printlnError("Database failed!");
+        } catch (ServerInvalidObjectException e)
+        {
+            TwitterLog.printlnError("Server got/sent invalid object!");
+        } catch (PasswordHashException e)
+        {
+            TwitterLog.printlnError("Password hash failed!");
         }
     }
 
@@ -71,7 +97,7 @@ public class MenuOption
         options.add(Option.SIGN_IN);
     }
 
-    private void setLoggedInOptions()
+    private void setMainMenuOptions()
     {
         options.clear();
         options.add(Option.SHOW_USER_INFO);
