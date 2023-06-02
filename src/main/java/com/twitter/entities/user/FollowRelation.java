@@ -20,4 +20,13 @@ public class FollowRelation
     {
         return followedUsername;
     }
+
+    public boolean equals(FollowRelation followRelation)
+    {
+        if(this.username.equals(followRelation.getUsername()))
+        {
+            return this.followedUsername.equals(followRelation.getFollowedUsername());
+        }
+        return false;
+    }
 }

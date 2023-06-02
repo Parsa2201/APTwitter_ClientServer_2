@@ -1,7 +1,9 @@
 package com.twitter.server.model;
 
 import com.twitter.entities.exception.io.server.DataNotFoundException;
+import com.twitter.entities.user.FollowRelation;
 import com.twitter.entities.user.User;
+import jakarta.persistence.EntityManager;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.Metadata;
@@ -40,6 +42,17 @@ public class DatabaseManager
         {
             return user;
         }
-
+    }
+    public boolean isFollowRelationExist(FollowRelation followRelation, Session session)
+    {
+        List<FollowRelation> followRelations = session.createQuery("select f from FollowRelation f", FollowRelation.class).list();
+        for (FollowRelation followRe:followRelations)
+        {
+            if(followRe.equals(followRelation))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }
