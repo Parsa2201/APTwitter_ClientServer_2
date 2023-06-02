@@ -9,6 +9,7 @@ import com.twitter.entities.image.Header;
 import com.twitter.entities.server.Respond;
 import com.twitter.entities.server.RespondCode;
 import com.twitter.entities.user.Bio;
+import com.twitter.entities.user.FollowRelation;
 import com.twitter.entities.user.Password;
 import com.twitter.entities.user.User;
 
@@ -180,9 +181,11 @@ public class ModelCommands
         return null;
     }
 
-    public Respond follow(ObjectInputStream objectInputStream)
+    public Respond follow(ObjectInputStream objectInputStream) throws ServerInvalidObjectException
     {
         // TODO
+        FollowRelation followRelation = ObjectGetter.getObject(objectInputStream, FollowRelation.class);
+
         return null;
     }
 
