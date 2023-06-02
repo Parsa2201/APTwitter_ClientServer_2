@@ -19,6 +19,9 @@ import com.twitter.entities.exception.user.password.InvalidPasswordException;
 import com.twitter.entities.exception.user.password.PasswordConfirmException;
 import com.twitter.entities.exception.user.password.PasswordFormatException;
 import com.twitter.entities.exception.user.password.PasswordHashException;
+import com.twitter.entities.tweet.BaseTweet;
+import com.twitter.entities.tweet.TimeLine;
+import com.twitter.entities.tweet.Tweet;
 import com.twitter.entities.user.Country;
 import com.twitter.entities.user.User;
 
@@ -249,5 +252,37 @@ public class Command
             TwitterLog.printlnError("Invalid input!");
 
         TwitterLog.println("Your quote successfully sent.");
+    }
+
+    public void likeTweet() throws ServerConnectionFailedException, DataNotFoundException, ServerRespondFailedException, UnknownException, InvalidPasswordException, PermissionDeniedException, TextTooLongException, ServerInvalidCommandException, DatabaseFailedException, ServerInvalidObjectException
+    {
+        String tweetId = TwitterLog.nextLine("Enter the tweet id: ");
+        controllerCommands.likeTweet(tweetId);
+
+        TwitterLog.println("The tweet successfully liked.");
+    }
+
+    public void dislikeTweet() throws ServerConnectionFailedException, DataNotFoundException, ServerRespondFailedException, UnknownException, InvalidPasswordException, PermissionDeniedException, TextTooLongException, ServerInvalidCommandException, DatabaseFailedException, ServerInvalidObjectException
+    {
+        String tweetId = TwitterLog.nextLine("Enter the tweet id: ");
+        controllerCommands.dislikeTweet(tweetId);
+
+        TwitterLog.println("The tweet successfully disliked.");
+    }
+
+    public void showTimeLine() throws ServerConnectionFailedException, DataNotFoundException, ServerRespondFailedException, UnknownException, InvalidPasswordException, PermissionDeniedException, TextTooLongException, ServerInvalidCommandException, DatabaseFailedException, ServerInvalidObjectException
+    {
+        TimeLine timeLine = controllerCommands.showTimeLine();
+        for(BaseTweet baseTweet : timeLine)
+        {
+            if(baseTweet instanceof Tweet)
+            {
+                Tweet tweet = (Tweet) baseTweet;
+                TwitterLog.println(tweet.getOwner().getName() + " " + tweet.getOwner().getFamily());
+                TwitterLog.println("\t" + tweet.getTextContent().toString());
+                TwitterLog.println("Likes: " + tweet.getLikeCount());
+                //TwitterLog.println(tweet.);
+            }
+        }
     }
 }

@@ -9,6 +9,7 @@ import com.twitter.entities.image.Header;
 import com.twitter.entities.server.Respond;
 import com.twitter.entities.tweet.Quote;
 import com.twitter.entities.tweet.Retweet;
+import com.twitter.entities.tweet.TimeLine;
 import com.twitter.entities.tweet.Tweet;
 import com.twitter.entities.user.*;
 
@@ -295,6 +296,42 @@ public void changePassword(String userName, Password newPasswordHash) throws Ser
             serverConnectionHandler.sendObject(quote);
             Respond respond = serverConnectionHandler.getRespond();
             respond.check();
+        }
+    }
+
+    public void likeTweet(Tweet tweet, MiniUser miniUser) throws ServerConnectionFailedException, ServerInvalidObjectException, ServerRespondFailedException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException, ServerInvalidCommandException, DatabaseFailedException
+    {
+        try (ServerConnectionHandler serverConnectionHandler = new ServerConnectionHandler())
+        {
+            serverConnectionHandler.sendCommend("like-tweet");
+            serverConnectionHandler.sendObject(tweet);
+            serverConnectionHandler.sendObject(miniUser);
+            Respond respond = serverConnectionHandler.getRespond();
+            respond.check();
+        }
+    }
+
+    public void dislikeTweet(Tweet tweet, MiniUser miniUser) throws ServerConnectionFailedException, ServerInvalidObjectException, ServerRespondFailedException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException, ServerInvalidCommandException, DatabaseFailedException
+    {
+        try (ServerConnectionHandler serverConnectionHandler = new ServerConnectionHandler())
+        {
+            serverConnectionHandler.sendCommend("dislike-tweet");
+            serverConnectionHandler.sendObject(tweet);
+            serverConnectionHandler.sendObject(miniUser);
+            Respond respond = serverConnectionHandler.getRespond();
+            respond.check();
+        }
+    }
+
+    public TimeLine showTimeLine(String userName) throws ServerConnectionFailedException, ServerInvalidObjectException, ServerRespondFailedException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException, ServerInvalidCommandException, DatabaseFailedException
+    {
+        try (ServerConnectionHandler serverConnectionHandler = new ServerConnectionHandler())
+        {
+            serverConnectionHandler.sendCommend("show-time-line");
+            serverConnectionHandler.sendObject(userName);
+            Respond respond = serverConnectionHandler.getRespond();
+            respond.check();
+            return (TimeLine) respond.getObject();
         }
     }
 }

@@ -13,7 +13,8 @@ public class TextContent extends Content
         this.text = text;
     }
 
-    public String getText()
+    @Override
+    public String toString()
     {
         return text;
     }

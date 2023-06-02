@@ -17,6 +17,7 @@ import com.twitter.entities.image.Avatar;
 import com.twitter.entities.image.Header;
 import com.twitter.entities.tweet.Quote;
 import com.twitter.entities.tweet.Retweet;
+import com.twitter.entities.tweet.TimeLine;
 import com.twitter.entities.tweet.Tweet;
 import com.twitter.entities.tweet.content.ImageContent;
 import com.twitter.entities.tweet.content.TextContent;
@@ -28,6 +29,7 @@ import java.time.LocalDate;
 public class ControllerCommands
 {
     protected final ModelCommands modelCommands;
+
     public ControllerCommands()
     {
         modelCommands = new ModelCommands();
@@ -36,7 +38,7 @@ public class ControllerCommands
     private User getCurrentUser() throws PermissionDeniedException
     {
         User user = Data.getInstance().getUser();
-        if(user == null || Data.getInstance().getProgramState() == ProgramState.LOGGED_OUT)
+        if (user == null || Data.getInstance().getProgramState() == ProgramState.LOGGED_OUT)
             throw new PermissionDeniedException();
 
         return user;
@@ -71,13 +73,13 @@ public class ControllerCommands
 
     public User signIn(String userName, String password) throws PasswordHashException, ServerConnectionFailedException, ServerRespondFailedException, DatabaseFailedException, ServerInvalidObjectException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException, ServerInvalidCommandException
     {
-            Password passwordHash = new Password(password);
+        Password passwordHash = new Password(password);
 
-            User user = modelCommands.signIn(userName, passwordHash);
+        User user = modelCommands.signIn(userName, passwordHash);
 
-            Data.getInstance().setUser(user);
-            Data.getInstance().setProgramState(ProgramState.MAIN_MENU);
-            return user;
+        Data.getInstance().setUser(user);
+        Data.getInstance().setProgramState(ProgramState.MAIN_MENU);
+        return user;
     }
 
     public void signOut() throws PermissionDeniedException
@@ -113,10 +115,10 @@ public class ControllerCommands
     {
         User user = getCurrentUser();
 
-        if(!user.getPassHash().equals(new Password(oldPassword)))
+        if (!user.getPassHash().equals(new Password(oldPassword)))
             throw new InvalidPasswordException();
         Verification.verifyPassword(newPassword);
-        if(!newPassword.equals(newPasswordConfirm))
+        if (!newPassword.equals(newPasswordConfirm))
             throw new PasswordConfirmException();
 
         modelCommands.changePassword(user.getUserName(), new Password(newPassword));
@@ -254,7 +256,7 @@ public class ControllerCommands
         User user = getCurrentUser();
 
         Tweet tweet;
-        if(imagePath == null)
+        if (imagePath == null)
             tweet = new Tweet(new TextContent(text), null);
         else
             tweet = new Tweet(new TextContent(text), new ImageContent(imagePath));
@@ -284,5 +286,32 @@ public class ControllerCommands
         Quote quote = new Quote(tweet, user.toMiniUser(), new TextContent(text), imageContent);
 
         modelCommands.sendQuote(quote);
+    }
+
+    public void likeTweet(String tweetId) throws NumberFormatException, PermissionDeniedException, ServerConnectionFailedException, DataNotFoundException, ServerRespondFailedException, UnknownException, InvalidPasswordException, TextTooLongException, ServerInvalidCommandException, DatabaseFailedException, ServerInvalidObjectException
+    {
+        User user = getCurrentUser();
+        int id = Integer.parseInt(tweetId);
+        Tweet tweet = Data.getInstance().getTimeLine().getTweet(id);
+
+        modelCommands.likeTweet(tweet, user.toMiniUser());
+    }
+
+    public void dislikeTweet(String tweetId) throws NumberFormatException, PermissionDeniedException, ServerConnectionFailedException, DataNotFoundException, ServerRespondFailedException, UnknownException, InvalidPasswordException, TextTooLongException, ServerInvalidCommandException, DatabaseFailedException, ServerInvalidObjectException
+    {
+        User user = getCurrentUser();
+        int id = Integer.parseInt(tweetId);
+        Tweet tweet = Data.getInstance().getTimeLine().getTweet(id);
+
+        modelCommands.dislikeTweet(tweet, user.toMiniUser());
+    }
+
+    public TimeLine showTimeLine() throws PermissionDeniedException, ServerConnectionFailedException, DataNotFoundException, ServerRespondFailedException, UnknownException, InvalidPasswordException, TextTooLongException, ServerInvalidCommandException, DatabaseFailedException, ServerInvalidObjectException
+    {
+        User user = getCurrentUser();
+        TimeLine timeLine = modelCommands.showTimeLine(user.getUserName());
+        Data.getInstance().setTimeLine(timeLine);
+
+        return timeLine;
     }
 }

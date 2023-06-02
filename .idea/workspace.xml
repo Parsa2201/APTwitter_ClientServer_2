@@ -4,19 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e6f89f22-8f2b-446d-b25f-81599946cb8d" name="Changes" comment="added all the TODOs for the server side">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/tweet/TimeLine.java" afterDir="false" />
+    <list default="true" id="e6f89f22-8f2b-446d-b25f-81599946cb8d" name="Changes" comment="added sendTweet(), sentRetweet(), and sendQuote to the client">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/client/controller/ControllerCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/client/controller/ControllerCommands.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/client/controller/Data.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/client/controller/Data.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/client/model/ModelCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/client/model/ModelCommands.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/client/view/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/client/view/Command.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/client/view/MenuOption.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/client/view/MenuOption.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/client/view/Option.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/client/view/Option.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/tweet/BaseTweet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/tweet/BaseTweet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/tweet/Quote.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/tweet/Quote.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/tweet/Retweet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/tweet/Retweet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/user/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/tweet/content/TextContent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/tweet/content/TextContent.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -224,7 +217,7 @@
       <workItem from="1685609658029" duration="3907000" />
       <workItem from="1685615959031" duration="7249000" />
       <workItem from="1685623434548" duration="7984000" />
-      <workItem from="1685711356241" duration="7175000" />
+      <workItem from="1685711356241" duration="11286000" />
     </task>
     <task id="LOCAL-00001" summary="added sendFile to the ServerConnectionHandler.java">
       <created>1685298475313</created>
@@ -310,7 +303,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685715889728</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="added sendTweet(), sentRetweet(), and sendQuote to the client">
+      <created>1685721656414</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1685721656414</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -339,6 +339,7 @@
     <MESSAGE value="print error the errors in the view" />
     <MESSAGE value="added all the individual changes to the user in the client" />
     <MESSAGE value="added all the TODOs for the server side" />
-    <option name="LAST_COMMIT_MESSAGE" value="added all the TODOs for the server side" />
+    <MESSAGE value="added sendTweet(), sentRetweet(), and sendQuote to the client" />
+    <option name="LAST_COMMIT_MESSAGE" value="added sendTweet(), sentRetweet(), and sendQuote to the client" />
   </component>
 </project>
