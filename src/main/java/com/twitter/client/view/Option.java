@@ -8,6 +8,8 @@ public enum Option
     SIGN_OUT,
     SHOW_USER_INFO,
     CHANGE_USER_INFO,
+    CONTENT,
+
     SET_AVATAR,
     SET_HEADER,
     CHANGE_PASSWORD,
@@ -20,6 +22,13 @@ public enum Option
     CHANGE_BIO,
     CHANGE_LOCATION,
     CHANGE_WEBSITE,
+
+    SEND_TWEET,
+    SEND_RETWEET,
+    SEND_QUOTE,
+    LIKE_TWEET,
+    DISLIKE_TWEET,
+    SHOW_TIME_LINE,
     ;
 
 
@@ -34,6 +43,8 @@ public enum Option
             case SIGN_OUT -> "SignOut";
             case SHOW_USER_INFO -> "Show my user information";
             case CHANGE_USER_INFO -> "Change my user information";
+            case CONTENT -> "The contents";
+
             case SET_AVATAR -> "Change my avatar";
             case SET_HEADER -> "Change my header";
             case CHANGE_PASSWORD -> "Change my password";
@@ -46,6 +57,13 @@ public enum Option
             case CHANGE_BIO -> "Change my bio";
             case CHANGE_LOCATION -> "Change my location";
             case CHANGE_WEBSITE -> "Change my website";
+
+            case SEND_TWEET -> "Send a tweet";
+            case SEND_RETWEET -> "Send a retweet";
+            case SEND_QUOTE -> "Send a quote";
+            case LIKE_TWEET -> "Like a tweet";
+            case DISLIKE_TWEET -> "Dislike a tweet";
+            case SHOW_TIME_LINE -> "Show my timeline";
         };
     }
 }

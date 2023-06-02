@@ -87,6 +87,7 @@ public class MenuOption
 
                 case SHOW_USER_INFO -> commandObject.showUserInfo();
                 case CHANGE_USER_INFO -> setChangeUserInformationOptions();
+                case CONTENT -> setContentOptions();
                 case SIGN_OUT -> commandObject.signOut();
 
                 case SET_AVATAR -> commandObject.setAvatar();
@@ -101,6 +102,13 @@ public class MenuOption
                 case CHANGE_BIO -> commandObject.changeBio();
                 case CHANGE_LOCATION -> commandObject.changeLocation();
                 case CHANGE_WEBSITE -> commandObject.changeWebsite();
+
+                case SEND_TWEET -> commandObject.sendTweet();
+                case SEND_RETWEET -> commandObject.sendRetweet();
+                case SEND_QUOTE -> commandObject.sendQuote();
+                case LIKE_TWEET -> commandObject.likeTweet();
+                case DISLIKE_TWEET -> commandObject.dislikeTweet();
+                case SHOW_TIME_LINE -> commandObject.showTimeLine();
             }
         }
         catch (DateTimeParseException e)
@@ -166,6 +174,9 @@ public class MenuOption
         } catch (ServerInvalidCommandException e)
         {
             TwitterLog.printlnError("Server got invalid command!");
+        } catch (NumberFormatException e)
+        {
+            TwitterLog.printlnError("The given option should be a number!");
         }
     }
 
@@ -183,6 +194,7 @@ public class MenuOption
         options.clear();
         options.add(Option.SHOW_USER_INFO);
         options.add(Option.CHANGE_USER_INFO);
+        options.add(Option.CONTENT);
         options.add(Option.SIGN_OUT);
 
         showNestedOptions = false;
@@ -203,6 +215,21 @@ public class MenuOption
         options.add(Option.CHANGE_BIO);
         options.add(Option.CHANGE_LOCATION);
         options.add(Option.CHANGE_WEBSITE);
+
+        options.add(Option.BACK);
+
+        showNestedOptions = true;
+    }
+
+    private void setContentOptions()
+    {
+        options.clear();
+        options.add(Option.SEND_TWEET);
+        options.add(Option.SEND_RETWEET);
+        options.add(Option.SEND_QUOTE);
+        options.add(Option.LIKE_TWEET);
+        options.add(Option.DISLIKE_TWEET);
+        options.add(Option.SHOW_TIME_LINE);
 
         options.add(Option.BACK);
 

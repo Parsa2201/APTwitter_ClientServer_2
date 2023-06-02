@@ -15,6 +15,11 @@ import com.twitter.entities.exception.user.password.PasswordHashException;
 import com.twitter.entities.exception.text.TextTooLongException;
 import com.twitter.entities.image.Avatar;
 import com.twitter.entities.image.Header;
+import com.twitter.entities.tweet.Quote;
+import com.twitter.entities.tweet.Retweet;
+import com.twitter.entities.tweet.Tweet;
+import com.twitter.entities.tweet.content.ImageContent;
+import com.twitter.entities.tweet.content.TextContent;
 import com.twitter.entities.user.*;
 import com.twitter.client.model.ModelCommands;
 
@@ -242,5 +247,42 @@ public class ControllerCommands
     public MiniUser showUser(MiniUser miniUser) throws ServerConnectionFailedException, ServerRespondFailedException, DatabaseFailedException, ServerInvalidObjectException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException, ServerInvalidCommandException
     {
         return modelCommands.showUser(miniUser.getUserName());
+    }
+
+    public void sendTweet(String text, String imagePath) throws TextTooLongException, ServerConnectionFailedException, ServerRespondFailedException, DatabaseFailedException, ServerInvalidObjectException, DataNotFoundException, UnknownException, InvalidPasswordException, PermissionDeniedException, ServerInvalidCommandException, ImageSizeException, FileSizeException, FileNotExistException, FileNotImageException
+    {
+        User user = getCurrentUser();
+
+        Tweet tweet;
+        if(imagePath == null)
+            tweet = new Tweet(new TextContent(text), null);
+        else
+            tweet = new Tweet(new TextContent(text), new ImageContent(imagePath));
+
+        tweet.setOwner(user.toMiniUser());
+
+        modelCommands.sendTweet(tweet);
+    }
+
+    public void sendRetweet(String tweetId) throws NumberFormatException, PermissionDeniedException, ServerConnectionFailedException, DataNotFoundException, ServerRespondFailedException, UnknownException, InvalidPasswordException, TextTooLongException, ServerInvalidCommandException, DatabaseFailedException, ServerInvalidObjectException
+    {
+        User user = getCurrentUser();
+        int id = Integer.parseInt(tweetId);
+        Tweet tweet = Data.getInstance().getTimeLine().getTweet(id);
+        Retweet retweet = new Retweet(tweet, user.toMiniUser());
+
+        modelCommands.sendRetweet(retweet);
+    }
+
+    public void sendQuote(String tweetId, String text, String imagePath) throws NumberFormatException, PermissionDeniedException, ServerConnectionFailedException, DataNotFoundException, ServerRespondFailedException, UnknownException, InvalidPasswordException, TextTooLongException, ServerInvalidCommandException, DatabaseFailedException, ServerInvalidObjectException, ImageSizeException, FileSizeException, FileNotExistException, FileNotImageException
+    {
+        User user = getCurrentUser();
+        int id = Integer.parseInt(tweetId);
+        Tweet tweet = Data.getInstance().getTimeLine().getTweet(id);
+
+        ImageContent imageContent = imagePath == null ? null : new ImageContent(imagePath);
+        Quote quote = new Quote(tweet, user.toMiniUser(), new TextContent(text), imageContent);
+
+        modelCommands.sendQuote(quote);
     }
 }

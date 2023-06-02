@@ -10,20 +10,22 @@ public class Quote extends BaseTweet
 {
     private MiniUser quotedBy;
     private LocalDate quoteDate;
+    private TextContent quotedTextContent;
+    private ImageContent quotedImageContent;
 
-    public Quote(TextContent textContent, ImageContent imageContent)
+    public Quote(Tweet tweet, MiniUser quotedBy, TextContent quotedTextContent, ImageContent quotedImageContent)
     {
-        super(textContent, imageContent);
-    }
+        super(tweet.getTextContent(), tweet.getImageContent());
+        this.quotedBy = quotedBy;
+        this.quotedTextContent = quotedTextContent;
+        this.quotedImageContent = quotedImageContent;
+        this.quoteDate = LocalDate.now();
 
-    public Quote(TextContent textContent)
-    {
-        this(textContent, null);
-    }
-
-    public Quote(ImageContent imageContent)
-    {
-        this(null, imageContent);
+        setOwner(tweet.getOwner());
+        setLikeCount(tweet.getLikeCount());
+        setRetweetCount(tweet.getRetweetCount());
+        setQuoteCount(tweet.getQuoteCount());
+        setTweetDate(tweet.getTweetDate());
     }
 
     public MiniUser getQuotedBy()
@@ -44,5 +46,25 @@ public class Quote extends BaseTweet
     public void setQuoteDate(LocalDate quoteDate)
     {
         this.quoteDate = quoteDate;
+    }
+
+    public TextContent getQuotedTextContent()
+    {
+        return quotedTextContent;
+    }
+
+    public void setQuotedTextContent(TextContent quotedTextContent)
+    {
+        this.quotedTextContent = quotedTextContent;
+    }
+
+    public ImageContent getQuotedImageContent()
+    {
+        return quotedImageContent;
+    }
+
+    public void setQuotedImageContent(ImageContent quotedImageContent)
+    {
+        this.quotedImageContent = quotedImageContent;
     }
 }

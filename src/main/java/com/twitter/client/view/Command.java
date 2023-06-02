@@ -60,6 +60,8 @@ public class Command
 
 
         controllerCommands.signUp(userName, name, family, email, phoneNumber, password, passwordConfirm, country, year, month, day);
+
+        TwitterLog.println("You successfully signed up as : " + name + " " + family);
     }
 
     public void signIn() throws ServerConnectionFailedException, ServerRespondFailedException, DatabaseFailedException, ServerInvalidObjectException, PasswordHashException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException, ServerInvalidCommandException
@@ -103,12 +105,16 @@ public class Command
     {
         String path = TwitterLog.nextLine("Enter your image path (*.jpg): ");
         controllerCommands.setAvatar(path);
+
+        TwitterLog.println("Your avatar successfully changed.");
     }
 
     public void setHeader() throws ServerConnectionFailedException, DataNotFoundException, ServerRespondFailedException, FileNotExistException, FileNotImageException, DatabaseFailedException, ImageSizeException, UnknownException, InvalidPasswordException, FileSizeException, PermissionDeniedException, TextTooLongException, ServerInvalidObjectException, ServerInvalidCommandException
     {
         String path = TwitterLog.nextLine("Enter your image path (*.jpg): ");
         controllerCommands.setHeader(path);
+
+        TwitterLog.println("Your header successfully changed.");
     }
 
     public void changePassword() throws ServerConnectionFailedException, PasswordConfirmException, DataNotFoundException, PasswordFormatException, InvalidPasswordException, ServerRespondFailedException, UnknownException, PermissionDeniedException, PasswordHashException, TextTooLongException, DatabaseFailedException, ServerInvalidObjectException, ServerInvalidCommandException
@@ -119,30 +125,40 @@ public class Command
         newPasswordConfirm = TwitterLog.nextLine("Confirm your new password: ");
 
         controllerCommands.changePassword(oldPassword, newPassword, newPasswordConfirm);
+
+        TwitterLog.println("Your password successfully changed.");
     }
 
     public void changeName() throws ServerConnectionFailedException, DataNotFoundException, ServerRespondFailedException, UnknownException, InvalidPasswordException, PermissionDeniedException, TextTooLongException, DatabaseFailedException, ServerInvalidObjectException, ServerInvalidCommandException
     {
         String name = TwitterLog.nextLine("Enter your new name: ");
         controllerCommands.changeName(name);
+
+        TwitterLog.println("Your name successfully changed to " + name + ".");
     }
 
     public void changeFamily() throws ServerConnectionFailedException, DataNotFoundException, ServerRespondFailedException, UnknownException, InvalidPasswordException, PermissionDeniedException, TextTooLongException, DatabaseFailedException, ServerInvalidObjectException, ServerInvalidCommandException
     {
         String family = TwitterLog.nextLine("Enter your new family name: ");
         controllerCommands.changeFamily(family);
+
+        TwitterLog.println("Your family name successfully changed to " + family + ".");
     }
 
     public void changeEmail() throws ServerConnectionFailedException, EmailFormatException, DataNotFoundException, ServerRespondFailedException, UnknownException, InvalidPasswordException, PermissionDeniedException, TextTooLongException, DatabaseFailedException, ServerInvalidObjectException, ServerInvalidCommandException
     {
         String email = TwitterLog.nextLine("Enter your new email: ");
         controllerCommands.changeEmail(email);
+
+        TwitterLog.println("Your email successfully changed to " + email + ".");
     }
 
     public void changePhoneNumber() throws ServerConnectionFailedException, DataNotFoundException, ServerRespondFailedException, UnknownException, InvalidPasswordException, PermissionDeniedException, TextTooLongException, DatabaseFailedException, ServerInvalidObjectException, ServerInvalidCommandException
     {
         String phoneNumber = TwitterLog.nextLine("Enter your new phone-number: ");
         controllerCommands.changePhoneNumber(phoneNumber);
+
+        TwitterLog.println("Your phone-number successfully changed to " + phoneNumber + ".");
     }
 
     public void changeBirthDate() throws DateTimeParseException, ServerConnectionFailedException, DataNotFoundException, ServerRespondFailedException, UnknownException, InvalidPasswordException, PermissionDeniedException, TextTooLongException, DatabaseFailedException, ServerInvalidObjectException, ServerInvalidCommandException
@@ -155,6 +171,8 @@ public class Command
         int day = localDate.getDayOfMonth();
 
         controllerCommands.changeBirthDate(year, month, day);
+
+        TwitterLog.println("Your birth-date successfully changed to " + date + ".");
     }
 
     public void changeCountry() throws CountryException, ServerConnectionFailedException, DataNotFoundException, ServerRespondFailedException, UnknownException, InvalidPasswordException, PermissionDeniedException, TextTooLongException, DatabaseFailedException, ServerInvalidObjectException, ServerInvalidCommandException
@@ -162,23 +180,74 @@ public class Command
         TwitterLog.println(Country.getInstance().toString());
         String country = TwitterLog.nextLine("Enter your new country: ");
         controllerCommands.changeCountry(country);
+
+        TwitterLog.println("Your country successfully changed to " + country + ".");
     }
 
     public void changeBio() throws ServerConnectionFailedException, DataNotFoundException, ServerRespondFailedException, UnknownException, InvalidPasswordException, PermissionDeniedException, TextTooLongException, DatabaseFailedException, ServerInvalidObjectException, ServerInvalidCommandException
     {
         String bio = TwitterLog.nextLine("Enter your new bio: ");
         controllerCommands.changeBio(bio);
+
+        TwitterLog.println("Your bio successfully changed.");
     }
 
     public void changeLocation() throws ServerConnectionFailedException, DataNotFoundException, ServerRespondFailedException, UnknownException, InvalidPasswordException, PermissionDeniedException, TextTooLongException, DatabaseFailedException, ServerInvalidObjectException, ServerInvalidCommandException
     {
         String location = TwitterLog.nextLine("Enter your new location: ");
         controllerCommands.changeLocation(location);
+
+        TwitterLog.println("Your location successfully changed.");
     }
 
     public void changeWebsite() throws ServerConnectionFailedException, DataNotFoundException, ServerRespondFailedException, UnknownException, InvalidPasswordException, PermissionDeniedException, TextTooLongException, DatabaseFailedException, ServerInvalidObjectException, ServerInvalidCommandException
     {
         String website = TwitterLog.nextLine("Enter your new website: ");
         controllerCommands.changeWebsite(website);
+
+        TwitterLog.println("Your website successfully changed to " + website + ".");
+    }
+
+    public void sendTweet() throws ServerConnectionFailedException, DataNotFoundException, ServerRespondFailedException, FileNotExistException, ServerInvalidCommandException, FileNotImageException, DatabaseFailedException, ImageSizeException, UnknownException, InvalidPasswordException, PermissionDeniedException, FileSizeException, TextTooLongException, ServerInvalidObjectException
+    {
+        String text = TwitterLog.nextLine("Enter your tweet text: ");
+        String answer = TwitterLog.nextLine("Do you want your tweet to have a picture? (y/n): ");
+        if(answer.equalsIgnoreCase("y"))
+        {
+            String path = TwitterLog.nextLine("Enter your image path (*.jpg): ");
+            controllerCommands.sendTweet(text, path);
+        }
+        else if(answer.equalsIgnoreCase("n"))
+            controllerCommands.sendTweet(text, null);
+        else
+            TwitterLog.printlnError("Invalid input!");
+
+        TwitterLog.println("Your tweet successfully sent.");
+    }
+
+    public void sendRetweet() throws ServerConnectionFailedException, DataNotFoundException, ServerRespondFailedException, UnknownException, InvalidPasswordException, PermissionDeniedException, TextTooLongException, ServerInvalidCommandException, DatabaseFailedException, ServerInvalidObjectException
+    {
+        String tweetId = TwitterLog.nextLine("Enter the tweet id: ");
+        controllerCommands.sendRetweet(tweetId);
+
+        TwitterLog.println("Your retweet successfully sent.");
+    }
+
+    public void sendQuote() throws ServerConnectionFailedException, DataNotFoundException, ServerRespondFailedException, FileNotExistException, ServerInvalidCommandException, FileNotImageException, DatabaseFailedException, ImageSizeException, UnknownException, InvalidPasswordException, PermissionDeniedException, FileSizeException, TextTooLongException, ServerInvalidObjectException
+    {
+        String tweetId = TwitterLog.nextLine("Enter the tweet id: ");
+        String text = TwitterLog.nextLine("Enter your quote text: ");
+        String answer = TwitterLog.nextLine("Do you want your quote to have a picture? (y/n): ");
+        if(answer.equalsIgnoreCase("y"))
+        {
+            String path = TwitterLog.nextLine("Enter your image path (*.jpg): ");
+            controllerCommands.sendQuote(tweetId, text, path);
+        }
+        else if(answer.equalsIgnoreCase("n"))
+            controllerCommands.sendQuote(tweetId, text, null);
+        else
+            TwitterLog.printlnError("Invalid input!");
+
+        TwitterLog.println("Your quote successfully sent.");
     }
 }

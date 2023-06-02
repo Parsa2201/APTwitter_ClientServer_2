@@ -11,20 +11,17 @@ public class Retweet extends BaseTweet
     private MiniUser retweetedBy;
     private LocalDateTime retweetDate;
 
-    public Retweet(TextContent textContent, ImageContent imageContent)
+    public Retweet(Tweet tweet, MiniUser retweetedBy)
     {
-        super(textContent, imageContent);
-        retweetDate = LocalDateTime.now();
-    }
+        super(tweet.getTextContent(), tweet.getImageContent());
+        this.retweetDate = LocalDateTime.now();
+        this.retweetedBy = retweetedBy;
 
-    public Retweet(TextContent textContent)
-    {
-        this(textContent, null);
-    }
-
-    public Retweet(ImageContent imageContent)
-    {
-        this(null, imageContent);
+        setOwner(tweet.getOwner());
+        setLikeCount(tweet.getLikeCount());
+        setRetweetCount(tweet.getRetweetCount());
+        setQuoteCount(tweet.getQuoteCount());
+        setTweetDate(tweet.getTweetDate());
     }
 
     public MiniUser getRetweetedBy()

@@ -7,6 +7,9 @@ import com.twitter.entities.exception.user.password.InvalidPasswordException;
 import com.twitter.entities.image.Avatar;
 import com.twitter.entities.image.Header;
 import com.twitter.entities.server.Respond;
+import com.twitter.entities.tweet.Quote;
+import com.twitter.entities.tweet.Retweet;
+import com.twitter.entities.tweet.Tweet;
 import com.twitter.entities.user.*;
 
 import java.time.LocalDate;
@@ -259,6 +262,39 @@ public void changePassword(String userName, Password newPasswordHash) throws Ser
             Respond respond = serverConnectionHandler.getRespond();
             respond.check();
             return (MiniUser) respond.getObject();
+        }
+    }
+
+    public void sendTweet(Tweet tweet) throws ServerConnectionFailedException, ServerInvalidObjectException, ServerRespondFailedException, DatabaseFailedException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException, ServerInvalidCommandException
+    {
+        try (ServerConnectionHandler serverConnectionHandler = new ServerConnectionHandler())
+        {
+            serverConnectionHandler.sendCommend("send-tweet");
+            serverConnectionHandler.sendObject(tweet);
+            Respond respond = serverConnectionHandler.getRespond();
+            respond.check();
+        }
+    }
+
+    public void sendRetweet(Retweet retweet) throws ServerConnectionFailedException, ServerInvalidObjectException, ServerRespondFailedException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException, ServerInvalidCommandException, DatabaseFailedException
+    {
+        try (ServerConnectionHandler serverConnectionHandler = new ServerConnectionHandler())
+        {
+            serverConnectionHandler.sendCommend("send-retweet");
+            serverConnectionHandler.sendObject(retweet);
+            Respond respond = serverConnectionHandler.getRespond();
+            respond.check();
+        }
+    }
+
+    public void sendQuote(Quote quote) throws ServerConnectionFailedException, ServerInvalidObjectException, ServerRespondFailedException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException, ServerInvalidCommandException, DatabaseFailedException
+    {
+        try (ServerConnectionHandler serverConnectionHandler = new ServerConnectionHandler())
+        {
+            serverConnectionHandler.sendCommend("send-quote");
+            serverConnectionHandler.sendObject(quote);
+            Respond respond = serverConnectionHandler.getRespond();
+            respond.check();
         }
     }
 }

@@ -224,6 +224,11 @@ public class User implements Serializable
         this.website = website;
     }
 
+    public MiniUser toMiniUser()
+    {
+        return new MiniUser(this);
+    }
+
     @Override
     public int hashCode()
     {
