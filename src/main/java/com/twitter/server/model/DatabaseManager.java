@@ -14,9 +14,19 @@ import java.util.List;
 
 public class DatabaseManager
 {
-    StandardServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();
-    Metadata metadata = new MetadataSources(serviceRegistry).getMetadataBuilder().build();
-    SessionFactory sessionFactory = metadata.getSessionFactoryBuilder().build();
+    public SessionFactory sessionFactory;
+
+    public DatabaseManager()
+    {
+        StandardServiceRegistry serviceRegistry;
+        Metadata metadata;
+
+        serviceRegistry = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();
+        metadata = new MetadataSources(serviceRegistry).getMetadataBuilder().build();
+
+        sessionFactory = metadata.getSessionFactoryBuilder().build();
+    }
+
     public User findUser(String userName , Session session) throws DataNotFoundException
     {
         Query<User> userQuery = session.createQuery("select u from User u where u.name = :userName", User.class);
