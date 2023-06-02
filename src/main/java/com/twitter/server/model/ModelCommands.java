@@ -107,4 +107,94 @@ public class ModelCommands
 
         return new Respond(RespondCode.SUCCESS);
     }
+
+    public Respond changePassword(ObjectInputStream objectInputStream)
+    {
+        // TODO
+        return null;
+    }
+
+    public Respond changeName(ObjectInputStream objectInputStream)
+    {
+        // TODO
+        return null;
+    }
+
+    public Respond changeFamily(ObjectInputStream objectInputStream)
+    {
+        // TODO
+        return null;
+    }
+
+    public Respond changeEmail(ObjectInputStream objectInputStream)
+    {
+        // TODO
+        return null;
+    }
+
+    public Respond changePhoneNumber(ObjectInputStream objectInputStream)
+    {
+        // TODO
+        return null;
+    }
+
+    public Respond changeBirthDate(ObjectInputStream objectInputStream)
+    {
+        // TODO
+        return null;
+    }
+
+    public Respond changeCountry(ObjectInputStream objectInputStream)
+    {
+        // TODO
+        return null;
+    }
+
+    public Respond changeBio(ObjectInputStream objectInputStream)
+    {
+        // TODO
+        return null;
+    }
+
+    public Respond changeLocation(ObjectInputStream objectInputStream)
+    {
+        // TODO
+        return null;
+    }
+
+    public Respond changeWebsite(ObjectInputStream objectInputStream)
+    {
+        // TODO
+        return null;
+    }
+
+    public Respond showFollowers(ObjectInputStream objectInputStream)
+    {
+        // TODO
+        return null;
+    }
+
+    public Respond showFollowings(ObjectInputStream objectInputStream)
+    {
+        // TODO
+        return null;
+    }
+
+    public Respond follow(ObjectInputStream objectInputStream)
+    {
+        // TODO
+        return null;
+    }
+
+    public Respond unfollow(ObjectInputStream objectInputStream)
+    {
+        // TODO
+        return null;
+    }
+
+    public Respond showUser(ObjectInputStream objectInputStream)
+    {
+        // TODO
+        return null;
+    }
 }

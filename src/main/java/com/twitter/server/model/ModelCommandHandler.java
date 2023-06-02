@@ -35,13 +35,30 @@ public class ModelCommandHandler
                 case "sign-in" -> modelCommands.signIn(objectInputStream);
                 case "set-avatar" -> modelCommands.setAvatar(objectInputStream);
                 case "set-header" -> modelCommands.setHeader(objectInputStream);
-                case "change-user-information" -> modelCommands.changeUserInformation(objectInputStream);
+
+                //case "change-user-information" -> modelCommands.changeUserInformation(objectInputStream);
+                case "change-password" -> modelCommands.changePassword(objectInputStream);
+                case "change-name" -> modelCommands.changeName(objectInputStream);
+                case "change-family" -> modelCommands.changeFamily(objectInputStream);
+                case "change-email" -> modelCommands.changeEmail(objectInputStream);
+                case "change-phone-number" -> modelCommands.changePhoneNumber(objectInputStream);
+                case "change-birth-date" -> modelCommands.changeBirthDate(objectInputStream);
+                case "change-country" -> modelCommands.changeCountry(objectInputStream);
+                case "change-bio" -> modelCommands.changeBio(objectInputStream);
+                case "change-location" -> modelCommands.changeLocation(objectInputStream);
+                case "change-website" -> modelCommands.changeWebsite(objectInputStream);
+
+                case "show-followers" -> modelCommands.showFollowers(objectInputStream);
+                case "show-followings" -> modelCommands.showFollowings(objectInputStream);
+                case "follow" -> modelCommands.follow(objectInputStream);
+                case "unfollow" -> modelCommands.unfollow(objectInputStream);
+                case "show-user" -> modelCommands.showUser(objectInputStream);
 
 
                 default -> new Respond(new ServerInvalidCommandException());
             };
         }
-        catch (ServerInvalidObjectException | DataNotFoundException | InvalidPasswordException | TextTooLongException e)
+        catch (ServerInvalidObjectException | DataNotFoundException | InvalidPasswordException e)
         {
             return new Respond(e);
         }
