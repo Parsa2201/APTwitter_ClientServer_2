@@ -5,10 +5,7 @@ import com.twitter.entities.exception.user.password.InvalidPasswordException;
 import com.twitter.entities.exception.text.TextTooLongException;
 import com.twitter.entities.image.Avatar;
 import com.twitter.entities.image.Header;
-import com.twitter.entities.user.Bio;
-import com.twitter.entities.user.FollowRelation;
-import com.twitter.entities.user.Password;
-import com.twitter.entities.user.User;
+import com.twitter.entities.user.*;
 import jakarta.persistence.PersistenceException;
 import org.hibernate.Session;
 import org.hibernate.exception.ConstraintViolationException;
@@ -90,7 +87,35 @@ public class DatabaseCommands
     public void follow (FollowRelation followRelation) throws DataNotFoundException
     {
         Session session = databaseManager.sessionFactory.openSession();
-        User followed = databaseManager.findUser(followRelation.getFollowedUsername(), session);
+        databaseManager.findUser(followRelation.getFollowedUsername(), session);
+        databaseManager.findUser(followRelation.getUsername(), session);
+        session.beginTransaction();
+        session.persist(followRelation);
+        session.getTransaction().commit();
+        session.close();
+    }
+    public void unfollow (FollowRelation followRelation) throws DataNotFoundException
+    {
 
+        Session session = databaseManager.sessionFactory.openSession();
+        if(databaseManager.isFollowRelationExist(followRelation, session))
+        {
+            session.beginTransaction();
+            session.delete(followRelation);
+            session.getTransaction().commit();
+            session.close();
+        }
+        else
+        {
+            session.close();
+            throw new DataNotFoundException();
+        }
+
+    }
+    public MiniUser showUser (String userName) throws DataNotFoundException
+    {
+        Session session = databaseManager.sessionFactory.openSession();
+        User user = databaseManager.findUser(userName,session);
+        return user.toMiniUser();
     }
 }

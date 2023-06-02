@@ -8,10 +8,7 @@ import com.twitter.entities.image.Avatar;
 import com.twitter.entities.image.Header;
 import com.twitter.entities.server.Respond;
 import com.twitter.entities.server.RespondCode;
-import com.twitter.entities.user.Bio;
-import com.twitter.entities.user.FollowRelation;
-import com.twitter.entities.user.Password;
-import com.twitter.entities.user.User;
+import com.twitter.entities.user.*;
 
 import java.io.ObjectInputStream;
 
@@ -181,23 +178,27 @@ public class ModelCommands
         return null;
     }
 
-    public Respond follow(ObjectInputStream objectInputStream) throws ServerInvalidObjectException
+    public Respond follow(ObjectInputStream objectInputStream) throws ServerInvalidObjectException, DataNotFoundException
     {
         // TODO
         FollowRelation followRelation = ObjectGetter.getObject(objectInputStream, FollowRelation.class);
-
-        return null;
+        databaseCommands.follow(followRelation);
+        return new Respond(RespondCode.SUCCESS);
     }
 
-    public Respond unfollow(ObjectInputStream objectInputStream)
+    public Respond unfollow(ObjectInputStream objectInputStream) throws ServerInvalidObjectException, DataNotFoundException
     {
         // TODO
-        return null;
+        FollowRelation followRelation = ObjectGetter.getObject(objectInputStream, FollowRelation.class);
+        databaseCommands.unfollow(followRelation);
+        return new Respond(RespondCode.SUCCESS);
     }
 
-    public Respond showUser(ObjectInputStream objectInputStream)
+    public Respond showUser(ObjectInputStream objectInputStream) throws ServerInvalidObjectException, DataNotFoundException
     {
+        String userName = ObjectGetter.getObject(objectInputStream, String.class);
         // TODO
-        return null;
+        MiniUser miniUser = databaseCommands.showUser(userName);
+        return new Respond(RespondCode.SUCCESS, miniUser);
     }
 }
