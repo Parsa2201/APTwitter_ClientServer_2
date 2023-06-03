@@ -61,7 +61,7 @@ public class Command
 
         controllerCommands.signUp(userName, name, family, email, phoneNumber, password, passwordConfirm, country, year, month, day);
 
-        TwitterLog.println("You successfully signed up as : " + name + " " + family);
+        TwitterLog.println("You successfully signed up as : " + name + " " + family + ".");
     }
 
     public void signIn() throws ServerConnectionFailedException, ServerRespondFailedException, DatabaseFailedException, ServerInvalidObjectException, PasswordHashException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException, ServerInvalidCommandException
@@ -74,7 +74,7 @@ public class Command
 
         User user = controllerCommands.signIn(username, password);
 
-        TwitterLog.println("You successfully logged in as : " + user.getName() + " " + user.getFamily());
+        TwitterLog.println("You successfully logged in as : " + user.getName() + " " + user.getFamily() + ".");
     }
 
     public void showUserInfo()
@@ -325,7 +325,7 @@ public class Command
     {
         Followers followers = controllerCommands.showFollowers();
         if(followers.size() == 0)
-            TwitterLog.println("You have no follower");
+            TwitterLog.println("You have no follower.");
         else for(MiniUser miniUser : followers)
             TwitterLog.println(miniUser.getName() + " " + miniUser.getFamily());
     }
@@ -334,7 +334,7 @@ public class Command
     {
         Followings followings = controllerCommands.showFollowings();
         if(followings.size() == 0)
-            TwitterLog.println("No one follows you");
+            TwitterLog.println("No one follows you.");
         else for(MiniUser miniUser : followings)
             TwitterLog.println(miniUser.getName() + " " + miniUser.getFamily());
     }
@@ -344,7 +344,7 @@ public class Command
         String username = TwitterLog.nextLine("Enter the username: ");
         Followers followers = controllerCommands.showFollowers(username);
         if(followers.size() == 0)
-            TwitterLog.println("It doesn't have any followers");
+            TwitterLog.println("It doesn't have any followers.");
         else for(MiniUser miniUser : followers)
             TwitterLog.println(miniUser.getName() + " " + miniUser.getFamily());
     }
@@ -354,7 +354,7 @@ public class Command
         String username = TwitterLog.nextLine("Enter the username: ");
         Followings followings = controllerCommands.showFollowings(username);
         if(followings.size() == 0)
-            TwitterLog.println("No one follows it");
+            TwitterLog.println("No one follows it.");
         else for(MiniUser miniUser : followings)
             TwitterLog.println(miniUser.getName() + " " + miniUser.getFamily());
     }
@@ -371,5 +371,19 @@ public class Command
         String username = TwitterLog.nextLine("Enter the username you want to unfollow: ");
         controllerCommands.unfollow(username);
         TwitterLog.println("You successfully unfollowed it!");
+    }
+
+    public void block() throws ServerConnectionFailedException, DataNotFoundException, ServerRespondFailedException, UnknownException, InvalidPasswordException, PermissionDeniedException, TextTooLongException, ServerInvalidCommandException, DatabaseFailedException, ServerInvalidObjectException
+    {
+        String userName = TwitterLog.nextLine("Enter the username you want to block: ");
+        controllerCommands.block(userName);
+        TwitterLog.println("The user was successfully blocked.");
+    }
+
+    public void unblock() throws ServerConnectionFailedException, DataNotFoundException, ServerRespondFailedException, UnknownException, InvalidPasswordException, PermissionDeniedException, TextTooLongException, ServerInvalidCommandException, DatabaseFailedException, ServerInvalidObjectException
+    {
+        String userName = TwitterLog.nextLine("Enter the username you want to unblock: ");
+        controllerCommands.unblock(userName);
+        TwitterLog.println("The user was successfully unblocked.");
     }
 }

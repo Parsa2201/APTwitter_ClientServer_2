@@ -119,6 +119,8 @@ public class MenuOption
                 case SHOW_SOMEONE_FOLLOWINGS -> commandObject.showSomeoneFollowings();
                 case FOLLOW -> commandObject.follow();
                 case UNFOLLOW -> commandObject.unfollow();
+                case BLOCK -> commandObject.block();
+                case UNBLOCK -> commandObject.unblock();
                 // TODO: show user
 
             }
@@ -262,6 +264,8 @@ public class MenuOption
         options.add(Option.SHOW_SOMEONE_FOLLOWINGS);
         options.add(Option.FOLLOW);
         options.add(Option.UNFOLLOW);
+        options.add(Option.BLOCK);
+        options.add(Option.UNBLOCK);
 
         options.add(Option.BACK);
 

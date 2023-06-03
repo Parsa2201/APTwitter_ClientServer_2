@@ -42,7 +42,9 @@ public enum Option
     SHOW_SOMEONE_FOLLOWERS,
     SHOW_SOMEONE_FOLLOWINGS,
     FOLLOW,
-    UNFOLLOW
+    UNFOLLOW,
+    BLOCK,
+    UNBLOCK,
     ;
 
 
@@ -87,6 +89,8 @@ public enum Option
             case SHOW_SOMEONE_FOLLOWINGS -> "Show someone's followings";
             case FOLLOW -> "Follow someone";
             case UNFOLLOW -> "Unfollow someone";
+            case BLOCK -> "Block a user";
+            case UNBLOCK -> "Unblock a user";
         };
     }
 }
