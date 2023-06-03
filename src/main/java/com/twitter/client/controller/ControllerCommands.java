@@ -1,6 +1,7 @@
 package com.twitter.client.controller;
 
 import com.twitter.client.view.ProgramState;
+import com.twitter.entities.exception.hashtag.HashtagException;
 import com.twitter.entities.exception.user.EmailOrPhoneRequiredException;
 import com.twitter.entities.exception.UnknownException;
 import com.twitter.entities.exception.io.server.*;
@@ -264,7 +265,7 @@ public class ControllerCommands
         return modelCommands.showUser(miniUser.getUserName());
     }
 
-    public void sendTweet(String text, String imagePath) throws TextTooLongException, ServerConnectionFailedException, ServerRespondFailedException, DatabaseFailedException, ServerInvalidObjectException, DataNotFoundException, UnknownException, InvalidPasswordException, PermissionDeniedException, ServerInvalidCommandException, ImageSizeException, FileSizeException, FileNotExistException, FileNotImageException
+    public void sendTweet(String text, String imagePath) throws TextTooLongException, ServerConnectionFailedException, ServerRespondFailedException, DatabaseFailedException, ServerInvalidObjectException, DataNotFoundException, UnknownException, InvalidPasswordException, PermissionDeniedException, ServerInvalidCommandException, ImageSizeException, FileSizeException, FileNotExistException, FileNotImageException, HashtagException
     {
         User user = getCurrentUser();
 

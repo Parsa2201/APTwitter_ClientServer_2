@@ -1,6 +1,7 @@
 package com.twitter.client.view;
 
 import com.twitter.client.controller.Data;
+import com.twitter.entities.exception.hashtag.HashtagException;
 import com.twitter.entities.exception.user.EmailOrPhoneRequiredException;
 import com.twitter.entities.exception.UnknownException;
 import com.twitter.entities.exception.io.FileNotExistException;
@@ -186,6 +187,9 @@ public class MenuOption
         } catch (NumberFormatException e)
         {
             TwitterLog.printlnError("The given option should be a number!");
+        } catch (HashtagException e)
+        {
+            TwitterLog.printlnError("Something went wrong with the hashtag processing!");
         }
     }
 

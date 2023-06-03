@@ -2,6 +2,7 @@ package com.twitter.client.view;
 
 import com.twitter.client.controller.ControllerCommands;
 import com.twitter.client.controller.Data;
+import com.twitter.entities.exception.hashtag.HashtagException;
 import com.twitter.entities.exception.user.EmailOrPhoneRequiredException;
 import com.twitter.entities.exception.UnknownException;
 import com.twitter.entities.exception.io.FileNotExistException;
@@ -207,7 +208,7 @@ public class Command
         TwitterLog.println("Your website successfully changed to " + website + ".");
     }
 
-    public void sendTweet() throws ServerConnectionFailedException, DataNotFoundException, ServerRespondFailedException, FileNotExistException, ServerInvalidCommandException, FileNotImageException, DatabaseFailedException, ImageSizeException, UnknownException, InvalidPasswordException, PermissionDeniedException, FileSizeException, TextTooLongException, ServerInvalidObjectException
+    public void sendTweet() throws ServerConnectionFailedException, DataNotFoundException, ServerRespondFailedException, FileNotExistException, ServerInvalidCommandException, FileNotImageException, DatabaseFailedException, ImageSizeException, UnknownException, InvalidPasswordException, PermissionDeniedException, FileSizeException, TextTooLongException, ServerInvalidObjectException, HashtagException
     {
         String text = TwitterLog.nextLine("Enter your tweet text: ");
         String answer = TwitterLog.nextLine("Do you want your tweet to have a picture? (y/n): ");
