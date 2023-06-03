@@ -18,6 +18,7 @@ public class Tweet implements Serializable
     private int likeCount;
     private int retweetCount;
     private int quoteCount;
+    private boolean isFavstar;
     private final LocalDateTime tweetDate;
     private final ArrayList<Retweet> retweets;
     private final ArrayList<Quote> quotes;
@@ -106,6 +107,16 @@ public class Tweet implements Serializable
     public void setQuoteCount(int quoteCount)
     {
         this.quoteCount = quoteCount;
+    }
+
+    public boolean isFavstar()
+    {
+        return isFavstar;
+    }
+
+    public void setFavstar(boolean favstar)
+    {
+        isFavstar = favstar;
     }
 
     public LocalDateTime getTweetDate()
