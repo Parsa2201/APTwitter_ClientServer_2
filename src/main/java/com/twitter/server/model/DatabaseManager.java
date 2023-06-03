@@ -49,6 +49,7 @@ public class DatabaseManager
         {
             if(followRe.equals(followRelation))
             {
+                followRelation = followRe;
                 return true;
             }
         }
