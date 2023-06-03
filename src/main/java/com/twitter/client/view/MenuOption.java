@@ -111,6 +111,7 @@ public class MenuOption
                 case LIKE_TWEET -> commandObject.likeTweet();
                 case DISLIKE_TWEET -> commandObject.dislikeTweet();
                 case SHOW_TIME_LINE -> commandObject.showTimeLine();
+                case SEARCH_FOR_HASHTAG -> commandObject.searchForHashtag();
 
                 case SHOW_MY_FOLLOWERS -> commandObject.showMyFollowers();
                 case SHOW_MY_FOLLOWINGS -> commandObject.showMyFollowings();
@@ -245,6 +246,7 @@ public class MenuOption
         options.add(Option.LIKE_TWEET);
         options.add(Option.DISLIKE_TWEET);
         options.add(Option.SHOW_TIME_LINE);
+        options.add(Option.SEARCH_FOR_HASHTAG);
 
         options.add(Option.BACK);
 

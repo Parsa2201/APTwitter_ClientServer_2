@@ -34,6 +34,9 @@ public enum Option
     LIKE_TWEET,
     DISLIKE_TWEET,
     SHOW_TIME_LINE,
+    SEARCH_FOR_HASHTAG,
+
+    // following / follower
     SHOW_MY_FOLLOWERS,
     SHOW_MY_FOLLOWINGS,
     SHOW_SOMEONE_FOLLOWERS,
@@ -76,6 +79,7 @@ public enum Option
             case LIKE_TWEET -> "Like a tweet";
             case DISLIKE_TWEET -> "Dislike a tweet";
             case SHOW_TIME_LINE -> "Show my timeline";
+            case SEARCH_FOR_HASHTAG -> "Search for hashtag";
 
             case SHOW_MY_FOLLOWERS -> "Show my followers";
             case SHOW_MY_FOLLOWINGS -> "Show my followings";

@@ -268,6 +268,11 @@ public class Command
     public void showTimeLine() throws ServerConnectionFailedException, DataNotFoundException, ServerRespondFailedException, UnknownException, InvalidPasswordException, PermissionDeniedException, TextTooLongException, ServerInvalidCommandException, DatabaseFailedException, ServerInvalidObjectException
     {
         TimeLine timeLine = controllerCommands.showTimeLine();
+        printTimeLine(timeLine);
+    }
+
+    private static void printTimeLine(TimeLine timeLine) throws UnknownException
+    {
         for (BaseTweet baseTweet : timeLine)
         {
             Tweet tweet = baseTweet.toTweet();
@@ -307,6 +312,13 @@ public class Command
                 TwitterLog.println("#  #  #  #  #  #  #  #  #  #  #  #  #  #  #");
             }
         }
+    }
+
+    public void searchForHashtag() throws ServerConnectionFailedException, DataNotFoundException, HashtagException, ServerRespondFailedException, UnknownException, InvalidPasswordException, PermissionDeniedException, TextTooLongException, ServerInvalidCommandException, DatabaseFailedException, ServerInvalidObjectException
+    {
+        String hashtagNames = TwitterLog.nextLine("Enter the hashtags: ");
+        TimeLine timeLine = controllerCommands.searchForHashtag(hashtagNames);
+        printTimeLine(timeLine);
     }
 
     public void showMyFollowers() throws ServerConnectionFailedException, DataNotFoundException, ServerRespondFailedException, UnknownException, InvalidPasswordException, PermissionDeniedException, TextTooLongException, ServerInvalidCommandException, DatabaseFailedException, ServerInvalidObjectException
