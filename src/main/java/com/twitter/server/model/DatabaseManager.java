@@ -42,17 +42,16 @@ public class DatabaseManager
             return user;
         }
     }
-    public boolean isFollowRelationExist(FollowRelation followRelation, Session session)
+    public FollowRelation isFollowRelationExist(FollowRelation followRelation, Session session)
     {
         List<FollowRelation> followRelations = session.createQuery("select f from FollowRelation f", FollowRelation.class).list();
         for (FollowRelation followRe:followRelations)
         {
             if(followRe.equals(followRelation))
             {
-                followRelation.setId(followRe.getId());
-                return true;
+                return followRe;
             }
         }
-        return false;
+        return null;
     }
 }

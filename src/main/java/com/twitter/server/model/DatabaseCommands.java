@@ -235,7 +235,7 @@ public class DatabaseCommands
     {
 
         Session session = databaseManager.sessionFactory.openSession();
-        if(databaseManager.isFollowRelationExist(followRelation, session))
+        if((followRelation = databaseManager.isFollowRelationExist(followRelation, session)) != null)
         {
             session.beginTransaction();
             session.delete(followRelation);
