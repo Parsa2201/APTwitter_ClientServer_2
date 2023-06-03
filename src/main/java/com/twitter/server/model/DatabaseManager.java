@@ -49,7 +49,7 @@ public class DatabaseManager
         {
             if(followRe.equals(followRelation))
             {
-                followRelation = followRe;
+                followRelation.setId(followRe.getId());
                 return true;
             }
         }
