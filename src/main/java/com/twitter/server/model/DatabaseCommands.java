@@ -293,4 +293,14 @@ public class DatabaseCommands
         // TODO
         return null;
     }
+
+    public void block(String blocker, String blocked)
+    {
+        // TODO
+    }
+
+    public void unblock(String blocker, String blocked)
+    {
+        // TODO
+    }
 }

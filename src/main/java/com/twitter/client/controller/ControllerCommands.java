@@ -343,4 +343,16 @@ public class ControllerCommands
 
         return timeLine;
     }
+
+    public void block(String userName) throws PermissionDeniedException, ServerConnectionFailedException, DataNotFoundException, ServerRespondFailedException, UnknownException, InvalidPasswordException, TextTooLongException, ServerInvalidCommandException, DatabaseFailedException, ServerInvalidObjectException
+    {
+        User user = getCurrentUser();
+        modelCommands.block(user.getUserName(), userName);
+    }
+
+    public void unblock(String userName) throws PermissionDeniedException, ServerConnectionFailedException, DataNotFoundException, ServerRespondFailedException, UnknownException, InvalidPasswordException, TextTooLongException, ServerInvalidCommandException, DatabaseFailedException, ServerInvalidObjectException
+    {
+        User user = getCurrentUser();
+        modelCommands.unblock(user.getUserName(), userName);
+    }
 }

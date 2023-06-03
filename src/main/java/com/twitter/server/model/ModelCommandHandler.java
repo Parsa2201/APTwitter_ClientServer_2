@@ -54,6 +54,8 @@ public class ModelCommandHandler
                 case "follow" -> modelCommands.follow(objectInputStream);
                 case "unfollow" -> modelCommands.unfollow(objectInputStream);
                 case "show-user" -> modelCommands.showUser(objectInputStream);
+                case "block" -> modelCommands.block(objectInputStream);
+                case "unblock" -> modelCommands.unblock(objectInputStream);
 
                 case "send-tweet" -> modelCommands.sendTweet(objectInputStream);
                 case "send-retweet" -> modelCommands.sendRetweet(objectInputStream);

@@ -337,4 +337,28 @@ public void changePassword(String userName, Password newPasswordHash) throws Ser
             return (TimeLine) respond.getObject();
         }
     }
+
+    public void block(String blocker, String blocked) throws ServerConnectionFailedException, ServerInvalidObjectException, ServerRespondFailedException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException, ServerInvalidCommandException, DatabaseFailedException
+    {
+        try (ServerConnectionHandler serverConnectionHandler = new ServerConnectionHandler())
+        {
+            serverConnectionHandler.sendCommend("block");
+            serverConnectionHandler.sendObject(blocker);
+            serverConnectionHandler.sendObject(blocked);
+            Respond respond = serverConnectionHandler.getRespond();
+            respond.check();
+        }
+    }
+
+    public void unblock(String blocker, String blocked) throws ServerConnectionFailedException, ServerInvalidObjectException, ServerRespondFailedException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException, ServerInvalidCommandException, DatabaseFailedException
+    {
+        try (ServerConnectionHandler serverConnectionHandler = new ServerConnectionHandler())
+        {
+            serverConnectionHandler.sendCommend("unblock");
+            serverConnectionHandler.sendObject(blocker);
+            serverConnectionHandler.sendObject(blocked);
+            Respond respond = serverConnectionHandler.getRespond();
+            respond.check();
+        }
+    }
 }

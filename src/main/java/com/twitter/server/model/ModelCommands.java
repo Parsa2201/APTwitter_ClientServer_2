@@ -278,4 +278,20 @@ public class ModelCommands
         TimeLine timeLine = databaseCommands.showTimeLine(userName);
         return new Respond(RespondCode.SUCCESS, timeLine);
     }
+
+    public Respond block(ObjectInputStream objectInputStream) throws ServerInvalidObjectException
+    {
+        String blocker = ObjectGetter.getObject(objectInputStream, String.class);
+        String blocked = ObjectGetter.getObject(objectInputStream, String.class);
+        databaseCommands.block(blocker, blocked);
+        return new Respond(RespondCode.SUCCESS);
+    }
+
+    public Respond unblock(ObjectInputStream objectInputStream) throws ServerInvalidObjectException
+    {
+        String blocker = ObjectGetter.getObject(objectInputStream, String.class);
+        String blocked = ObjectGetter.getObject(objectInputStream, String.class);
+        databaseCommands.unblock(blocker, blocked);
+        return new Respond(RespondCode.SUCCESS);
+    }
 }
