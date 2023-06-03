@@ -1,10 +1,12 @@
 package com.twitter.server.model;
 
+import com.twitter.entities.exception.hashtag.HashtagException;
 import com.twitter.entities.exception.io.FileNotExistException;
 import com.twitter.entities.exception.io.FileNotImageException;
 import com.twitter.entities.exception.io.FileSizeException;
 import com.twitter.entities.exception.io.ImageSizeException;
 import com.twitter.entities.exception.io.server.DataNotFoundException;
+import com.twitter.entities.exception.text.TextTooLongException;
 import com.twitter.entities.exception.user.CountryException;
 import com.twitter.entities.exception.user.email.EmailFormatException;
 import com.twitter.entities.exception.user.password.InvalidPasswordException;
@@ -12,9 +14,11 @@ import com.twitter.entities.exception.user.password.PasswordFormatException;
 import com.twitter.entities.exception.user.password.PasswordHashException;
 import com.twitter.entities.image.Avatar;
 import com.twitter.entities.image.Header;
+import com.twitter.entities.tweet.Tweet;
+import com.twitter.entities.tweet.content.TextContent;
+import com.twitter.entities.user.MiniUser;
 import com.twitter.entities.user.Password;
 import com.twitter.entities.user.User;
-import org.glassfish.jaxb.core.v2.TODO;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -22,7 +26,7 @@ import java.time.LocalDate;
 
 public class DatabaseCommandsTest
 {
-    private User makeUser1() throws PasswordFormatException, PasswordHashException, EmailFormatException, CountryException
+    User makeUser1() throws PasswordFormatException, PasswordHashException, EmailFormatException, CountryException
     {
         User user = new User();
         user.setUserName("test user name");
@@ -37,7 +41,7 @@ public class DatabaseCommandsTest
         return user;
     }
     @Test
-    public void signUp() throws PasswordFormatException, PasswordHashException, EmailFormatException, CountryException
+    void signUp() throws PasswordFormatException, PasswordHashException, EmailFormatException, CountryException
     {
         User user = new User();
         user.setUserName("test user name 1");
@@ -54,7 +58,7 @@ public class DatabaseCommandsTest
     }
 
     @Test
-    public void signIn() throws PasswordFormatException, PasswordHashException, EmailFormatException, CountryException, DataNotFoundException, InvalidPasswordException
+    void signIn() throws PasswordFormatException, PasswordHashException, EmailFormatException, CountryException, DataNotFoundException, InvalidPasswordException
     {
         DatabaseCommands databaseCommands = new DatabaseCommands();
         User user = databaseCommands.signIn("test user name", new Password("NaNoOOl;#329"));
@@ -62,7 +66,7 @@ public class DatabaseCommandsTest
     }
 
     @Test
-    public void setAvatar() throws PasswordFormatException, PasswordHashException, EmailFormatException, CountryException, DataNotFoundException, ImageSizeException, FileSizeException, FileNotExistException, FileNotImageException
+    void setAvatar() throws PasswordFormatException, PasswordHashException, EmailFormatException, CountryException, DataNotFoundException, ImageSizeException, FileSizeException, FileNotExistException, FileNotImageException
     {
         // FIXME
         DatabaseCommands databaseCommands = new DatabaseCommands();
@@ -70,7 +74,7 @@ public class DatabaseCommandsTest
     }
 
     @Test
-    public void setHeader() throws PasswordFormatException, PasswordHashException, EmailFormatException, CountryException, DataNotFoundException, ImageSizeException, FileSizeException, FileNotExistException, FileNotImageException
+    void setHeader() throws PasswordFormatException, PasswordHashException, EmailFormatException, CountryException, DataNotFoundException, ImageSizeException, FileSizeException, FileNotExistException, FileNotImageException
     {
         // FIXME
         DatabaseCommands databaseCommands = new DatabaseCommands();
@@ -78,7 +82,7 @@ public class DatabaseCommandsTest
     }
 
     @Test
-    public void changeUserPassword() throws PasswordHashException, DataNotFoundException, InvalidPasswordException
+    void changeUserPassword() throws PasswordHashException, DataNotFoundException, InvalidPasswordException
     {
         DatabaseCommands databaseCommands = new DatabaseCommands();
         databaseCommands.changeUserPassword("test user name", new Password("1234!@#$abAB"));
@@ -86,7 +90,7 @@ public class DatabaseCommandsTest
     }
 
     @Test
-    public void changeName() throws DataNotFoundException, PasswordHashException, InvalidPasswordException
+    void changeName() throws DataNotFoundException, PasswordHashException, InvalidPasswordException
     {
         DatabaseCommands databaseCommands = new DatabaseCommands();
         databaseCommands.changeName("test user name", "Mammad");
@@ -95,7 +99,7 @@ public class DatabaseCommandsTest
     }
 
     @Test
-    public void changeFamily() throws DataNotFoundException, PasswordHashException, InvalidPasswordException
+    void changeFamily() throws DataNotFoundException, PasswordHashException, InvalidPasswordException
     {
         DatabaseCommands databaseCommands = new DatabaseCommands();
         databaseCommands.changeFamily("test user name", "Mammadi");
@@ -127,7 +131,18 @@ public class DatabaseCommandsTest
 
     // TODO: showUser()
 
-    // TODO: sendTweet()
+    @Test
+    void sendTweet() throws TextTooLongException, HashtagException
+    {
+        // FIXME
+        MiniUser miniUser = new MiniUser();
+        miniUser.setUserName("test user name");
+
+        Tweet tweet = new Tweet(miniUser, new TextContent("this is a test text"), null);
+
+        DatabaseCommands databaseCommands = new DatabaseCommands();
+        databaseCommands.sendTweet(tweet);
+    }
 
     // TODO: sendRetweet()
 
