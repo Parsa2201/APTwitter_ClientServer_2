@@ -4,6 +4,7 @@ import com.twitter.entities.exception.io.FileNotExistException;
 import com.twitter.entities.exception.io.FileNotImageException;
 import com.twitter.entities.exception.io.FileSizeException;
 import com.twitter.entities.exception.io.ImageSizeException;
+import jakarta.persistence.Lob;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.Transient;
 
@@ -17,6 +18,7 @@ public abstract class TwitterImage implements Serializable
 {
     @Transient
     private BufferedImage image;
+    @Lob
     private String encodedImage;
 
     public TwitterImage()
