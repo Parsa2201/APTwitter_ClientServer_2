@@ -1,6 +1,8 @@
 package com.twitter.server.model;
 
 import com.twitter.entities.exception.io.server.DataNotFoundException;
+import com.twitter.entities.exception.user.CountryException;
+import com.twitter.entities.exception.user.email.EmailFormatException;
 import com.twitter.entities.exception.user.password.InvalidPasswordException;
 import com.twitter.entities.exception.text.TextTooLongException;
 import com.twitter.entities.image.Avatar;
@@ -11,6 +13,7 @@ import org.hibernate.Session;
 import org.hibernate.exception.ConstraintViolationException;
 import org.hibernate.query.Query;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class DatabaseCommands
@@ -70,14 +73,148 @@ public class DatabaseCommands
         session.close();
     }
 
-    public void changeUserInformation(String userName, Bio bio, String location, String website) throws TextTooLongException, DataNotFoundException
+//    public void changeUserInformation(String userName, Bio bio, String location, String website) throws TextTooLongException, DataNotFoundException
+//    {
+//        Session session = databaseManager.sessionFactory.openSession();
+//        List<User> users = session.createQuery("select u from User u", User.class).list();
+//        User user = databaseManager.findUser(userName, session);
+//        user.setBio(bio);
+//        user.setLocation(location);
+//        user.setWebsite(website);
+//        session.beginTransaction();
+//        session.update(user);
+//        session.getTransaction().commit();
+//        session.close();
+//    }
+
+    public void changeUserPassword(String userName, Password newpass) throws DataNotFoundException
     {
         Session session = databaseManager.sessionFactory.openSession();
-        List<User> users = session.createQuery("select u from User u", User.class).list();
+        User user = databaseManager.findUser(userName, session);
+        user.setPassword(newpass);
+        session.beginTransaction();
+        session.update(user);
+        session.getTransaction().commit();
+        session.close();
+    }
+
+    public void changeName(String userName, String name) throws DataNotFoundException
+    {
+        Session session = databaseManager.sessionFactory.openSession();
+        User user = databaseManager.findUser(userName, session);
+        user.setName(name);
+        session.beginTransaction();
+        session.update(user);
+        session.getTransaction().commit();
+        session.close();
+    }
+    public void changeFamily(String userName, String family) throws DataNotFoundException
+    {
+        Session session = databaseManager.sessionFactory.openSession();
+        User user = databaseManager.findUser(userName, session);
+        user.setFamily(family);
+        session.beginTransaction();
+        session.update(user);
+        session.getTransaction().commit();
+        session.close();
+    }
+    public void changeEmail(String userName, String email) throws DataNotFoundException, EmailFormatException
+    {
+        Session session = databaseManager.sessionFactory.openSession();
+        User user = databaseManager.findUser(userName, session);
+        user.setEmail(email);
+        session.beginTransaction();
+        session.update(user);
+        session.getTransaction().commit();
+        session.close();
+    }
+
+    public void changePhone(String userName, String phone) throws DataNotFoundException
+    {
+        Session session = databaseManager.sessionFactory.openSession();
+        User user = databaseManager.findUser(userName, session);
+        user.setPhoneNumber(phone);
+        session.beginTransaction();
+        session.update(user);
+        session.getTransaction().commit();
+        session.close();
+    }
+
+    public void changeBirthDate(String userName, LocalDate birthDate) throws DataNotFoundException
+    {
+        Session session = databaseManager.sessionFactory.openSession();
+        User user = databaseManager.findUser(userName, session);
+        user.setBirthDate(birthDate);
+        session.beginTransaction();
+        session.update(user);
+        session.getTransaction().commit();
+        session.close();
+    }
+
+    public void changeCountry (String userName, String country) throws CountryException, DataNotFoundException
+    {
+        Session session = databaseManager.sessionFactory.openSession();
+        User user = databaseManager.findUser(userName, session);
+        user.setCountry(country);
+        session.beginTransaction();
+        session.update(user);
+        session.getTransaction().commit();
+        session.close();
+    }
+    public void changeLocation (String userName, String location) throws DataNotFoundException
+    {
+        Session session = databaseManager.sessionFactory.openSession();
+        User user = databaseManager.findUser(userName, session);
+        user.setLocation(location);
+        session.beginTransaction();
+        session.update(user);
+        session.getTransaction().commit();
+        session.close();
+    }
+    public void changeWebsite (String userName, String website) throws DataNotFoundException
+    {
+        Session session = databaseManager.sessionFactory.openSession();
+        User user = databaseManager.findUser(userName, session);
+        user.setWebsite(website);
+        session.beginTransaction();
+        session.update(user);
+        session.getTransaction().commit();
+        session.close();
+    }
+
+    public Followers showFollowers(String userName) throws DataNotFoundException
+    {
+        Session session = databaseManager.sessionFactory.openSession();
+        Query<String> followerIDsQ = session.createQuery("select f.username from FollowRelation f where f.followedUsename = :userNmae", String.class);
+        followerIDsQ.setParameter("userName", userName);
+        List<String> followerIDs = followerIDsQ.list();
+        Followers followers = new Followers();
+        for (String flID:followerIDs)
+        {
+            followers.add(databaseManager.findUser(flID, session).toMiniUser());
+        }
+        return followers;
+    }
+
+    public Followings showFollowings(String userName) throws DataNotFoundException
+    {
+        Session session = databaseManager.sessionFactory.openSession();
+        Query<String> followingsIDsQ = session.createQuery("select f.username from FollowRelation f where f.username = :userNmae", String.class);
+        followingsIDsQ.setParameter("userName", userName);
+        List<String> followingsIDs = followingsIDsQ.list();
+        Followings followings = new Followings();
+        for (String flID:followingsIDs)
+        {
+            followings.add(databaseManager.findUser(flID, session).toMiniUser());
+        }
+        return followings;
+    }
+
+    public void changeBio (String userName, Bio bio) throws DataNotFoundException, TextTooLongException
+    {
+        Session session = databaseManager.sessionFactory.openSession();
         User user = databaseManager.findUser(userName, session);
         user.setBio(bio);
-        user.setLocation(location);
-        user.setWebsite(website);
         session.beginTransaction();
         session.update(user);
         session.getTransaction().commit();

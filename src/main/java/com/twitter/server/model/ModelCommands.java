@@ -2,6 +2,8 @@ package com.twitter.server.model;
 
 import com.twitter.entities.exception.io.server.ServerInvalidObjectException;
 import com.twitter.entities.exception.io.server.DataNotFoundException;
+import com.twitter.entities.exception.user.CountryException;
+import com.twitter.entities.exception.user.email.EmailFormatException;
 import com.twitter.entities.exception.user.password.InvalidPasswordException;
 import com.twitter.entities.exception.text.TextTooLongException;
 import com.twitter.entities.image.Avatar;
@@ -11,6 +13,7 @@ import com.twitter.entities.server.RespondCode;
 import com.twitter.entities.user.*;
 
 import java.io.ObjectInputStream;
+import java.time.LocalDate;
 
 public class ModelCommands
 {
@@ -87,89 +90,113 @@ public class ModelCommands
         return new Respond(RespondCode.SUCCESS);
     }
 
-    public Respond changeUserInformation(ObjectInputStream objectInputStream) throws ServerInvalidObjectException, DataNotFoundException, TextTooLongException
+//    public Respond changeUserInformation(ObjectInputStream objectInputStream) throws ServerInvalidObjectException, DataNotFoundException, TextTooLongException
+//    {
+//        String userName = ObjectGetter.getObject(objectInputStream, String.class);
+//        Bio bio = ObjectGetter.getObject(objectInputStream, Bio.class);
+//        String location = ObjectGetter.getObject(objectInputStream, String.class);
+//        String website = ObjectGetter.getObject(objectInputStream, String.class);
+//
+//        // TODO: change user information in database, throw exception if not found or some other error
+//        databaseCommands.changeUserInformation(userName, bio, location, website);
+//        // TODO: add the newly created exceptions to both the client and the server project!!!
+//
+//        // temporary showing the user information (because we don't have a database yet)
+//        System.out.println(userName);
+//        System.out.println(bio);
+//        System.out.println(location);
+//
+//        return new Respond(RespondCode.SUCCESS);
+//    }
+
+    public Respond changePassword(ObjectInputStream objectInputStream) throws ServerInvalidObjectException, DataNotFoundException
     {
+        // TODO
         String userName = ObjectGetter.getObject(objectInputStream, String.class);
-        Bio bio = ObjectGetter.getObject(objectInputStream, Bio.class);
-        String location = ObjectGetter.getObject(objectInputStream, String.class);
-        String website = ObjectGetter.getObject(objectInputStream, String.class);
-
-        // TODO: change user information in database, throw exception if not found or some other error
-        databaseCommands.changeUserInformation(userName, bio, location, website);
-        // TODO: add the newly created exceptions to both the client and the server project!!!
-
-        // temporary showing the user information (because we don't have a database yet)
-        System.out.println(userName);
-        System.out.println(bio);
-        System.out.println(location);
-
+        Password newpass = ObjectGetter.getObject(objectInputStream, Password.class);
+        databaseCommands.changeUserPassword(userName, newpass);
         return new Respond(RespondCode.SUCCESS);
     }
 
-    public Respond changePassword(ObjectInputStream objectInputStream)
+    public Respond changeName(ObjectInputStream objectInputStream) throws ServerInvalidObjectException, DataNotFoundException
     {
         // TODO
-        return null;
+        String userName = ObjectGetter.getObject(objectInputStream, String.class);
+        String newName = ObjectGetter.getObject(objectInputStream, String.class);
+        databaseCommands.changeName(userName, newName);
+        return new Respond(RespondCode.SUCCESS);
     }
 
-    public Respond changeName(ObjectInputStream objectInputStream)
+    public Respond changeFamily(ObjectInputStream objectInputStream) throws DataNotFoundException, ServerInvalidObjectException
     {
         // TODO
-        return null;
+        String userName = ObjectGetter.getObject(objectInputStream, String.class);
+        String newFamily = ObjectGetter.getObject(objectInputStream, String.class);
+        databaseCommands.changeFamily(userName, newFamily);
+        return new Respond(RespondCode.SUCCESS);
     }
 
-    public Respond changeFamily(ObjectInputStream objectInputStream)
+    public Respond changeEmail(ObjectInputStream objectInputStream) throws ServerInvalidObjectException, DataNotFoundException, EmailFormatException
     {
-        // TODO
-        return null;
+        String userName = ObjectGetter.getObject(objectInputStream, String.class);
+        String newEmail = ObjectGetter.getObject(objectInputStream, String.class);
+        databaseCommands.changeEmail(userName, newEmail);
+        return new Respond(RespondCode.SUCCESS);
     }
 
-    public Respond changeEmail(ObjectInputStream objectInputStream)
+    public Respond changePhoneNumber(ObjectInputStream objectInputStream) throws ServerInvalidObjectException, DataNotFoundException, EmailFormatException
     {
-        // TODO
-        return null;
+        String userName = ObjectGetter.getObject(objectInputStream, String.class);
+        String newPhone = ObjectGetter.getObject(objectInputStream, String.class);
+        databaseCommands.changePhone(userName, newPhone);
+        return new Respond(RespondCode.SUCCESS);
     }
 
-    public Respond changePhoneNumber(ObjectInputStream objectInputStream)
+    public Respond changeBirthDate(ObjectInputStream objectInputStream) throws ServerInvalidObjectException, DataNotFoundException
     {
-        // TODO
-        return null;
+        String userName = ObjectGetter.getObject(objectInputStream, String.class);
+        LocalDate newBirth = ObjectGetter.getObject(objectInputStream, LocalDate.class);
+        databaseCommands.changeBirthDate(userName, newBirth);
+        return new Respond(RespondCode.SUCCESS);
     }
 
-    public Respond changeBirthDate(ObjectInputStream objectInputStream)
+    public Respond changeCountry(ObjectInputStream objectInputStream) throws ServerInvalidObjectException, CountryException, DataNotFoundException
     {
-        // TODO
-        return null;
+        String userName = ObjectGetter.getObject(objectInputStream, String.class);
+        String newCountry = ObjectGetter.getObject(objectInputStream, String.class);
+        databaseCommands.changeCountry(userName, newCountry);
+        return new Respond(RespondCode.SUCCESS);
     }
 
-    public Respond changeCountry(ObjectInputStream objectInputStream)
+    public Respond changeBio(ObjectInputStream objectInputStream) throws ServerInvalidObjectException, DataNotFoundException, TextTooLongException
     {
-        // TODO
-        return null;
+        String userName = ObjectGetter.getObject(objectInputStream, String.class);
+        Bio newBio = ObjectGetter.getObject(objectInputStream, Bio.class);
+        databaseCommands.changeBio(userName, newBio);
+        return new Respond(RespondCode.SUCCESS);
     }
 
-    public Respond changeBio(ObjectInputStream objectInputStream)
+    public Respond changeLocation(ObjectInputStream objectInputStream) throws ServerInvalidObjectException, DataNotFoundException
     {
-        // TODO
-        return null;
+        String userName = ObjectGetter.getObject(objectInputStream, String.class);
+        String newLocation = ObjectGetter.getObject(objectInputStream, String.class);
+        databaseCommands.changeLocation(userName, newLocation);
+        return new Respond(RespondCode.SUCCESS);
     }
 
-    public Respond changeLocation(ObjectInputStream objectInputStream)
+    public Respond changeWebsite(ObjectInputStream objectInputStream) throws ServerInvalidObjectException, DataNotFoundException
     {
-        // TODO
-        return null;
+        String userName = ObjectGetter.getObject(objectInputStream, String.class);
+        String newWebsite = ObjectGetter.getObject(objectInputStream, String.class);
+        databaseCommands.changeWebsite(userName, newWebsite);
+        return new Respond(RespondCode.SUCCESS);
     }
 
-    public Respond changeWebsite(ObjectInputStream objectInputStream)
+    public Respond showFollowers(ObjectInputStream objectInputStream) throws ServerInvalidObjectException, DataNotFoundException
     {
-        // TODO
-        return null;
-    }
-
-    public Respond showFollowers(ObjectInputStream objectInputStream)
-    {
-        // TODO
-        return null;
+        String userName = ObjectGetter.getObject(objectInputStream, String.class);
+        Followers followers = databaseCommands.showFollowers(userName);
+        return new Respond(RespondCode.SUCCESS, followers);
     }
 
     public Respond showFollowings(ObjectInputStream objectInputStream)

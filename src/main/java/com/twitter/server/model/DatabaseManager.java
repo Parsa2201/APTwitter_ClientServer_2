@@ -3,7 +3,6 @@ package com.twitter.server.model;
 import com.twitter.entities.exception.io.server.DataNotFoundException;
 import com.twitter.entities.user.FollowRelation;
 import com.twitter.entities.user.User;
-import jakarta.persistence.EntityManager;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.Metadata;
@@ -31,7 +30,7 @@ public class DatabaseManager
 
     public User findUser(String userName , Session session) throws DataNotFoundException
     {
-        Query<User> userQuery = session.createQuery("select u from User u where u.name = :userName", User.class);
+        Query<User> userQuery = session.createQuery("select u from User u where u.userName = :userName", User.class);
         userQuery.setParameter("userName", userName);
         User user = userQuery.list().get(0);
         if(user == null)

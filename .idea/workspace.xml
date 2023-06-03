@@ -4,27 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e6f89f22-8f2b-446d-b25f-81599946cb8d" name="Changes" comment="cleaned the DatabaseManager.java">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/tweet2/Quote.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/tweet2/Reply.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/tweet2/Retweet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/tweet2/TimeLine.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/tweet2/Tweet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/tweet2/content/Content.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/tweet2/content/ImageContent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/tweet2/content/TextContent.java" afterDir="false" />
+    <list default="true" id="e6f89f22-8f2b-446d-b25f-81599946cb8d" name="Changes" comment="follow unfollow showUser commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/user/FollowRelation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/user/FollowRelation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/server/model/DatabaseCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/server/model/DatabaseCommands.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/server/model/ModelCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/server/model/ModelCommands.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -53,66 +51,50 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Downloaded.Files.Path.Enabled": "false",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "full.screen.before.presentation.mode": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/parsa/Documents/دانشگاه امیرکبیر/ترم 2/تکلیف/AP/پروژه/APTwitter_ClientServer_2/src/main/java/com/twitter/entities/tweet2",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.18359375",
-    "project.structure.side.proportion": "0.06451613",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Sazgar/Desktop/Home Work/TERM 2/AP_WorkShop10&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Global Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "postgresql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/main/java/com/twitter/entities/tweet2" />
       <recent name="$PROJECT_DIR$/src/main/java/com/twitter/server" />
       <recent name="$PROJECT_DIR$/src/test/java/twitter" />
       <recent name="$PROJECT_DIR$/src/test/java/twitter/client" />
       <recent name="$PROJECT_DIR$/src/main/java/com/twitter/client" />
+      <recent name="$PROJECT_DIR$/src/main/java/com/twitter/entities" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.twitter.entities.tweet2" />
       <recent name="com.twitter.entities.exception.password" />
       <recent name="com.twitter.entities.exception.io.server" />
       <recent name="twitter.entities.user" />
       <recent name="com.twitter.client" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.DatabaseCommandsTest.signUp">
-    <configuration name="Client" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="com.twitter.client.Main" />
-      <module name="APTwitter_ClientServer_2" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.twitter.client.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Server" type="Application" factoryName="Application" temporary="true">
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.twitter.server.Main" />
       <module name="APTwitter_ClientServer_2" />
       <extension name="coverage">
@@ -125,17 +107,30 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ControllerCommandsTest.changeUserInformation1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="com.twitter.client.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.twitter.client.Main" />
       <module name="APTwitter_ClientServer_2" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.twitter.client.controller.*" />
+          <option name="PATTERN" value="com.twitter.client.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.twitter.client.controller" />
-      <option name="MAIN_CLASS_NAME" value="com.twitter.client.controller.ControllerCommandsTest" />
-      <option name="METHOD_NAME" value="changeUserInformation1" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ControllerCommandsTest.signUp1 (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="APTwitter_ClientServer_2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="twitterTest.client.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="twitterTest.client.controller" />
+      <option name="MAIN_CLASS_NAME" value="twitterTest.client.controller.ControllerCommandsTest" />
+      <option name="METHOD_NAME" value="signUp1" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -173,28 +168,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DatabaseCommandsTest.signUp" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="APTwitter_ClientServer_2" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.twitter.server.model.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.twitter.server.model" />
-      <option name="MAIN_CLASS_NAME" value="com.twitter.server.model.DatabaseCommandsTest" />
-      <option name="METHOD_NAME" value="signUp" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.DatabaseCommandsTest.signUp" />
-        <item itemvalue="Application.Server" />
-        <item itemvalue="JUnit.ControllerCommandsTest.changeUserInformation1" />
+        <item itemvalue="Application.com.twitter.client.Main" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.ControllerCommandsTest.signUp1 (2)" />
+        <item itemvalue="JUnit.ControllerCommandsTest.signUp1 (1)" />
         <item itemvalue="JUnit.ControllerCommandsTest.signUp1" />
       </list>
     </recent_temporary>
@@ -219,12 +198,16 @@
       <workItem from="1685542630436" duration="383000" />
       <workItem from="1685544850807" duration="30000" />
       <workItem from="1685606749636" duration="1010000" />
-      <workItem from="1685609658029" duration="3907000" />
-      <workItem from="1685615959031" duration="7249000" />
-      <workItem from="1685623434548" duration="7984000" />
-      <workItem from="1685711356241" duration="12637000" />
-      <workItem from="1685733251741" duration="807000" />
-      <workItem from="1685734940301" duration="3264000" />
+      <workItem from="1685608068782" duration="513000" />
+      <workItem from="1685614589491" duration="2586000" />
+      <workItem from="1685618659239" duration="1712000" />
+      <workItem from="1685620720504" duration="145000" />
+      <workItem from="1685621032679" duration="1373000" />
+      <workItem from="1685731018242" duration="2119000" />
+      <workItem from="1685733164397" duration="5643000" />
+      <workItem from="1685774806176" duration="1549000" />
+      <workItem from="1685776370891" duration="1361000" />
+      <workItem from="1685777745730" duration="2552000" />
     </task>
     <task id="LOCAL-00001" summary="added sendFile to the ServerConnectionHandler.java">
       <created>1685298475313</created>
@@ -268,77 +251,28 @@
       <option name="project" value="LOCAL" />
       <updated>1685607730620</updated>
     </task>
-    <task id="LOCAL-00007" summary="added signIn to the view">
-      <created>1685618652084</created>
+    <task id="LOCAL-00007" summary="nullable deleted">
+      <created>1685608392601</created>
       <option name="number" value="00007" />
       <option name="presentableId" value="LOCAL-00007" />
       <option name="project" value="LOCAL" />
-      <updated>1685618652084</updated>
+      <updated>1685608392601</updated>
     </task>
-    <task id="LOCAL-00008" summary="made the ServerException extent TwitIOException instead of IOException">
-      <created>1685619542670</created>
+    <task id="LOCAL-00008" summary="edit DatabaseManager find method">
+      <created>1685734992657</created>
       <option name="number" value="00008" />
       <option name="presentableId" value="LOCAL-00008" />
       <option name="project" value="LOCAL" />
-      <updated>1685619542670</updated>
+      <updated>1685734992657</updated>
     </task>
-    <task id="LOCAL-00009" summary="print error the errors in the view">
-      <created>1685623070430</created>
+    <task id="LOCAL-00009" summary="follow unfollow showUser commit">
+      <created>1685737990343</created>
       <option name="number" value="00009" />
       <option name="presentableId" value="LOCAL-00009" />
       <option name="project" value="LOCAL" />
-      <updated>1685623070430</updated>
+      <updated>1685737990343</updated>
     </task>
-    <task id="LOCAL-00010" summary="added all the individual changes to the user in the client">
-      <created>1685628970357</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1685628970357</updated>
-    </task>
-    <task id="LOCAL-00011" summary="added all the individual changes to the user in the client">
-      <created>1685657416389</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1685657416389</updated>
-    </task>
-    <task id="LOCAL-00012" summary="added all the TODOs for the server side">
-      <created>1685715889728</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1685715889728</updated>
-    </task>
-    <task id="LOCAL-00013" summary="added sendTweet(), sentRetweet(), and sendQuote to the client">
-      <created>1685721656414</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1685721656414</updated>
-    </task>
-    <task id="LOCAL-00014" summary="added like and dislike and show time-line to the client">
-      <created>1685732160333</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1685732160333</updated>
-    </task>
-    <task id="LOCAL-00015" summary="sign up database unit test">
-      <created>1685735634398</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1685735634398</updated>
-    </task>
-    <task id="LOCAL-00016" summary="cleaned the DatabaseManager.java">
-      <created>1685735951789</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1685735951789</updated>
-    </task>
-    <option name="localTasksCounter" value="17" />
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -362,15 +296,25 @@
     <MESSAGE value="database without bug accept signUp1 test" />
     <MESSAGE value="DatabaseCommands commit" />
     <MESSAGE value="Country bugfix" />
-    <MESSAGE value="added signIn to the view" />
-    <MESSAGE value="made the ServerException extent TwitIOException instead of IOException" />
-    <MESSAGE value="print error the errors in the view" />
-    <MESSAGE value="added all the individual changes to the user in the client" />
-    <MESSAGE value="added all the TODOs for the server side" />
-    <MESSAGE value="added sendTweet(), sentRetweet(), and sendQuote to the client" />
-    <MESSAGE value="added like and dislike and show time-line to the client" />
-    <MESSAGE value="sign up database unit test" />
-    <MESSAGE value="cleaned the DatabaseManager.java" />
-    <option name="LAST_COMMIT_MESSAGE" value="cleaned the DatabaseManager.java" />
+    <MESSAGE value="nullable deleted" />
+    <MESSAGE value="edit DatabaseManager find method" />
+    <MESSAGE value="follow unfollow showUser commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="follow unfollow showUser commit" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/twitter/entities/user/Country.java</url>
+          <line>226</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/twitter/entities/user/Country.java</url>
+          <line>228</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
