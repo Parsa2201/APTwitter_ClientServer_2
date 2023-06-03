@@ -118,6 +118,7 @@ public class MenuOption
                 case SHOW_SOMEONE_FOLLOWINGS -> commandObject.showSomeoneFollowings();
                 case FOLLOW -> commandObject.follow();
                 case UNFOLLOW -> commandObject.unfollow();
+                // TODO: show user
 
             }
         }

@@ -55,6 +55,13 @@ public class ModelCommandHandler
                 case "unfollow" -> modelCommands.unfollow(objectInputStream);
                 case "show-user" -> modelCommands.showUser(objectInputStream);
 
+                case "send-tweet" -> modelCommands.sendTweet(objectInputStream);
+                case "send-retweet" -> modelCommands.sendRetweet(objectInputStream);
+                case "send-quote" -> modelCommands.sendQuote(objectInputStream);
+                case "like-tweet" -> modelCommands.likeTweet(objectInputStream);
+                case "dislike-tweet" -> modelCommands.dislikeTweet(objectInputStream);
+                case "show-time-line" -> modelCommands.showTimeLine(objectInputStream);
+
 
                 default -> new Respond(new ServerInvalidCommandException());
             };

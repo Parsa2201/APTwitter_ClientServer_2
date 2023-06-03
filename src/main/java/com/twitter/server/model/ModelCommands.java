@@ -10,6 +10,10 @@ import com.twitter.entities.image.Avatar;
 import com.twitter.entities.image.Header;
 import com.twitter.entities.server.Respond;
 import com.twitter.entities.server.RespondCode;
+import com.twitter.entities.tweet.Quote;
+import com.twitter.entities.tweet.Retweet;
+import com.twitter.entities.tweet.TimeLine;
+import com.twitter.entities.tweet.Tweet;
 import com.twitter.entities.user.*;
 import com.twitter.entities.user.follow.FollowRelation;
 import com.twitter.entities.user.follow.Followers;
@@ -210,7 +214,7 @@ public class ModelCommands
 
     public Respond follow(ObjectInputStream objectInputStream) throws ServerInvalidObjectException, DataNotFoundException
     {
-        // TODO
+        // FIXME
         FollowRelation followRelation = ObjectGetter.getObject(objectInputStream, FollowRelation.class);
         databaseCommands.follow(followRelation);
         return new Respond(RespondCode.SUCCESS);
@@ -218,7 +222,7 @@ public class ModelCommands
 
     public Respond unfollow(ObjectInputStream objectInputStream) throws ServerInvalidObjectException, DataNotFoundException
     {
-        // TODO
+        // FIXME
         FollowRelation followRelation = ObjectGetter.getObject(objectInputStream, FollowRelation.class);
         databaseCommands.unfollow(followRelation);
         return new Respond(RespondCode.SUCCESS);
@@ -227,8 +231,51 @@ public class ModelCommands
     public Respond showUser(ObjectInputStream objectInputStream) throws ServerInvalidObjectException, DataNotFoundException
     {
         String userName = ObjectGetter.getObject(objectInputStream, String.class);
-        // TODO
         MiniUser miniUser = databaseCommands.showUser(userName);
         return new Respond(RespondCode.SUCCESS, miniUser);
+    }
+
+    public Respond sendTweet(ObjectInputStream objectInputStream) throws ServerInvalidObjectException
+    {
+        Tweet tweet = ObjectGetter.getObject(objectInputStream, Tweet.class);
+        databaseCommands.sendTweet(tweet);
+        return new Respond(RespondCode.SUCCESS);
+    }
+
+    public Respond sendRetweet(ObjectInputStream objectInputStream) throws ServerInvalidObjectException
+    {
+        Retweet retweet = ObjectGetter.getObject(objectInputStream, Retweet.class);
+        databaseCommands.sendRetweet(retweet);
+        return new Respond(RespondCode.SUCCESS);
+    }
+
+    public Respond sendQuote(ObjectInputStream objectInputStream) throws ServerInvalidObjectException
+    {
+        Quote quote = ObjectGetter.getObject(objectInputStream, Quote.class);
+        databaseCommands.sendQuote(quote);
+        return new Respond(RespondCode.SUCCESS);
+    }
+
+    public Respond likeTweet(ObjectInputStream objectInputStream) throws ServerInvalidObjectException
+    {
+        Tweet tweet = ObjectGetter.getObject(objectInputStream, Tweet.class);
+        String userName = ObjectGetter.getObject(objectInputStream, String.class);
+        databaseCommands.likeTweet(tweet, userName);
+        return new Respond(RespondCode.SUCCESS);
+    }
+
+    public Respond dislikeTweet(ObjectInputStream objectInputStream) throws ServerInvalidObjectException
+    {
+        Tweet tweet = ObjectGetter.getObject(objectInputStream, Tweet.class);
+        String userName = ObjectGetter.getObject(objectInputStream, String.class);
+        databaseCommands.dislikeTweet(tweet, userName);
+        return new Respond(RespondCode.SUCCESS);
+    }
+
+    public Respond showTimeLine(ObjectInputStream objectInputStream) throws ServerInvalidObjectException
+    {
+        String userName = ObjectGetter.getObject(objectInputStream, String.class);
+        TimeLine timeLine = databaseCommands.showTimeLine(userName);
+        return new Respond(RespondCode.SUCCESS, timeLine);
     }
 }

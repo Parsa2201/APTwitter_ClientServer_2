@@ -306,7 +306,7 @@ public class ControllerCommands
         long id = Long.parseLong(tweetId);
         Tweet tweet = Data.getInstance().getTimeLine().getTweet(id);
 
-        modelCommands.likeTweet(tweet, user.toMiniUser());
+        modelCommands.likeTweet(tweet, user.getUserName());
     }
 
     public void dislikeTweet(String tweetId) throws NumberFormatException, PermissionDeniedException, ServerConnectionFailedException, DataNotFoundException, ServerRespondFailedException, UnknownException, InvalidPasswordException, TextTooLongException, ServerInvalidCommandException, DatabaseFailedException, ServerInvalidObjectException
@@ -315,7 +315,7 @@ public class ControllerCommands
         long id = Long.parseLong(tweetId);
         Tweet tweet = Data.getInstance().getTimeLine().getTweet(id);
 
-        modelCommands.dislikeTweet(tweet, user.toMiniUser());
+        modelCommands.dislikeTweet(tweet, user.getUserName());
     }
 
     public TimeLine showTimeLine() throws PermissionDeniedException, ServerConnectionFailedException, DataNotFoundException, ServerRespondFailedException, UnknownException, InvalidPasswordException, TextTooLongException, ServerInvalidCommandException, DatabaseFailedException, ServerInvalidObjectException

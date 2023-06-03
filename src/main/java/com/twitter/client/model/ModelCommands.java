@@ -302,25 +302,25 @@ public void changePassword(String userName, Password newPasswordHash) throws Ser
         }
     }
 
-    public void likeTweet(Tweet tweet, MiniUser miniUser) throws ServerConnectionFailedException, ServerInvalidObjectException, ServerRespondFailedException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException, ServerInvalidCommandException, DatabaseFailedException
+    public void likeTweet(Tweet tweet, String userName) throws ServerConnectionFailedException, ServerInvalidObjectException, ServerRespondFailedException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException, ServerInvalidCommandException, DatabaseFailedException
     {
         try (ServerConnectionHandler serverConnectionHandler = new ServerConnectionHandler())
         {
             serverConnectionHandler.sendCommend("like-tweet");
             serverConnectionHandler.sendObject(tweet);
-            serverConnectionHandler.sendObject(miniUser);
+            serverConnectionHandler.sendObject(userName);
             Respond respond = serverConnectionHandler.getRespond();
             respond.check();
         }
     }
 
-    public void dislikeTweet(Tweet tweet, MiniUser miniUser) throws ServerConnectionFailedException, ServerInvalidObjectException, ServerRespondFailedException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException, ServerInvalidCommandException, DatabaseFailedException
+    public void dislikeTweet(Tweet tweet, String userName) throws ServerConnectionFailedException, ServerInvalidObjectException, ServerRespondFailedException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException, ServerInvalidCommandException, DatabaseFailedException
     {
         try (ServerConnectionHandler serverConnectionHandler = new ServerConnectionHandler())
         {
             serverConnectionHandler.sendCommend("dislike-tweet");
             serverConnectionHandler.sendObject(tweet);
-            serverConnectionHandler.sendObject(miniUser);
+            serverConnectionHandler.sendObject(userName);
             Respond respond = serverConnectionHandler.getRespond();
             respond.check();
         }

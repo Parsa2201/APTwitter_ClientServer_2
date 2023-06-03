@@ -7,6 +7,10 @@ import com.twitter.entities.exception.user.password.InvalidPasswordException;
 import com.twitter.entities.exception.text.TextTooLongException;
 import com.twitter.entities.image.Avatar;
 import com.twitter.entities.image.Header;
+import com.twitter.entities.tweet.Quote;
+import com.twitter.entities.tweet.Retweet;
+import com.twitter.entities.tweet.TimeLine;
+import com.twitter.entities.tweet.Tweet;
 import com.twitter.entities.user.*;
 import com.twitter.entities.user.follow.FollowRelation;
 import com.twitter.entities.user.follow.Followers;
@@ -257,5 +261,36 @@ public class DatabaseCommands
         Session session = databaseManager.sessionFactory.openSession();
         User user = databaseManager.findUser(userName,session);
         return user.toMiniUser();
+    }
+
+    public void sendTweet(Tweet tweet)
+    {
+        // TODO
+    }
+
+    public void sendRetweet(Retweet retweet)
+    {
+        // TODO
+    }
+
+    public void sendQuote(Quote quote)
+    {
+        // TODO
+    }
+
+    public void likeTweet(Tweet tweet, String userName)
+    {
+        // TODO
+    }
+
+    public void dislikeTweet(Tweet tweet, String userName)
+    {
+        // TODO
+    }
+
+    public TimeLine showTimeLine(String userName)
+    {
+        // TODO
+        return null;
     }
 }
