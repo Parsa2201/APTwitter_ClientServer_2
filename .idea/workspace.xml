@@ -4,9 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e6f89f22-8f2b-446d-b25f-81599946cb8d" name="Changes" comment="the new Tweet classes added and replaced the old one">
+    <list default="true" id="e6f89f22-8f2b-446d-b25f-81599946cb8d" name="Changes" comment="added favstar to the Tweet">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/tweet/BaseTweet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/client/view/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/client/view/Command.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/client/view/TwitterLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/client/view/TwitterLog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/tweet/Reply.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/tweet/Reply.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/tweet/Retweet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/tweet/Retweet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/tweet/TimeLine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/tweet/TimeLine.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/tweet/Tweet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/tweet/Tweet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/tweet_old/BaseTweet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/tweet_old/Quote.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/tweet_old/Reply.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/tweet_old/Retweet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/tweet_old/TimeLine.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/tweet_old/Tweet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/tweet_old/content/Content.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/tweet_old/content/ImageContent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/tweet_old/content/TextContent.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -217,7 +232,7 @@
       <workItem from="1685623434548" duration="7984000" />
       <workItem from="1685711356241" duration="12637000" />
       <workItem from="1685733251741" duration="807000" />
-      <workItem from="1685734940301" duration="6719000" />
+      <workItem from="1685734940301" duration="11368000" />
     </task>
     <task id="LOCAL-00001" summary="added sendFile to the ServerConnectionHandler.java">
       <created>1685298475313</created>
@@ -352,7 +367,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685775994801</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="added favstar to the Tweet">
+      <created>1685776454593</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1685776454593</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -388,6 +410,7 @@
     <MESSAGE value="added the 2nd version of tweet classes" />
     <MESSAGE value="implemented some of the other DatabaseCommandsTest" />
     <MESSAGE value="the new Tweet classes added and replaced the old one" />
-    <option name="LAST_COMMIT_MESSAGE" value="the new Tweet classes added and replaced the old one" />
+    <MESSAGE value="added favstar to the Tweet" />
+    <option name="LAST_COMMIT_MESSAGE" value="added favstar to the Tweet" />
   </component>
 </project>

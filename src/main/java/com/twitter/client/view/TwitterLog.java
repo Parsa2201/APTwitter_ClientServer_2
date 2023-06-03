@@ -6,10 +6,10 @@ public class TwitterLog
 {
     public static boolean showLog = true;
     public static Scanner scanner;
+    private static int nestedCount = 0;
 
     private TwitterLog()
     {
-
     }
 
     private static void scannerInit()
@@ -21,20 +21,20 @@ public class TwitterLog
     public static void println(String str)
     {
         if(showLog)
-            System.out.println(str);
+            System.out.println(nest(str));
     }
 
     public static void print(String str)
     {
         if(showLog)
-            System.out.print(str);
+            System.out.print(nest(str));
     }
 
     public static void printlnError(String str)
     {
         if(showLog)
         {
-            System.err.println(str);
+            System.err.println(nest(str));
             try
             {
                 Thread.sleep(100);
@@ -46,7 +46,7 @@ public class TwitterLog
     {
         if(showLog)
         {
-            System.err.print(str);
+            System.err.print(nest(str));
             try
             {
                 Thread.sleep(100);
@@ -64,5 +64,52 @@ public class TwitterLog
     {
         print(str);
         return nextLine();
+    }
+
+    /**
+     * Nest the incoming strings
+     */
+    public static void startNest()
+    {
+        nestedCount++;
+    }
+
+    /**
+     * Un-nest the incoming strings
+     */
+    public static void endNest()
+    {
+        nestedCount--;
+    }
+
+    /**
+     * Nest the string with tabs
+     * @param str : The string we want to nest
+     * @return : The nested string
+     */
+    private static String nest(String str)
+    {
+        char[] chars = str.toCharArray();
+        StringBuilder stringBuilder = new StringBuilder();
+        for(int i = 0; i < chars.length; i++)
+        {
+            if(i == chars.length - 1)
+                break;
+
+            char c = chars[i];
+            if(c == '\n')
+                stringBuilder.append("\n").append("\t".repeat(Math.max(0, nestedCount)));
+            else
+                stringBuilder.append(c);
+        }
+
+        return stringBuilder.toString();
+    }
+
+    public static void printlnNested(String str)
+    {
+        startNest();
+        println(str);
+        endNest();
     }
 }

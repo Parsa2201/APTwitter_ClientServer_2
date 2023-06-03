@@ -6,55 +6,68 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class TimeLine implements Iterable<Tweet>, Serializable
+public class TimeLine implements Iterable<BaseTweet>, Serializable
 {
-    private final ArrayList<Tweet> tweets;
+    private final ArrayList<BaseTweet> tweets;
 
     public TimeLine()
     {
-        tweets = new ArrayList<Tweet>();
+        tweets = new ArrayList<>();
     }
 
-    public void addTweet(Tweet tweet)
+    public void addTweet(BaseTweet tweet)
     {
         tweets.add(tweet);
     }
 
-    public Tweet getTweet(int id)
+    public BaseTweet getBaseTweet(int id)
     {
-        for(Tweet tweet : tweets)
-            if(tweet.getId() == id)
+        for (BaseTweet tweet : tweets)
+            if (tweet.getId() == id)
                 return tweet;
         return null;
     }
 
-    public Retweet getRetweet(int tweetId, int retweetId)
+    public Tweet getTweet(int id)
     {
-        for(Tweet tweet : tweets)
-            if(tweet.getId() == tweetId)
-                return tweet.getRetweet(retweetId);
+        for (BaseTweet tweet : tweets)
+            if(tweet.getId() == id)
+            {
+                if(tweet instanceof Tweet)
+                    return (Tweet) tweet;
+                else if(tweet instanceof Retweet)
+                    return ((Retweet) tweet).getTweet();
+            }
+        return null;
+    }
+
+    public Tweet getTweetIdOfRetweet(int retweetId)
+    {
+        for (BaseTweet tweet : tweets)
+            if (tweet.getId() == retweetId && tweet instanceof Retweet)
+                return ((Retweet) tweet).getTweet();
         return null;
     }
 
     public Quote getQuote(int tweetId, int quoteId)
     {
-        for(Tweet tweet : tweets)
-            if(tweet.getId() == tweetId)
-                return tweet.getQuote(quoteId);
+        for (BaseTweet tweet : tweets)
+            if (tweet.getId() == tweetId && tweet instanceof Tweet)
+                return ((Tweet) tweet).getQuote(quoteId);
         return null;
     }
 
     public Reply getReply(int tweetId, int replyId)
     {
-        for(Tweet tweet : tweets)
-            if(tweet.getId() == tweetId)
-                return tweet.getReply(replyId);
+        for (BaseTweet tweet : tweets)
+            if (tweet.getId() == tweetId && tweet instanceof Tweet)
+                return ((Tweet) tweet).getReply(replyId);
         return null;
     }
 
     @NotNull
     @Override
-    public Iterator<Tweet> iterator()
+    public Iterator<BaseTweet> iterator()
     {
         return tweets.iterator();
     }

@@ -17,8 +17,7 @@ import com.twitter.entities.exception.user.password.InvalidPasswordException;
 import com.twitter.entities.exception.user.password.PasswordConfirmException;
 import com.twitter.entities.exception.user.password.PasswordFormatException;
 import com.twitter.entities.exception.user.password.PasswordHashException;
-import com.twitter.entities.tweet.TimeLine;
-import com.twitter.entities.tweet.Tweet;
+import com.twitter.entities.tweet.*;
 import com.twitter.entities.user.Country;
 import com.twitter.entities.user.User;
 
@@ -88,10 +87,10 @@ public class Command
         TwitterLog.println("Country: " + user.getCountry());
         TwitterLog.println("Birth Date: " + user.getBirthDate());
 
-        if(user.getBio() != null && !user.getBio().toString().equals(""))
+        if (user.getBio() != null && !user.getBio().toString().equals(""))
             TwitterLog.println("Bio: " + user.getBio());
 
-        if(user.getLocation() != null && !user.getLocation().equals(""))
+        if (user.getLocation() != null && !user.getLocation().equals(""))
             TwitterLog.println("Location: " + user.getLocation());
     }
 
@@ -211,12 +210,11 @@ public class Command
     {
         String text = TwitterLog.nextLine("Enter your tweet text: ");
         String answer = TwitterLog.nextLine("Do you want your tweet to have a picture? (y/n): ");
-        if(answer.equalsIgnoreCase("y"))
+        if (answer.equalsIgnoreCase("y"))
         {
             String path = TwitterLog.nextLine("Enter your image path (*.jpg): ");
             controllerCommands.sendTweet(text, path);
-        }
-        else if(answer.equalsIgnoreCase("n"))
+        } else if (answer.equalsIgnoreCase("n"))
             controllerCommands.sendTweet(text, null);
         else
             TwitterLog.printlnError("Invalid input!");
@@ -237,12 +235,11 @@ public class Command
         String tweetId = TwitterLog.nextLine("Enter the tweet id: ");
         String text = TwitterLog.nextLine("Enter your quote text: ");
         String answer = TwitterLog.nextLine("Do you want your quote to have a picture? (y/n): ");
-        if(answer.equalsIgnoreCase("y"))
+        if (answer.equalsIgnoreCase("y"))
         {
             String path = TwitterLog.nextLine("Enter your image path (*.jpg): ");
             controllerCommands.sendQuote(tweetId, text, path);
-        }
-        else if(answer.equalsIgnoreCase("n"))
+        } else if (answer.equalsIgnoreCase("n"))
             controllerCommands.sendQuote(tweetId, text, null);
         else
             TwitterLog.printlnError("Invalid input!");
@@ -269,16 +266,44 @@ public class Command
     public void showTimeLine() throws ServerConnectionFailedException, DataNotFoundException, ServerRespondFailedException, UnknownException, InvalidPasswordException, PermissionDeniedException, TextTooLongException, ServerInvalidCommandException, DatabaseFailedException, ServerInvalidObjectException
     {
         TimeLine timeLine = controllerCommands.showTimeLine();
-        for(Tweet tweet : timeLine)
+        for (BaseTweet baseTweet : timeLine)
         {
-//            if(tweet instanceof Tweet)
-//            {
-//                Tweet tweet = (Tweet) baseTweet;
-//                TwitterLog.println(tweet.getOwner().getName() + " " + tweet.getOwner().getFamily());
-//                TwitterLog.println("\t" + tweet.getTextContent().toString());
-//                TwitterLog.println("Likes: " + tweet.getLikeCount());
-//                //TwitterLog.println(tweet.);
-//            }
+            Tweet tweet = baseTweet.toTweet();
+
+
+            TwitterLog.println("_________________________________");
+            // if the baseTweet is a retweet, the owner of the baseTweet is the reTweeter
+            TwitterLog.println(baseTweet.getOwner().getName() + " " + baseTweet.getOwner().getFamily());
+            TwitterLog.printlnNested(tweet.getTextContent().toString());
+            TwitterLog.println("Likes: " + tweet.getLikeCount());
+            TwitterLog.println("Retweets: " + tweet.getRetweetCount());
+            TwitterLog.println("Quotes: " + tweet.getQuoteCount());
+            TwitterLog.println("Date: " + tweet.getDate().toString());
+
+
+            TwitterLog.println("Quotes:");
+            for (Quote quote : tweet.getQuotes())
+            {
+                TwitterLog.startNest();
+                TwitterLog.println("\n" + quote.getQuotedBy().getName() + " " + quote.getQuotedBy().getFamily());
+                TwitterLog.printlnNested(quote.getTextContent().toString());
+                TwitterLog.println(quote.getDate().toString());
+                TwitterLog.endNest();
+
+                TwitterLog.println("#  #  #  #  #  #  #  #  #  #  #  #  #  #  #");
+            }
+
+            TwitterLog.println("Replies:");
+            for (Reply reply : tweet.getReplies())
+            {
+                TwitterLog.startNest();
+                TwitterLog.println("\n" + reply.getReplier().getName() + " " + reply.getReplier().getFamily());
+                TwitterLog.printlnNested(reply.getTextContent().toString());
+                TwitterLog.println(reply.getDate().toString());
+                TwitterLog.endNest();
+
+                TwitterLog.println("#  #  #  #  #  #  #  #  #  #  #  #  #  #  #");
+            }
         }
     }
 }

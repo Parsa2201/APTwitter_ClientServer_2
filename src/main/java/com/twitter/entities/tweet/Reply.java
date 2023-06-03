@@ -1,5 +1,6 @@
 package com.twitter.entities.tweet;
 
+import com.twitter.entities.tweet.content.TextContent;
 import com.twitter.entities.user.MiniUser;
 
 import java.io.Serializable;
@@ -12,21 +13,20 @@ public class Reply implements Serializable
     private final MiniUser replier;
     private final Tweet tweet;
     private final LocalDateTime date;
+    private final TextContent textContent;
 
-    public Reply(MiniUser replier, Tweet tweet)
-    {
-        id = -1;
-        this.replier = replier;
-        this.tweet = tweet;
-        date = LocalDateTime.now();
-    }
-
-    public Reply(MiniUser replier, Tweet tweet, LocalDateTime date)
+    public Reply(MiniUser replier, Tweet tweet, LocalDateTime date, TextContent textContent)
     {
         id = -1;
         this.replier = replier;
         this.tweet = tweet;
         this.date = date;
+        this.textContent = textContent;
+    }
+
+    public Reply(MiniUser replier, Tweet tweet, TextContent textContent)
+    {
+        this(replier, tweet, LocalDateTime.now(), textContent);
     }
 
     public int getId()
@@ -52,5 +52,10 @@ public class Reply implements Serializable
     public LocalDateTime getDate()
     {
         return date;
+    }
+
+    public TextContent getTextContent()
+    {
+        return textContent;
     }
 }
