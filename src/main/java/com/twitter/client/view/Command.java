@@ -286,6 +286,8 @@ public class Command
             TwitterLog.println("Retweets: " + tweet.getRetweetCount());
             TwitterLog.println("Quotes: " + tweet.getQuoteCount());
             TwitterLog.println("Date: " + tweet.getDate().toString());
+            if(tweet.isFavstar())
+                TwitterLog.println(" --- F --- A --- V --- S --- T --- A --- R ---");
 
 
             TwitterLog.println("Quotes:");
