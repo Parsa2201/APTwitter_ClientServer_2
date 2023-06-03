@@ -16,6 +16,7 @@ public abstract class BaseTweet
     @Id@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private final LocalDateTime date;
+    @Embedded
     private final MiniUser owner;
 
     public BaseTweet(long id, LocalDateTime date, MiniUser owner)

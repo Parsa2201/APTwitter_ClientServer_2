@@ -18,6 +18,7 @@ public class Reply implements Serializable
     @OneToOne
     private final Tweet tweet;
     private final LocalDateTime date;
+    @Embedded
     private final TextContent textContent;
 
     public Reply(MiniUser replier, Tweet tweet, LocalDateTime date, TextContent textContent)

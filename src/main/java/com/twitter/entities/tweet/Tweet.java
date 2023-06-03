@@ -6,6 +6,7 @@ import com.twitter.entities.tweet.content.TextContent;
 import com.twitter.entities.tweet.content.hashtag.Hashtags;
 import com.twitter.entities.user.MiniUser;
 import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 
@@ -17,7 +18,9 @@ import java.util.ArrayList;
 @DiscriminatorValue("tweet")
 public class Tweet extends BaseTweet implements Serializable
 {
+    @Embedded
     private final TextContent textContent;
+    @Embedded
     private final ImageContent imageContent;
     private int likeCount;
     private int retweetCount;
@@ -27,6 +30,7 @@ public class Tweet extends BaseTweet implements Serializable
     private final ArrayList<Quote> quotes;
     @OneToMany
     private final ArrayList<Reply> replies;
+    @Embedded
     private final Hashtags hashtags;
 
     public Tweet(MiniUser owner, TextContent textContent, ImageContent imageContent) throws HashtagException

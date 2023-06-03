@@ -2,9 +2,12 @@ package com.twitter.entities.user;
 
 import com.twitter.entities.image.Avatar;
 import com.twitter.entities.image.Header;
+import jakarta.persistence.Embeddable;
+import jakarta.persistence.OneToOne;
 
 import java.io.Serializable;
 
+@Embeddable
 public class MiniUser implements Serializable
 {
     protected String userName;
@@ -14,7 +17,9 @@ public class MiniUser implements Serializable
     protected String family;
 
     protected Bio bio;
+    @OneToOne
     protected Avatar avatar;
+    @OneToOne
     protected Header header;
 
     public MiniUser()

@@ -1,15 +1,13 @@
 package com.twitter.entities.tweet.content.hashtag;
 
 import com.twitter.entities.exception.hashtag.NameNotHashtagException;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
+@Table(name = "hashtags")
 public class Hashtag implements Serializable
 {
     @Id
