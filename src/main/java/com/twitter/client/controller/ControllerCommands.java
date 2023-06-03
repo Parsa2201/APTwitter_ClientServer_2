@@ -277,7 +277,7 @@ public class ControllerCommands
     public void sendRetweet(String tweetId) throws NumberFormatException, PermissionDeniedException, ServerConnectionFailedException, DataNotFoundException, ServerRespondFailedException, UnknownException, InvalidPasswordException, TextTooLongException, ServerInvalidCommandException, DatabaseFailedException, ServerInvalidObjectException
     {
         User user = getCurrentUser();
-        int id = Integer.parseInt(tweetId);
+        long id = Long.parseLong(tweetId);
         Tweet tweet = Data.getInstance().getTimeLine().getTweet(id);
         Retweet retweet = new Retweet(tweet, user.toMiniUser());
 
@@ -287,7 +287,7 @@ public class ControllerCommands
     public void sendQuote(String tweetId, String text, String imagePath) throws NumberFormatException, PermissionDeniedException, ServerConnectionFailedException, DataNotFoundException, ServerRespondFailedException, UnknownException, InvalidPasswordException, TextTooLongException, ServerInvalidCommandException, DatabaseFailedException, ServerInvalidObjectException, ImageSizeException, FileSizeException, FileNotExistException, FileNotImageException
     {
         User user = getCurrentUser();
-        int id = Integer.parseInt(tweetId);
+        long id = Long.parseLong(tweetId);
         Tweet tweet = Data.getInstance().getTimeLine().getTweet(id);
 
         ImageContent imageContent = imagePath == null ? null : new ImageContent(imagePath);
@@ -299,7 +299,7 @@ public class ControllerCommands
     public void likeTweet(String tweetId) throws NumberFormatException, PermissionDeniedException, ServerConnectionFailedException, DataNotFoundException, ServerRespondFailedException, UnknownException, InvalidPasswordException, TextTooLongException, ServerInvalidCommandException, DatabaseFailedException, ServerInvalidObjectException
     {
         User user = getCurrentUser();
-        int id = Integer.parseInt(tweetId);
+        long id = Long.parseLong(tweetId);
         Tweet tweet = Data.getInstance().getTimeLine().getTweet(id);
 
         modelCommands.likeTweet(tweet, user.toMiniUser());
@@ -308,7 +308,7 @@ public class ControllerCommands
     public void dislikeTweet(String tweetId) throws NumberFormatException, PermissionDeniedException, ServerConnectionFailedException, DataNotFoundException, ServerRespondFailedException, UnknownException, InvalidPasswordException, TextTooLongException, ServerInvalidCommandException, DatabaseFailedException, ServerInvalidObjectException
     {
         User user = getCurrentUser();
-        int id = Integer.parseInt(tweetId);
+        long id = Long.parseLong(tweetId);
         Tweet tweet = Data.getInstance().getTimeLine().getTweet(id);
 
         modelCommands.dislikeTweet(tweet, user.toMiniUser());
