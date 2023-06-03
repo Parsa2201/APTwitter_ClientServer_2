@@ -2,8 +2,7 @@ package com.twitter.entities.tweet.content.hashtag;
 
 import com.twitter.entities.exception.hashtag.HashtagException;
 import com.twitter.entities.exception.hashtag.NameNotHashtagException;
-import jakarta.persistence.Embeddable;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -11,11 +10,23 @@ import java.util.Iterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-@Embeddable
+@Entity
+@Table(name = "hashtags")
 public class Hashtags implements Iterable<Hashtag>
 {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
+    private Long id;
+
     @OneToMany
     private final ArrayList<Hashtag> hashtags;
+
+    public Long getId()
+    {
+        return id;
+    }
+
 
     public Hashtags()
     {

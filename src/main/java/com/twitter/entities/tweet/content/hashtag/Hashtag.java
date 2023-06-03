@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-@Table(name = "hashtags")
+@Table(name = "hashtag")
 public class Hashtag implements Serializable
 {
     @Id

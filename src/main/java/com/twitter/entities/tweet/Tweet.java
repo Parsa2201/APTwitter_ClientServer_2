@@ -5,10 +5,7 @@ import com.twitter.entities.tweet.content.ImageContent;
 import com.twitter.entities.tweet.content.TextContent;
 import com.twitter.entities.tweet.content.hashtag.Hashtags;
 import com.twitter.entities.user.MiniUser;
-import jakarta.persistence.DiscriminatorValue;
-import jakarta.persistence.Embedded;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -30,7 +27,7 @@ public class Tweet extends BaseTweet implements Serializable
     private final ArrayList<Quote> quotes;
     @OneToMany
     private final ArrayList<Reply> replies;
-    @Embedded
+    @OneToOne
     private final Hashtags hashtags;
 
     public Tweet(MiniUser owner, TextContent textContent, ImageContent imageContent) throws HashtagException
