@@ -1,4 +1,4 @@
-package com.twitter.entities.tweet2.content;
+package com.twitter.entities.tweet_old.content;
 
 import com.twitter.entities.exception.io.FileNotExistException;
 import com.twitter.entities.exception.io.FileNotImageException;

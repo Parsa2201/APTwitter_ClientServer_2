@@ -2,9 +2,7 @@ package com.twitter.client.view;
 
 import com.twitter.client.controller.ControllerCommands;
 import com.twitter.client.controller.Data;
-import com.twitter.client.controller.Program;
 import com.twitter.entities.exception.EmailOrPhoneRequiredException;
-import com.twitter.entities.exception.TwitException;
 import com.twitter.entities.exception.UnknownException;
 import com.twitter.entities.exception.io.FileNotExistException;
 import com.twitter.entities.exception.io.FileNotImageException;
@@ -19,7 +17,6 @@ import com.twitter.entities.exception.user.password.InvalidPasswordException;
 import com.twitter.entities.exception.user.password.PasswordConfirmException;
 import com.twitter.entities.exception.user.password.PasswordFormatException;
 import com.twitter.entities.exception.user.password.PasswordHashException;
-import com.twitter.entities.tweet.BaseTweet;
 import com.twitter.entities.tweet.TimeLine;
 import com.twitter.entities.tweet.Tweet;
 import com.twitter.entities.user.Country;
@@ -27,7 +24,6 @@ import com.twitter.entities.user.User;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
-import java.util.Date;
 
 public class Command
 {
@@ -273,16 +269,16 @@ public class Command
     public void showTimeLine() throws ServerConnectionFailedException, DataNotFoundException, ServerRespondFailedException, UnknownException, InvalidPasswordException, PermissionDeniedException, TextTooLongException, ServerInvalidCommandException, DatabaseFailedException, ServerInvalidObjectException
     {
         TimeLine timeLine = controllerCommands.showTimeLine();
-        for(BaseTweet baseTweet : timeLine)
+        for(Tweet tweet : timeLine)
         {
-            if(baseTweet instanceof Tweet)
-            {
-                Tweet tweet = (Tweet) baseTweet;
-                TwitterLog.println(tweet.getOwner().getName() + " " + tweet.getOwner().getFamily());
-                TwitterLog.println("\t" + tweet.getTextContent().toString());
-                TwitterLog.println("Likes: " + tweet.getLikeCount());
-                //TwitterLog.println(tweet.);
-            }
+//            if(tweet instanceof Tweet)
+//            {
+//                Tweet tweet = (Tweet) baseTweet;
+//                TwitterLog.println(tweet.getOwner().getName() + " " + tweet.getOwner().getFamily());
+//                TwitterLog.println("\t" + tweet.getTextContent().toString());
+//                TwitterLog.println("Likes: " + tweet.getLikeCount());
+//                //TwitterLog.println(tweet.);
+//            }
         }
     }
 }

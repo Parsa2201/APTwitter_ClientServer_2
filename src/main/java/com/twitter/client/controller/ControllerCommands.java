@@ -257,11 +257,9 @@ public class ControllerCommands
 
         Tweet tweet;
         if (imagePath == null)
-            tweet = new Tweet(new TextContent(text), null);
+            tweet = new Tweet(user.toMiniUser(), new TextContent(text), null);
         else
-            tweet = new Tweet(new TextContent(text), new ImageContent(imagePath));
-
-        tweet.setOwner(user.toMiniUser());
+            tweet = new Tweet(user.toMiniUser(), new TextContent(text), new ImageContent(imagePath));
 
         modelCommands.sendTweet(tweet);
     }
