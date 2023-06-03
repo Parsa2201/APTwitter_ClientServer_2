@@ -199,10 +199,10 @@ public class ModelCommands
         return new Respond(RespondCode.SUCCESS, followers);
     }
 
-    public Respond showFollowings(ObjectInputStream objectInputStream)
-    {
-        // TODO
-        return null;
+    public Respond showFollowings(ObjectInputStream objectInputStream) throws DataNotFoundException, ServerInvalidObjectException {
+        String userName = ObjectGetter.getObject(objectInputStream, String.class);
+        Followings followings = databaseCommands.showFollowings(userName);
+        return new Respond(RespondCode.SUCCESS, followings);
     }
 
     public Respond follow(ObjectInputStream objectInputStream) throws ServerInvalidObjectException, DataNotFoundException
