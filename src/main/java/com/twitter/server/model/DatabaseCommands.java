@@ -64,6 +64,7 @@ public class DatabaseCommands
         User user = databaseManager.findUser(userName, session);
         user.setAvatar(avatar);
         session.beginTransaction();
+        session.persist(avatar);
         session.update(user);
         session.getTransaction().commit();
         session.close();
@@ -79,20 +80,6 @@ public class DatabaseCommands
         session.getTransaction().commit();
         session.close();
     }
-
-//    public void changeUserInformation(String userName, Bio bio, String location, String website) throws TextTooLongException, DataNotFoundException
-//    {
-//        Session session = databaseManager.sessionFactory.openSession();
-//        List<User> users = session.createQuery("select u from User u", User.class).list();
-//        User user = databaseManager.findUser(userName, session);
-//        user.setBio(bio);
-//        user.setLocation(location);
-//        user.setWebsite(website);
-//        session.beginTransaction();
-//        session.update(user);
-//        session.getTransaction().commit();
-//        session.close();
-//    }
 
     public void changeUserPassword(String userName, Password newpass) throws DataNotFoundException
     {

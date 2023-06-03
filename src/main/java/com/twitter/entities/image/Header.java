@@ -9,6 +9,7 @@ import jakarta.persistence.*;
 import java.awt.image.BufferedImage;
 
 @Entity
+@Table(name = "header")
 public class Header extends TwitterImage
 {
     @Id
