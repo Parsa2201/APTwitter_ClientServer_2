@@ -2,6 +2,8 @@ package com.twitter.entities.tweet.content.hashtag;
 
 import com.twitter.entities.exception.hashtag.HashtagException;
 import com.twitter.entities.exception.hashtag.NameNotHashtagException;
+import jakarta.persistence.Embeddable;
+import jakarta.persistence.OneToMany;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -9,8 +11,10 @@ import java.util.Iterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+@Embeddable
 public class Hashtags implements Iterable<Hashtag>
 {
+    @OneToMany
     private final ArrayList<Hashtag> hashtags;
 
     public Hashtags()

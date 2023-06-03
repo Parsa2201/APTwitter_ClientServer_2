@@ -5,11 +5,16 @@ import com.twitter.entities.tweet.content.ImageContent;
 import com.twitter.entities.tweet.content.TextContent;
 import com.twitter.entities.tweet.content.hashtag.Hashtags;
 import com.twitter.entities.user.MiniUser;
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+@Entity
+@DiscriminatorValue("tweet")
 public class Tweet extends BaseTweet implements Serializable
 {
     private final TextContent textContent;
@@ -18,7 +23,9 @@ public class Tweet extends BaseTweet implements Serializable
     private int retweetCount;
     private int quoteCount;
     private boolean isFavstar;
+    @OneToMany
     private final ArrayList<Quote> quotes;
+    @OneToMany
     private final ArrayList<Reply> replies;
     private final Hashtags hashtags;
 
@@ -50,6 +57,15 @@ public class Tweet extends BaseTweet implements Serializable
         hashtags = new Hashtags();
 
         hashtags.getHashtagsFromText(textContent.toString());
+    }
+
+    public Tweet() {
+
+        textContent = null;
+        quotes = null;
+        imageContent = null;
+        replies = null;
+        hashtags = null;
     }
 
     public TextContent getTextContent()
