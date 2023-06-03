@@ -28,6 +28,11 @@ public class ConnectedUsers implements Serializable, Iterable<MiniUser>
         return miniUsers.get(index);
     }
 
+    public int size()
+    {
+        return miniUsers.size();
+    }
+
     @Override
     public Iterator<MiniUser> iterator()
     {
