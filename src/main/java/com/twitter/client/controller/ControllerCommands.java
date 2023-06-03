@@ -2,6 +2,7 @@ package com.twitter.client.controller;
 
 import com.twitter.client.view.ProgramState;
 import com.twitter.entities.exception.hashtag.HashtagException;
+import com.twitter.entities.exception.hashtag.NameNotHashtagException;
 import com.twitter.entities.exception.user.EmailOrPhoneRequiredException;
 import com.twitter.entities.exception.UnknownException;
 import com.twitter.entities.exception.io.server.*;
@@ -16,12 +17,11 @@ import com.twitter.entities.exception.user.password.PasswordHashException;
 import com.twitter.entities.exception.text.TextTooLongException;
 import com.twitter.entities.image.Avatar;
 import com.twitter.entities.image.Header;
-import com.twitter.entities.tweet.Quote;
-import com.twitter.entities.tweet.Retweet;
-import com.twitter.entities.tweet.TimeLine;
-import com.twitter.entities.tweet.Tweet;
+import com.twitter.entities.tweet.*;
 import com.twitter.entities.tweet.content.ImageContent;
 import com.twitter.entities.tweet.content.TextContent;
+import com.twitter.entities.tweet.content.hashtag.Hashtag;
+import com.twitter.entities.tweet.content.hashtag.Hashtags;
 import com.twitter.entities.user.*;
 import com.twitter.client.model.ModelCommands;
 import com.twitter.entities.user.follow.FollowRelation;
@@ -29,6 +29,7 @@ import com.twitter.entities.user.follow.Followers;
 import com.twitter.entities.user.follow.Followings;
 
 import java.time.LocalDate;
+import java.util.Iterator;
 
 public class ControllerCommands
 {
@@ -323,6 +324,22 @@ public class ControllerCommands
         User user = getCurrentUser();
         TimeLine timeLine = modelCommands.showTimeLine(user.getUserName());
         Data.getInstance().setTimeLine(timeLine);
+
+        return timeLine;
+    }
+
+    public TimeLine searchForHashtag(String hashtagNames) throws HashtagException, ServerConnectionFailedException, DataNotFoundException, ServerRespondFailedException, UnknownException, InvalidPasswordException, PermissionDeniedException, TextTooLongException, ServerInvalidCommandException, DatabaseFailedException, ServerInvalidObjectException
+    {
+        Hashtags hashtags = new Hashtags(hashtagNames);
+        TimeLine timeLine = showTimeLine();
+
+        Iterator<BaseTweet> iterator = timeLine.iterator();
+        while (iterator.hasNext())
+        {
+            BaseTweet tweet = iterator.next();
+            if(!tweet.toTweet().getHashtags().contains(hashtags))
+                iterator.remove();
+        }
 
         return timeLine;
     }

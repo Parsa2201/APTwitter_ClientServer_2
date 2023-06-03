@@ -18,6 +18,12 @@ public class Hashtags implements Iterable<Hashtag>
         hashtags = new ArrayList<>();
     }
 
+    public Hashtags(String text) throws HashtagException
+    {
+        this();
+        getHashtagsFromText(text);
+    }
+
     public void add(Hashtag hashtag)
     {
         hashtags.add(hashtag);
@@ -37,6 +43,15 @@ public class Hashtags implements Iterable<Hashtag>
 
         while (matcher.find())
             add(matcher.group(1));
+    }
+
+    public boolean contains(Hashtags hashtags)
+    {
+        for(Hashtag hashtag_i : this.hashtags)
+            for(Hashtag hashtag_j : hashtags)
+                if(hashtag_i.equals(hashtag_j))
+                    return true;
+        return false;
     }
 
 

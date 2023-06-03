@@ -15,9 +15,14 @@ public class TimeLine implements Iterable<BaseTweet>, Serializable
         tweets = new ArrayList<>();
     }
 
-    public void addTweet(BaseTweet tweet)
+    public void add(BaseTweet tweet)
     {
         tweets.add(tweet);
+    }
+
+    public void remove(BaseTweet tweet)
+    {
+        tweets.remove(tweet);
     }
 
     public BaseTweet getBaseTweet(long id)
