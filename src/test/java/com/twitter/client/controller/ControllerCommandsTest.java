@@ -94,33 +94,4 @@ public class ControllerCommandsTest
             assert (false);
         }
     }
-
-//    @Test
-//    void changeUserInformation1()
-//    {
-//        User user = new User();
-//        user.setUserName("1");
-//        try
-//        {
-//            user.setPassword("NaNoOOl;#329");
-//        } catch (PasswordFormatException | PasswordHashException ignored) {}
-//
-//
-//        String bioText, location, website;
-//        bioText = "Hello World!" +
-//                "I'm hello world";
-//        location = "Iran";
-//        website = "https://www.google.com";
-//
-//        ControllerCommands controllerCommands = new ControllerCommands();
-//        try
-//        {
-//            controllerCommands.changeUserInformation(user, bioText, location, website);
-//        }
-//        catch (Exception e)
-//        {
-//            e.printStackTrace();
-//            assert (false);
-//        }
-//    }
 }
