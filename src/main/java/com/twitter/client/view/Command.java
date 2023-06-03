@@ -18,8 +18,7 @@ import com.twitter.entities.exception.user.password.PasswordConfirmException;
 import com.twitter.entities.exception.user.password.PasswordFormatException;
 import com.twitter.entities.exception.user.password.PasswordHashException;
 import com.twitter.entities.tweet.*;
-import com.twitter.entities.user.Country;
-import com.twitter.entities.user.User;
+import com.twitter.entities.user.*;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
@@ -305,5 +304,47 @@ public class Command
                 TwitterLog.println("#  #  #  #  #  #  #  #  #  #  #  #  #  #  #");
             }
         }
+    }
+
+    public void showMyFollowers() throws ServerConnectionFailedException, DataNotFoundException, ServerRespondFailedException, UnknownException, InvalidPasswordException, PermissionDeniedException, TextTooLongException, ServerInvalidCommandException, DatabaseFailedException, ServerInvalidObjectException
+    {
+        Followers followers = controllerCommands.showFollowers();
+        for(MiniUser miniUser : followers)
+            TwitterLog.println(miniUser.getName() + miniUser.getFamily());
+    }
+
+    public void showMyFollowings() throws ServerConnectionFailedException, DataNotFoundException, ServerRespondFailedException, UnknownException, InvalidPasswordException, PermissionDeniedException, TextTooLongException, ServerInvalidCommandException, DatabaseFailedException, ServerInvalidObjectException
+    {
+        Followings followings = controllerCommands.showFollowings();
+        for(MiniUser miniUser : followings)
+            TwitterLog.println(miniUser.getName() + miniUser.getFamily());
+    }
+
+    public void showSomeoneFollowers() throws ServerConnectionFailedException, DataNotFoundException, ServerRespondFailedException, UnknownException, InvalidPasswordException, TextTooLongException, ServerInvalidCommandException, DatabaseFailedException, ServerInvalidObjectException
+    {
+        String username = TwitterLog.nextLine("Enter the username: ");
+        Followers followers = controllerCommands.showFollowers(username);
+        for(MiniUser miniUser : followers)
+            TwitterLog.println(miniUser.getName() + miniUser.getFamily());
+    }
+
+    public void showSomeoneFollowings() throws ServerConnectionFailedException, DataNotFoundException, ServerRespondFailedException, UnknownException, InvalidPasswordException, TextTooLongException, ServerInvalidCommandException, DatabaseFailedException, ServerInvalidObjectException
+    {
+        String username = TwitterLog.nextLine("Enter the username: ");
+        Followings followings = controllerCommands.showFollowings(username);
+        for(MiniUser miniUser : followings)
+            TwitterLog.println(miniUser.getName() + miniUser.getFamily());
+    }
+
+    public void follow() throws ServerConnectionFailedException, DataNotFoundException, ServerRespondFailedException, UnknownException, InvalidPasswordException, PermissionDeniedException, TextTooLongException, ServerInvalidCommandException, DatabaseFailedException, ServerInvalidObjectException
+    {
+        String username = TwitterLog.nextLine("Enter the username you want to follow: ");
+        controllerCommands.follow(username);
+    }
+
+    public void unfollow() throws ServerConnectionFailedException, DataNotFoundException, ServerRespondFailedException, UnknownException, InvalidPasswordException, PermissionDeniedException, TextTooLongException, ServerInvalidCommandException, DatabaseFailedException, ServerInvalidObjectException
+    {
+        String username = TwitterLog.nextLine("Enter the username you want to unfollow: ");
+        controllerCommands.unfollow(username);
     }
 }

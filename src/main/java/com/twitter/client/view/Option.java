@@ -3,13 +3,17 @@ package com.twitter.client.view;
 public enum Option
 {
     BACK,
+
+    // main menu
     SIGN_UP,
     SIGN_IN,
     SIGN_OUT,
     SHOW_USER_INFO,
     CHANGE_USER_INFO,
     CONTENT,
+    FOLLOWING_FOLLOWER,
 
+    // change user info
     SET_AVATAR,
     SET_HEADER,
     CHANGE_PASSWORD,
@@ -23,12 +27,19 @@ public enum Option
     CHANGE_LOCATION,
     CHANGE_WEBSITE,
 
+    // content
     SEND_TWEET,
     SEND_RETWEET,
     SEND_QUOTE,
     LIKE_TWEET,
     DISLIKE_TWEET,
     SHOW_TIME_LINE,
+    SHOW_MY_FOLLOWERS,
+    SHOW_MY_FOLLOWINGS,
+    SHOW_SOMEONE_FOLLOWERS,
+    SHOW_SOMEONE_FOLLOWINGS,
+    FOLLOW,
+    UNFOLLOW
     ;
 
 
@@ -43,7 +54,8 @@ public enum Option
             case SIGN_OUT -> "SignOut";
             case SHOW_USER_INFO -> "Show my user information";
             case CHANGE_USER_INFO -> "Change my user information";
-            case CONTENT -> "The contents";
+            case CONTENT -> "The contents menu";
+            case FOLLOWING_FOLLOWER -> "The following/follower menu";
 
             case SET_AVATAR -> "Change my avatar";
             case SET_HEADER -> "Change my header";
@@ -64,6 +76,13 @@ public enum Option
             case LIKE_TWEET -> "Like a tweet";
             case DISLIKE_TWEET -> "Dislike a tweet";
             case SHOW_TIME_LINE -> "Show my timeline";
+
+            case SHOW_MY_FOLLOWERS -> "Show my followers";
+            case SHOW_MY_FOLLOWINGS -> "Show my followings";
+            case SHOW_SOMEONE_FOLLOWERS -> "Show someone's followers";
+            case SHOW_SOMEONE_FOLLOWINGS -> "Show someone's followings";
+            case FOLLOW -> "Follow someone";
+            case UNFOLLOW -> "Unfollow someone";
         };
     }
 }

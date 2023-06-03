@@ -220,10 +220,20 @@ public class ControllerCommands
 //        user.setWebsite(website);
 //    }
 
+    public Followers showFollowers(String userName) throws ServerConnectionFailedException, DataNotFoundException, ServerRespondFailedException, UnknownException, InvalidPasswordException, TextTooLongException, ServerInvalidCommandException, DatabaseFailedException, ServerInvalidObjectException
+    {
+        return modelCommands.showFollowers(userName);
+    }
+
     public Followers showFollowers() throws ServerConnectionFailedException, ServerRespondFailedException, DatabaseFailedException, ServerInvalidObjectException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException, PermissionDeniedException, ServerInvalidCommandException
     {
         User user = getCurrentUser();
         return modelCommands.showFollowers(user.getUserName());
+    }
+
+    public Followings showFollowings(String userName) throws ServerConnectionFailedException, DataNotFoundException, ServerRespondFailedException, UnknownException, InvalidPasswordException, TextTooLongException, ServerInvalidCommandException, DatabaseFailedException, ServerInvalidObjectException
+    {
+        return modelCommands.showFollowings(userName);
     }
 
     public Followings showFollowings() throws ServerConnectionFailedException, ServerRespondFailedException, DatabaseFailedException, ServerInvalidObjectException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException, PermissionDeniedException, ServerInvalidCommandException
@@ -232,17 +242,17 @@ public class ControllerCommands
         return modelCommands.showFollowings(user.getUserName());
     }
 
-    public void follow(MiniUser miniUser) throws ServerConnectionFailedException, ServerRespondFailedException, DatabaseFailedException, ServerInvalidObjectException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException, PermissionDeniedException, ServerInvalidCommandException
+    public void follow(String userName) throws ServerConnectionFailedException, ServerRespondFailedException, DatabaseFailedException, ServerInvalidObjectException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException, PermissionDeniedException, ServerInvalidCommandException
     {
         User user = getCurrentUser();
-        FollowRelation followRelation = new FollowRelation(user.getUserName(), miniUser.getUserName());
+        FollowRelation followRelation = new FollowRelation(user.getUserName(), userName);
         modelCommands.follow(followRelation);
     }
 
-    public void unfollow(MiniUser miniUser) throws ServerConnectionFailedException, ServerRespondFailedException, DatabaseFailedException, ServerInvalidObjectException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException, PermissionDeniedException, ServerInvalidCommandException
+    public void unfollow(String userName) throws ServerConnectionFailedException, ServerRespondFailedException, DatabaseFailedException, ServerInvalidObjectException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException, PermissionDeniedException, ServerInvalidCommandException
     {
         User user = getCurrentUser();
-        FollowRelation followRelation = new FollowRelation(user.getUserName(), miniUser.getUserName());
+        FollowRelation followRelation = new FollowRelation(user.getUserName(), userName);
         modelCommands.unfollow(followRelation);
     }
 

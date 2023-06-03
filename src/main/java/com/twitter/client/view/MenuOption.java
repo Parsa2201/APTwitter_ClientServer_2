@@ -88,6 +88,7 @@ public class MenuOption
                 case SHOW_USER_INFO -> commandObject.showUserInfo();
                 case CHANGE_USER_INFO -> setChangeUserInformationOptions();
                 case CONTENT -> setContentOptions();
+                case FOLLOWING_FOLLOWER -> setFollowingFollowerOptions();
                 case SIGN_OUT -> commandObject.signOut();
 
                 case SET_AVATAR -> commandObject.setAvatar();
@@ -109,6 +110,14 @@ public class MenuOption
                 case LIKE_TWEET -> commandObject.likeTweet();
                 case DISLIKE_TWEET -> commandObject.dislikeTweet();
                 case SHOW_TIME_LINE -> commandObject.showTimeLine();
+
+                case SHOW_MY_FOLLOWERS -> commandObject.showMyFollowers();
+                case SHOW_MY_FOLLOWINGS -> commandObject.showMyFollowings();
+                case SHOW_SOMEONE_FOLLOWERS -> commandObject.showSomeoneFollowers();
+                case SHOW_SOMEONE_FOLLOWINGS -> commandObject.showSomeoneFollowings();
+                case FOLLOW -> commandObject.follow();
+                case UNFOLLOW -> commandObject.unfollow();
+
             }
         }
         catch (DateTimeParseException e)
@@ -195,6 +204,7 @@ public class MenuOption
         options.add(Option.SHOW_USER_INFO);
         options.add(Option.CHANGE_USER_INFO);
         options.add(Option.CONTENT);
+        options.add(Option.FOLLOWING_FOLLOWER);
         options.add(Option.SIGN_OUT);
 
         showNestedOptions = false;
@@ -230,6 +240,21 @@ public class MenuOption
         options.add(Option.LIKE_TWEET);
         options.add(Option.DISLIKE_TWEET);
         options.add(Option.SHOW_TIME_LINE);
+
+        options.add(Option.BACK);
+
+        showNestedOptions = true;
+    }
+
+    private void setFollowingFollowerOptions()
+    {
+        options.clear();
+        options.add(Option.SHOW_MY_FOLLOWERS);
+        options.add(Option.SHOW_MY_FOLLOWINGS);
+        options.add(Option.SHOW_SOMEONE_FOLLOWERS);
+        options.add(Option.SHOW_SOMEONE_FOLLOWINGS);
+        options.add(Option.FOLLOW);
+        options.add(Option.UNFOLLOW);
 
         options.add(Option.BACK);
 

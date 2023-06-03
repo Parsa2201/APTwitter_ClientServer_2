@@ -4,24 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e6f89f22-8f2b-446d-b25f-81599946cb8d" name="Changes" comment="added favstar to the Tweet">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/tweet/BaseTweet.java" afterDir="false" />
+    <list default="true" id="e6f89f22-8f2b-446d-b25f-81599946cb8d" name="Changes" comment="fixed the TwitterLog deleting the last char of every print">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/client/controller/ControllerCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/client/controller/ControllerCommands.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/client/view/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/client/view/Command.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/client/view/TwitterLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/client/view/TwitterLog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/client/view/MenuOption.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/client/view/MenuOption.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/client/view/Option.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/client/view/Option.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/tweet/BaseTweet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/tweet/BaseTweet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/tweet/Quote.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/tweet/Quote.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/tweet/Reply.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/tweet/Reply.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/tweet/Retweet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/tweet/Retweet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/tweet/TimeLine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/tweet/TimeLine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/tweet/Tweet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/tweet/Tweet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/tweet_old/BaseTweet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/tweet_old/Quote.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/tweet_old/Reply.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/tweet_old/Retweet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/tweet_old/TimeLine.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/tweet_old/Tweet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/tweet_old/content/Content.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/tweet_old/content/ImageContent.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/tweet_old/content/TextContent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/user/FollowRelation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/user/FollowRelation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/server/model/DatabaseCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/server/model/DatabaseCommands.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,7 +100,7 @@
       <recent name="com.twitter.client" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.DatabaseCommandsTest.signUp">
+  <component name="RunManager" selected="Application.Client">
     <configuration name="Client" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="com.twitter.client.Main" />
       <module name="APTwitter_ClientServer_2" />
@@ -199,8 +193,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.DatabaseCommandsTest.signUp" />
         <item itemvalue="Application.Server" />
+        <item itemvalue="JUnit.DatabaseCommandsTest.signUp" />
         <item itemvalue="JUnit.ControllerCommandsTest.changeUserInformation1" />
         <item itemvalue="JUnit.ControllerCommandsTest.signUp1 (2)" />
         <item itemvalue="JUnit.ControllerCommandsTest.signUp1" />
@@ -232,7 +226,9 @@
       <workItem from="1685623434548" duration="7984000" />
       <workItem from="1685711356241" duration="12637000" />
       <workItem from="1685733251741" duration="807000" />
-      <workItem from="1685734940301" duration="11368000" />
+      <workItem from="1685734940301" duration="12409000" />
+      <workItem from="1685784250123" duration="919000" />
+      <workItem from="1685785202607" duration="2691000" />
     </task>
     <task id="LOCAL-00001" summary="added sendFile to the ServerConnectionHandler.java">
       <created>1685298475313</created>
@@ -374,7 +370,21 @@
       <option name="project" value="LOCAL" />
       <updated>1685776454593</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="implemented the showTimeLine in the console">
+      <created>1685781008249</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1685781008249</updated>
+    </task>
+    <task id="LOCAL-00022" summary="fixed the TwitterLog deleting the last char of every print">
+      <created>1685784170096</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1685784170096</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -411,6 +421,19 @@
     <MESSAGE value="implemented some of the other DatabaseCommandsTest" />
     <MESSAGE value="the new Tweet classes added and replaced the old one" />
     <MESSAGE value="added favstar to the Tweet" />
-    <option name="LAST_COMMIT_MESSAGE" value="added favstar to the Tweet" />
+    <MESSAGE value="implemented the showTimeLine in the console" />
+    <MESSAGE value="fixed the TwitterLog deleting the last char of every print" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed the TwitterLog deleting the last char of every print" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/twitter/server/model/ModelCommands.java</url>
+          <line>198</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

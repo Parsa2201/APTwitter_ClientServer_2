@@ -2,9 +2,11 @@ package com.twitter.entities.user;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
+
 @Entity
 @Table(name = "follows")
-public class FollowRelation
+public class FollowRelation implements Serializable
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
