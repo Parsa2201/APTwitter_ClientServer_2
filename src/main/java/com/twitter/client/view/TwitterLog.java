@@ -93,10 +93,14 @@ public class TwitterLog
         StringBuilder stringBuilder = new StringBuilder();
         for(int i = 0; i < chars.length; i++)
         {
-            if(i == chars.length - 1)
-                break;
-
             char c = chars[i];
+
+            if(i == chars.length - 1)
+            {
+                stringBuilder.append(c);
+                break;
+            }
+
             if(c == '\n')
                 stringBuilder.append("\n").append("\t".repeat(Math.max(0, nestedCount)));
             else
