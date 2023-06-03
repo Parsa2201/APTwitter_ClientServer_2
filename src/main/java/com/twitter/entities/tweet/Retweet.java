@@ -15,7 +15,7 @@ public class Retweet extends BaseTweet implements Serializable
         this.tweet = tweet;
     }
 
-    public Retweet(Tweet tweet, int id, LocalDateTime date, MiniUser retweetedBy)
+    public Retweet(Tweet tweet, Long id, LocalDateTime date, MiniUser retweetedBy)
     {
         super(id, date, retweetedBy);
         this.tweet = tweet;

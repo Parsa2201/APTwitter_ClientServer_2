@@ -20,7 +20,7 @@ public class TimeLine implements Iterable<BaseTweet>, Serializable
         tweets.add(tweet);
     }
 
-    public BaseTweet getBaseTweet(int id)
+    public BaseTweet getBaseTweet(long id)
     {
         for (BaseTweet tweet : tweets)
             if (tweet.getId() == id)
@@ -28,7 +28,7 @@ public class TimeLine implements Iterable<BaseTweet>, Serializable
         return null;
     }
 
-    public Tweet getTweet(int id)
+    public Tweet getTweet(long id)
     {
         for (BaseTweet tweet : tweets)
             if(tweet.getId() == id)
@@ -41,7 +41,7 @@ public class TimeLine implements Iterable<BaseTweet>, Serializable
         return null;
     }
 
-    public Tweet getTweetIdOfRetweet(int retweetId)
+    public Tweet getTweetIdOfRetweet(long retweetId)
     {
         for (BaseTweet tweet : tweets)
             if (tweet.getId() == retweetId && tweet instanceof Retweet)
@@ -49,7 +49,7 @@ public class TimeLine implements Iterable<BaseTweet>, Serializable
         return null;
     }
 
-    public Quote getQuote(int tweetId, int quoteId)
+    public Quote getQuote(long tweetId, long quoteId)
     {
         for (BaseTweet tweet : tweets)
             if (tweet.getId() == tweetId && tweet instanceof Tweet)
@@ -57,7 +57,7 @@ public class TimeLine implements Iterable<BaseTweet>, Serializable
         return null;
     }
 
-    public Reply getReply(int tweetId, int replyId)
+    public Reply getReply(long tweetId, long replyId)
     {
         for (BaseTweet tweet : tweets)
             if (tweet.getId() == tweetId && tweet instanceof Tweet)

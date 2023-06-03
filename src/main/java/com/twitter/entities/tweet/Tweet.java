@@ -103,7 +103,7 @@ public class Tweet extends BaseTweet implements Serializable
         return replies;
     }
 
-    public Quote getQuote(int quoteId)
+    public Quote getQuote(long quoteId)
     {
         for (Quote quote : quotes)
             if (quote.getId() == quoteId)
@@ -111,7 +111,7 @@ public class Tweet extends BaseTweet implements Serializable
         return null;
     }
 
-    public Reply getReply(int replyId)
+    public Reply getReply(long replyId)
     {
         for (Reply reply : replies)
             if (reply.getId() == replyId)
