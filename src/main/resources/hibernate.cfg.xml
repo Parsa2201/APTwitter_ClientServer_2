@@ -24,6 +24,6 @@
         <mapping class = "com.twitter.entities.user.User"/>
         <mapping class= "com.twitter.entities.image.Header"/>
         <mapping class= "com.twitter.entities.image.Avatar"/>
-        <mapping class="com.twitter.entities.user.FollowRelation"/>
+        <mapping class="com.twitter.entities.user.follow.FollowRelation"/>
     </session-factory>
 </hibernate-configuration>

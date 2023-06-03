@@ -4,17 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e6f89f22-8f2b-446d-b25f-81599946cb8d" name="Changes" comment="fixed the TwitterLog deleting the last char of every print">
+    <list default="true" id="e6f89f22-8f2b-446d-b25f-81599946cb8d" name="Changes" comment="made all the ids of the tweets, long and Long">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/exception/hashtag/HashtagException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/exception/hashtag/NameNotHashtagException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/tweet/content/hashtag/Hashtag.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/tweet/content/hashtag/Hashtags.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/client/controller/ControllerCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/client/controller/ControllerCommands.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/client/model/ModelCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/client/model/ModelCommands.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/client/view/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/client/view/Command.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/client/view/MenuOption.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/client/view/MenuOption.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/client/view/Option.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/client/view/Option.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/tweet/BaseTweet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/tweet/BaseTweet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/tweet/Quote.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/tweet/Quote.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/tweet/Reply.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/tweet/Reply.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/user/FollowRelation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/user/FollowRelation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/exception/EmailOrPhoneRequiredException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/exception/user/EmailOrPhoneRequiredException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/tweet/Tweet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/tweet/Tweet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/user/ConnectedUsers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/user/follow/ConnectedUsers.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/user/FollowRelation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/user/follow/FollowRelation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/user/Followers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/user/follow/Followers.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/user/Followings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/user/follow/Followings.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/server/model/DatabaseCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/server/model/DatabaseCommands.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/server/model/DatabaseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/server/model/DatabaseManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/server/model/ModelCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/server/model/ModelCommands.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -228,7 +236,7 @@
       <workItem from="1685733251741" duration="807000" />
       <workItem from="1685734940301" duration="12409000" />
       <workItem from="1685784250123" duration="919000" />
-      <workItem from="1685785202607" duration="2691000" />
+      <workItem from="1685785202607" duration="7557000" />
     </task>
     <task id="LOCAL-00001" summary="added sendFile to the ServerConnectionHandler.java">
       <created>1685298475313</created>
@@ -384,7 +392,42 @@
       <option name="project" value="LOCAL" />
       <updated>1685784170096</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="added the follow to the console">
+      <created>1685788119142</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1685788119142</updated>
+    </task>
+    <task id="LOCAL-00024" summary="fixet the &quot;userNmae&quot; to &quot;userName&quot;">
+      <created>1685788620883</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1685788620883</updated>
+    </task>
+    <task id="LOCAL-00025" summary="fixed the bug of name and family printing without a space between">
+      <created>1685789251680</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1685789251680</updated>
+    </task>
+    <task id="LOCAL-00026" summary="now the follow commands show respond in the console">
+      <created>1685789656066</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1685789656066</updated>
+    </task>
+    <task id="LOCAL-00027" summary="made all the ids of the tweets, long and Long">
+      <created>1685790410124</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1685790410124</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -402,7 +445,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added sendFile to the ServerConnectionHandler.java" />
     <MESSAGE value="added FollowRelation.java and made ConnectedUsers iterable" />
     <MESSAGE value="made the Program class and implemented a console view" />
     <MESSAGE value="database without bug accept signUp1 test" />
@@ -423,15 +465,20 @@
     <MESSAGE value="added favstar to the Tweet" />
     <MESSAGE value="implemented the showTimeLine in the console" />
     <MESSAGE value="fixed the TwitterLog deleting the last char of every print" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed the TwitterLog deleting the last char of every print" />
+    <MESSAGE value="added the follow to the console" />
+    <MESSAGE value="fixet the &quot;userNmae&quot; to &quot;userName&quot;" />
+    <MESSAGE value="fixed the bug of name and family printing without a space between" />
+    <MESSAGE value="now the follow commands show respond in the console" />
+    <MESSAGE value="made all the ids of the tweets, long and Long" />
+    <option name="LAST_COMMIT_MESSAGE" value="made all the ids of the tweets, long and Long" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/twitter/server/model/ModelCommands.java</url>
-          <line>198</line>
-          <option name="timeStamp" value="2" />
+          <line>221</line>
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -1,7 +1,7 @@
 package com.twitter.server.model;
 
 import com.twitter.entities.exception.io.server.DataNotFoundException;
-import com.twitter.entities.user.FollowRelation;
+import com.twitter.entities.user.follow.FollowRelation;
 import com.twitter.entities.user.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

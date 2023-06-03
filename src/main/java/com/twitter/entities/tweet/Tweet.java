@@ -1,7 +1,9 @@
 package com.twitter.entities.tweet;
 
+import com.twitter.entities.exception.hashtag.HashtagException;
 import com.twitter.entities.tweet.content.ImageContent;
 import com.twitter.entities.tweet.content.TextContent;
+import com.twitter.entities.tweet.content.hashtag.Hashtags;
 import com.twitter.entities.user.MiniUser;
 
 import java.io.Serializable;
@@ -18,8 +20,9 @@ public class Tweet extends BaseTweet implements Serializable
     private boolean isFavstar;
     private final ArrayList<Quote> quotes;
     private final ArrayList<Reply> replies;
+    private final Hashtags hashtags;
 
-    public Tweet(MiniUser owner, TextContent textContent, ImageContent imageContent)
+    public Tweet(MiniUser owner, TextContent textContent, ImageContent imageContent) throws HashtagException
     {
         super(owner);
         this.textContent = textContent;
@@ -29,9 +32,12 @@ public class Tweet extends BaseTweet implements Serializable
         quoteCount = 0;
         quotes = new ArrayList<>();
         replies = new ArrayList<>();
+        hashtags = new Hashtags();
+
+        hashtags.getHashtagsFromText(textContent.toString());
     }
 
-    public Tweet(MiniUser owner, TextContent textContent, ImageContent imageContent, int id, LocalDateTime tweetDate)
+    public Tweet(MiniUser owner, TextContent textContent, ImageContent imageContent, int id, LocalDateTime tweetDate) throws HashtagException
     {
         super(id, tweetDate, owner);
         this.textContent = textContent;
@@ -41,6 +47,9 @@ public class Tweet extends BaseTweet implements Serializable
         quoteCount = 0;
         quotes = new ArrayList<>();
         replies = new ArrayList<>();
+        hashtags = new Hashtags();
+
+        hashtags.getHashtagsFromText(textContent.toString());
     }
 
     public TextContent getTextContent()
@@ -101,6 +110,11 @@ public class Tweet extends BaseTweet implements Serializable
     public ArrayList<Reply> getReplies()
     {
         return replies;
+    }
+
+    public Hashtags getHashtags()
+    {
+        return hashtags;
     }
 
     public Quote getQuote(long quoteId)

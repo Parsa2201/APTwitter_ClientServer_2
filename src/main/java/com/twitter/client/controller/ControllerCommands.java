@@ -1,7 +1,7 @@
 package com.twitter.client.controller;
 
 import com.twitter.client.view.ProgramState;
-import com.twitter.entities.exception.EmailOrPhoneRequiredException;
+import com.twitter.entities.exception.user.EmailOrPhoneRequiredException;
 import com.twitter.entities.exception.UnknownException;
 import com.twitter.entities.exception.io.server.*;
 import com.twitter.entities.exception.user.CountryException;
@@ -23,6 +23,9 @@ import com.twitter.entities.tweet.content.ImageContent;
 import com.twitter.entities.tweet.content.TextContent;
 import com.twitter.entities.user.*;
 import com.twitter.client.model.ModelCommands;
+import com.twitter.entities.user.follow.FollowRelation;
+import com.twitter.entities.user.follow.Followers;
+import com.twitter.entities.user.follow.Followings;
 
 import java.time.LocalDate;
 

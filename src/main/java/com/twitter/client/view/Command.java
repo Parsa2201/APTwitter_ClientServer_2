@@ -2,7 +2,7 @@ package com.twitter.client.view;
 
 import com.twitter.client.controller.ControllerCommands;
 import com.twitter.client.controller.Data;
-import com.twitter.entities.exception.EmailOrPhoneRequiredException;
+import com.twitter.entities.exception.user.EmailOrPhoneRequiredException;
 import com.twitter.entities.exception.UnknownException;
 import com.twitter.entities.exception.io.FileNotExistException;
 import com.twitter.entities.exception.io.FileNotImageException;
@@ -19,6 +19,8 @@ import com.twitter.entities.exception.user.password.PasswordFormatException;
 import com.twitter.entities.exception.user.password.PasswordHashException;
 import com.twitter.entities.tweet.*;
 import com.twitter.entities.user.*;
+import com.twitter.entities.user.follow.Followers;
+import com.twitter.entities.user.follow.Followings;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;

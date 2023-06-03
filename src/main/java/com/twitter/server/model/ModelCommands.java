@@ -11,6 +11,9 @@ import com.twitter.entities.image.Header;
 import com.twitter.entities.server.Respond;
 import com.twitter.entities.server.RespondCode;
 import com.twitter.entities.user.*;
+import com.twitter.entities.user.follow.FollowRelation;
+import com.twitter.entities.user.follow.Followers;
+import com.twitter.entities.user.follow.Followings;
 
 import java.io.ObjectInputStream;
 import java.time.LocalDate;

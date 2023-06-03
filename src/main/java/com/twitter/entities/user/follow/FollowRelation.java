@@ -1,4 +1,4 @@
-package com.twitter.entities.user;
+package com.twitter.entities.user.follow;
 
 import jakarta.persistence.*;
 

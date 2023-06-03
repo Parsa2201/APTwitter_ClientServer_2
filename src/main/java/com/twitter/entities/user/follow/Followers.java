@@ -1,7 +1,4 @@
-package com.twitter.entities.user;
-
-import java.util.ArrayList;
-import java.util.Iterator;
+package com.twitter.entities.user.follow;
 
 public class Followers extends ConnectedUsers
 {

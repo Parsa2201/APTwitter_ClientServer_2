@@ -1,7 +1,7 @@
 package com.twitter.client.view;
 
 import com.twitter.client.controller.Data;
-import com.twitter.entities.exception.EmailOrPhoneRequiredException;
+import com.twitter.entities.exception.user.EmailOrPhoneRequiredException;
 import com.twitter.entities.exception.UnknownException;
 import com.twitter.entities.exception.io.FileNotExistException;
 import com.twitter.entities.exception.io.FileNotImageException;

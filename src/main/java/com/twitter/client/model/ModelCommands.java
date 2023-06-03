@@ -12,6 +12,9 @@ import com.twitter.entities.tweet.Retweet;
 import com.twitter.entities.tweet.TimeLine;
 import com.twitter.entities.tweet.Tweet;
 import com.twitter.entities.user.*;
+import com.twitter.entities.user.follow.FollowRelation;
+import com.twitter.entities.user.follow.Followers;
+import com.twitter.entities.user.follow.Followings;
 
 import java.time.LocalDate;
 

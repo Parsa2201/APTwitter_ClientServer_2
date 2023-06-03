@@ -1,4 +1,6 @@
-package com.twitter.entities.user;
+package com.twitter.entities.user.follow;
+
+import com.twitter.entities.user.MiniUser;
 
 import java.io.Serializable;
 import java.util.ArrayList;
