@@ -1,12 +1,13 @@
 package com.twitter.server.model;
 
+import com.twitter.entities.exception.io.server.DataNotFoundException;
 import com.twitter.entities.exception.io.server.ServerInvalidCommandException;
 import com.twitter.entities.exception.io.server.ServerInvalidObjectException;
-import com.twitter.entities.exception.io.server.DataNotFoundException;
-import com.twitter.entities.exception.user.password.InvalidPasswordException;
 import com.twitter.entities.exception.text.TextTooLongException;
+import com.twitter.entities.exception.user.CountryException;
+import com.twitter.entities.exception.user.email.EmailFormatException;
+import com.twitter.entities.exception.user.password.InvalidPasswordException;
 import com.twitter.entities.server.Respond;
-import com.twitter.entities.server.RespondCode;
 
 import java.io.ObjectInputStream;
 
@@ -61,6 +62,15 @@ public class ModelCommandHandler
         catch (ServerInvalidObjectException | DataNotFoundException | InvalidPasswordException e)
         {
             return new Respond(e);
+        } catch (CountryException e)
+        {
+            throw new RuntimeException(e);
+        } catch (EmailFormatException e)
+        {
+            throw new RuntimeException(e);
+        } catch (TextTooLongException e)
+        {
+            throw new RuntimeException(e);
         }
 
     }
