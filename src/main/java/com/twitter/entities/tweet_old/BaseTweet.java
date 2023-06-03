@@ -1,7 +1,7 @@
-package com.twitter.entities.tweet;
+package com.twitter.entities.tweet_old;
 
-import com.twitter.entities.tweet.content.ImageContent;
-import com.twitter.entities.tweet.content.TextContent;
+import com.twitter.entities.tweet_old.content.ImageContent;
+import com.twitter.entities.tweet_old.content.TextContent;
 import com.twitter.entities.user.MiniUser;
 
 import java.io.Serializable;

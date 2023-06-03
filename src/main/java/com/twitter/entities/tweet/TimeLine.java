@@ -6,31 +6,55 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class TimeLine implements Iterable<BaseTweet>, Serializable
+public class TimeLine implements Iterable<Tweet>, Serializable
 {
-    private final ArrayList<BaseTweet> tweets;
+    private final ArrayList<Tweet> tweets;
 
     public TimeLine()
     {
-        tweets = new ArrayList<BaseTweet>();
+        tweets = new ArrayList<Tweet>();
     }
 
-    public void addTweet(BaseTweet tweet)
+    public void addTweet(Tweet tweet)
     {
         tweets.add(tweet);
     }
 
     public Tweet getTweet(int id)
     {
-        for(BaseTweet tweet : tweets)
+        for(Tweet tweet : tweets)
             if(tweet.getId() == id)
-                return (Tweet) tweet;
+                return tweet;
+        return null;
+    }
+
+    public Retweet getRetweet(int tweetId, int retweetId)
+    {
+        for(Tweet tweet : tweets)
+            if(tweet.getId() == tweetId)
+                return tweet.getRetweet(retweetId);
+        return null;
+    }
+
+    public Quote getQuote(int tweetId, int quoteId)
+    {
+        for(Tweet tweet : tweets)
+            if(tweet.getId() == tweetId)
+                return tweet.getQuote(quoteId);
+        return null;
+    }
+
+    public Reply getReply(int tweetId, int replyId)
+    {
+        for(Tweet tweet : tweets)
+            if(tweet.getId() == tweetId)
+                return tweet.getReply(replyId);
         return null;
     }
 
     @NotNull
     @Override
-    public Iterator<BaseTweet> iterator()
+    public Iterator<Tweet> iterator()
     {
         return tweets.iterator();
     }
