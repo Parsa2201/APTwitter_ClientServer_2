@@ -47,6 +47,7 @@ public class Data implements Serializable
     public void setProgramState(ProgramState programState)
     {
         this.programState = programState;
+        save();
     }
 
     public User getUser()
@@ -57,6 +58,7 @@ public class Data implements Serializable
     public void setUser(User user)
     {
         this.user = user;
+        save();
     }
 
     public TimeLine getTimeLine()
@@ -67,9 +69,10 @@ public class Data implements Serializable
     public void setTimeLine(TimeLine timeLine)
     {
         this.timeLine = timeLine;
+        save();
     }
 
-    public boolean save()
+    private boolean save()
     {
         return settingIO.save();
     }
