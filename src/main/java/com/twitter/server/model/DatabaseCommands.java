@@ -76,6 +76,7 @@ public class DatabaseCommands
         User user = databaseManager.findUser(userName, session);
         user.setHeader(header);
         session.beginTransaction();
+        session.persist(header);
         session.update(user);
         session.getTransaction().commit();
         session.close();
