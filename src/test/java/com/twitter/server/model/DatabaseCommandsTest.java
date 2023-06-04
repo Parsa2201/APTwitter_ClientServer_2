@@ -14,11 +14,14 @@ import com.twitter.entities.exception.user.password.PasswordFormatException;
 import com.twitter.entities.exception.user.password.PasswordHashException;
 import com.twitter.entities.image.Avatar;
 import com.twitter.entities.image.Header;
+import com.twitter.entities.tweet.Retweet;
 import com.twitter.entities.tweet.Tweet;
 import com.twitter.entities.tweet.content.TextContent;
 import com.twitter.entities.user.MiniUser;
 import com.twitter.entities.user.Password;
 import com.twitter.entities.user.User;
+import com.twitter.entities.user.follow.Followers;
+import com.twitter.entities.user.follow.Followings;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -29,7 +32,7 @@ public class DatabaseCommandsTest
     User makeUser1() throws PasswordFormatException, PasswordHashException, EmailFormatException, CountryException
     {
         User user = new User();
-        user.setUserName("test user name");
+        user.setUserName("test user name 1");
         user.setPassword("NaNoOOl;#329");
         user.setName("test name");
         user.setFamily("test family");
@@ -40,8 +43,24 @@ public class DatabaseCommandsTest
 
         return user;
     }
+
+    User makeUser2() throws PasswordFormatException, PasswordHashException, EmailFormatException, CountryException
+    {
+        User user = new User();
+        user.setUserName("test user name 2");
+        user.setPassword("NaNoOOl;#329");
+        user.setName("test name");
+        user.setFamily("test family");
+        user.setEmail("test@email.com");
+        user.setPhoneNumber("test phone number");
+        user.setCountry("iran");
+        user.setBirthDate(LocalDate.of(2000, 1, 1));
+
+        return user;
+    }
+
     @Test
-    void signUp() throws PasswordFormatException, PasswordHashException, EmailFormatException, CountryException
+    void signUp1() throws PasswordFormatException, PasswordHashException, EmailFormatException, CountryException
     {
         User user = new User();
         user.setUserName("test user name 1");
@@ -52,6 +71,15 @@ public class DatabaseCommandsTest
         user.setPhoneNumber("test phone number");
         user.setCountry("iran");
         user.setBirthDate(LocalDate.of(2000, 1, 1));
+
+        DatabaseCommands databaseCommands = new DatabaseCommands();
+        databaseCommands.signUp(user);
+    }
+
+    @Test
+    void signUp2() throws PasswordFormatException, PasswordHashException, EmailFormatException, CountryException
+    {
+        User user = makeUser2();
 
         DatabaseCommands databaseCommands = new DatabaseCommands();
         databaseCommands.signUp(user);
@@ -132,7 +160,7 @@ public class DatabaseCommandsTest
     // TODO: showUser()
 
     @Test
-    void sendTweet() throws TextTooLongException, HashtagException
+    Tweet sendTweet() throws TextTooLongException, HashtagException
     {
         // FIXME
         MiniUser miniUser = new MiniUser();
@@ -142,9 +170,22 @@ public class DatabaseCommandsTest
 
         DatabaseCommands databaseCommands = new DatabaseCommands();
         databaseCommands.sendTweet(tweet);
+
+        return tweet;
     }
 
-    // TODO: sendRetweet()
+    @Test
+    void sendRetweet() throws HashtagException, TextTooLongException
+    {
+        // FIXME
+        MiniUser miniUser = new MiniUser();
+        miniUser.setUserName("test user name 2");
+
+        Retweet retweet = new Retweet(sendTweet(), miniUser);
+
+        DatabaseCommands databaseCommands = new DatabaseCommands();
+        databaseCommands.sendRetweet(retweet);
+    }
 
     // TODO: sendQuote()
 
@@ -156,7 +197,26 @@ public class DatabaseCommandsTest
 
     // TODO: showTimeLine()
 
-    // TODO: block()
+    @Test
+    void block() throws DataNotFoundException
+    {
+        DatabaseCommands databaseCommands = new DatabaseCommands();
+        databaseCommands.block("test user name", "test user name 2");
+
+        try
+        {
+            Followers followers = databaseCommands.showFollowers("test user name");
+            for(MiniUser miniUser : followers)
+                if(miniUser.getUserName().equals("test user name 2"))
+                    Assertions.fail();
+
+            Followings followings = databaseCommands.showFollowings("test user name 2");
+            for(MiniUser miniUser : followings)
+                if(miniUser.getUserName().equals("test user name"))
+                    Assertions.fail();
+        }
+        catch (DataNotFoundException ignored){}
+    }
 
     // TODO: unblock()
 }
