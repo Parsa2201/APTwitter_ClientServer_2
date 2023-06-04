@@ -5,6 +5,7 @@ import com.twitter.entities.exception.hashtag.NameNotHashtagException;
 import jakarta.persistence.*;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -13,7 +14,7 @@ import java.util.regex.Pattern;
 
 @Entity
 @Table(name = "hashtags")
-public class Hashtags implements Iterable<Hashtag>
+public class Hashtags implements Iterable<Hashtag>, Serializable
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

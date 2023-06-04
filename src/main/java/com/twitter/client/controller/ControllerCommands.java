@@ -251,16 +251,14 @@ public class ControllerCommands
     {
         // TODO : give the userName and followedUserName instead of FollowRelation
         User user = getCurrentUser();
-        FollowRelation followRelation = new FollowRelation(user.getUserName(), userName);
-        modelCommands.follow(followRelation);
+        modelCommands.follow(user.getUserName(), userName);
     }
 
     public void unfollow(String userName) throws ServerConnectionFailedException, ServerRespondFailedException, DatabaseFailedException, ServerInvalidObjectException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException, PermissionDeniedException, ServerInvalidCommandException
     {
         // TODO : give the userName and followedUserName instead of FollowRelation
         User user = getCurrentUser();
-        FollowRelation followRelation = new FollowRelation(user.getUserName(), userName);
-        modelCommands.unfollow(followRelation);
+        modelCommands.unfollow(user.getUserName(), userName);
     }
 
     public MiniUser showUser(MiniUser miniUser) throws ServerConnectionFailedException, ServerRespondFailedException, DatabaseFailedException, ServerInvalidObjectException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException, ServerInvalidCommandException

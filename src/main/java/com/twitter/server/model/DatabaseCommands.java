@@ -335,6 +335,7 @@ public class DatabaseCommands
         Session session = databaseManager.sessionFactory.openSession();
         Followings followings = showFollowings(userName);
         TimeLine timeLine = new TimeLine();
+        // FIXME: add the miniUser to the baseTweet
         for (MiniUser u : followings)
         {
             Query<BaseTweet> baseTweetQuery = session.createQuery("select b from BaseTweet b where b.userName = :user", BaseTweet.class);

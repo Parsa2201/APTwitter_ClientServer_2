@@ -235,23 +235,25 @@ public void changePassword(String userName, Password newPasswordHash) throws Ser
         }
     }
 
-    public void follow(FollowRelation followRelation) throws ServerConnectionFailedException, ServerInvalidObjectException, ServerRespondFailedException, DatabaseFailedException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException, ServerInvalidCommandException
+    public void follow(String userName, String followedUserName) throws ServerConnectionFailedException, ServerInvalidObjectException, ServerRespondFailedException, DatabaseFailedException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException, ServerInvalidCommandException
     {
         try (ServerConnectionHandler serverConnectionHandler = new ServerConnectionHandler())
         {
             serverConnectionHandler.sendCommend("follow");
-            serverConnectionHandler.sendObject(followRelation);
+            serverConnectionHandler.sendObject(userName);
+            serverConnectionHandler.sendObject(followedUserName);
             Respond respond = serverConnectionHandler.getRespond();
             respond.check();
         }
     }
 
-    public void unfollow(FollowRelation followRelation) throws ServerConnectionFailedException, ServerInvalidObjectException, ServerRespondFailedException, DatabaseFailedException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException, ServerInvalidCommandException
+    public void unfollow(String userName, String followedUserName) throws ServerConnectionFailedException, ServerInvalidObjectException, ServerRespondFailedException, DatabaseFailedException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException, ServerInvalidCommandException
     {
         try (ServerConnectionHandler serverConnectionHandler = new ServerConnectionHandler())
         {
             serverConnectionHandler.sendCommend("unfollow");
-            serverConnectionHandler.sendObject(followRelation);
+            serverConnectionHandler.sendObject(userName);
+            serverConnectionHandler.sendObject(followedUserName);
             Respond respond = serverConnectionHandler.getRespond();
             respond.check();
         }

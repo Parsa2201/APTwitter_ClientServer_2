@@ -6,7 +6,8 @@ public class SettingIO
 {
     private final Data data;
     private static final String FILE_NAME = "settings.bin";
-    private static final String FILE_PATH = "config/" + FILE_NAME;
+    private static final String FOLDER_PATH = "config";
+    private static final String FILE_PATH = FOLDER_PATH + "/" + FILE_NAME;
     private static final int AUTO_SAVE_INTERVAL = 1000 * 60 * 2;
 
     public SettingIO(Data data)
@@ -59,6 +60,17 @@ public class SettingIO
                 return false;
 
         // create a new file
+        try
+        {
+            file = new File(FOLDER_PATH);
+            file.mkdirs();
+            file = new File(FILE_PATH);
+            if(!file.createNewFile())
+                return false;
+        } catch (IOException e)
+        {
+            return false;
+        }
 
         try(FileOutputStream fileOutputStream = new FileOutputStream(FILE_PATH);
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream))

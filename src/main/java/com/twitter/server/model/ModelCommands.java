@@ -215,16 +215,18 @@ public class ModelCommands
     public Respond follow(ObjectInputStream objectInputStream) throws ServerInvalidObjectException, DataNotFoundException
     {
         // FIXME
-        FollowRelation followRelation = ObjectGetter.getObject(objectInputStream, FollowRelation.class);
-        databaseCommands.follow(followRelation);
+        String userName = ObjectGetter.getObject(objectInputStream, String.class);
+        String followedUserName = ObjectGetter.getObject(objectInputStream, String.class);
+        databaseCommands.follow(userName, followedUserName);
         return new Respond(RespondCode.SUCCESS);
     }
 
     public Respond unfollow(ObjectInputStream objectInputStream) throws ServerInvalidObjectException, DataNotFoundException
     {
         // FIXME
-        FollowRelation followRelation = ObjectGetter.getObject(objectInputStream, FollowRelation.class);
-        databaseCommands.unfollow(followRelation);
+        String userName = ObjectGetter.getObject(objectInputStream, String.class);
+        String followedUserName = ObjectGetter.getObject(objectInputStream, String.class);
+        databaseCommands.unfollow(userName, followedUserName);
         return new Respond(RespondCode.SUCCESS);
     }
 
@@ -256,7 +258,7 @@ public class ModelCommands
         return new Respond(RespondCode.SUCCESS);
     }
 
-    public Respond likeTweet(ObjectInputStream objectInputStream) throws ServerInvalidObjectException
+    public Respond likeTweet(ObjectInputStream objectInputStream) throws ServerInvalidObjectException, DataNotFoundException
     {
         Tweet tweet = ObjectGetter.getObject(objectInputStream, Tweet.class);
         String userName = ObjectGetter.getObject(objectInputStream, String.class);
@@ -264,7 +266,7 @@ public class ModelCommands
         return new Respond(RespondCode.SUCCESS);
     }
 
-    public Respond dislikeTweet(ObjectInputStream objectInputStream) throws ServerInvalidObjectException
+    public Respond dislikeTweet(ObjectInputStream objectInputStream) throws ServerInvalidObjectException, DataNotFoundException
     {
         Tweet tweet = ObjectGetter.getObject(objectInputStream, Tweet.class);
         String userName = ObjectGetter.getObject(objectInputStream, String.class);
@@ -272,14 +274,14 @@ public class ModelCommands
         return new Respond(RespondCode.SUCCESS);
     }
 
-    public Respond showTimeLine(ObjectInputStream objectInputStream) throws ServerInvalidObjectException
+    public Respond showTimeLine(ObjectInputStream objectInputStream) throws ServerInvalidObjectException, DataNotFoundException
     {
         String userName = ObjectGetter.getObject(objectInputStream, String.class);
         TimeLine timeLine = databaseCommands.showTimeLine(userName);
         return new Respond(RespondCode.SUCCESS, timeLine);
     }
 
-    public Respond block(ObjectInputStream objectInputStream) throws ServerInvalidObjectException
+    public Respond block(ObjectInputStream objectInputStream) throws ServerInvalidObjectException, DataNotFoundException
     {
         String blocker = ObjectGetter.getObject(objectInputStream, String.class);
         String blocked = ObjectGetter.getObject(objectInputStream, String.class);
@@ -287,7 +289,7 @@ public class ModelCommands
         return new Respond(RespondCode.SUCCESS);
     }
 
-    public Respond unblock(ObjectInputStream objectInputStream) throws ServerInvalidObjectException
+    public Respond unblock(ObjectInputStream objectInputStream) throws ServerInvalidObjectException, DataNotFoundException
     {
         String blocker = ObjectGetter.getObject(objectInputStream, String.class);
         String blocked = ObjectGetter.getObject(objectInputStream, String.class);
