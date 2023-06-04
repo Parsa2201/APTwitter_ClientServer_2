@@ -339,6 +339,20 @@ public class DatabaseCommands
         // TODO : check the followRelations
         Session session = databaseManager.sessionFactory.openSession();
         BlockRelation blockRelation = new BlockRelation(databaseManager.findUser(blocker, session), databaseManager.findUser(blocked, session));
+        FollowRelation followerRelation = new FollowRelation(blockRelation.getBlocked(), blockRelation.getBlocker());
+        FollowRelation followingRelation = new FollowRelation(blockRelation.getBlocker(), blockRelation.getBlocked());
+        if((followerRelation = databaseManager.isFollowRelationExist(followerRelation, session)) != null)
+        {
+            session.beginTransaction();
+            session.delete(followerRelation);
+            session.getTransaction().commit();
+        }
+        if((followingRelation = databaseManager.isFollowRelationExist(followingRelation, session)) != null)
+        {
+            session.beginTransaction();
+            session.delete(followingRelation);
+            session.getTransaction().commit();
+        }
         if(databaseManager.isBlockRelationExist(blockRelation, session) == null)
         {
             session.beginTransaction();
