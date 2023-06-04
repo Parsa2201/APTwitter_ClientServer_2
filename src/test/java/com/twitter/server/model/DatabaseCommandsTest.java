@@ -25,6 +25,10 @@ import com.twitter.entities.user.follow.Followings;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.time.LocalDate;
 
 public class DatabaseCommandsTest
@@ -86,17 +90,27 @@ public class DatabaseCommandsTest
     }
 
     @Test
-    void signIn() throws PasswordFormatException, PasswordHashException, EmailFormatException, CountryException, DataNotFoundException, InvalidPasswordException
+    void signIn() throws PasswordFormatException, PasswordHashException, EmailFormatException, CountryException, DataNotFoundException, InvalidPasswordException, IOException
     {
         DatabaseCommands databaseCommands = new DatabaseCommands();
         User user = databaseCommands.signIn("test user name 1", new Password("NaNoOOl;#329"));
         Assertions.assertEquals(user, makeUser1());
+
+        Avatar avatar = user.getAvatar();
+        BufferedImage bufferedImage = avatar.getImage();
+        Assertions.assertNotNull(bufferedImage);
+        ImageIO.write(bufferedImage, "jpg", new File("Parsa Salamatipour 400X400 - from database.jpg"));
+
+        Header header = user.getHeader();
+        bufferedImage = header.getImage();
+        Assertions.assertNotNull(bufferedImage);
+        ImageIO.write(bufferedImage, "jpg", new File("Parsa Salamatipour 1500X500 - from database.jpg"));
+
     }
 
     @Test
     void setAvatar() throws PasswordFormatException, PasswordHashException, EmailFormatException, CountryException, DataNotFoundException, ImageSizeException, FileSizeException, FileNotExistException, FileNotImageException
     {
-        // FIXME
         DatabaseCommands databaseCommands = new DatabaseCommands();
         databaseCommands.setAvatar("test user name 1", new Avatar("src/main/java/assets/Parsa Salamatipour 400X400.jpg"));
     }
@@ -104,9 +118,9 @@ public class DatabaseCommandsTest
     @Test
     void setHeader() throws PasswordFormatException, PasswordHashException, EmailFormatException, CountryException, DataNotFoundException, ImageSizeException, FileSizeException, FileNotExistException, FileNotImageException
     {
-        // FIXME
         DatabaseCommands databaseCommands = new DatabaseCommands();
-        databaseCommands.setHeader("test user name 1", new Header("src/main/java/assets/Parsa Salamatipour 400X400.jpg"));
+        Header header = new Header("src/main/java/assets/Parsa Salamatipour 1500X500.jpg");
+        databaseCommands.setHeader("test user name 1", header);
     }
 
     @Test
@@ -160,7 +174,7 @@ public class DatabaseCommandsTest
     // TODO: showUser()
 
     @Test
-    Tweet sendTweet() throws TextTooLongException, HashtagException
+    void sendTweet1() throws TextTooLongException, HashtagException
     {
         // FIXME
         MiniUser miniUser = new MiniUser();
@@ -170,18 +184,34 @@ public class DatabaseCommandsTest
 
         DatabaseCommands databaseCommands = new DatabaseCommands();
         databaseCommands.sendTweet(tweet);
+    }
 
-        return tweet;
+    @Test
+    void sendTweet2() throws TextTooLongException, HashtagException
+    {
+        // FIXME
+        MiniUser miniUser = new MiniUser();
+        miniUser.setUserName("test user name 1");
+
+        Tweet tweet = new Tweet(miniUser, new TextContent("this is another test text"), null);
+
+        DatabaseCommands databaseCommands = new DatabaseCommands();
+        databaseCommands.sendTweet(tweet);
     }
 
     @Test
     void sendRetweet() throws HashtagException, TextTooLongException
     {
         // FIXME
-        MiniUser miniUser = new MiniUser();
-        miniUser.setUserName("test user name 2");
+        MiniUser miniUser2 = new MiniUser();
+        miniUser2.setUserName("test user name 2");
 
-        Retweet retweet = new Retweet(sendTweet(), miniUser);
+        MiniUser miniUser1 = new MiniUser();
+        miniUser1.setUserName("test user name 1");
+
+        Tweet tweet = new Tweet(miniUser1, new TextContent("this is a test text"), null);
+
+        Retweet retweet = new Retweet(tweet, miniUser2);
 
         DatabaseCommands databaseCommands = new DatabaseCommands();
         databaseCommands.sendRetweet(retweet);
@@ -207,13 +237,11 @@ public class DatabaseCommandsTest
         {
             Followers followers = databaseCommands.showFollowers("test user name 1");
             for(MiniUser miniUser : followers)
-                if(miniUser.getUserName().equals("test user name 2"))
-                    Assertions.fail();
+                Assertions.assertEquals(miniUser.getUserName(),"test user name 2");
 
             Followings followings = databaseCommands.showFollowings("test user name 2");
             for(MiniUser miniUser : followings)
-                if(miniUser.getUserName().equals("test user name 1"))
-                    Assertions.fail();
+                Assertions.assertEquals(miniUser.getUserName(),"test user name 1");
         }
         catch (DataNotFoundException ignored){}
     }

@@ -50,7 +50,7 @@ public class Header extends TwitterImage
     @Override
     public int getHeight()
     {
-        return 1500;
+        return 500;
     }
 
     @Override

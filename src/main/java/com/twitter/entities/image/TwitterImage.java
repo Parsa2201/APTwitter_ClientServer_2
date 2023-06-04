@@ -105,6 +105,7 @@ public abstract class TwitterImage implements Serializable
 
     public String getEncodedImage()
     {
+        generateEncodedImage();
         return encodedImage;
     }
 
@@ -116,6 +117,7 @@ public abstract class TwitterImage implements Serializable
 
     public BufferedImage getImage()
     {
+        generateDecodedImage();
         return image;
     }
 
