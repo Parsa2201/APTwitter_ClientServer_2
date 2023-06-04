@@ -15,6 +15,11 @@ public class BlackList implements Serializable, Iterable<MiniUser>
         blockedUsers = new ArrayList<>();
     }
 
+    public BlackList(ArrayList<MiniUser> blockedUsers)
+    {
+        this.blockedUsers = blockedUsers;
+    }
+
     public void add(MiniUser blockedUser)
     {
         blockedUsers.add(blockedUser);

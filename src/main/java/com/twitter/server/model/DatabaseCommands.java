@@ -1,27 +1,24 @@
 package com.twitter.server.model;
 
 import com.twitter.entities.exception.io.server.DataNotFoundException;
+import com.twitter.entities.exception.text.TextTooLongException;
 import com.twitter.entities.exception.user.CountryException;
 import com.twitter.entities.exception.user.email.EmailFormatException;
 import com.twitter.entities.exception.user.password.InvalidPasswordException;
-import com.twitter.entities.exception.text.TextTooLongException;
 import com.twitter.entities.image.Avatar;
 import com.twitter.entities.image.Header;
 import com.twitter.entities.tweet.*;
+import com.twitter.entities.tweet.content.hashtag.Hashtag;
 import com.twitter.entities.user.*;
 import com.twitter.entities.user.follow.FollowRelation;
 import com.twitter.entities.user.follow.Followers;
 import com.twitter.entities.user.follow.Followings;
-import com.twitter.entities.tweet.content.hashtag.Hashtag;
 import jakarta.persistence.PersistenceException;
 import org.hibernate.Session;
 import org.hibernate.exception.ConstraintViolationException;
 import org.hibernate.query.Query;
 
 import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Stream;
 
 public class DatabaseCommands
 {
@@ -180,13 +177,12 @@ public class DatabaseCommands
     public Followers showFollowers(String userName) throws DataNotFoundException
     {
         Session session = databaseManager.sessionFactory.openSession();
-        Query<String> followerIDsQ = session.createQuery("select f.username from FollowRelation f where f.followedUsername = :userName", String.class);
-        followerIDsQ.setParameter("userName", userName);
-        List<String> followerIDs = followerIDsQ.list();
+        Query<User> userQuery = session.createQuery("select f.user from FollowRelation f where f.followedUser.userName = :user");
+        userQuery.setParameter("user", userName);
         Followers followers = new Followers();
-        for (String flID:followerIDs)
+        for (User u : userQuery.list())
         {
-            followers.add(databaseManager.findUser(flID, session).toMiniUser());
+            followers.add(u.toMiniUser());
         }
         return followers;
     }
@@ -194,13 +190,12 @@ public class DatabaseCommands
     public Followings showFollowings(String userName) throws DataNotFoundException
     {
         Session session = databaseManager.sessionFactory.openSession();
-        Query<String> followingsIDsQ = session.createQuery("select f.followedUsername from FollowRelation f where f.username = :userName", String.class);
-        followingsIDsQ.setParameter("userName", userName);
-        List<String> followingsIDs = followingsIDsQ.list();
+        Query<User> userQuery = session.createQuery("select f.followedUser from FollowRelation f where f.followedUser.userName = :user");
+        userQuery.setParameter("user", userName);
         Followings followings = new Followings();
-        for (String flID:followingsIDs)
+        for (User u : userQuery.list())
         {
-            followings.add(databaseManager.findUser(flID, session).toMiniUser());
+            followings.add(u.toMiniUser());
         }
         return followings;
     }
@@ -380,6 +375,11 @@ public class DatabaseCommands
         Session session = databaseManager.sessionFactory.openSession();
         Query<User> userQuery = session.createQuery("select b.blocked from BlockRelation b where b.blocker.userName = :user", User.class);
         userQuery.setParameter("user", userName);
-        return userQuery.list();
+        BlackList blackList = new BlackList();
+        for (User u : userQuery.list())
+        {
+            blackList.add(u.toMiniUser());
+        }
+        return blackList;
     }
 }
