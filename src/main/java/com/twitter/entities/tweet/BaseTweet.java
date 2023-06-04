@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "tweets")
+@Table(name = "base_tweets")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "type")
 public abstract class BaseTweet
@@ -16,7 +16,7 @@ public abstract class BaseTweet
     @Id@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private final LocalDateTime date;
-    @Embedded
+    @OneToOne
     private final MiniUser owner;
 
     public BaseTweet(long id, LocalDateTime date, MiniUser owner)

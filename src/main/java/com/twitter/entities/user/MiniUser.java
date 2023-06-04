@@ -2,14 +2,18 @@ package com.twitter.entities.user;
 
 import com.twitter.entities.image.Avatar;
 import com.twitter.entities.image.Header;
-import jakarta.persistence.Embeddable;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 
 import java.io.Serializable;
 
-@Embeddable
+@Entity
+@Table
 public class MiniUser implements Serializable
 {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     protected String userName;
 
     protected String name;
@@ -21,6 +25,11 @@ public class MiniUser implements Serializable
     protected Avatar avatar;
     @OneToOne
     protected Header header;
+
+    public Long getId()
+    {
+        return id;
+    }
 
     public MiniUser()
     {

@@ -169,6 +169,8 @@ public class User implements Serializable
         return lastChangeDate;
     }
 
+    public Long getId(){return this.id;}
+
     public void setLastChangeDate(LocalDate lastChangeDate)
     {
         this.lastChangeDate = lastChangeDate;

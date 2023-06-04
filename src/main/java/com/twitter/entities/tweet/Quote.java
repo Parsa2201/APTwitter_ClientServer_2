@@ -17,12 +17,14 @@ public class Quote implements Serializable
     private Long id;
     @OneToOne
     private final Tweet tweet;
-    @Embedded
+    @OneToOne
     private final MiniUser quotedBy;
     private final LocalDateTime date;
     @Embedded
+    @AttributeOverride(name = "text", column = @Column(name = "qoute_text"))
     private final TextContent textContent;
     @Embedded
+    @AttributeOverride(name = "text", column = @Column(name = "qoute_image"))
     private final ImageContent imageContent;
 
     public Quote(Tweet tweet, MiniUser quotedBy, TextContent textContent, ImageContent imageContent)
