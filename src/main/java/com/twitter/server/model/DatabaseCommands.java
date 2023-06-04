@@ -221,7 +221,7 @@ public class DatabaseCommands
         if(databaseManager.isFollowRelationExist(followRelation, session) == null)
         {
             session.beginTransaction();
-            session.persist(followedUserName);
+            session.persist(followRelation);
             session.getTransaction().commit();
             session.close();
         }
