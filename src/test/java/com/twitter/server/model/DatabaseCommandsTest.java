@@ -89,7 +89,7 @@ public class DatabaseCommandsTest
     void signIn() throws PasswordFormatException, PasswordHashException, EmailFormatException, CountryException, DataNotFoundException, InvalidPasswordException
     {
         DatabaseCommands databaseCommands = new DatabaseCommands();
-        User user = databaseCommands.signIn("test user name", new Password("NaNoOOl;#329"));
+        User user = databaseCommands.signIn("test user name 1", new Password("NaNoOOl;#329"));
         Assertions.assertEquals(user, makeUser1());
     }
 
@@ -98,7 +98,7 @@ public class DatabaseCommandsTest
     {
         // FIXME
         DatabaseCommands databaseCommands = new DatabaseCommands();
-        databaseCommands.setAvatar("test user name", new Avatar("src/main/java/assets/Parsa Salamatipour 400X400.jpg"));
+        databaseCommands.setAvatar("test user name 1", new Avatar("src/main/java/assets/Parsa Salamatipour 400X400.jpg"));
     }
 
     @Test
@@ -106,23 +106,23 @@ public class DatabaseCommandsTest
     {
         // FIXME
         DatabaseCommands databaseCommands = new DatabaseCommands();
-        databaseCommands.setHeader("test user name", new Header("src/main/java/assets/Parsa Salamatipour 400X400.jpg"));
+        databaseCommands.setHeader("test user name 1", new Header("src/main/java/assets/Parsa Salamatipour 400X400.jpg"));
     }
 
     @Test
     void changeUserPassword() throws PasswordHashException, DataNotFoundException, InvalidPasswordException
     {
         DatabaseCommands databaseCommands = new DatabaseCommands();
-        databaseCommands.changeUserPassword("test user name", new Password("1234!@#$abAB"));
-        databaseCommands.signIn("test user name", new Password("1234!@#$abAB"));
+        databaseCommands.changeUserPassword("test user name 1", new Password("1234!@#$abAB"));
+        databaseCommands.signIn("test user name 1", new Password("1234!@#$abAB"));
     }
 
     @Test
     void changeName() throws DataNotFoundException, PasswordHashException, InvalidPasswordException
     {
         DatabaseCommands databaseCommands = new DatabaseCommands();
-        databaseCommands.changeName("test user name", "Mammad");
-        User user = databaseCommands.signIn("test user name", new Password("1234!@#$abAB"));
+        databaseCommands.changeName("test user name 1", "Mammad");
+        User user = databaseCommands.signIn("test user name 1", new Password("1234!@#$abAB"));
         Assertions.assertEquals(user.getName(), "Mammad");
     }
 
@@ -130,8 +130,8 @@ public class DatabaseCommandsTest
     void changeFamily() throws DataNotFoundException, PasswordHashException, InvalidPasswordException
     {
         DatabaseCommands databaseCommands = new DatabaseCommands();
-        databaseCommands.changeFamily("test user name", "Mammadi");
-        User user = databaseCommands.signIn("test user name", new Password("1234!@#$abAB"));
+        databaseCommands.changeFamily("test user name 1", "Mammadi");
+        User user = databaseCommands.signIn("test user name 1", new Password("1234!@#$abAB"));
         Assertions.assertEquals(user.getFamily(), "Mammadi");
     }
 
@@ -164,7 +164,7 @@ public class DatabaseCommandsTest
     {
         // FIXME
         MiniUser miniUser = new MiniUser();
-        miniUser.setUserName("test user name");
+        miniUser.setUserName("test user name 1");
 
         Tweet tweet = new Tweet(miniUser, new TextContent("this is a test text"), null);
 
@@ -201,18 +201,18 @@ public class DatabaseCommandsTest
     void block() throws DataNotFoundException
     {
         DatabaseCommands databaseCommands = new DatabaseCommands();
-        databaseCommands.block("test user name", "test user name 2");
+        databaseCommands.block("test user name 1", "test user name 2");
 
         try
         {
-            Followers followers = databaseCommands.showFollowers("test user name");
+            Followers followers = databaseCommands.showFollowers("test user name 1");
             for(MiniUser miniUser : followers)
                 if(miniUser.getUserName().equals("test user name 2"))
                     Assertions.fail();
 
             Followings followings = databaseCommands.showFollowings("test user name 2");
             for(MiniUser miniUser : followings)
-                if(miniUser.getUserName().equals("test user name"))
+                if(miniUser.getUserName().equals("test user name 1"))
                     Assertions.fail();
         }
         catch (DataNotFoundException ignored){}

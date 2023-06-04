@@ -4,26 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e6f89f22-8f2b-446d-b25f-81599946cb8d" name="Changes" comment="made all the ids of the tweets, long and Long">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/exception/hashtag/HashtagException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/exception/hashtag/NameNotHashtagException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/tweet/content/hashtag/Hashtag.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/tweet/content/hashtag/Hashtags.java" afterDir="false" />
+    <list default="true" id="e6f89f22-8f2b-446d-b25f-81599946cb8d" name="Changes" comment="added sendRetweet and block test cases">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/client/controller/ControllerCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/client/controller/ControllerCommands.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/client/model/ModelCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/client/model/ModelCommands.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/client/view/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/client/view/Command.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/client/view/MenuOption.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/client/view/MenuOption.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/exception/EmailOrPhoneRequiredException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/exception/user/EmailOrPhoneRequiredException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/tweet/Tweet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/tweet/Tweet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/user/ConnectedUsers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/user/follow/ConnectedUsers.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/user/FollowRelation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/user/follow/FollowRelation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/user/Followers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/user/follow/Followers.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/entities/user/Followings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/entities/user/follow/Followings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/server/model/DatabaseCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/server/model/DatabaseCommands.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/server/model/DatabaseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/server/model/DatabaseManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/twitter/server/model/ModelCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/twitter/server/model/ModelCommands.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,7 +92,7 @@
       <recent name="com.twitter.client" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Client">
+  <component name="RunManager" selected="JUnit.DatabaseCommandsTest.setAvatar">
     <configuration name="Client" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="com.twitter.client.Main" />
       <module name="APTwitter_ClientServer_2" />
@@ -122,62 +106,65 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Server" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="com.twitter.server.Main" />
+    <configuration name="DatabaseCommandsTest.changeFamily" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="APTwitter_ClientServer_2" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.twitter.server.*" />
+          <option name="PATTERN" value="com.twitter.server.model.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ControllerCommandsTest.changeUserInformation1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="APTwitter_ClientServer_2" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.twitter.client.controller.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.twitter.client.controller" />
-      <option name="MAIN_CLASS_NAME" value="com.twitter.client.controller.ControllerCommandsTest" />
-      <option name="METHOD_NAME" value="changeUserInformation1" />
+      <option name="PACKAGE_NAME" value="com.twitter.server.model" />
+      <option name="MAIN_CLASS_NAME" value="com.twitter.server.model.DatabaseCommandsTest" />
+      <option name="METHOD_NAME" value="changeFamily" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ControllerCommandsTest.signUp1 (2)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="DatabaseCommandsTest.sendTweet" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="APTwitter_ClientServer_2" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.twitter.client.controller.*" />
+          <option name="PATTERN" value="com.twitter.server.model.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.twitter.client.controller" />
-      <option name="MAIN_CLASS_NAME" value="com.twitter.client.controller.ControllerCommandsTest" />
-      <option name="METHOD_NAME" value="signUp1" />
+      <option name="PACKAGE_NAME" value="com.twitter.server.model" />
+      <option name="MAIN_CLASS_NAME" value="com.twitter.server.model.DatabaseCommandsTest" />
+      <option name="METHOD_NAME" value="sendTweet" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ControllerCommandsTest.signUp1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="DatabaseCommandsTest.setAvatar" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="APTwitter_ClientServer_2" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="twitter.client.controller.*" />
+          <option name="PATTERN" value="com.twitter.server.model.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="twitter.client.controller" />
-      <option name="MAIN_CLASS_NAME" value="twitter.client.controller.ControllerCommandsTest" />
-      <option name="METHOD_NAME" value="signUp1" />
+      <option name="PACKAGE_NAME" value="com.twitter.server.model" />
+      <option name="MAIN_CLASS_NAME" value="com.twitter.server.model.DatabaseCommandsTest" />
+      <option name="METHOD_NAME" value="setAvatar" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DatabaseCommandsTest.setHeader" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="APTwitter_ClientServer_2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.twitter.server.model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.twitter.server.model" />
+      <option name="MAIN_CLASS_NAME" value="com.twitter.server.model.DatabaseCommandsTest" />
+      <option name="METHOD_NAME" value="setHeader" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -201,11 +188,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Server" />
+        <item itemvalue="JUnit.DatabaseCommandsTest.setAvatar" />
+        <item itemvalue="JUnit.DatabaseCommandsTest.sendTweet" />
         <item itemvalue="JUnit.DatabaseCommandsTest.signUp" />
-        <item itemvalue="JUnit.ControllerCommandsTest.changeUserInformation1" />
-        <item itemvalue="JUnit.ControllerCommandsTest.signUp1 (2)" />
-        <item itemvalue="JUnit.ControllerCommandsTest.signUp1" />
+        <item itemvalue="JUnit.DatabaseCommandsTest.setHeader" />
+        <item itemvalue="JUnit.DatabaseCommandsTest.changeFamily" />
       </list>
     </recent_temporary>
   </component>
@@ -236,7 +223,10 @@
       <workItem from="1685733251741" duration="807000" />
       <workItem from="1685734940301" duration="12409000" />
       <workItem from="1685784250123" duration="919000" />
-      <workItem from="1685785202607" duration="7557000" />
+      <workItem from="1685785202607" duration="20719000" />
+      <workItem from="1685861644395" duration="3612000" />
+      <workItem from="1685865957369" duration="96000" />
+      <workItem from="1685866070096" duration="308000" />
     </task>
     <task id="LOCAL-00001" summary="added sendFile to the ServerConnectionHandler.java">
       <created>1685298475313</created>
@@ -427,7 +417,98 @@
       <option name="project" value="LOCAL" />
       <updated>1685790410124</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="rebased the follow classes to their own package">
+      <created>1685792916797</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1685792916797</updated>
+    </task>
+    <task id="LOCAL-00029" summary="added the hashtag exception to the menu options">
+      <created>1685793020720</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1685793020720</updated>
+    </task>
+    <task id="LOCAL-00030" summary="added all the TODOs for the tweet (for the DatabaseCommands)">
+      <created>1685794018320</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1685794018320</updated>
+    </task>
+    <task id="LOCAL-00031" summary="added hashtag to the controller commands (for searching a hashtag)">
+      <created>1685796070633</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1685796070633</updated>
+    </task>
+    <task id="LOCAL-00032" summary="added hashtag to the console view">
+      <created>1685796448847</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1685796448847</updated>
+    </task>
+    <task id="LOCAL-00033" summary="added TODOs for block in the database side">
+      <created>1685798014193</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1685798014193</updated>
+    </task>
+    <task id="LOCAL-00034" summary="added block to the console view">
+      <created>1685798750594</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1685798750594</updated>
+    </task>
+    <task id="LOCAL-00035" summary="now if the tweet is favstar, it shows it in the console view">
+      <created>1685798891654</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1685798891654</updated>
+    </task>
+    <task id="LOCAL-00036" summary="added some unit testes for the DatabaseCommands">
+      <created>1685805695277</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1685805695277</updated>
+    </task>
+    <task id="LOCAL-00037" summary="added sendTweet unit test to the DatabaseCommandsTest">
+      <created>1685806500637</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1685806500637</updated>
+    </task>
+    <task id="LOCAL-00038" summary="now every 2 minutes, the data will be stored in the settings.bin file">
+      <created>1685863869447</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1685863869447</updated>
+    </task>
+    <task id="LOCAL-00039" summary="every change in the Data will save it">
+      <created>1685864019873</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1685864019873</updated>
+    </task>
+    <task id="LOCAL-00040" summary="added sendRetweet and block test cases">
+      <created>1685864983625</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1685864983625</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -445,19 +526,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added FollowRelation.java and made ConnectedUsers iterable" />
-    <MESSAGE value="made the Program class and implemented a console view" />
-    <MESSAGE value="database without bug accept signUp1 test" />
-    <MESSAGE value="DatabaseCommands commit" />
-    <MESSAGE value="Country bugfix" />
-    <MESSAGE value="added signIn to the view" />
-    <MESSAGE value="made the ServerException extent TwitIOException instead of IOException" />
-    <MESSAGE value="print error the errors in the view" />
-    <MESSAGE value="added all the individual changes to the user in the client" />
-    <MESSAGE value="added all the TODOs for the server side" />
-    <MESSAGE value="added sendTweet(), sentRetweet(), and sendQuote to the client" />
-    <MESSAGE value="added like and dislike and show time-line to the client" />
-    <MESSAGE value="sign up database unit test" />
     <MESSAGE value="cleaned the DatabaseManager.java" />
     <MESSAGE value="added the 2nd version of tweet classes" />
     <MESSAGE value="implemented some of the other DatabaseCommandsTest" />
@@ -470,15 +538,38 @@
     <MESSAGE value="fixed the bug of name and family printing without a space between" />
     <MESSAGE value="now the follow commands show respond in the console" />
     <MESSAGE value="made all the ids of the tweets, long and Long" />
-    <option name="LAST_COMMIT_MESSAGE" value="made all the ids of the tweets, long and Long" />
+    <MESSAGE value="rebased the follow classes to their own package" />
+    <MESSAGE value="added the hashtag exception to the menu options" />
+    <MESSAGE value="added all the TODOs for the tweet (for the DatabaseCommands)" />
+    <MESSAGE value="added hashtag to the controller commands (for searching a hashtag)" />
+    <MESSAGE value="added hashtag to the console view" />
+    <MESSAGE value="added TODOs for block in the database side" />
+    <MESSAGE value="added block to the console view" />
+    <MESSAGE value="now if the tweet is favstar, it shows it in the console view" />
+    <MESSAGE value="added some unit testes for the DatabaseCommands" />
+    <MESSAGE value="added sendTweet unit test to the DatabaseCommandsTest" />
+    <MESSAGE value="now every 2 minutes, the data will be stored in the settings.bin file" />
+    <MESSAGE value="every change in the Data will save it" />
+    <MESSAGE value="added sendRetweet and block test cases" />
+    <option name="LAST_COMMIT_MESSAGE" value="added sendRetweet and block test cases" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/twitter/server/model/ModelCommands.java</url>
-          <line>221</line>
+          <line>225</line>
           <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/twitter/server/model/DatabaseCommands.java</url>
+          <line>68</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/com/twitter/server/model/DatabaseCommandsTest.java</url>
+          <line>100</line>
+          <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
