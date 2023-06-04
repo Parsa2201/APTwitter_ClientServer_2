@@ -17,12 +17,11 @@ public abstract class BaseTweet
     private Long id;
     private final String userName;
     private final LocalDateTime date;
-    @OneToOne
+    @Transient
     private final MiniUser owner;
 
-    public BaseTweet(long id, LocalDateTime date, MiniUser owner)
+    public BaseTweet(LocalDateTime date, MiniUser owner)
     {
-        this.id = id;
         this.date = date;
         this.owner = owner;
         this.userName = owner.getUserName();
@@ -30,7 +29,7 @@ public abstract class BaseTweet
 
     public BaseTweet(MiniUser owner)
     {
-        this(-1, LocalDateTime.now(), owner);
+        this(LocalDateTime.now(), owner);
     }
 
     public BaseTweet()

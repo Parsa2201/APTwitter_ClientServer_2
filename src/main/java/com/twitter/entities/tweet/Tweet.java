@@ -10,6 +10,7 @@ import jakarta.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @DiscriminatorValue("tweet")
@@ -24,9 +25,9 @@ public class Tweet extends BaseTweet implements Serializable
     private int quoteCount;
     private boolean isFavstar;
     @OneToMany
-    private final ArrayList<Quote> quotes;
+    private final List<Quote> quotes;
     @OneToMany
-    private final ArrayList<Reply> replies;
+    private final List<Reply> replies;
     @OneToOne
     private final Hashtags hashtags;
 
@@ -47,7 +48,7 @@ public class Tweet extends BaseTweet implements Serializable
 
     public Tweet(MiniUser owner, TextContent textContent, ImageContent imageContent, int id, LocalDateTime tweetDate) throws HashtagException
     {
-        super(id, tweetDate, owner);
+        super(tweetDate, owner);
         this.textContent = textContent;
         this.imageContent = imageContent;
         likeCount = 0;
@@ -119,12 +120,12 @@ public class Tweet extends BaseTweet implements Serializable
         isFavstar = favstar;
     }
 
-    public ArrayList<Quote> getQuotes()
+    public List<Quote> getQuotes()
     {
         return quotes;
     }
 
-    public ArrayList<Reply> getReplies()
+    public List<Reply> getReplies()
     {
         return replies;
     }

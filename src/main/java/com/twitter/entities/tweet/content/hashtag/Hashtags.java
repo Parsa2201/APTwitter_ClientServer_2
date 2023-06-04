@@ -7,6 +7,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -20,7 +21,7 @@ public class Hashtags implements Iterable<Hashtag>
     private Long id;
 
     @OneToMany
-    private final ArrayList<Hashtag> hashtags;
+    private final List<Hashtag> hashtags;
 
     public Long getId()
     {

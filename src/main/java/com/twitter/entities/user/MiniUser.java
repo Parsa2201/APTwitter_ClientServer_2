@@ -6,14 +6,9 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 
-@Entity
-@Table
+
 public class MiniUser implements Serializable
 {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     protected String userName;
 
     protected String name;
@@ -26,10 +21,6 @@ public class MiniUser implements Serializable
     @OneToOne
     protected Header header;
 
-    public Long getId()
-    {
-        return id;
-    }
 
     public MiniUser()
     {

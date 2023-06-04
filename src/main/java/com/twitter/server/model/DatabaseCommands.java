@@ -7,21 +7,21 @@ import com.twitter.entities.exception.user.password.InvalidPasswordException;
 import com.twitter.entities.exception.text.TextTooLongException;
 import com.twitter.entities.image.Avatar;
 import com.twitter.entities.image.Header;
-import com.twitter.entities.tweet.Quote;
-import com.twitter.entities.tweet.Retweet;
-import com.twitter.entities.tweet.TimeLine;
-import com.twitter.entities.tweet.Tweet;
+import com.twitter.entities.tweet.*;
 import com.twitter.entities.user.*;
 import com.twitter.entities.user.follow.FollowRelation;
 import com.twitter.entities.user.follow.Followers;
 import com.twitter.entities.user.follow.Followings;
+import com.twitter.entities.tweet.content.hashtag.Hashtag;
 import jakarta.persistence.PersistenceException;
 import org.hibernate.Session;
 import org.hibernate.exception.ConstraintViolationException;
 import org.hibernate.query.Query;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class DatabaseCommands
 {
@@ -216,20 +216,29 @@ public class DatabaseCommands
         session.close();
     }
 
-    public void follow (FollowRelation followRelation) throws DataNotFoundException
+    public void follow (String userName, String followedUserName) throws DataNotFoundException
     {
         Session session = databaseManager.sessionFactory.openSession();
-        databaseManager.findUser(followRelation.getFollowedUsername(), session);
-        databaseManager.findUser(followRelation.getUsername(), session);
-        session.beginTransaction();
-        session.persist(followRelation);
-        session.getTransaction().commit();
-        session.close();
+//        databaseManager.findUser(followRelation.getFollowedUser(), session);
+//        databaseManager.findUser(followRelation.getUsername(), session);
+        FollowRelation followRelation = new FollowRelation(databaseManager.findUser(userName, session), databaseManager.findUser(followedUserName, session));
+        if(databaseManager.isFollowRelationExist(followRelation, session) == null)
+        {
+            session.beginTransaction();
+            session.persist(followedUserName);
+            session.getTransaction().commit();
+            session.close();
+        }
+        else
+        {
+            // throw exception
+        }
     }
-    public void unfollow (FollowRelation followRelation) throws DataNotFoundException
+    public void unfollow (String userName, String followedUserName) throws DataNotFoundException
     {
 
         Session session = databaseManager.sessionFactory.openSession();
+        FollowRelation followRelation = new FollowRelation(databaseManager.findUser(userName, session), databaseManager.findUser(followedUserName, session));
         if((followRelation = databaseManager.isFollowRelationExist(followRelation, session)) != null)
         {
             session.beginTransaction();
@@ -253,27 +262,75 @@ public class DatabaseCommands
 
     public void sendTweet(Tweet tweet)
     {
-        // TODO
+        // temporary send tweet this throw exception
+        Session session = databaseManager.sessionFactory.openSession();
+        session.beginTransaction();
+        for (Hashtag hashtag : tweet.getHashtags())
+        {
+            session.persist(hashtag);
+        }
+        session.persist(tweet.getHashtags());
+        session.persist(tweet);
+        session.getTransaction().commit();
+        session.close();
     }
 
     public void sendRetweet(Retweet retweet)
     {
         // TODO
+        Session session = databaseManager.sessionFactory.openSession();
+        session.beginTransaction();
+        session.persist(retweet);
+        session.getTransaction().commit();
+        session.close();
     }
 
     public void sendQuote(Quote quote)
     {
         // TODO
+        Session session = databaseManager.sessionFactory.openSession();
+        session.beginTransaction();
+        session.persist(quote);
+        session.getTransaction().commit();
+        session.close();
     }
 
-    public void likeTweet(Tweet tweet, String userName)
+    public void likeTweet(Tweet tweet, String userName) throws DataNotFoundException
     {
         // TODO
+        Session session = databaseManager.sessionFactory.openSession();
+        User user = databaseManager.findUser(userName, session);
+        LikeRelation likeRelation = new LikeRelation(user, tweet);
+        if(databaseManager.isLikeRelationExist(likeRelation, session) == null)
+        {
+            session.beginTransaction();
+            session.persist(likeRelation);
+            session.getTransaction().commit();
+            session.close();
+        }
+        else
+        {
+          // throw exception
+        }
     }
 
-    public void dislikeTweet(Tweet tweet, String userName)
+    public void dislikeTweet(Tweet tweet, String userName) throws DataNotFoundException
     {
         // TODO
+        Session session = databaseManager.sessionFactory.openSession();
+        User user = databaseManager.findUser(userName, session);
+        LikeRelation likeRelation = new LikeRelation(user, tweet);
+        if(databaseManager.isLikeRelationExist(likeRelation, session) != null)
+        {
+            session.beginTransaction();
+            session.delete(likeRelation);
+            session.getTransaction().commit();
+            session.close();
+        }
+        else
+        {
+          // throw exception
+        }
     }
 
     public TimeLine showTimeLine(String userName)
@@ -282,19 +339,47 @@ public class DatabaseCommands
         return null;
     }
 
-    public void block(String blocker, String blocked)
+    public void block(String blocker, String blocked) throws DataNotFoundException
     {
-        // TODO
+        // TODO : check the followRelations
+        Session session = databaseManager.sessionFactory.openSession();
+        BlockRelation blockRelation = new BlockRelation(databaseManager.findUser(blocker, session), databaseManager.findUser(blocked, session));
+        if(databaseManager.isBlockRelationExist(blockRelation, session) == null)
+        {
+            session.beginTransaction();
+            session.persist(blockRelation);
+            session.getTransaction().commit();
+            session.close();
+        }
+        else
+        {
+          // throw exception
+        }
     }
 
-    public void unblock(String blocker, String blocked)
+    public void unblock(String blocker, String blocked) throws DataNotFoundException
     {
         // TODO
+        Session session = databaseManager.sessionFactory.openSession();
+        BlockRelation blockRelation = new BlockRelation(databaseManager.findUser(blocker, session), databaseManager.findUser(blocked, session));
+        if((blockRelation = databaseManager.isBlockRelationExist(blockRelation, session)) != null)
+        {
+            session.beginTransaction();
+            session.delete(blockRelation);
+            session.getTransaction().commit();
+            session.close();
+        }
+        else
+        {
+         // throw exception
+        }
     }
 
     public BlackList showBlackList(String userName)
     {
-        // TODO
-        return null;
+        Session session = databaseManager.sessionFactory.openSession();
+        Query<User> userQuery = session.createQuery("select b.blocked from BlockRelation b where b.blocker.userName = :user", User.class);
+        userQuery.setParameter("user", userName);
+        return userQuery.list();
     }
 }

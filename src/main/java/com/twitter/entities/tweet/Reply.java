@@ -15,7 +15,7 @@ public class Reply implements Serializable
     @Id@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private final String userName;
-    @OneToOne
+    @Transient
     private final MiniUser replier;
     @OneToOne
     private final Tweet tweet;
@@ -26,7 +26,6 @@ public class Reply implements Serializable
 
     public Reply(MiniUser replier, Tweet tweet, LocalDateTime date, TextContent textContent)
     {
-        id = -1L;
         this.replier = replier;
         this.tweet = tweet;
         this.date = date;
@@ -51,11 +50,6 @@ public class Reply implements Serializable
     public long getId()
     {
         return id;
-    }
-
-    public void setId(long id)
-    {
-        this.id = id;
     }
 
     public MiniUser getReplier()

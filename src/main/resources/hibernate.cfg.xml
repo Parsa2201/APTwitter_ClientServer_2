@@ -36,5 +36,7 @@
         <mapping class="com.twitter.entities.tweet.content.ImageContent"/>
         <mapping class="com.twitter.entities.image.ImageContentData"/>
         <mapping class="com.twitter.entities.user.MiniUser"/>
+        <mapping class="com.twitter.entities.tweet.LikeRelation"/>
+        <mapping class="com.twitter.entities.user.BlockRelation"/>
     </session-factory>
 </hibernate-configuration>

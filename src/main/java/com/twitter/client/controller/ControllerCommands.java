@@ -249,6 +249,7 @@ public class ControllerCommands
 
     public void follow(String userName) throws ServerConnectionFailedException, ServerRespondFailedException, DatabaseFailedException, ServerInvalidObjectException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException, PermissionDeniedException, ServerInvalidCommandException
     {
+        // TODO : give the userName and followedUserName instead of FollowRelation
         User user = getCurrentUser();
         FollowRelation followRelation = new FollowRelation(user.getUserName(), userName);
         modelCommands.follow(followRelation);
@@ -256,6 +257,7 @@ public class ControllerCommands
 
     public void unfollow(String userName) throws ServerConnectionFailedException, ServerRespondFailedException, DatabaseFailedException, ServerInvalidObjectException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException, PermissionDeniedException, ServerInvalidCommandException
     {
+        // TODO : give the userName and followedUserName instead of FollowRelation
         User user = getCurrentUser();
         FollowRelation followRelation = new FollowRelation(user.getUserName(), userName);
         modelCommands.unfollow(followRelation);

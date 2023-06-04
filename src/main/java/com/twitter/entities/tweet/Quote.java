@@ -18,7 +18,7 @@ public class Quote implements Serializable
     private final String userName;
     @OneToOne
     private final Tweet tweet;
-    @OneToOne
+    @Transient
     private final MiniUser quotedBy;
     private final LocalDateTime date;
     @Embedded

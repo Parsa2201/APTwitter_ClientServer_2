@@ -1,5 +1,6 @@
 package com.twitter.entities.user.follow;
 
+import com.twitter.entities.user.User;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -20,38 +21,40 @@ public class FollowRelation implements Serializable
         this.id = id;
     }
 
-    private final String username;
-    private final String followedUsername;
+    @OneToOne
+    private final User user;
+    @OneToOne
+    private final User followedUser;
 
 
-    public FollowRelation(String username, String followedUsername)
+    public FollowRelation(User user, User followedUser)
     {
-        this.username = username;
-        this.followedUsername = followedUsername;
+        this.user = user;
+        this.followedUser = followedUser;
     }
 
     public FollowRelation()
     {
-        this.username = null;
-        this.followedUsername = null;
+        this.user = null;
+        this.followedUser = null;
     }
 
-    public String getUsername()
+    public User getUser()
     {
-        return username;
+        return user;
     }
 
-    public String getFollowedUsername()
+    public User getFollowedUser()
     {
-        return followedUsername;
+        return followedUser;
     }
 
-    public boolean equals(FollowRelation followRelation)
-    {
-        if(this.username.equals(followRelation.getUsername()))
-        {
-            return this.followedUsername.equals(followRelation.getFollowedUsername());
-        }
-        return false;
-    }
+//    public boolean equals(FollowRelation followRelation)
+//    {
+//        if(this.user.equals(followRelation.getUsername()))
+//        {
+//            return this.followedUsername.equals(followRelation.getFollowedUsername());
+//        }
+//        return false;
+//    }
 }
