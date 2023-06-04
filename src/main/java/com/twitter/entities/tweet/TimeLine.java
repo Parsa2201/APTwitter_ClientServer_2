@@ -5,6 +5,7 @@ import org.jetbrains.annotations.NotNull;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 public class TimeLine implements Iterable<BaseTweet>, Serializable
 {
@@ -18,6 +19,14 @@ public class TimeLine implements Iterable<BaseTweet>, Serializable
     public void add(BaseTweet tweet)
     {
         tweets.add(tweet);
+    }
+
+    public void add(List<BaseTweet> tweetList)
+    {
+        for (BaseTweet b : tweetList)
+        {
+            add(b);
+        }
     }
 
     public void remove(BaseTweet tweet)

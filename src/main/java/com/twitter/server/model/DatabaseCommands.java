@@ -19,6 +19,7 @@ import org.hibernate.exception.ConstraintViolationException;
 import org.hibernate.query.Query;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class DatabaseCommands
 {
@@ -177,7 +178,7 @@ public class DatabaseCommands
     public Followers showFollowers(String userName) throws DataNotFoundException
     {
         Session session = databaseManager.sessionFactory.openSession();
-        Query<User> userQuery = session.createQuery("select f.user from FollowRelation f where f.followedUser.userName = :user");
+        Query<User> userQuery = session.createQuery("select f.user from FollowRelation f where f.followedUser.userName = :user", User.class);
         userQuery.setParameter("user", userName);
         Followers followers = new Followers();
         for (User u : userQuery.list())
@@ -190,7 +191,7 @@ public class DatabaseCommands
     public Followings showFollowings(String userName) throws DataNotFoundException
     {
         Session session = databaseManager.sessionFactory.openSession();
-        Query<User> userQuery = session.createQuery("select f.followedUser from FollowRelation f where f.followedUser.userName = :user");
+        Query<User> userQuery = session.createQuery("select f.followedUser from FollowRelation f where f.followedUser.userName = :user", User.class);
         userQuery.setParameter("user", userName);
         Followings followings = new Followings();
         for (User u : userQuery.list())
@@ -328,10 +329,40 @@ public class DatabaseCommands
         }
     }
 
-    public TimeLine showTimeLine(String userName)
+    public TimeLine showTimeLine(String userName) throws DataNotFoundException
     {
         // TODO
-        return null;
+        Session session = databaseManager.sessionFactory.openSession();
+        Followings followings = showFollowings(userName);
+        TimeLine timeLine = new TimeLine();
+        for (MiniUser u : followings)
+        {
+            Query<BaseTweet> baseTweetQuery = session.createQuery("select b from BaseTweet b where b.userName = :user", BaseTweet.class);
+            baseTweetQuery.setParameter("user", u.getUserName());
+            timeLine.add(baseTweetQuery.list());
+        }
+        List<BaseTweet> favStars = session.createQuery("select t from Tweet t where t.likeCount >= 10", BaseTweet.class).list();
+        List<String> blockedUsers = blockedUsers(userName);
+        List<String> blockerUsers = blockerUsers(userName);
+        for (BaseTweet t :favStars)
+        {
+            if(blockerUsers.contains(t.getUserName()))
+            {
+                favStars.remove(t);
+                continue;
+            }
+            if(blockedUsers.contains(t.getUserName()))
+            {
+                favStars.remove(t);
+                continue;
+            }
+            if(followings.getUserNames().contains(t.getUserName()))
+            {
+                favStars.remove(t);
+            }
+        }
+        timeLine.add(favStars);
+        return timeLine;
     }
 
     public void block(String blocker, String blocked) throws DataNotFoundException
@@ -396,4 +427,21 @@ public class DatabaseCommands
         }
         return blackList;
     }
+
+    public List<String> blockedUsers(String userName)
+    {
+        Session session = databaseManager.sessionFactory.openSession();
+        Query<String> blockedUsers = session.createQuery("select b.blocked.userName from BlockRelation b where b.blocker.userName = :user", String.class);
+        blockedUsers.setParameter("user", userName);
+        return blockedUsers.list();
+    }
+
+    public List<String> blockerUsers(String userName)
+    {
+        Session session = databaseManager.sessionFactory.openSession();
+        Query<String> blockerUsers = session.createQuery("select b.blocker.userName from BlockRelation b where b.blocked.userName = :user", String.class);
+        blockerUsers.setParameter("user", userName);
+        return blockerUsers.list();
+    }
+
 }

@@ -5,6 +5,7 @@ import com.twitter.entities.user.MiniUser;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 public class ConnectedUsers implements Serializable, Iterable<MiniUser>
 {
@@ -33,6 +34,16 @@ public class ConnectedUsers implements Serializable, Iterable<MiniUser>
     public int size()
     {
         return miniUsers.size();
+    }
+
+    public List<String> getUserNames ()
+    {
+        List<String> userNames = new ArrayList<>();
+        for (MiniUser m : miniUsers)
+        {
+            userNames.add(m.getUserName());
+        }
+        return userNames;
     }
 
     @Override
