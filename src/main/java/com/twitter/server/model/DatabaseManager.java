@@ -42,7 +42,7 @@ public class DatabaseManager
             return user;
         }
     }
-    public FollowRelation isFollowRelationExist(FollowRelation followRelation, Session session)
+    public FollowRelation isFollowRelationExist(FollowRelation followRelation, Session session) throws DataNotFoundException
     {
         // TODO : change this model
 //        List<FollowRelation> followRelations = session.createQuery("select f from FollowRelation f", FollowRelation.class).list();
@@ -57,22 +57,43 @@ public class DatabaseManager
         Query<FollowRelation> followRelationQuery = session.createQuery("select f from FollowRelation f where f.user.userName = :user and f.followedUser.userName = :fuser", FollowRelation.class);
         followRelationQuery.setParameter("user", followRelation.getUser().getUserName());
         followRelationQuery.setParameter("fuser", followRelation.getFollowedUser().getUserName());
-        return followRelationQuery.list().get(0);
+        try
+        {
+            return followRelationQuery.list().get(0);
+        }
+        catch (IndexOutOfBoundsException e)
+        {
+            return null;
+        }
     }
 
-    public LikeRelation isLikeRelationExist(LikeRelation likeRelation, Session session)
+    public LikeRelation isLikeRelationExist(LikeRelation likeRelation, Session session) throws DataNotFoundException
     {
         Query<LikeRelation> likeRelationQuery = session.createQuery("select l from LikeRelation l where l.user.userName = :user and l.tweet.id = :tweet", LikeRelation.class);
         likeRelationQuery.setParameter("user", likeRelation.getUser().getUserName());
         likeRelationQuery.setParameter("tweet", likeRelation.getTweet().getId());
-        return likeRelationQuery.list().get(0);
+        try
+        {
+            return likeRelationQuery.list().get(0);
+        }
+        catch (IndexOutOfBoundsException e)
+        {
+            return null;
+        }
     }
 
-    public BlockRelation isBlockRelationExist(BlockRelation blockRelation, Session session)
+    public BlockRelation isBlockRelationExist(BlockRelation blockRelation, Session session) throws DataNotFoundException
     {
         Query<BlockRelation> blockRelationQuery = session.createQuery("select b from BlockRelation b where b.blocker.userName = :user and b.blocked.userName = :buser", BlockRelation.class);
         blockRelationQuery.setParameter("user", blockRelation.getBlocker().getUserName());
         blockRelationQuery.setParameter("buser", blockRelation.getBlocked().getUserName());
-        return blockRelationQuery.list().get(0);
+        try
+        {
+            return blockRelationQuery.list().get(0);
+        }
+        catch (IndexOutOfBoundsException e)
+        {
+            return null;
+        }
     }
 }
