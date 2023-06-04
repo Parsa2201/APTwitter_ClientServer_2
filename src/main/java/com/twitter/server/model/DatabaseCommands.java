@@ -191,7 +191,7 @@ public class DatabaseCommands
     public Followings showFollowings(String userName) throws DataNotFoundException
     {
         Session session = databaseManager.sessionFactory.openSession();
-        Query<User> userQuery = session.createQuery("select f.followedUser from FollowRelation f where f.followedUser.userName = :user", User.class);
+        Query<User> userQuery = session.createQuery("select f.followedUser from FollowRelation f where f.user.userName = :user", User.class);
         userQuery.setParameter("user", userName);
         Followings followings = new Followings();
         for (User u : userQuery.list())
