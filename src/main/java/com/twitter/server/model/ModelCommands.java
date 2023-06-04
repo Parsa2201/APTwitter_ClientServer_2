@@ -1,11 +1,12 @@
 package com.twitter.server.model;
 
-import com.twitter.entities.exception.io.server.ServerInvalidObjectException;
+import com.twitter.entities.exception.UnknownException;
 import com.twitter.entities.exception.io.server.DataNotFoundException;
+import com.twitter.entities.exception.io.server.ServerInvalidObjectException;
+import com.twitter.entities.exception.text.TextTooLongException;
 import com.twitter.entities.exception.user.CountryException;
 import com.twitter.entities.exception.user.email.EmailFormatException;
 import com.twitter.entities.exception.user.password.InvalidPasswordException;
-import com.twitter.entities.exception.text.TextTooLongException;
 import com.twitter.entities.image.Avatar;
 import com.twitter.entities.image.Header;
 import com.twitter.entities.server.Respond;
@@ -15,7 +16,6 @@ import com.twitter.entities.tweet.Retweet;
 import com.twitter.entities.tweet.TimeLine;
 import com.twitter.entities.tweet.Tweet;
 import com.twitter.entities.user.*;
-import com.twitter.entities.user.follow.FollowRelation;
 import com.twitter.entities.user.follow.Followers;
 import com.twitter.entities.user.follow.Followings;
 
@@ -274,7 +274,7 @@ public class ModelCommands
         return new Respond(RespondCode.SUCCESS);
     }
 
-    public Respond showTimeLine(ObjectInputStream objectInputStream) throws ServerInvalidObjectException, DataNotFoundException
+    public Respond showTimeLine(ObjectInputStream objectInputStream) throws ServerInvalidObjectException, DataNotFoundException, UnknownException
     {
         String userName = ObjectGetter.getObject(objectInputStream, String.class);
         TimeLine timeLine = databaseCommands.showTimeLine(userName);

@@ -19,7 +19,7 @@ public abstract class BaseTweet implements Serializable
     private final String userName;
     private final LocalDateTime date;
     @Transient
-    private final MiniUser owner;
+    private MiniUser owner;
 
     public BaseTweet(LocalDateTime date, MiniUser owner)
     {
@@ -64,6 +64,11 @@ public abstract class BaseTweet implements Serializable
     public MiniUser getOwner()
     {
         return owner;
+    }
+
+    public void setOwner(MiniUser owner)
+    {
+        this.owner = owner;
     }
 
     public String getUserName()

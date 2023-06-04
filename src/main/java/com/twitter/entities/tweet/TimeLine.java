@@ -4,6 +4,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -77,6 +78,12 @@ public class TimeLine implements Iterable<BaseTweet>, Serializable
             if (tweet.getId() == tweetId && tweet instanceof Tweet)
                 return ((Tweet) tweet).getReply(replyId);
         return null;
+    }
+
+    public void sort()
+    {
+        Comparator<BaseTweet> comparator = Comparator.comparing(BaseTweet::getDate);
+        this.tweets.sort(comparator);
     }
 
     @NotNull

@@ -1,5 +1,6 @@
 package com.twitter.server.model;
 
+import com.twitter.entities.exception.UnknownException;
 import com.twitter.entities.exception.io.server.DataNotFoundException;
 import com.twitter.entities.exception.text.TextTooLongException;
 import com.twitter.entities.exception.user.CountryException;
@@ -14,6 +15,7 @@ import com.twitter.entities.user.follow.FollowRelation;
 import com.twitter.entities.user.follow.Followers;
 import com.twitter.entities.user.follow.Followings;
 import jakarta.persistence.PersistenceException;
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.exception.ConstraintViolationException;
 import org.hibernate.query.Query;
@@ -329,7 +331,7 @@ public class DatabaseCommands
         }
     }
 
-    public TimeLine showTimeLine(String userName) throws DataNotFoundException
+    public TimeLine showTimeLine(String userName) throws DataNotFoundException, UnknownException
     {
         // TODO
         Session session = databaseManager.sessionFactory.openSession();
@@ -363,6 +365,16 @@ public class DatabaseCommands
             }
         }
         timeLine.add(favStars);
+        for (BaseTweet b : timeLine)
+        {
+            b.setOwner(databaseManager.findUser(b.getUserName(), session).toMiniUser());
+        }
+        timeLine.sort();
+        for (BaseTweet b : timeLine)
+        {
+            Hibernate.initialize(b.toTweet().getQuotes());
+            Hibernate.initialize(b.toTweet().getReplies());
+        }
         return timeLine;
     }
 

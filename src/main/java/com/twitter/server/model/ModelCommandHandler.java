@@ -1,5 +1,6 @@
 package com.twitter.server.model;
 
+import com.twitter.entities.exception.UnknownException;
 import com.twitter.entities.exception.io.server.DataNotFoundException;
 import com.twitter.entities.exception.io.server.ServerInvalidCommandException;
 import com.twitter.entities.exception.io.server.ServerInvalidObjectException;
@@ -79,6 +80,9 @@ public class ModelCommandHandler
         {
             throw new RuntimeException(e);
         } catch (TextTooLongException e)
+        {
+            throw new RuntimeException(e);
+        } catch (UnknownException e)
         {
             throw new RuntimeException(e);
         }
