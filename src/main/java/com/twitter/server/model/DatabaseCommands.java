@@ -290,4 +290,10 @@ public class DatabaseCommands
     {
         // TODO
     }
+
+    public BlackList showBlackList(String userName)
+    {
+        // TODO
+        return null;
+    }
 }

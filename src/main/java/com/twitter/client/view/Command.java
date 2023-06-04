@@ -388,4 +388,13 @@ public class Command
         controllerCommands.unblock(userName);
         TwitterLog.println("The user was successfully unblocked.");
     }
+
+    public void showBlackList() throws ServerConnectionFailedException, DataNotFoundException, ServerRespondFailedException, UnknownException, InvalidPasswordException, PermissionDeniedException, TextTooLongException, ServerInvalidCommandException, DatabaseFailedException, ServerInvalidObjectException
+    {
+        BlackList blackList = controllerCommands.showBlackList();
+        if(blackList.size() == 0)
+            TwitterLog.println("You have no blocked user.");
+        else for(MiniUser miniUser : blackList)
+            TwitterLog.println(miniUser.getName() + " " + miniUser.getFamily());
+    }
 }

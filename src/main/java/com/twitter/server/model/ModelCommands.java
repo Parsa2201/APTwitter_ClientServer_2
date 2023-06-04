@@ -294,4 +294,11 @@ public class ModelCommands
         databaseCommands.unblock(blocker, blocked);
         return new Respond(RespondCode.SUCCESS);
     }
+
+    public Respond showBlackList(ObjectInputStream objectInputStream) throws ServerInvalidObjectException
+    {
+        String userName = ObjectGetter.getObject(objectInputStream, String.class);
+        BlackList blackList = databaseCommands.showBlackList(userName);
+        return new Respond(RespondCode.SUCCESS, blackList);
+    }
 }

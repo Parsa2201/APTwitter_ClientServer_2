@@ -45,6 +45,7 @@ public enum Option
     UNFOLLOW,
     BLOCK,
     UNBLOCK,
+    SHOW_BLACK_LIST,
     ;
 
 
@@ -91,6 +92,7 @@ public enum Option
             case UNFOLLOW -> "Unfollow someone";
             case BLOCK -> "Block a user";
             case UNBLOCK -> "Unblock a user";
+            case SHOW_BLACK_LIST -> "Show my black list";
         };
     }
 }

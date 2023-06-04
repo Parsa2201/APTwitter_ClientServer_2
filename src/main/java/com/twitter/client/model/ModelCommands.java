@@ -361,4 +361,16 @@ public void changePassword(String userName, Password newPasswordHash) throws Ser
             respond.check();
         }
     }
+
+    public BlackList showBlackList(String userName) throws ServerConnectionFailedException, ServerInvalidObjectException, ServerRespondFailedException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException, ServerInvalidCommandException, DatabaseFailedException
+    {
+        try (ServerConnectionHandler serverConnectionHandler = new ServerConnectionHandler())
+        {
+            serverConnectionHandler.sendCommend("show-black-list");
+            serverConnectionHandler.sendObject(userName);
+            Respond respond = serverConnectionHandler.getRespond();
+            respond.check();
+            return (BlackList) respond.getObject();
+        }
+    }
 }

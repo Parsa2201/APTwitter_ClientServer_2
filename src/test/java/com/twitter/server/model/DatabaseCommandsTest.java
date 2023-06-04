@@ -219,4 +219,6 @@ public class DatabaseCommandsTest
     }
 
     // TODO: unblock()
+
+    // TODO: showBlackList()
 }

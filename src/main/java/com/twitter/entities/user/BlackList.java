@@ -31,4 +31,9 @@ public class BlackList implements Serializable, Iterable<MiniUser>
     {
         return blockedUsers.iterator();
     }
+
+    public int size()
+    {
+        return blockedUsers.size();
+    }
 }

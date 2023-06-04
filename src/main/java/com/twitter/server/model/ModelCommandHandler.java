@@ -56,6 +56,7 @@ public class ModelCommandHandler
                 case "show-user" -> modelCommands.showUser(objectInputStream);
                 case "block" -> modelCommands.block(objectInputStream);
                 case "unblock" -> modelCommands.unblock(objectInputStream);
+                case "show-black-list" -> modelCommands.showBlackList(objectInputStream);
 
                 case "send-tweet" -> modelCommands.sendTweet(objectInputStream);
                 case "send-retweet" -> modelCommands.sendRetweet(objectInputStream);

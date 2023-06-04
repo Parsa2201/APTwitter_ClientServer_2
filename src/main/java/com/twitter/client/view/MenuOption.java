@@ -121,6 +121,7 @@ public class MenuOption
                 case UNFOLLOW -> commandObject.unfollow();
                 case BLOCK -> commandObject.block();
                 case UNBLOCK -> commandObject.unblock();
+                case SHOW_BLACK_LIST -> commandObject.showBlackList();
                 // TODO: show user
 
             }
@@ -266,6 +267,7 @@ public class MenuOption
         options.add(Option.UNFOLLOW);
         options.add(Option.BLOCK);
         options.add(Option.UNBLOCK);
+        options.add(Option.SHOW_BLACK_LIST);
 
         options.add(Option.BACK);
 

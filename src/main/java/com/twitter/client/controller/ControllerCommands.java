@@ -355,4 +355,10 @@ public class ControllerCommands
         User user = getCurrentUser();
         modelCommands.unblock(user.getUserName(), userName);
     }
+
+    public BlackList showBlackList() throws PermissionDeniedException, ServerConnectionFailedException, DataNotFoundException, ServerRespondFailedException, UnknownException, InvalidPasswordException, TextTooLongException, ServerInvalidCommandException, DatabaseFailedException, ServerInvalidObjectException
+    {
+        User user = getCurrentUser();
+        return modelCommands.showBlackList(user.getUserName());
+    }
 }
