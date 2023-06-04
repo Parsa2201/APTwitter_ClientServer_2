@@ -4,7 +4,9 @@ import com.twitter.client.view.ProgramState;
 import com.twitter.entities.tweet.TimeLine;
 import com.twitter.entities.user.User;
 
-public class Data
+import java.io.Serializable;
+
+public class Data implements Serializable
 {
     private static Data data;
 
@@ -12,12 +14,22 @@ public class Data
 
     private User user;
     private TimeLine timeLine;
+    private transient final SettingIO settingIO;
 
     private Data()
     {
         programState = ProgramState.LOGGED_OUT;
         user = null;
         timeLine = new TimeLine();
+        settingIO = new SettingIO(this);
+        Data loadedData = settingIO.load();
+        if(loadedData != null)
+        {
+            programState = loadedData.getProgramState();
+            user = loadedData.getUser();
+            timeLine = loadedData.getTimeLine();
+        }
+        settingIO.startAutoSave();
     }
 
     public static Data getInstance()
@@ -55,5 +67,10 @@ public class Data
     public void setTimeLine(TimeLine timeLine)
     {
         this.timeLine = timeLine;
+    }
+
+    public boolean save()
+    {
+        return settingIO.save();
     }
 }
