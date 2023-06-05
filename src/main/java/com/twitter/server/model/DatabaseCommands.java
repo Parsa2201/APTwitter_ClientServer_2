@@ -431,25 +431,21 @@ public class DatabaseCommands
             if(b instanceof Retweet)
             {
                 ((Retweet) b).getTweet().setOwner(databaseManager.findUser(((Retweet) b).getTweet().getUserName(), session).toMiniUser());
-            }
-            if(b instanceof Tweet)
-            {
-                for (Reply r : ((Tweet) b).getReplies())
-                {
-                    r.setReplier(databaseManager.findUser(r.getUserName(), session).toMiniUser());
-                }
-                // WARNING : this line maybe makes bug
-                Hibernate.initialize(((Tweet) b).getHashtags().getHashtags());
-                Hibernate.initialize(((Tweet) b).getHashtags());
-                Hibernate.initialize(((Tweet) b).getReplies());
-            }
-            else if(b instanceof Retweet)
-            {
+                Hibernate.initialize(((Retweet) b).getTweet().getReplies());
                 for (Reply r : ((Retweet) b).getTweet().getReplies())
                 {
                     r.setReplier(databaseManager.findUser(r.getUserName(), session).toMiniUser());
                 }
-                Hibernate.initialize(((Retweet) b).getTweet().getReplies());
+            }
+            if(b instanceof Tweet)
+            {
+                Hibernate.initialize(((Tweet) b).getReplies());
+                for (Reply r : ((Tweet) b).getReplies())
+                {
+                    r.setReplier(databaseManager.findUser(r.getUserName(), session).toMiniUser());
+                }
+                Hibernate.initialize(((Tweet) b).getHashtags().getHashtags());
+                Hibernate.initialize(((Tweet) b).getHashtags());
             }
         }
         timeLine.sort();
