@@ -277,17 +277,6 @@ public class Command
         {
             printTweet(baseTweet);
 
-
-            if(baseTweet.toTweet().getQuoteCount() != 0)
-            {
-                TwitterLog.println("Quotes:");
-                for (Quote quote : baseTweet.toTweet().getQuotes())
-                {
-                    printQuote(quote);
-                    TwitterLog.println("#  #  #  #  #  #  #  #  #  #  #  #  #  #  #");
-                }
-            }
-
             if(baseTweet.toTweet().getReplies().size() != 0)
             {
                 TwitterLog.println("Replies:");
@@ -302,6 +291,12 @@ public class Command
 
     private static void printTweet(BaseTweet baseTweet) throws UnknownException
     {
+        if(baseTweet instanceof Quote)
+        {
+            printQuote((Quote) baseTweet);
+            return;
+        }
+
         Tweet tweet = baseTweet.toTweet();
 
         TwitterLog.println("_________________________________");
@@ -317,14 +312,20 @@ public class Command
             TwitterLog.println(" --- F --- A --- V --- S --- T --- A --- R ---");
     }
 
-    private static void printQuote(Quote quote)
+    private static void printQuote(Quote quote) throws UnknownException
     {
-        TwitterLog.startNest();
-        TwitterLog.println("\n" + quote.getQuotedBy().getName() + " " + quote.getQuotedBy().getFamily());
+        TwitterLog.println("\n" + quote.getOwner().getName() + " " + quote.getOwner().getFamily());
         TwitterLog.printlnNested(quote.getTextContent().toString());
         TwitterLog.println(quote.getDate().toString());
         TwitterLog.println("Quote id: " + quote.getId());
+
+        TwitterLog.println("---|");
+        TwitterLog.startNest();
+
+        printTweet(quote.getTweet());
+
         TwitterLog.endNest();
+        TwitterLog.println("---|");
     }
 
     private static void printReply(Reply reply)

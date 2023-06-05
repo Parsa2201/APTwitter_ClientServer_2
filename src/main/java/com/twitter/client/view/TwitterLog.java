@@ -100,9 +100,11 @@ public class TwitterLog
                 stringBuilder.append(c);
                 break;
             }
+            if(i == 0)
+                stringBuilder.append("\t".repeat(Math.max(0, nestedCount)));
 
             if(c == '\n')
-                stringBuilder.append("\n").append("\t".repeat(Math.max(0, nestedCount)));
+                stringBuilder.append(c).append("\t".repeat(Math.max(0, nestedCount)));
             else
                 stringBuilder.append(c);
         }

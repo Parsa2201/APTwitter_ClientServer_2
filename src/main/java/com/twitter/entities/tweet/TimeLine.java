@@ -64,14 +64,6 @@ public class TimeLine implements Iterable<BaseTweet>, Serializable
         return null;
     }
 
-    public Quote getQuote(long tweetId, long quoteId)
-    {
-        for (BaseTweet tweet : tweets)
-            if (tweet.getId() == tweetId && tweet instanceof Tweet)
-                return ((Tweet) tweet).getQuote(quoteId);
-        return null;
-    }
-
     public Reply getReply(long tweetId, long replyId)
     {
         for (BaseTweet tweet : tweets)

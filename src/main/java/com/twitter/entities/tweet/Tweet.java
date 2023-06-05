@@ -25,8 +25,6 @@ public class Tweet extends BaseTweet implements Serializable
     private int quoteCount;
     private boolean isFavstar;
     @OneToMany
-    private final List<Quote> quotes;
-    @OneToMany
     private final List<Reply> replies;
     @OneToOne
     private final Hashtags hashtags;
@@ -39,7 +37,6 @@ public class Tweet extends BaseTweet implements Serializable
         likeCount = 0;
         retweetCount = 0;
         quoteCount = 0;
-        quotes = new ArrayList<>();
         replies = new ArrayList<>();
         hashtags = new Hashtags();
 
@@ -54,7 +51,6 @@ public class Tweet extends BaseTweet implements Serializable
         likeCount = 0;
         retweetCount = 0;
         quoteCount = 0;
-        quotes = new ArrayList<>();
         replies = new ArrayList<>();
         hashtags = new Hashtags();
 
@@ -64,7 +60,6 @@ public class Tweet extends BaseTweet implements Serializable
     public Tweet() {
 
         textContent = null;
-        quotes = null;
         imageContent = null;
         replies = null;
         hashtags = null;
@@ -120,11 +115,6 @@ public class Tweet extends BaseTweet implements Serializable
         isFavstar = favstar;
     }
 
-    public List<Quote> getQuotes()
-    {
-        return quotes;
-    }
-
     public List<Reply> getReplies()
     {
         return replies;
@@ -133,14 +123,6 @@ public class Tweet extends BaseTweet implements Serializable
     public Hashtags getHashtags()
     {
         return hashtags;
-    }
-
-    public Quote getQuote(long quoteId)
-    {
-        for (Quote quote : quotes)
-            if (quote.getId() == quoteId)
-                return quote;
-        return null;
     }
 
     public Reply getReply(long replyId)

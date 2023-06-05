@@ -394,7 +394,7 @@ public class DatabaseCommands
         timeLine.sort();
         for (BaseTweet b : timeLine)
         {
-            Hibernate.initialize(b.toTweet().getQuotes());
+            //Hibernate.initialize(b.toTweet().getQuotes());
             Hibernate.initialize(b.toTweet().getReplies());
         }
         return timeLine;
