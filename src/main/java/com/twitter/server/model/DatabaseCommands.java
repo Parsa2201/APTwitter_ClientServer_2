@@ -463,7 +463,7 @@ public class DatabaseCommands
             session.delete(followingRelation);
             session.getTransaction().commit();
         } catch (FollowRelationNotFoundException e) {}
-        try(session)
+        try
         {
             databaseManager.isBlockRelationExist(blockRelation, session);
             throw new DuplicateBlockRequestException();
@@ -472,6 +472,10 @@ public class DatabaseCommands
             session.beginTransaction(); // FIXME: got a {IllegalStateException: Session/EntityManager is closed} error when i wanted to block a user
             session.persist(blockRelation);
             session.getTransaction().commit();
+        }
+        finally
+        {
+            session.close();
         }
     }
 
