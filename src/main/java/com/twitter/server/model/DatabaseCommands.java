@@ -295,7 +295,11 @@ public class DatabaseCommands
 
     public void sendReply(Reply reply)
     {
-        // TODO
+        Session session = databaseManager.sessionFactory.openSession();
+        session.beginTransaction();
+        session.persist(reply);
+        session.getTransaction().commit();
+        session.close();
     }
 
     public void likeTweet(Tweet tweet, String userName) throws DataNotFoundException
