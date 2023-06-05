@@ -305,6 +305,7 @@ public class DatabaseCommands
             session.persist(likeRelation);
             session.getTransaction().commit();
             session.close();
+            updateLikes(tweet, +1);
         }
         else
         {
@@ -324,10 +325,31 @@ public class DatabaseCommands
             session.delete(likeRelation);
             session.getTransaction().commit();
             session.close();
+            updateLikes(tweet, -1);
         }
         else
         {
           // throw exception
+        }
+    }
+
+    public void updateLikes(Tweet tweet, int change)
+    {
+        Session session = databaseManager.sessionFactory.openSession();
+        Query<Tweet> tweetQuery = session.createQuery("select t from Tweet t where t.id = :id", Tweet.class);
+        tweetQuery.setParameter("id", tweet.getId());
+        try
+        {
+            Tweet temptweet = tweetQuery.list().get(0);
+            temptweet.setLikeCount(temptweet.getLikeCount() + change);
+            session.beginTransaction();
+            session.update(temptweet);
+            session.getTransaction().commit();
+            session.close();
+        }
+        catch (IndexOutOfBoundsException e)
+        {
+
         }
     }
 
