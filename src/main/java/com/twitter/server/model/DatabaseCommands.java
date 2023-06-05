@@ -441,7 +441,15 @@ public class DatabaseCommands
                 // WARNING : this line maybe makes bug
                 Hibernate.initialize(((Tweet) b).getHashtags().getHashtags());
                 Hibernate.initialize(((Tweet) b).getHashtags());
-                Hibernate.initialize(b.toTweet().getReplies());
+                Hibernate.initialize(((Tweet) b).getReplies());
+            }
+            else if(b instanceof Retweet)
+            {
+                for (Reply r : ((Retweet) b).getTweet().getReplies())
+                {
+                    r.setReplier(databaseManager.findUser(r.getUserName(), session).toMiniUser());
+                }
+                Hibernate.initialize(((Retweet) b).getTweet().getReplies());
             }
         }
         timeLine.sort();
