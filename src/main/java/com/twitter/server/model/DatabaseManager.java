@@ -32,14 +32,23 @@ public class DatabaseManager
     {
         Query<User> userQuery = session.createQuery("select u from User u where u.userName = :userName", User.class);
         userQuery.setParameter("userName", userName);
-        User user = userQuery.list().get(0);
-        if(user == null)
+//        User user = userQuery.list().get(0);
+//        if(user == null)
+//        {
+//            throw new DataNotFoundException();
+//        }
+//        else
+//        {
+//            return user;
+//        }
+        try
         {
-            throw new DataNotFoundException();
+            return userQuery.list().get(0);
         }
-        else
+        catch (IndexOutOfBoundsException e)
         {
-            return user;
+            return null;
+            //TODO throw exception
         }
     }
     public FollowRelation isFollowRelationExist(FollowRelation followRelation, Session session) throws DataNotFoundException
