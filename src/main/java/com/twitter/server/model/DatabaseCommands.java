@@ -479,4 +479,34 @@ public class DatabaseCommands
         return blockerUsers.list();
     }
 
+    public Tweet findTweet(Long id)
+    {
+        Session session = databaseManager.sessionFactory.openSession();
+        Query<Tweet> tweetQuery = session.createQuery("select t from Tweet t where t.id = :id", Tweet.class);
+        tweetQuery.setParameter("id", id);
+        try
+        {
+            return tweetQuery.list().get(0);
+        }
+        catch (IndexOutOfBoundsException e)
+        {
+            return null;
+            //TODO throw exception
+        }
+    }
+
+    public User findUser(String userName)
+    {
+        try(Session session = databaseManager.sessionFactory.openSession())
+        {
+            return databaseManager.findUser(userName, session);
+        }
+        catch (DataNotFoundException e)
+        {
+            return null;
+            //TODO throw exception
+        }
+
+    }
+
 }
