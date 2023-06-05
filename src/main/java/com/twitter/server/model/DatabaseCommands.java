@@ -333,7 +333,7 @@ public class DatabaseCommands
         }
     }
 
-    public void updateLikes(Tweet tweet, int change)
+    public void updateLikes(Tweet tweet, int change) throws DataNotFoundException
     {
         Session session = databaseManager.sessionFactory.openSession();
         Query<Tweet> tweetQuery = session.createQuery("select t from Tweet t where t.id = :id", Tweet.class);
@@ -349,7 +349,7 @@ public class DatabaseCommands
         }
         catch (IndexOutOfBoundsException e)
         {
-
+            throw new DataNotFoundException("tweet not found!");
         }
     }
 

@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "quotes") // FIXME
+@DiscriminatorValue("quote")
 public class Quote extends Retweet implements Serializable
 {
     @Embedded
