@@ -2,6 +2,7 @@ package com.twitter.server.model;
 
 import com.twitter.entities.exception.UnknownException;
 import com.twitter.entities.exception.io.server.DataNotFoundException;
+import com.twitter.entities.exception.io.server.DuplicateLikeRequestException;
 import com.twitter.entities.exception.io.server.DuplicateUserNameException;
 import com.twitter.entities.exception.io.server.ServerInvalidObjectException;
 import com.twitter.entities.exception.text.TextTooLongException;
@@ -263,7 +264,7 @@ public class ModelCommands
         return new Respond(RespondCode.SUCCESS);
     }
 
-    public Respond likeTweet(ObjectInputStream objectInputStream) throws ServerInvalidObjectException, DataNotFoundException
+    public Respond likeTweet(ObjectInputStream objectInputStream) throws ServerInvalidObjectException, DataNotFoundException, DuplicateLikeRequestException
     {
         Tweet tweet = ObjectGetter.getObject(objectInputStream, Tweet.class);
         String userName = ObjectGetter.getObject(objectInputStream, String.class);

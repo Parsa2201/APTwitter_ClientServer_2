@@ -6,6 +6,7 @@ import com.twitter.entities.exception.io.FileNotImageException;
 import com.twitter.entities.exception.io.FileSizeException;
 import com.twitter.entities.exception.io.ImageSizeException;
 import com.twitter.entities.exception.io.server.DataNotFoundException;
+import com.twitter.entities.exception.io.server.DuplicateLikeRequestException;
 import com.twitter.entities.exception.io.server.DuplicateUserNameException;
 import com.twitter.entities.exception.text.TextTooLongException;
 import com.twitter.entities.exception.user.CountryException;
@@ -221,7 +222,7 @@ public class DatabaseCommandsTest
     // TODO: sendQuote()
 
     @Test
-    void likeTweet() throws DataNotFoundException
+    void likeTweet() throws DataNotFoundException, DuplicateLikeRequestException
     {
         DatabaseCommands databaseCommands = new DatabaseCommands();
         Tweet tweet = databaseCommands.findTweet(1L);

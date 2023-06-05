@@ -1,6 +1,6 @@
 package com.twitter.server.model;
 
-import com.twitter.entities.exception.io.server.DataNotFoundException;
+import com.twitter.entities.exception.io.server.*;
 import com.twitter.entities.tweet.LikeRelation;
 import com.twitter.entities.user.BlockRelation;
 import com.twitter.entities.user.User;
@@ -28,7 +28,7 @@ public class DatabaseManager
         sessionFactory = metadata.getSessionFactoryBuilder().build();
     }
 
-    public User findUser(String userName , Session session) throws DataNotFoundException
+    public User findUser(String userName , Session session) throws UserNotFoundException
     {
         Query<User> userQuery = session.createQuery("select u from User u where u.userName = :userName", User.class);
         userQuery.setParameter("userName", userName);
@@ -47,22 +47,11 @@ public class DatabaseManager
         }
         catch (IndexOutOfBoundsException e)
         {
-            return null;
-            //TODO throw exception
+            throw new UserNotFoundException();
         }
     }
-    public FollowRelation isFollowRelationExist(FollowRelation followRelation, Session session) throws DataNotFoundException
+    public FollowRelation isFollowRelationExist(FollowRelation followRelation, Session session) throws FollowRelationNotFoundException
     {
-        // TODO : change this model
-//        List<FollowRelation> followRelations = session.createQuery("select f from FollowRelation f", FollowRelation.class).list();
-//        for (FollowRelation followRe:followRelations)
-//        {
-//            if(followRe.equals(followRelation))
-//            {
-//                return followRe;
-//            }
-//        }
-//        return null;
         Query<FollowRelation> followRelationQuery = session.createQuery("select f from FollowRelation f where f.user.userName = :user and f.followedUser.userName = :fuser", FollowRelation.class);
         followRelationQuery.setParameter("user", followRelation.getUser().getUserName());
         followRelationQuery.setParameter("fuser", followRelation.getFollowedUser().getUserName());
@@ -72,11 +61,11 @@ public class DatabaseManager
         }
         catch (IndexOutOfBoundsException e)
         {
-            return null;
+            throw new FollowRelationNotFoundException();
         }
     }
 
-    public LikeRelation isLikeRelationExist(LikeRelation likeRelation, Session session) throws DataNotFoundException
+    public LikeRelation isLikeRelationExist(LikeRelation likeRelation, Session session) throws LikeRelationNotFoundException
     {
         Query<LikeRelation> likeRelationQuery = session.createQuery("select l from LikeRelation l where l.user.userName = :user and l.tweet.id = :tweet", LikeRelation.class);
         likeRelationQuery.setParameter("user", likeRelation.getUser().getUserName());
@@ -87,11 +76,11 @@ public class DatabaseManager
         }
         catch (IndexOutOfBoundsException e)
         {
-            return null;
+            throw new LikeRelationNotFoundException();
         }
     }
 
-    public BlockRelation isBlockRelationExist(BlockRelation blockRelation, Session session) throws DataNotFoundException
+    public BlockRelation isBlockRelationExist(BlockRelation blockRelation, Session session) throws BlockRelationNotFoundException
     {
         Query<BlockRelation> blockRelationQuery = session.createQuery("select b from BlockRelation b where b.blocker.userName = :user and b.blocked.userName = :buser", BlockRelation.class);
         blockRelationQuery.setParameter("user", blockRelation.getBlocker().getUserName());
@@ -102,7 +91,7 @@ public class DatabaseManager
         }
         catch (IndexOutOfBoundsException e)
         {
-            return null;
+            throw new BlockRelationNotFoundException();
         }
     }
 }

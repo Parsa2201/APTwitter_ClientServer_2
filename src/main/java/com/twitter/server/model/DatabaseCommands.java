@@ -1,8 +1,7 @@
 package com.twitter.server.model;
 
 import com.twitter.entities.exception.UnknownException;
-import com.twitter.entities.exception.io.server.DataNotFoundException;
-import com.twitter.entities.exception.io.server.DuplicateUserNameException;
+import com.twitter.entities.exception.io.server.*;
 import com.twitter.entities.exception.text.TextTooLongException;
 import com.twitter.entities.exception.user.CountryException;
 import com.twitter.entities.exception.user.email.EmailFormatException;
@@ -45,21 +44,18 @@ public class DatabaseCommands
             throw new DuplicateUserNameException();
         }
     }
-    public User signIn (String userName, Password passwordHash) throws InvalidPasswordException, DataNotFoundException
+    public User signIn (String userName, Password passwordHash) throws InvalidPasswordException, UserNotFoundException
     {
         Session session = databaseManager.sessionFactory.openSession();
         User user = databaseManager.findUser(userName, session);
-        if(user.getPassHash().equals(passwordHash))
-        {
-            return user;
-        }
-        else
+        if(!user.getPassHash().equals(passwordHash))
         {
             throw new InvalidPasswordException();
         }
+        return user;
     }
 
-    public void setAvatar(String userName, Avatar avatar) throws DataNotFoundException
+    public void setAvatar(String userName, Avatar avatar) throws UserNotFoundException
     {
         Session session = databaseManager.sessionFactory.openSession();
         User user = databaseManager.findUser(userName, session);
@@ -71,7 +67,7 @@ public class DatabaseCommands
         session.close();
     }
 
-    public void setHeader(String userName, Header header) throws DataNotFoundException
+    public void setHeader(String userName, Header header) throws UserNotFoundException
     {
         Session session = databaseManager.sessionFactory.openSession();
         User user = databaseManager.findUser(userName, session);
@@ -83,7 +79,7 @@ public class DatabaseCommands
         session.close();
     }
 
-    public void changeUserPassword(String userName, Password newpass) throws DataNotFoundException
+    public void changeUserPassword(String userName, Password newpass) throws UserNotFoundException
     {
         Session session = databaseManager.sessionFactory.openSession();
         User user = databaseManager.findUser(userName, session);
@@ -94,7 +90,7 @@ public class DatabaseCommands
         session.close();
     }
 
-    public void changeName(String userName, String name) throws DataNotFoundException
+    public void changeName(String userName, String name) throws UserNotFoundException
     {
         Session session = databaseManager.sessionFactory.openSession();
         User user = databaseManager.findUser(userName, session);
@@ -104,7 +100,7 @@ public class DatabaseCommands
         session.getTransaction().commit();
         session.close();
     }
-    public void changeFamily(String userName, String family) throws DataNotFoundException
+    public void changeFamily(String userName, String family) throws UserNotFoundException
     {
         Session session = databaseManager.sessionFactory.openSession();
         User user = databaseManager.findUser(userName, session);
@@ -114,7 +110,7 @@ public class DatabaseCommands
         session.getTransaction().commit();
         session.close();
     }
-    public void changeEmail(String userName, String email) throws DataNotFoundException, EmailFormatException
+    public void changeEmail(String userName, String email) throws UserNotFoundException, EmailFormatException
     {
         Session session = databaseManager.sessionFactory.openSession();
         User user = databaseManager.findUser(userName, session);
@@ -125,7 +121,7 @@ public class DatabaseCommands
         session.close();
     }
 
-    public void changePhone(String userName, String phone) throws DataNotFoundException
+    public void changePhone(String userName, String phone) throws UserNotFoundException
     {
         Session session = databaseManager.sessionFactory.openSession();
         User user = databaseManager.findUser(userName, session);
@@ -136,7 +132,7 @@ public class DatabaseCommands
         session.close();
     }
 
-    public void changeBirthDate(String userName, LocalDate birthDate) throws DataNotFoundException
+    public void changeBirthDate(String userName, LocalDate birthDate) throws UserNotFoundException
     {
         Session session = databaseManager.sessionFactory.openSession();
         User user = databaseManager.findUser(userName, session);
@@ -147,7 +143,7 @@ public class DatabaseCommands
         session.close();
     }
 
-    public void changeCountry (String userName, String country) throws CountryException, DataNotFoundException
+    public void changeCountry (String userName, String country) throws CountryException, UserNotFoundException
     {
         Session session = databaseManager.sessionFactory.openSession();
         User user = databaseManager.findUser(userName, session);
@@ -157,7 +153,7 @@ public class DatabaseCommands
         session.getTransaction().commit();
         session.close();
     }
-    public void changeLocation (String userName, String location) throws DataNotFoundException
+    public void changeLocation (String userName, String location) throws UserNotFoundException
     {
         Session session = databaseManager.sessionFactory.openSession();
         User user = databaseManager.findUser(userName, session);
@@ -167,7 +163,7 @@ public class DatabaseCommands
         session.getTransaction().commit();
         session.close();
     }
-    public void changeWebsite (String userName, String website) throws DataNotFoundException
+    public void changeWebsite (String userName, String website) throws UserNotFoundException
     {
         Session session = databaseManager.sessionFactory.openSession();
         User user = databaseManager.findUser(userName, session);
@@ -178,7 +174,7 @@ public class DatabaseCommands
         session.close();
     }
 
-    public Followers showFollowers(String userName) throws DataNotFoundException
+    public Followers showFollowers(String userName) throws UserNotFoundException
     {
         Session session = databaseManager.sessionFactory.openSession();
         Query<User> userQuery = session.createQuery("select f.user from FollowRelation f where f.followedUser.userName = :user", User.class);
@@ -191,7 +187,7 @@ public class DatabaseCommands
         return followers;
     }
 
-    public Followings showFollowings(String userName) throws DataNotFoundException
+    public Followings showFollowings(String userName) throws UserNotFoundException
     {
         Session session = databaseManager.sessionFactory.openSession();
         Query<User> userQuery = session.createQuery("select f.followedUser from FollowRelation f where f.user.userName = :user", User.class);
@@ -204,7 +200,7 @@ public class DatabaseCommands
         return followings;
     }
 
-    public void changeBio (String userName, Bio bio) throws DataNotFoundException, TextTooLongException
+    public void changeBio (String userName, Bio bio) throws UserNotFoundException, TextTooLongException
     {
         Session session = databaseManager.sessionFactory.openSession();
         User user = databaseManager.findUser(userName, session);
@@ -215,44 +211,39 @@ public class DatabaseCommands
         session.close();
     }
 
-    public void follow (String userName, String followedUserName) throws DataNotFoundException
+    public void follow (String userName, String followedUserName) throws UserNotFoundException, DuplicateFollowRequestException
     {
         Session session = databaseManager.sessionFactory.openSession();
-//        databaseManager.findUser(followRelation.getFollowedUser(), session);
-//        databaseManager.findUser(followRelation.getUsername(), session);
         FollowRelation followRelation = new FollowRelation(databaseManager.findUser(userName, session), databaseManager.findUser(followedUserName, session));
-        if(databaseManager.isFollowRelationExist(followRelation, session) == null)
+        try
+        {
+            databaseManager.isFollowRelationExist(followRelation, session);
+            throw new DuplicateFollowRequestException();
+        } catch (FollowRelationNotFoundException e)
         {
             session.beginTransaction();
             session.persist(followRelation);
             session.getTransaction().commit();
+        }
+        finally
+        {
             session.close();
         }
-        else
-        {
-            // TODO: throw exception
-        }
     }
-    public void unfollow (String userName, String followedUserName) throws DataNotFoundException
+    public void unfollow (String userName, String followedUserName) throws UserNotFoundException, FollowRelationNotFoundException
     {
 
         Session session = databaseManager.sessionFactory.openSession();
-        FollowRelation followRelation = new FollowRelation(databaseManager.findUser(userName, session), databaseManager.findUser(followedUserName, session));
-        if((followRelation = databaseManager.isFollowRelationExist(followRelation, session)) != null)
+        try (session)
         {
+            FollowRelation followRelation = new FollowRelation(databaseManager.findUser(userName, session), databaseManager.findUser(followedUserName, session));
+            followRelation = databaseManager.isFollowRelationExist(followRelation, session);
             session.beginTransaction();
             session.delete(followRelation);
             session.getTransaction().commit();
-            session.close();
         }
-        else
-        {
-            session.close();
-            throw new DataNotFoundException();
-        }
-
     }
-    public MiniUser showUser (String userName) throws DataNotFoundException
+    public MiniUser showUser (String userName) throws UserNotFoundException
     {
         Session session = databaseManager.sessionFactory.openSession();
         User user = databaseManager.findUser(userName,session);
@@ -274,7 +265,7 @@ public class DatabaseCommands
         session.close();
     }
 
-    public void sendRetweet(Retweet retweet) throws DataNotFoundException
+    public void sendRetweet(Retweet retweet) throws TweetNotFoundException
     {
         updateTweet(retweet.getTweet(), +1, "retweet");
         Session session = databaseManager.sessionFactory.openSession();
@@ -284,7 +275,7 @@ public class DatabaseCommands
         session.close();
     }
 
-    public void sendQuote(Quote quote) throws DataNotFoundException
+    public void sendQuote(Quote quote) throws TweetNotFoundException
     {
         updateTweet(quote.getTweet(), +1, "quote");
         Session session = databaseManager.sessionFactory.openSession();
@@ -303,12 +294,17 @@ public class DatabaseCommands
         session.close();
     }
 
-    public void likeTweet(Tweet tweet, String userName) throws DataNotFoundException
+    public void likeTweet(Tweet tweet, String userName) throws UserNotFoundException, DuplicateLikeRequestException, TweetNotFoundException
     {
         Session session = databaseManager.sessionFactory.openSession();
         User user = databaseManager.findUser(userName, session);
         LikeRelation likeRelation = new LikeRelation(user, tweet);
-        if(databaseManager.isLikeRelationExist(likeRelation, session) == null)
+        try
+        {
+            databaseManager.isLikeRelationExist(likeRelation, session);
+            throw new DuplicateLikeRequestException();
+        }
+        catch (LikeRelationNotFoundException e)
         {
             session.beginTransaction();
             session.persist(likeRelation);
@@ -316,32 +312,35 @@ public class DatabaseCommands
             session.close();
             updateTweet(tweet, +1, "like");
         }
-        else
+        finally
         {
-          // TODO: throw exception
+            if(session.isOpen())
+                session.close();
         }
     }
 
-    public void dislikeTweet(Tweet tweet, String userName) throws DataNotFoundException
+    public void dislikeTweet(Tweet tweet, String userName) throws UserNotFoundException, LikeRelationNotFoundException, TweetNotFoundException
     {
         Session session = databaseManager.sessionFactory.openSession();
-        User user = databaseManager.findUser(userName, session);
-        LikeRelation likeRelation = new LikeRelation(user, tweet);
-        if(databaseManager.isLikeRelationExist(likeRelation, session) != null)
+        try
         {
+            User user = databaseManager.findUser(userName, session);
+            LikeRelation likeRelation = new LikeRelation(user, tweet);
+            likeRelation = databaseManager.isLikeRelationExist(likeRelation, session);
             session.beginTransaction();
             session.delete(likeRelation);
             session.getTransaction().commit();
             session.close();
             updateTweet(tweet, -1, "like");
         }
-        else
+        finally
         {
-          // TODO: throw exception
+            if(session.isOpen())
+                session.close();
         }
     }
 
-    public void updateTweet(Tweet tweet, int change, String command) throws DataNotFoundException
+    public void updateTweet(Tweet tweet, int change, String command) throws TweetNotFoundException
     {
         Session session = databaseManager.sessionFactory.openSession();
         Query<Tweet> tweetQuery = session.createQuery("select t from Tweet t where t.id = :id", Tweet.class);
@@ -376,7 +375,7 @@ public class DatabaseCommands
         }
         catch (IndexOutOfBoundsException e)
         {
-            throw new DataNotFoundException();
+            throw new TweetNotFoundException();
         }
         finally
         {
@@ -384,7 +383,7 @@ public class DatabaseCommands
         }
     }
 
-    public TimeLine showTimeLine(String userName) throws DataNotFoundException, UnknownException
+    public TimeLine showTimeLine(String userName) throws UserNotFoundException, UnknownException
     {
         Session session = databaseManager.sessionFactory.openSession();
         Followings followings = showFollowings(userName);
@@ -435,58 +434,54 @@ public class DatabaseCommands
         timeLine.sort();
         for (BaseTweet b : timeLine)
         {
-            //Hibernate.initialize(b.toTweet().getQuotes());
             Hibernate.initialize(b.toTweet().getReplies());
         }
         return timeLine;
     }
 
-    public void block(String blocker, String blocked) throws DataNotFoundException
+    public void block(String blocker, String blocked) throws UserNotFoundException, DuplicateBlockRequestException
     {
         // TODO : check the followRelations
         Session session = databaseManager.sessionFactory.openSession();
         BlockRelation blockRelation = new BlockRelation(databaseManager.findUser(blocker, session), databaseManager.findUser(blocked, session));
         FollowRelation followerRelation = new FollowRelation(blockRelation.getBlocked(), blockRelation.getBlocker());
         FollowRelation followingRelation = new FollowRelation(blockRelation.getBlocker(), blockRelation.getBlocked());
-        if((followerRelation = databaseManager.isFollowRelationExist(followerRelation, session)) != null)
+        try
         {
+            followerRelation = databaseManager.isFollowRelationExist(followerRelation, session);
             session.beginTransaction();
             session.delete(followerRelation);
             session.getTransaction().commit();
-        }
-        if((followingRelation = databaseManager.isFollowRelationExist(followingRelation, session)) != null)
+        } catch (FollowRelationNotFoundException e) {}
+        try
         {
+            followingRelation = databaseManager.isFollowRelationExist(followingRelation, session);
             session.beginTransaction();
             session.delete(followingRelation);
             session.getTransaction().commit();
-        }
-        if(databaseManager.isBlockRelationExist(blockRelation, session) == null)
+        } catch (FollowRelationNotFoundException e) {}
+        try(session)
+        {
+            databaseManager.isBlockRelationExist(blockRelation, session);
+            throw new DuplicateBlockRequestException();
+        } catch (BlockRelationNotFoundException e)
         {
             session.beginTransaction();
             session.persist(blockRelation);
             session.getTransaction().commit();
-            session.close();
-        }
-        else
-        {
-          // throw exception
         }
     }
 
-    public void unblock(String blocker, String blocked) throws DataNotFoundException
+    public void unblock(String blocker, String blocked) throws UserNotFoundException, BlockRelationNotFoundException
     {
         Session session = databaseManager.sessionFactory.openSession();
-        BlockRelation blockRelation = new BlockRelation(databaseManager.findUser(blocker, session), databaseManager.findUser(blocked, session));
-        if((blockRelation = databaseManager.isBlockRelationExist(blockRelation, session)) != null)
+        try(session)
         {
+            BlockRelation blockRelation = new BlockRelation(databaseManager.findUser(blocker, session), databaseManager.findUser(blocked, session));
+            blockRelation = databaseManager.isBlockRelationExist(blockRelation, session);
             session.beginTransaction();
             session.delete(blockRelation);
             session.getTransaction().commit();
-            session.close();
-        }
-        else
-        {
-         // throw exception
         }
     }
 
@@ -519,7 +514,7 @@ public class DatabaseCommands
         return blockerUsers.list();
     }
 
-    public Tweet findTweet(Long id)
+    public Tweet findTweet(Long id) throws TweetNotFoundException
     {
         Session session = databaseManager.sessionFactory.openSession();
         Query<Tweet> tweetQuery = session.createQuery("select t from Tweet t where t.id = :id", Tweet.class);
@@ -530,22 +525,15 @@ public class DatabaseCommands
         }
         catch (IndexOutOfBoundsException e)
         {
-            return null;
-            //TODO throw exception
+            throw new TweetNotFoundException();
         }
     }
 
-    public User findUser(String userName)
+    public User findUser(String userName) throws UserNotFoundException
     {
         try(Session session = databaseManager.sessionFactory.openSession())
         {
             return databaseManager.findUser(userName, session);
         }
-        catch (DataNotFoundException e)
-        {
-            return null;
-            //TODO throw exception
-        }
-
     }
 }

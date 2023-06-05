@@ -1,9 +1,7 @@
 package com.twitter.server.model;
 
 import com.twitter.entities.exception.UnknownException;
-import com.twitter.entities.exception.io.server.DataNotFoundException;
-import com.twitter.entities.exception.io.server.ServerInvalidCommandException;
-import com.twitter.entities.exception.io.server.ServerInvalidObjectException;
+import com.twitter.entities.exception.io.server.*;
 import com.twitter.entities.exception.text.TextTooLongException;
 import com.twitter.entities.exception.user.CountryException;
 import com.twitter.entities.exception.user.email.EmailFormatException;
@@ -84,6 +82,12 @@ public class ModelCommandHandler
         {
             throw new RuntimeException(e);
         } catch (UnknownException e)
+        {
+            throw new RuntimeException(e);
+        } catch (DuplicateLikeRequestException e)
+        {
+            throw new RuntimeException(e);
+        } catch (DuplicateUserNameException e)
         {
             throw new RuntimeException(e);
         }
