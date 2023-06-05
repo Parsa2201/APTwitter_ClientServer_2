@@ -241,7 +241,7 @@ public class ModelCommands
         return new Respond(RespondCode.SUCCESS);
     }
 
-    public Respond sendRetweet(ObjectInputStream objectInputStream) throws ServerInvalidObjectException, TweetNotFoundException
+    public Respond sendRetweet(ObjectInputStream objectInputStream) throws ServerInvalidObjectException, TweetNotFoundException, UserNotFoundException
     {
         Long id = ObjectGetter.getObject(objectInputStream, Long.class);
         String userName = ObjectGetter.getObject(objectInputStream, String.class);

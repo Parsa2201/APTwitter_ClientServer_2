@@ -216,7 +216,7 @@ public class DatabaseCommandsTest
         Retweet retweet = new Retweet(tweet, miniUser2);
 
         DatabaseCommands databaseCommands = new DatabaseCommands();
-        databaseCommands.sendRetweet(retweet);
+        databaseCommands.sendRetweet(retweet.getTweet().getId(), retweet.getUserName());
     }
 
     // TODO: sendQuote()

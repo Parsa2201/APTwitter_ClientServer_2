@@ -18,7 +18,6 @@ public class Hashtags implements Iterable<Hashtag>, Serializable
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
     private Long id;
 
     @OneToMany

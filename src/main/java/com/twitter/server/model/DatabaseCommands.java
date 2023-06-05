@@ -262,10 +262,11 @@ public class DatabaseCommands
         session.close();
     }
 
-    public void sendRetweet(Retweet retweet) throws TweetNotFoundException
+    public void sendRetweet(Long id, String userName) throws TweetNotFoundException, UserNotFoundException
     {
-        updateTweet(retweet.getTweet(), +1, "retweet");
         Session session = databaseManager.sessionFactory.openSession();
+        Retweet retweet = new Retweet(findTweet(id), databaseManager.findUser(userName, session).toMiniUser());
+        updateTweet(retweet.getTweet(), +1, "retweet");
         session.beginTransaction();
         session.persist(retweet);
         session.getTransaction().commit();
