@@ -304,9 +304,9 @@ public class ControllerCommands
         long id = Long.parseLong(tweetId);
         Tweet tweet = Data.getInstance().getTimeLine().getTweet(id);
 
-        Reply reply = new Reply(tweet, user.toMiniUser(), new TextContent(text));
+        Reply reply = new Reply(null, user.toMiniUser(), new TextContent(text));
 
-        modelCommands.sendReply(reply);
+        modelCommands.sendReply(id, reply);
     }
 
     public void likeTweet(String tweetId) throws NumberFormatException, PermissionDeniedException, ServerConnectionFailedException, ServerRespondFailedException, UnknownException, InvalidPasswordException, TextTooLongException, ServerInvalidCommandException, DatabaseFailedException, ServerInvalidObjectException, CountryException, UserNotFoundException, EmailFormatException, DuplicateLikeRequestException, BlockRelationNotFoundException, LikeRelationNotFoundException, DuplicateUserNameException, DuplicateBlockRequestException, DuplicateFollowRequestException, TweetNotFoundException, FollowRelationNotFoundException

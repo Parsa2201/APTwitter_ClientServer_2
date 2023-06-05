@@ -259,8 +259,9 @@ public class ModelCommands
 
     public Respond sendReply(ObjectInputStream objectInputStream) throws ServerInvalidObjectException
     {
+        Long id = ObjectGetter.getObject(objectInputStream, Long.class);
         Reply reply = ObjectGetter.getObject(objectInputStream, Reply.class);
-        databaseCommands.sendReply(reply);
+        databaseCommands.sendReply(id, reply);
         return new Respond(RespondCode.SUCCESS);
     }
 

@@ -18,7 +18,7 @@ public class Reply implements Serializable
     @Transient
     private MiniUser replier;
     @OneToOne
-    private final Tweet tweet;
+    private Tweet tweet;
     private final LocalDateTime date;
     @Embedded
     @AttributeOverride(name = "text", column = @Column(name = "reply_text"))
@@ -80,5 +80,10 @@ public class Reply implements Serializable
     public String getUserName()
     {
         return userName;
+    }
+
+    public void setTweet(Tweet tweet)
+    {
+        this.tweet = tweet;
     }
 }

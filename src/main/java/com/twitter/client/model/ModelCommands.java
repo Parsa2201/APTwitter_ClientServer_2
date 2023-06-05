@@ -291,6 +291,18 @@ public class ModelCommands
         }
     }
 
+    public void sendReply(Long id, Reply reply) throws ServerConnectionFailedException, ServerInvalidObjectException, ServerRespondFailedException, UnknownException, InvalidPasswordException, TextTooLongException, ServerInvalidCommandException, DatabaseFailedException, CountryException, UserNotFoundException, EmailFormatException, DuplicateLikeRequestException, BlockRelationNotFoundException, LikeRelationNotFoundException, DuplicateUserNameException, DuplicateBlockRequestException, DuplicateFollowRequestException, TweetNotFoundException, FollowRelationNotFoundException
+    {
+        try (ServerConnectionHandler serverConnectionHandler = new ServerConnectionHandler())
+        {
+            serverConnectionHandler.sendCommend("send-reply");
+            serverConnectionHandler.sendObject(id);
+            serverConnectionHandler.sendObject(reply);
+            Respond respond = serverConnectionHandler.getRespond();
+            respond.check();
+        }
+    }
+
     public void likeTweet(Tweet tweet, String userName) throws ServerConnectionFailedException, ServerInvalidObjectException, ServerRespondFailedException, UnknownException, InvalidPasswordException, TextTooLongException, ServerInvalidCommandException, DatabaseFailedException, CountryException, UserNotFoundException, EmailFormatException, DuplicateLikeRequestException, BlockRelationNotFoundException, LikeRelationNotFoundException, DuplicateUserNameException, DuplicateBlockRequestException, DuplicateFollowRequestException, TweetNotFoundException, FollowRelationNotFoundException
     {
         try (ServerConnectionHandler serverConnectionHandler = new ServerConnectionHandler())
@@ -360,17 +372,6 @@ public class ModelCommands
             Respond respond = serverConnectionHandler.getRespond();
             respond.check();
             return (BlackList) respond.getObject();
-        }
-    }
-
-    public void sendReply(Reply reply) throws ServerConnectionFailedException, ServerInvalidObjectException, ServerRespondFailedException, UnknownException, InvalidPasswordException, TextTooLongException, ServerInvalidCommandException, DatabaseFailedException, CountryException, UserNotFoundException, EmailFormatException, DuplicateLikeRequestException, BlockRelationNotFoundException, LikeRelationNotFoundException, DuplicateUserNameException, DuplicateBlockRequestException, DuplicateFollowRequestException, TweetNotFoundException, FollowRelationNotFoundException
-    {
-        try (ServerConnectionHandler serverConnectionHandler = new ServerConnectionHandler())
-        {
-            serverConnectionHandler.sendCommend("send-reply");
-            serverConnectionHandler.sendObject(reply);
-            Respond respond = serverConnectionHandler.getRespond();
-            respond.check();
         }
     }
 }
