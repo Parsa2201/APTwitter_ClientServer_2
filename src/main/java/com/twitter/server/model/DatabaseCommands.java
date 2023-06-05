@@ -258,7 +258,7 @@ public class DatabaseCommands
         }
         session.persist(tweet.getHashtags());
         session.persist(tweet);
-        session.getTransaction().commit();
+        session.getTransaction().commit(); // FIXME: got a {PersistenceException: Converting `org.hibernate.exception.SQLGrammarException` to JPA `PersistenceException` : could not execute statement} exception when tried to send a tweet with a hashtag
         session.close();
     }
 

@@ -53,7 +53,7 @@ public class Hashtags implements Iterable<Hashtag>, Serializable
 
     public void getHashtagsFromText(String text) throws HashtagException
     {
-        String regexPattern = "/(^|\\s)#([^\\d&%$_-]\\S{2,49})\\b/g";
+        String regexPattern = "(#\\w+)";
 
         Pattern pattern = Pattern.compile(regexPattern);
         Matcher matcher = pattern.matcher(text);
