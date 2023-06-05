@@ -267,12 +267,13 @@ public class ModelCommands
         }
     }
 
-    public void sendRetweet(Retweet retweet) throws ServerConnectionFailedException, ServerInvalidObjectException, ServerRespondFailedException, UnknownException, InvalidPasswordException, TextTooLongException, ServerInvalidCommandException, DatabaseFailedException, CountryException, UserNotFoundException, EmailFormatException, DuplicateLikeRequestException, BlockRelationNotFoundException, LikeRelationNotFoundException, DuplicateUserNameException, DuplicateBlockRequestException, DuplicateFollowRequestException, TweetNotFoundException, FollowRelationNotFoundException
+    public void sendRetweet(Long id, String userName) throws ServerConnectionFailedException, ServerInvalidObjectException, ServerRespondFailedException, UnknownException, InvalidPasswordException, TextTooLongException, ServerInvalidCommandException, DatabaseFailedException, CountryException, UserNotFoundException, EmailFormatException, DuplicateLikeRequestException, BlockRelationNotFoundException, LikeRelationNotFoundException, DuplicateUserNameException, DuplicateBlockRequestException, DuplicateFollowRequestException, TweetNotFoundException, FollowRelationNotFoundException
     {
         try (ServerConnectionHandler serverConnectionHandler = new ServerConnectionHandler())
         {
             serverConnectionHandler.sendCommend("send-retweet");
-            serverConnectionHandler.sendObject(retweet);
+            serverConnectionHandler.sendObject(id);
+            serverConnectionHandler.sendObject(userName);
             Respond respond = serverConnectionHandler.getRespond();
             respond.check();
         }
