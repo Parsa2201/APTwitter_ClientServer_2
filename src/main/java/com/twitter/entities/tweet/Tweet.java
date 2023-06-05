@@ -26,7 +26,7 @@ public class Tweet extends BaseTweet implements Serializable
     private boolean isFavstar;
     @OneToMany
     private final List<Reply> replies;
-    @OneToOne
+    @OneToOne//(mappedBy = "base_tweets", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private final Hashtags hashtags;
 
     public Tweet(MiniUser owner, TextContent textContent, ImageContent imageContent) throws HashtagException

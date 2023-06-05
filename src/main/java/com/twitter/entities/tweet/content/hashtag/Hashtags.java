@@ -18,10 +18,15 @@ public class Hashtags implements Iterable<Hashtag>, Serializable
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "hashtags_id")
     private Long id;
 
-    @OneToMany
+    @OneToMany//(mappedBy = "hashtags", cascade = CascadeType.ALL, orphanRemoval = true)
     private final List<Hashtag> hashtags;
+
+//    @OneToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "base_tweets_id")
+//    private Tweet t;
 
     public Long getId()
     {
