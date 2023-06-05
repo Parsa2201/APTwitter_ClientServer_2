@@ -427,6 +427,8 @@ public class DatabaseCommands
                 {
                     r.setReplier(databaseManager.findUser(r.getUserName(), session).toMiniUser());
                 }
+                // WARNING : this line maybe makes bug
+                Hibernate.initialize(((Tweet) b).getHashtags());
             }
         }
         timeLine.sort();
