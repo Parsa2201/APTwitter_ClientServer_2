@@ -275,45 +275,66 @@ public class Command
     {
         for (BaseTweet baseTweet : timeLine)
         {
-            Tweet tweet = baseTweet.toTweet();
+            printTweet(baseTweet);
 
 
-            TwitterLog.println("_________________________________");
-            // if the baseTweet is a retweet, the owner of the baseTweet is the reTweeter
-            TwitterLog.println(baseTweet.getOwner().getName() + " " + baseTweet.getOwner().getFamily());
-            TwitterLog.printlnNested(tweet.getTextContent().toString());
-            TwitterLog.println("Likes: " + tweet.getLikeCount());
-            TwitterLog.println("Retweets: " + tweet.getRetweetCount());
-            TwitterLog.println("Quotes: " + tweet.getQuoteCount());
-            TwitterLog.println("Date: " + tweet.getDate().toString());
-            if(tweet.isFavstar())
-                TwitterLog.println(" --- F --- A --- V --- S --- T --- A --- R ---");
-
-
-            TwitterLog.println("Quotes:");
-            for (Quote quote : tweet.getQuotes())
+            if(baseTweet.toTweet().getQuoteCount() != 0)
             {
-                TwitterLog.startNest();
-                TwitterLog.println("\n" + quote.getQuotedBy().getName() + " " + quote.getQuotedBy().getFamily());
-                TwitterLog.printlnNested(quote.getTextContent().toString());
-                TwitterLog.println(quote.getDate().toString());
-                TwitterLog.endNest();
-
-                TwitterLog.println("#  #  #  #  #  #  #  #  #  #  #  #  #  #  #");
+                TwitterLog.println("Quotes:");
+                for (Quote quote : baseTweet.toTweet().getQuotes())
+                {
+                    printQuote(quote);
+                    TwitterLog.println("#  #  #  #  #  #  #  #  #  #  #  #  #  #  #");
+                }
             }
 
-            TwitterLog.println("Replies:");
-            for (Reply reply : tweet.getReplies())
+            if(baseTweet.toTweet().getReplies().size() != 0)
             {
-                TwitterLog.startNest();
-                TwitterLog.println("\n" + reply.getReplier().getName() + " " + reply.getReplier().getFamily());
-                TwitterLog.printlnNested(reply.getTextContent().toString());
-                TwitterLog.println(reply.getDate().toString());
-                TwitterLog.endNest();
-
-                TwitterLog.println("#  #  #  #  #  #  #  #  #  #  #  #  #  #  #");
+                TwitterLog.println("Replies:");
+                for (Reply reply : baseTweet.toTweet().getReplies())
+                {
+                    printReply(reply);
+                    TwitterLog.println("#  #  #  #  #  #  #  #  #  #  #  #  #  #  #");
+                }
             }
         }
+    }
+
+    private static void printTweet(BaseTweet baseTweet) throws UnknownException
+    {
+        Tweet tweet = baseTweet.toTweet();
+
+        TwitterLog.println("_________________________________");
+        // if the baseTweet is a retweet, the owner of the baseTweet is the reTweeter
+        TwitterLog.println(baseTweet.getOwner().getName() + " " + baseTweet.getOwner().getFamily());
+        TwitterLog.printlnNested(tweet.getTextContent().toString());
+        TwitterLog.println("Likes: " + tweet.getLikeCount());
+        TwitterLog.println("Retweets: " + tweet.getRetweetCount());
+        TwitterLog.println("Quotes: " + tweet.getQuoteCount());
+        TwitterLog.println("Date: " + tweet.getDate().toString());
+        TwitterLog.println("Tweet id: " + tweet.getId());
+        if(tweet.isFavstar())
+            TwitterLog.println(" --- F --- A --- V --- S --- T --- A --- R ---");
+    }
+
+    private static void printQuote(Quote quote)
+    {
+        TwitterLog.startNest();
+        TwitterLog.println("\n" + quote.getQuotedBy().getName() + " " + quote.getQuotedBy().getFamily());
+        TwitterLog.printlnNested(quote.getTextContent().toString());
+        TwitterLog.println(quote.getDate().toString());
+        TwitterLog.println("Quote id: " + quote.getId());
+        TwitterLog.endNest();
+    }
+
+    private static void printReply(Reply reply)
+    {
+        TwitterLog.startNest();
+        TwitterLog.println("\n" + reply.getReplier().getName() + " " + reply.getReplier().getFamily());
+        TwitterLog.printlnNested(reply.getTextContent().toString());
+        TwitterLog.println(reply.getDate().toString());
+        TwitterLog.println("Reply id: " + reply.getId());
+        TwitterLog.endNest();
     }
 
     public void searchForHashtag() throws ServerConnectionFailedException, DataNotFoundException, HashtagException, ServerRespondFailedException, UnknownException, InvalidPasswordException, PermissionDeniedException, TextTooLongException, ServerInvalidCommandException, DatabaseFailedException, ServerInvalidObjectException
