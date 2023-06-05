@@ -15,9 +15,6 @@ public class Hashtag implements Serializable
     @Column(name = "hashtag_id")
     private Long id;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "hashtags_id")
-//    private Hashtags h;
 
     private final String name;
 

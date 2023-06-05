@@ -24,9 +24,10 @@ public class Hashtags implements Iterable<Hashtag>, Serializable
     @OneToMany//(mappedBy = "hashtags", cascade = CascadeType.ALL, orphanRemoval = true)
     private final List<Hashtag> hashtags;
 
-//    @OneToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "base_tweets_id")
-//    private Tweet t;
+    public List<Hashtag> getHashtags()
+    {
+        return hashtags;
+    }
 
     public Long getId()
     {

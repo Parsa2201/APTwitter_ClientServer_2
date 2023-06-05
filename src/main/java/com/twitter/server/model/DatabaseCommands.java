@@ -431,6 +431,7 @@ public class DatabaseCommands
                     r.setReplier(databaseManager.findUser(r.getUserName(), session).toMiniUser());
                 }
                 // WARNING : this line maybe makes bug
+                Hibernate.initialize(((Tweet) b).getHashtags().getHashtags());
                 Hibernate.initialize(((Tweet) b).getHashtags());
             }
         }
