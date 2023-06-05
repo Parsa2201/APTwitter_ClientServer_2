@@ -1,10 +1,7 @@
 package com.twitter.server.model;
 
 import com.twitter.entities.exception.UnknownException;
-import com.twitter.entities.exception.io.server.DataNotFoundException;
-import com.twitter.entities.exception.io.server.DuplicateLikeRequestException;
-import com.twitter.entities.exception.io.server.DuplicateUserNameException;
-import com.twitter.entities.exception.io.server.ServerInvalidObjectException;
+import com.twitter.entities.exception.io.server.*;
 import com.twitter.entities.exception.text.TextTooLongException;
 import com.twitter.entities.exception.user.CountryException;
 import com.twitter.entities.exception.user.email.EmailFormatException;
@@ -211,7 +208,7 @@ public class ModelCommands
         return new Respond(RespondCode.SUCCESS, followings);
     }
 
-    public Respond follow(ObjectInputStream objectInputStream) throws ServerInvalidObjectException, DataNotFoundException
+    public Respond follow(ObjectInputStream objectInputStream) throws ServerInvalidObjectException, DataNotFoundException, DuplicateFollowRequestException
     {
         // FIXME
         String userName = ObjectGetter.getObject(objectInputStream, String.class);
@@ -287,7 +284,7 @@ public class ModelCommands
         return new Respond(RespondCode.SUCCESS, timeLine);
     }
 
-    public Respond block(ObjectInputStream objectInputStream) throws ServerInvalidObjectException, DataNotFoundException
+    public Respond block(ObjectInputStream objectInputStream) throws ServerInvalidObjectException, DataNotFoundException, DuplicateBlockRequestException
     {
         String blocker = ObjectGetter.getObject(objectInputStream, String.class);
         String blocked = ObjectGetter.getObject(objectInputStream, String.class);

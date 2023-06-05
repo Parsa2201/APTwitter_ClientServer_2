@@ -6,6 +6,7 @@ import com.twitter.entities.exception.io.FileNotImageException;
 import com.twitter.entities.exception.io.FileSizeException;
 import com.twitter.entities.exception.io.ImageSizeException;
 import com.twitter.entities.exception.io.server.DataNotFoundException;
+import com.twitter.entities.exception.io.server.DuplicateBlockRequestException;
 import com.twitter.entities.exception.io.server.DuplicateLikeRequestException;
 import com.twitter.entities.exception.io.server.DuplicateUserNameException;
 import com.twitter.entities.exception.text.TextTooLongException;
@@ -237,7 +238,7 @@ public class DatabaseCommandsTest
     // TODO: showTimeLine()
 
     @Test
-    void block() throws DataNotFoundException
+    void block() throws DataNotFoundException, DuplicateBlockRequestException
     {
         DatabaseCommands databaseCommands = new DatabaseCommands();
         databaseCommands.block("test user name 1", "test user name 2");

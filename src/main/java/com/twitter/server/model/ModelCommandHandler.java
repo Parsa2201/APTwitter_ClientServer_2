@@ -90,6 +90,12 @@ public class ModelCommandHandler
         } catch (DuplicateUserNameException e)
         {
             throw new RuntimeException(e);
+        } catch (DuplicateBlockRequestException e)
+        {
+            throw new RuntimeException(e);
+        } catch (DuplicateFollowRequestException e)
+        {
+            throw new RuntimeException(e);
         }
 
     }
