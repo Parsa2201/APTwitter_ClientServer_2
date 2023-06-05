@@ -414,9 +414,17 @@ public class DatabaseCommands
             if(followings.getUserNames().contains(t.getUserName()))
             {
                 favStars.remove(t);
+                continue;
+            }
+            if(t.getUserName().equals(userName))
+            {
+                favStars.remove(t);
             }
         }
         timeLine.add(favStars);
+        Query<BaseTweet> baseTweetQuery = session.createQuery("select b from BaseTweet b where b.userName = :user", BaseTweet.class);
+        baseTweetQuery.setParameter("user", userName);
+        timeLine.add(baseTweetQuery.list());
         for (BaseTweet b : timeLine)
         {
             b.setOwner(databaseManager.findUser(b.getUserName(), session).toMiniUser());
@@ -433,13 +441,10 @@ public class DatabaseCommands
                 // WARNING : this line maybe makes bug
                 Hibernate.initialize(((Tweet) b).getHashtags().getHashtags());
                 Hibernate.initialize(((Tweet) b).getHashtags());
+                Hibernate.initialize(b.toTweet().getReplies());
             }
         }
         timeLine.sort();
-        for (BaseTweet b : timeLine)
-        {
-            Hibernate.initialize(b.toTweet().getReplies());
-        }
         return timeLine;
     }
 
