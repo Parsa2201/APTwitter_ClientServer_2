@@ -273,8 +273,9 @@ public class DatabaseCommands
         session.close();
     }
 
-    public void sendRetweet(Retweet retweet)
+    public void sendRetweet(Retweet retweet) throws DataNotFoundException
     {
+        updateTweet(retweet.getTweet(), +1, "retweet");
         Session session = databaseManager.sessionFactory.openSession();
         session.beginTransaction();
         session.persist(retweet);
@@ -282,8 +283,9 @@ public class DatabaseCommands
         session.close();
     }
 
-    public void sendQuote(Quote quote)
+    public void sendQuote(Quote quote) throws DataNotFoundException
     {
+        updateTweet(quote.getTweet(), +1, "quote");
         Session session = databaseManager.sessionFactory.openSession();
         session.beginTransaction();
         session.persist(quote);
@@ -307,7 +309,7 @@ public class DatabaseCommands
             session.persist(likeRelation);
             session.getTransaction().commit();
             session.close();
-            updateLikes(tweet, +1);
+            updateTweet(tweet, +1, "like");
         }
         else
         {
@@ -326,7 +328,7 @@ public class DatabaseCommands
             session.delete(likeRelation);
             session.getTransaction().commit();
             session.close();
-            updateLikes(tweet, -1);
+            updateTweet(tweet, -1, "like");
         }
         else
         {
@@ -334,7 +336,7 @@ public class DatabaseCommands
         }
     }
 
-    public void updateLikes(Tweet tweet, int change) throws DataNotFoundException
+    public void updateTweet(Tweet tweet, int change, String command) throws DataNotFoundException
     {
         Session session = databaseManager.sessionFactory.openSession();
         Query<Tweet> tweetQuery = session.createQuery("select t from Tweet t where t.id = :id", Tweet.class);
@@ -342,15 +344,38 @@ public class DatabaseCommands
         try
         {
             Tweet temptweet = tweetQuery.list().get(0);
-            temptweet.setLikeCount(temptweet.getLikeCount() + change);
-            session.beginTransaction();
-            session.update(temptweet);
-            session.getTransaction().commit();
-            session.close();
+            switch (command)
+            {
+                case "like" ->
+                {
+                    temptweet.setLikeCount(temptweet.getLikeCount() + change);
+                    session.beginTransaction();
+                    session.update(temptweet);
+                    session.getTransaction().commit();
+                }
+                case "retweet" ->
+                {
+                    temptweet.setRetweetCount(temptweet.getRetweetCount() + change);
+                    session.beginTransaction();
+                    session.update(temptweet);
+                    session.getTransaction().commit();
+                }
+                case "quote" ->
+                {
+                    temptweet.setQuoteCount(tweet.getQuoteCount() + change);
+                    session.beginTransaction();
+                    session.update(temptweet);
+                    session.getTransaction().commit();
+                }
+            }
         }
         catch (IndexOutOfBoundsException e)
         {
-            throw new DataNotFoundException("tweet not found!");
+            throw new DataNotFoundException();
+        }
+        finally
+        {
+            session.close();
         }
     }
 

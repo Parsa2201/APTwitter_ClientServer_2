@@ -241,14 +241,14 @@ public class ModelCommands
         return new Respond(RespondCode.SUCCESS);
     }
 
-    public Respond sendRetweet(ObjectInputStream objectInputStream) throws ServerInvalidObjectException
+    public Respond sendRetweet(ObjectInputStream objectInputStream) throws ServerInvalidObjectException, DataNotFoundException
     {
         Retweet retweet = ObjectGetter.getObject(objectInputStream, Retweet.class);
         databaseCommands.sendRetweet(retweet);
         return new Respond(RespondCode.SUCCESS);
     }
 
-    public Respond sendQuote(ObjectInputStream objectInputStream) throws ServerInvalidObjectException
+    public Respond sendQuote(ObjectInputStream objectInputStream) throws ServerInvalidObjectException, DataNotFoundException
     {
         Quote quote = ObjectGetter.getObject(objectInputStream, Quote.class);
         databaseCommands.sendQuote(quote);

@@ -200,7 +200,7 @@ public class DatabaseCommandsTest
     }
 
     @Test
-    void sendRetweet() throws HashtagException, TextTooLongException
+    void sendRetweet() throws HashtagException, TextTooLongException, DataNotFoundException
     {
         // FIXME
         MiniUser miniUser2 = new MiniUser();
