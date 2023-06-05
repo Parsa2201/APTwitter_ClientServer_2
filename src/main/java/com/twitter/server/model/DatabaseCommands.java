@@ -2,6 +2,7 @@ package com.twitter.server.model;
 
 import com.twitter.entities.exception.UnknownException;
 import com.twitter.entities.exception.io.server.DataNotFoundException;
+import com.twitter.entities.exception.io.server.DuplicateUserNameException;
 import com.twitter.entities.exception.text.TextTooLongException;
 import com.twitter.entities.exception.user.CountryException;
 import com.twitter.entities.exception.user.email.EmailFormatException;
@@ -31,7 +32,7 @@ public class DatabaseCommands
         databaseManager = new DatabaseManager();
     }
 
-    public void signUp(User user)
+    public void signUp(User user) throws DuplicateUserNameException
     {
         try(Session session = databaseManager.sessionFactory.openSession())
         {
@@ -39,9 +40,9 @@ public class DatabaseCommands
             session.persist(user);
             session.getTransaction().commit();
         } catch (ConstraintViolationException e) {
-            // TODO: print suitable error
+            throw new DuplicateUserNameException();
         } catch (PersistenceException e){
-            System.out.println("this user already exist");
+            throw new DuplicateUserNameException();
         }
     }
     public User signIn (String userName, Password passwordHash) throws InvalidPasswordException, DataNotFoundException

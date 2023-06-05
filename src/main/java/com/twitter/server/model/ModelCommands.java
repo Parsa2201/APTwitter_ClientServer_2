@@ -2,6 +2,7 @@ package com.twitter.server.model;
 
 import com.twitter.entities.exception.UnknownException;
 import com.twitter.entities.exception.io.server.DataNotFoundException;
+import com.twitter.entities.exception.io.server.DuplicateUserNameException;
 import com.twitter.entities.exception.io.server.ServerInvalidObjectException;
 import com.twitter.entities.exception.text.TextTooLongException;
 import com.twitter.entities.exception.user.CountryException;
@@ -31,7 +32,7 @@ public class ModelCommands
 //        databaseManager = null;
     }
 
-    public Respond signUp(ObjectInputStream objectInputStream) throws ServerInvalidObjectException
+    public Respond signUp(ObjectInputStream objectInputStream) throws ServerInvalidObjectException, DuplicateUserNameException
     {
         User user = ObjectGetter.getObject(objectInputStream, User.class);
 

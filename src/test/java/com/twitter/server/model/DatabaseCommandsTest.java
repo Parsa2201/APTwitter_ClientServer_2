@@ -6,6 +6,7 @@ import com.twitter.entities.exception.io.FileNotImageException;
 import com.twitter.entities.exception.io.FileSizeException;
 import com.twitter.entities.exception.io.ImageSizeException;
 import com.twitter.entities.exception.io.server.DataNotFoundException;
+import com.twitter.entities.exception.io.server.DuplicateUserNameException;
 import com.twitter.entities.exception.text.TextTooLongException;
 import com.twitter.entities.exception.user.CountryException;
 import com.twitter.entities.exception.user.email.EmailFormatException;
@@ -64,7 +65,7 @@ public class DatabaseCommandsTest
     }
 
     @Test
-    void signUp1() throws PasswordFormatException, PasswordHashException, EmailFormatException, CountryException
+    void signUp1() throws PasswordFormatException, PasswordHashException, EmailFormatException, CountryException, DuplicateUserNameException
     {
         User user = new User();
         user.setUserName("test user name 1");
@@ -81,7 +82,7 @@ public class DatabaseCommandsTest
     }
 
     @Test
-    void signUp2() throws PasswordFormatException, PasswordHashException, EmailFormatException, CountryException
+    void signUp2() throws PasswordFormatException, PasswordHashException, EmailFormatException, CountryException, DuplicateUserNameException
     {
         User user = makeUser2();
 
