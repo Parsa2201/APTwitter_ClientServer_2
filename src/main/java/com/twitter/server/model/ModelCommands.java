@@ -257,7 +257,7 @@ public class ModelCommands
         return new Respond(RespondCode.SUCCESS);
     }
 
-    public Respond sendReply(ObjectInputStream objectInputStream) throws ServerInvalidObjectException
+    public Respond sendReply(ObjectInputStream objectInputStream) throws ServerInvalidObjectException, TweetNotFoundException
     {
         Long id = ObjectGetter.getObject(objectInputStream, Long.class);
         Reply reply = ObjectGetter.getObject(objectInputStream, Reply.class);

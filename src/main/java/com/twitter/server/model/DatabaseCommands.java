@@ -273,8 +273,9 @@ public class DatabaseCommands
         session.close();
     }
 
-    public void sendQuote(Quote quote) throws TweetNotFoundException
+    public void sendQuote(Long id, Quote quote) throws TweetNotFoundException
     {
+        quote.setTweet(findTweet(id));
         updateTweet(quote.getTweet(), +1, "quote");
         Session session = databaseManager.sessionFactory.openSession();
         session.beginTransaction();
@@ -283,8 +284,9 @@ public class DatabaseCommands
         session.close();
     }
 
-    public void sendReply(Reply reply)
+    public void sendReply(Long id, Reply reply) throws TweetNotFoundException
     {
+        reply.setTweet(findTweet(id));
         Session session = databaseManager.sessionFactory.openSession();
         session.beginTransaction();
         session.persist(reply);
