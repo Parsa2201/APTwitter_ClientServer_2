@@ -1,14 +1,12 @@
 package com.twitter.server.model;
 
+import com.twitter.entities.exception.UnknownException;
 import com.twitter.entities.exception.hashtag.HashtagException;
 import com.twitter.entities.exception.io.FileNotExistException;
 import com.twitter.entities.exception.io.FileNotImageException;
 import com.twitter.entities.exception.io.FileSizeException;
 import com.twitter.entities.exception.io.ImageSizeException;
-import com.twitter.entities.exception.io.server.DataNotFoundException;
-import com.twitter.entities.exception.io.server.DuplicateBlockRequestException;
-import com.twitter.entities.exception.io.server.DuplicateLikeRequestException;
-import com.twitter.entities.exception.io.server.DuplicateUserNameException;
+import com.twitter.entities.exception.io.server.*;
 import com.twitter.entities.exception.text.TextTooLongException;
 import com.twitter.entities.exception.user.CountryException;
 import com.twitter.entities.exception.user.email.EmailFormatException;
@@ -18,6 +16,7 @@ import com.twitter.entities.exception.user.password.PasswordHashException;
 import com.twitter.entities.image.Avatar;
 import com.twitter.entities.image.Header;
 import com.twitter.entities.tweet.Retweet;
+import com.twitter.entities.tweet.TimeLine;
 import com.twitter.entities.tweet.Tweet;
 import com.twitter.entities.tweet.content.TextContent;
 import com.twitter.entities.user.MiniUser;
@@ -234,7 +233,13 @@ public class DatabaseCommandsTest
 
     // TODO: dislikeTweet()
 
-    // TODO: showTimeLine()
+    @Test
+    void showTimeLine() throws UserNotFoundException, UnknownException
+    {
+        DatabaseCommands databaseCommands = new DatabaseCommands();
+        TimeLine timeLine = databaseCommands.showTimeLine(TEST_USER_NAME_1);
+        int notImportant = 5; // add breakpoint here
+    }
 
     @Test
     void block() throws DataNotFoundException, DuplicateBlockRequestException

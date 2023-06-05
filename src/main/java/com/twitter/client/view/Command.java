@@ -315,8 +315,10 @@ public class Command
         Tweet tweet = baseTweet.toTweet();
 
         TwitterLog.println("_________________________________");
+        if(baseTweet instanceof Retweet)
+            TwitterLog.println(" -- > Retweeted by " + baseTweet.getOwner().getName() + " " + baseTweet.getOwner().getFamily() + " < --");
         // if the baseTweet is a retweet, the owner of the baseTweet is the reTweeter
-        TwitterLog.println(baseTweet.getOwner().getName() + " " + baseTweet.getOwner().getFamily());
+        TwitterLog.println(tweet.getOwner().getName() + " " + tweet.getOwner().getFamily());
         TwitterLog.printlnNested(tweet.getTextContent().toString());
         TwitterLog.println("Likes: " + tweet.getLikeCount());
         TwitterLog.println("Retweets: " + tweet.getRetweetCount());
@@ -329,6 +331,7 @@ public class Command
 
     private static void printQuote(Quote quote) throws UnknownException
     {
+        TwitterLog.println("_________________________________");
         TwitterLog.println("\n" + quote.getOwner().getName() + " " + quote.getOwner().getFamily());
         TwitterLog.printlnNested(quote.getTextContent().toString());
         TwitterLog.println(quote.getDate().toString());
