@@ -419,6 +419,17 @@ public class DatabaseCommands
         for (BaseTweet b : timeLine)
         {
             b.setOwner(databaseManager.findUser(b.getUserName(), session).toMiniUser());
+            if(b instanceof Retweet)
+            {
+                ((Retweet) b).getTweet().setOwner(databaseManager.findUser(((Retweet) b).getTweet().getUserName(), session).toMiniUser());
+            }
+            if(b instanceof Tweet)
+            {
+                for (Reply r : ((Tweet) b).getReplies())
+                {
+                    r.setReplier(databaseManager.findUser(r.getUserName(), session).toMiniUser());
+                }
+            }
         }
         timeLine.sort();
         for (BaseTweet b : timeLine)

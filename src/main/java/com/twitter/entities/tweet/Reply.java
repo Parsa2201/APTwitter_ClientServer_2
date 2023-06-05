@@ -16,7 +16,7 @@ public class Reply implements Serializable
     private Long id;
     private final String userName;
     @Transient
-    private final MiniUser replier;
+    private MiniUser replier;
     @OneToOne
     private final Tweet tweet;
     private final LocalDateTime date;
@@ -57,6 +57,11 @@ public class Reply implements Serializable
         return replier;
     }
 
+    public void setReplier(MiniUser replier)
+    {
+        this.replier = replier;
+    }
+
     public Tweet getTweet()
     {
         return tweet;
@@ -70,5 +75,10 @@ public class Reply implements Serializable
     public TextContent getTextContent()
     {
         return textContent;
+    }
+
+    public String getUserName()
+    {
+        return userName;
     }
 }

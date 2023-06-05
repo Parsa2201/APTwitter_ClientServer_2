@@ -249,7 +249,7 @@ public class Command
         TwitterLog.println("Your quote successfully sent.");
     }
 
-    public void sendReply()
+    public void sendReply() throws ServerConnectionFailedException, DataNotFoundException, ServerRespondFailedException, UnknownException, InvalidPasswordException, PermissionDeniedException, TextTooLongException, ServerInvalidCommandException, DatabaseFailedException, ServerInvalidObjectException
     {
         String tweetId = TwitterLog.nextLine("Enter the tweet id: ");
         String text = TwitterLog.nextLine("Enter your reply text: ");

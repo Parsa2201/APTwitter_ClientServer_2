@@ -298,7 +298,7 @@ public class ControllerCommands
         modelCommands.sendQuote(quote);
     }
 
-    public void sendReply(String tweetId, String text) throws PermissionDeniedException, TextTooLongException
+    public void sendReply(String tweetId, String text) throws PermissionDeniedException, TextTooLongException, ServerConnectionFailedException, DataNotFoundException, ServerRespondFailedException, UnknownException, InvalidPasswordException, ServerInvalidCommandException, DatabaseFailedException, ServerInvalidObjectException
     {
         User user = getCurrentUser();
         long id = Long.parseLong(tweetId);
