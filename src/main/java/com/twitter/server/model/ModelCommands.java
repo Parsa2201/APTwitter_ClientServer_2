@@ -11,10 +11,7 @@ import com.twitter.entities.image.Avatar;
 import com.twitter.entities.image.Header;
 import com.twitter.entities.server.Respond;
 import com.twitter.entities.server.RespondCode;
-import com.twitter.entities.tweet.Quote;
-import com.twitter.entities.tweet.Retweet;
-import com.twitter.entities.tweet.TimeLine;
-import com.twitter.entities.tweet.Tweet;
+import com.twitter.entities.tweet.*;
 import com.twitter.entities.user.*;
 import com.twitter.entities.user.follow.Followers;
 import com.twitter.entities.user.follow.Followings;
@@ -255,6 +252,13 @@ public class ModelCommands
     {
         Quote quote = ObjectGetter.getObject(objectInputStream, Quote.class);
         databaseCommands.sendQuote(quote);
+        return new Respond(RespondCode.SUCCESS);
+    }
+
+    public Respond sendReply(ObjectInputStream objectInputStream) throws ServerInvalidObjectException
+    {
+        Reply reply = ObjectGetter.getObject(objectInputStream, Reply.class);
+        databaseCommands.sendReply(reply);
         return new Respond(RespondCode.SUCCESS);
     }
 

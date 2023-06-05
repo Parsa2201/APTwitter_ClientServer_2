@@ -24,7 +24,7 @@ public class Reply implements Serializable
     @AttributeOverride(name = "text", column = @Column(name = "reply_text"))
     private final TextContent textContent;
 
-    public Reply(MiniUser replier, Tweet tweet, LocalDateTime date, TextContent textContent)
+    public Reply(Tweet tweet, MiniUser replier, LocalDateTime date, TextContent textContent)
     {
         this.replier = replier;
         this.tweet = tweet;
@@ -33,9 +33,9 @@ public class Reply implements Serializable
         userName = replier.getUserName();
     }
 
-    public Reply(MiniUser replier, Tweet tweet, TextContent textContent)
+    public Reply(Tweet tweet, MiniUser replier, TextContent textContent)
     {
-        this(replier, tweet, LocalDateTime.now(), textContent);
+        this(tweet, replier, LocalDateTime.now(), textContent);
     }
 
     public Reply() {

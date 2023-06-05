@@ -7,10 +7,7 @@ import com.twitter.entities.exception.user.password.InvalidPasswordException;
 import com.twitter.entities.image.Avatar;
 import com.twitter.entities.image.Header;
 import com.twitter.entities.server.Respond;
-import com.twitter.entities.tweet.Quote;
-import com.twitter.entities.tweet.Retweet;
-import com.twitter.entities.tweet.TimeLine;
-import com.twitter.entities.tweet.Tweet;
+import com.twitter.entities.tweet.*;
 import com.twitter.entities.user.*;
 import com.twitter.entities.user.follow.FollowRelation;
 import com.twitter.entities.user.follow.Followers;
@@ -373,6 +370,17 @@ public void changePassword(String userName, Password newPasswordHash) throws Ser
             Respond respond = serverConnectionHandler.getRespond();
             respond.check();
             return (BlackList) respond.getObject();
+        }
+    }
+
+    public void sendReply(Reply reply) throws ServerConnectionFailedException, ServerInvalidObjectException, ServerRespondFailedException, DataNotFoundException, UnknownException, InvalidPasswordException, TextTooLongException, ServerInvalidCommandException, DatabaseFailedException
+    {
+        try (ServerConnectionHandler serverConnectionHandler = new ServerConnectionHandler())
+        {
+            serverConnectionHandler.sendCommend("send-reply");
+            serverConnectionHandler.sendObject(reply);
+            Respond respond = serverConnectionHandler.getRespond();
+            respond.check();
         }
     }
 }

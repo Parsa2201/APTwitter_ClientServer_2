@@ -2,7 +2,6 @@ package com.twitter.client.controller;
 
 import com.twitter.client.view.ProgramState;
 import com.twitter.entities.exception.hashtag.HashtagException;
-import com.twitter.entities.exception.hashtag.NameNotHashtagException;
 import com.twitter.entities.exception.user.EmailOrPhoneRequiredException;
 import com.twitter.entities.exception.UnknownException;
 import com.twitter.entities.exception.io.server.*;
@@ -20,11 +19,9 @@ import com.twitter.entities.image.Header;
 import com.twitter.entities.tweet.*;
 import com.twitter.entities.tweet.content.ImageContent;
 import com.twitter.entities.tweet.content.TextContent;
-import com.twitter.entities.tweet.content.hashtag.Hashtag;
 import com.twitter.entities.tweet.content.hashtag.Hashtags;
 import com.twitter.entities.user.*;
 import com.twitter.client.model.ModelCommands;
-import com.twitter.entities.user.follow.FollowRelation;
 import com.twitter.entities.user.follow.Followers;
 import com.twitter.entities.user.follow.Followings;
 
@@ -299,6 +296,17 @@ public class ControllerCommands
         Quote quote = new Quote(tweet, user.toMiniUser(), new TextContent(text), imageContent);
 
         modelCommands.sendQuote(quote);
+    }
+
+    public void sendReply(String tweetId, String text) throws PermissionDeniedException, TextTooLongException
+    {
+        User user = getCurrentUser();
+        long id = Long.parseLong(tweetId);
+        Tweet tweet = Data.getInstance().getTimeLine().getTweet(id);
+
+        Reply reply = new Reply(tweet, user.toMiniUser(), new TextContent(text));
+
+        modelCommands.sendReply(reply);
     }
 
     public void likeTweet(String tweetId) throws NumberFormatException, PermissionDeniedException, ServerConnectionFailedException, DataNotFoundException, ServerRespondFailedException, UnknownException, InvalidPasswordException, TextTooLongException, ServerInvalidCommandException, DatabaseFailedException, ServerInvalidObjectException

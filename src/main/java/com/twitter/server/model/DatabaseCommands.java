@@ -229,7 +229,7 @@ public class DatabaseCommands
         }
         else
         {
-            // throw exception
+            // TODO: throw exception
         }
     }
     public void unfollow (String userName, String followedUserName) throws DataNotFoundException
@@ -275,7 +275,6 @@ public class DatabaseCommands
 
     public void sendRetweet(Retweet retweet)
     {
-        // TODO
         Session session = databaseManager.sessionFactory.openSession();
         session.beginTransaction();
         session.persist(retweet);
@@ -285,7 +284,6 @@ public class DatabaseCommands
 
     public void sendQuote(Quote quote)
     {
-        // TODO
         Session session = databaseManager.sessionFactory.openSession();
         session.beginTransaction();
         session.persist(quote);
@@ -293,9 +291,13 @@ public class DatabaseCommands
         session.close();
     }
 
-    public void likeTweet(Tweet tweet, String userName) throws DataNotFoundException
+    public void sendReply(Reply reply)
     {
         // TODO
+    }
+
+    public void likeTweet(Tweet tweet, String userName) throws DataNotFoundException
+    {
         Session session = databaseManager.sessionFactory.openSession();
         User user = databaseManager.findUser(userName, session);
         LikeRelation likeRelation = new LikeRelation(user, tweet);
@@ -309,13 +311,12 @@ public class DatabaseCommands
         }
         else
         {
-          // throw exception
+          // TODO: throw exception
         }
     }
 
     public void dislikeTweet(Tweet tweet, String userName) throws DataNotFoundException
     {
-        // TODO
         Session session = databaseManager.sessionFactory.openSession();
         User user = databaseManager.findUser(userName, session);
         LikeRelation likeRelation = new LikeRelation(user, tweet);
@@ -329,7 +330,7 @@ public class DatabaseCommands
         }
         else
         {
-          // throw exception
+          // TODO: throw exception
         }
     }
 
@@ -355,7 +356,6 @@ public class DatabaseCommands
 
     public TimeLine showTimeLine(String userName) throws DataNotFoundException, UnknownException
     {
-        // TODO
         Session session = databaseManager.sessionFactory.openSession();
         Followings followings = showFollowings(userName);
         TimeLine timeLine = new TimeLine();
@@ -434,7 +434,6 @@ public class DatabaseCommands
 
     public void unblock(String blocker, String blocked) throws DataNotFoundException
     {
-        // TODO
         Session session = databaseManager.sessionFactory.openSession();
         BlockRelation blockRelation = new BlockRelation(databaseManager.findUser(blocker, session), databaseManager.findUser(blocked, session));
         if((blockRelation = databaseManager.isBlockRelationExist(blockRelation, session)) != null)
@@ -508,5 +507,4 @@ public class DatabaseCommands
         }
 
     }
-
 }

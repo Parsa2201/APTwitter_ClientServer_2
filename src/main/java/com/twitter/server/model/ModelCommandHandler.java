@@ -62,6 +62,7 @@ public class ModelCommandHandler
                 case "send-tweet" -> modelCommands.sendTweet(objectInputStream);
                 case "send-retweet" -> modelCommands.sendRetweet(objectInputStream);
                 case "send-quote" -> modelCommands.sendQuote(objectInputStream);
+                case "send-reply" -> modelCommands.sendReply(objectInputStream);
                 case "like-tweet" -> modelCommands.likeTweet(objectInputStream);
                 case "dislike-tweet" -> modelCommands.dislikeTweet(objectInputStream);
                 case "show-time-line" -> modelCommands.showTimeLine(objectInputStream);

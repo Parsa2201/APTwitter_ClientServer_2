@@ -108,6 +108,7 @@ public class MenuOption
                 case SEND_TWEET -> commandObject.sendTweet();
                 case SEND_RETWEET -> commandObject.sendRetweet();
                 case SEND_QUOTE -> commandObject.sendQuote();
+                case SEND_REPLY -> commandObject.sendReply();
                 case LIKE_TWEET -> commandObject.likeTweet();
                 case DISLIKE_TWEET -> commandObject.dislikeTweet();
                 case SHOW_TIME_LINE -> commandObject.showTimeLine();
@@ -246,6 +247,7 @@ public class MenuOption
         options.add(Option.SEND_TWEET);
         options.add(Option.SEND_RETWEET);
         options.add(Option.SEND_QUOTE);
+        options.add(Option.SEND_REPLY);
         options.add(Option.LIKE_TWEET);
         options.add(Option.DISLIKE_TWEET);
         options.add(Option.SHOW_TIME_LINE);

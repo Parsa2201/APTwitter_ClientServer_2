@@ -31,6 +31,7 @@ public enum Option
     SEND_TWEET,
     SEND_RETWEET,
     SEND_QUOTE,
+    SEND_REPLY,
     LIKE_TWEET,
     DISLIKE_TWEET,
     SHOW_TIME_LINE,
@@ -77,8 +78,9 @@ public enum Option
             case CHANGE_WEBSITE -> "Change my website";
 
             case SEND_TWEET -> "Send a tweet";
-            case SEND_RETWEET -> "Send a retweet";
+            case SEND_RETWEET -> "Retweet a tweet";
             case SEND_QUOTE -> "Send a quote";
+            case SEND_REPLY -> "Reply to a tweet";
             case LIKE_TWEET -> "Like a tweet";
             case DISLIKE_TWEET -> "Dislike a tweet";
             case SHOW_TIME_LINE -> "Show my timeline";
