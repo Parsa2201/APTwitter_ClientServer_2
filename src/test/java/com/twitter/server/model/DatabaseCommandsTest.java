@@ -219,7 +219,17 @@ public class DatabaseCommandsTest
 
     // TODO: sendQuote()
 
-    // TODO: likeTweet()
+    @Test
+    void likeTweet() throws DataNotFoundException
+    {
+        DatabaseCommands databaseCommands = new DatabaseCommands();
+        Tweet tweet = databaseCommands.findTweet(1L);
+        int likes = tweet.getLikeCount();
+        User user = databaseCommands.findUser("parsa2201");
+        databaseCommands.likeTweet(tweet, "parsa2201");
+        tweet = databaseCommands.findTweet(1L);
+        Assertions.assertEquals(tweet.getLikeCount(), likes + 1);
+    }
 
     // TODO: likeTweet()
 
