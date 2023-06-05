@@ -35,17 +35,24 @@ import java.time.LocalDate;
 
 public class DatabaseCommandsTest
 {
+    public static final String TEST_USER_NAME_1 = "parsa2201";
+    private static final String TEST_USER_NAME_2 = "hehehe";
+
+    private static final String TEST_PASSWORD_1 = "NaNoOOl;#329";
+    private static final String TEST_PASSWORD_2 = "NaNoOOl;#329";
+
+    private static final String CHANGED_PASSWORD = "1234!@#$abAB";
     User makeUser1() throws PasswordFormatException, PasswordHashException, EmailFormatException, CountryException
     {
         User user = new User();
-        user.setUserName("test user name 1");
-        user.setPassword("NaNoOOl;#329");
-        user.setName("test name");
-        user.setFamily("test family");
-        user.setEmail("test@email.com");
-        user.setPhoneNumber("test phone number");
-        user.setCountry("iran");
-        user.setBirthDate(LocalDate.of(2000, 1, 1));
+        user.setUserName(TEST_USER_NAME_1);
+        user.setPassword(TEST_PASSWORD_1);
+        user.setName("HIUG");
+        user.setFamily("Salamatipour");
+        user.setEmail("sa.parsa20@email.com");
+        user.setPhoneNumber("09124978928");
+        user.setCountry("Iran");
+        user.setBirthDate(LocalDate.of(2003, 11, 3));
 
         return user;
     }
@@ -53,14 +60,14 @@ public class DatabaseCommandsTest
     User makeUser2() throws PasswordFormatException, PasswordHashException, EmailFormatException, CountryException
     {
         User user = new User();
-        user.setUserName("test user name 2");
-        user.setPassword("NaNoOOl;#329");
-        user.setName("test name");
-        user.setFamily("test family");
-        user.setEmail("test@email.com");
-        user.setPhoneNumber("test phone number");
-        user.setCountry("iran");
-        user.setBirthDate(LocalDate.of(2000, 1, 1));
+        user.setUserName(TEST_USER_NAME_2);
+        user.setPassword(TEST_PASSWORD_2);
+        user.setName("he");
+        user.setFamily("hehe");
+        user.setEmail("he.hehe20@hemail.hem");
+        user.setPhoneNumber("091111111");
+        user.setCountry("Zambia");
+        user.setBirthDate(LocalDate.of(2096, 5, 29));
 
         return user;
     }
@@ -68,15 +75,7 @@ public class DatabaseCommandsTest
     @Test
     void signUp1() throws PasswordFormatException, PasswordHashException, EmailFormatException, CountryException, DuplicateUserNameException
     {
-        User user = new User();
-        user.setUserName("test user name 1");
-        user.setPassword("NaNoOOl;#329");
-        user.setName("test name");
-        user.setFamily("test family");
-        user.setEmail("test@email.com");
-        user.setPhoneNumber("test phone number");
-        user.setCountry("iran");
-        user.setBirthDate(LocalDate.of(2000, 1, 1));
+        User user = makeUser1();
 
         DatabaseCommands databaseCommands = new DatabaseCommands();
         databaseCommands.signUp(user);
@@ -95,7 +94,7 @@ public class DatabaseCommandsTest
     void signIn() throws PasswordFormatException, PasswordHashException, EmailFormatException, CountryException, DataNotFoundException, InvalidPasswordException, IOException
     {
         DatabaseCommands databaseCommands = new DatabaseCommands();
-        User user = databaseCommands.signIn("test user name 1", new Password("NaNoOOl;#329"));
+        User user = databaseCommands.signIn(TEST_USER_NAME_1, new Password(TEST_PASSWORD_1));
         Assertions.assertEquals(user, makeUser1());
 
         Avatar avatar = user.getAvatar();
@@ -114,7 +113,7 @@ public class DatabaseCommandsTest
     void setAvatar() throws PasswordFormatException, PasswordHashException, EmailFormatException, CountryException, DataNotFoundException, ImageSizeException, FileSizeException, FileNotExistException, FileNotImageException
     {
         DatabaseCommands databaseCommands = new DatabaseCommands();
-        databaseCommands.setAvatar("test user name 1", new Avatar("src/main/java/assets/Parsa Salamatipour 400X400.jpg"));
+        databaseCommands.setAvatar(TEST_USER_NAME_1, new Avatar("src/main/java/assets/Parsa Salamatipour 400X400.jpg"));
     }
 
     @Test
@@ -122,23 +121,23 @@ public class DatabaseCommandsTest
     {
         DatabaseCommands databaseCommands = new DatabaseCommands();
         Header header = new Header("src/main/java/assets/Parsa Salamatipour 1500X500.jpg");
-        databaseCommands.setHeader("test user name 1", header);
+        databaseCommands.setHeader(TEST_USER_NAME_1, header);
     }
 
     @Test
     void changeUserPassword() throws PasswordHashException, DataNotFoundException, InvalidPasswordException
     {
         DatabaseCommands databaseCommands = new DatabaseCommands();
-        databaseCommands.changeUserPassword("test user name 1", new Password("1234!@#$abAB"));
-        databaseCommands.signIn("test user name 1", new Password("1234!@#$abAB"));
+        databaseCommands.changeUserPassword(TEST_USER_NAME_1, new Password(CHANGED_PASSWORD));
+        databaseCommands.signIn(TEST_USER_NAME_1, new Password(CHANGED_PASSWORD));
     }
 
     @Test
     void changeName() throws DataNotFoundException, PasswordHashException, InvalidPasswordException
     {
         DatabaseCommands databaseCommands = new DatabaseCommands();
-        databaseCommands.changeName("test user name 1", "Mammad");
-        User user = databaseCommands.signIn("test user name 1", new Password("1234!@#$abAB"));
+        databaseCommands.changeName(TEST_USER_NAME_1, "Mammad");
+        User user = databaseCommands.signIn(TEST_USER_NAME_1, new Password(CHANGED_PASSWORD));
         Assertions.assertEquals(user.getName(), "Mammad");
     }
 
@@ -146,8 +145,8 @@ public class DatabaseCommandsTest
     void changeFamily() throws DataNotFoundException, PasswordHashException, InvalidPasswordException
     {
         DatabaseCommands databaseCommands = new DatabaseCommands();
-        databaseCommands.changeFamily("test user name 1", "Mammadi");
-        User user = databaseCommands.signIn("test user name 1", new Password("1234!@#$abAB"));
+        databaseCommands.changeFamily(TEST_USER_NAME_1, "Mammadi");
+        User user = databaseCommands.signIn(TEST_USER_NAME_1, new Password(CHANGED_PASSWORD));
         Assertions.assertEquals(user.getFamily(), "Mammadi");
     }
 
@@ -180,7 +179,7 @@ public class DatabaseCommandsTest
     {
         // FIXME
         MiniUser miniUser = new MiniUser();
-        miniUser.setUserName("test user name 1");
+        miniUser.setUserName(TEST_USER_NAME_1);
 
         Tweet tweet = new Tweet(miniUser, new TextContent("this is a test text"), null);
 
@@ -193,7 +192,7 @@ public class DatabaseCommandsTest
     {
         // FIXME
         MiniUser miniUser = new MiniUser();
-        miniUser.setUserName("test user name 1");
+        miniUser.setUserName(TEST_USER_NAME_1);
 
         Tweet tweet = new Tweet(miniUser, new TextContent("this is another test text"), null);
 
@@ -206,10 +205,10 @@ public class DatabaseCommandsTest
     {
         // FIXME
         MiniUser miniUser2 = new MiniUser();
-        miniUser2.setUserName("test user name 2");
+        miniUser2.setUserName(TEST_USER_NAME_2);
 
         MiniUser miniUser1 = new MiniUser();
-        miniUser1.setUserName("test user name 1");
+        miniUser1.setUserName(TEST_USER_NAME_1);
 
         Tweet tweet = new Tweet(miniUser1, new TextContent("this is a test text"), null);
 
@@ -227,7 +226,7 @@ public class DatabaseCommandsTest
         DatabaseCommands databaseCommands = new DatabaseCommands();
         Tweet tweet = databaseCommands.findTweet(1L);
         int likes = tweet.getLikeCount();
-        databaseCommands.likeTweet(tweet, "parsa2201");
+        databaseCommands.likeTweet(tweet, TEST_USER_NAME_1);
         tweet = databaseCommands.findTweet(1L);
         Assertions.assertEquals(tweet.getLikeCount(), likes + 1);
     }
@@ -240,17 +239,17 @@ public class DatabaseCommandsTest
     void block() throws DataNotFoundException
     {
         DatabaseCommands databaseCommands = new DatabaseCommands();
-        databaseCommands.block("test user name 1", "test user name 2");
+        databaseCommands.block(TEST_USER_NAME_1, TEST_USER_NAME_2);
 
         try
         {
-            Followers followers = databaseCommands.showFollowers("test user name 1");
+            Followers followers = databaseCommands.showFollowers(TEST_USER_NAME_1);
             for(MiniUser miniUser : followers)
-                Assertions.assertEquals(miniUser.getUserName(),"test user name 2");
+                Assertions.assertEquals(miniUser.getUserName(),TEST_USER_NAME_2);
 
-            Followings followings = databaseCommands.showFollowings("test user name 2");
+            Followings followings = databaseCommands.showFollowings(TEST_USER_NAME_2);
             for(MiniUser miniUser : followings)
-                Assertions.assertEquals(miniUser.getUserName(),"test user name 1");
+                Assertions.assertEquals(miniUser.getUserName(),TEST_USER_NAME_1);
         }
         catch (DataNotFoundException ignored){}
     }

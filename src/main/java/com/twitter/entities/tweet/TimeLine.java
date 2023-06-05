@@ -84,4 +84,9 @@ public class TimeLine implements Iterable<BaseTweet>, Serializable
     {
         return tweets.iterator();
     }
+
+    public int size()
+    {
+        return tweets.size();
+    }
 }

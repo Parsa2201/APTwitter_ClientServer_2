@@ -1,6 +1,12 @@
 package com.twitter.client.controller;
 
+import com.twitter.client.model.ModelCommands;
 import com.twitter.client.view.ProgramState;
+import com.twitter.entities.exception.TwitException;
+import com.twitter.entities.exception.UnknownException;
+import com.twitter.entities.exception.io.server.*;
+import com.twitter.entities.exception.text.TextTooLongException;
+import com.twitter.entities.exception.user.password.InvalidPasswordException;
 import com.twitter.entities.tweet.TimeLine;
 import com.twitter.entities.user.User;
 
@@ -27,9 +33,27 @@ public class Data implements Serializable
         {
             programState = loadedData.getProgramState();
             user = loadedData.getUser();
+            if(programState == ProgramState.MAIN_MENU)
+            {
+                verifyUser();
+            }
             timeLine = loadedData.getTimeLine();
         }
         settingIO.startAutoSave();
+    }
+
+    private void verifyUser()
+    {
+        ModelCommands modelCommands = new ModelCommands();
+        try
+        {
+            user = modelCommands.signIn(user.getUserName(), user.getPassHash());
+        } catch (TwitException e)
+        {
+            programState = ProgramState.LOGGED_OUT;
+            user = null;
+        }
+        save();
     }
 
     public static Data getInstance()

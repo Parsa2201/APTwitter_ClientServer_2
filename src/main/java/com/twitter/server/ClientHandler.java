@@ -33,6 +33,9 @@ public class ClientHandler implements Runnable
         } catch (ServerInvalidObjectException e)
         {
             System.out.println("Invalid object!");
+        } catch(Exception e)
+        {
+            e.printStackTrace();
         }
 
         try

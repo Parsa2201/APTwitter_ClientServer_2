@@ -2,11 +2,11 @@ package com.twitter.entities.server;
 
 import com.twitter.entities.exception.TwitException;
 import com.twitter.entities.exception.UnknownException;
-import com.twitter.entities.exception.io.server.DataNotFoundException;
-import com.twitter.entities.exception.io.server.DatabaseFailedException;
-import com.twitter.entities.exception.io.server.ServerInvalidCommandException;
-import com.twitter.entities.exception.io.server.ServerInvalidObjectException;
+import com.twitter.entities.exception.io.server.*;
 import com.twitter.entities.exception.text.TextTooLongException;
+import com.twitter.entities.exception.user.CountryException;
+import com.twitter.entities.exception.user.email.EmailException;
+import com.twitter.entities.exception.user.email.EmailFormatException;
 import com.twitter.entities.exception.user.password.InvalidPasswordException;
 
 import java.io.IOException;
@@ -76,7 +76,7 @@ public class Respond implements Serializable
         }
     }
 
-    public void check() throws UnknownException, DatabaseFailedException, ServerInvalidObjectException, DataNotFoundException, InvalidPasswordException, TextTooLongException, ServerInvalidCommandException
+    public void check() throws UnknownException, DatabaseFailedException, ServerInvalidObjectException, InvalidPasswordException, TextTooLongException, ServerInvalidCommandException, CountryException, EmailFormatException, DuplicateUserNameException, DuplicateLikeRequestException, DuplicateFollowRequestException, UserNotFoundException, FollowRelationNotFoundException, DuplicateBlockRequestException, BlockRelationNotFoundException, TweetNotFoundException, LikeRelationNotFoundException
     {
         if(respondCode == RespondCode.FAIL)
         {
@@ -84,18 +84,38 @@ public class Respond implements Serializable
                 throw new UnknownException();
 
             // throw the exact type of the exception
-            if(exception instanceof DatabaseFailedException)
-                throw (DatabaseFailedException) exception;
-            else if(exception instanceof ServerInvalidObjectException)
+            if(exception instanceof ServerInvalidObjectException)
                 throw (ServerInvalidObjectException) exception;
-            else if (exception instanceof DataNotFoundException)
-                throw (DataNotFoundException) exception;
+            else if(exception instanceof DatabaseFailedException)
+                throw (DatabaseFailedException) exception;
             else if(exception instanceof InvalidPasswordException)
                 throw (InvalidPasswordException) exception;
+            else if(exception instanceof CountryException)
+                throw (CountryException) exception;
+            else if(exception instanceof EmailFormatException)
+                throw (EmailFormatException) exception;
             else if(exception instanceof TextTooLongException)
                 throw (TextTooLongException) exception;
             else if(exception instanceof ServerInvalidCommandException)
                 throw (ServerInvalidCommandException) exception;
+            else if(exception instanceof DuplicateUserNameException)
+                throw (DuplicateUserNameException) exception;
+            else if(exception instanceof DuplicateLikeRequestException)
+                throw (DuplicateLikeRequestException) exception;
+            else if(exception instanceof UserNotFoundException)
+                throw (UserNotFoundException) exception;
+            else if(exception instanceof DuplicateFollowRequestException)
+                throw (DuplicateFollowRequestException) exception;
+            else if(exception instanceof FollowRelationNotFoundException)
+                throw (FollowRelationNotFoundException) exception;
+            else if(exception instanceof DuplicateBlockRequestException)
+                throw (DuplicateBlockRequestException) exception;
+            else if(exception instanceof BlockRelationNotFoundException)
+                throw (BlockRelationNotFoundException) exception;
+            else if(exception instanceof TweetNotFoundException)
+                throw (TweetNotFoundException) exception;
+            else if(exception instanceof LikeRelationNotFoundException)
+                throw (LikeRelationNotFoundException) exception;
             else if (exception instanceof UnknownException)
                 throw (UnknownException) exception;
             else

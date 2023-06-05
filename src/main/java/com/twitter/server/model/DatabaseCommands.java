@@ -17,7 +17,6 @@ import com.twitter.entities.user.follow.Followings;
 import jakarta.persistence.PersistenceException;
 import org.hibernate.Hibernate;
 import org.hibernate.Session;
-import org.hibernate.exception.ConstraintViolationException;
 import org.hibernate.query.Query;
 
 import java.time.LocalDate;
@@ -38,8 +37,6 @@ public class DatabaseCommands
             session.beginTransaction();
             session.persist(user);
             session.getTransaction().commit();
-        } catch (ConstraintViolationException e) {
-            throw new DuplicateUserNameException();
         } catch (PersistenceException e){
             throw new DuplicateUserNameException();
         }
@@ -344,7 +341,7 @@ public class DatabaseCommands
     {
         Session session = databaseManager.sessionFactory.openSession();
         Query<Tweet> tweetQuery = session.createQuery("select t from Tweet t where t.id = :id", Tweet.class);
-        tweetQuery.setParameter("id", tweet.getId());
+        tweetQuery.setParameter("id", tweet.getId()); // FIXME: got a {NullPointerException: Cannot invoke "com.twitter.entities.tweet.Tweet.getId()" because "tweet" is null} here when wanted to send a retweet / reply (by id)
         try
         {
             Tweet temptweet = tweetQuery.list().get(0);
@@ -385,6 +382,7 @@ public class DatabaseCommands
 
     public TimeLine showTimeLine(String userName) throws UserNotFoundException, UnknownException
     {
+        // FIXME: you should show the tweets of a user to himself
         Session session = databaseManager.sessionFactory.openSession();
         Followings followings = showFollowings(userName);
         TimeLine timeLine = new TimeLine();
@@ -466,7 +464,7 @@ public class DatabaseCommands
             throw new DuplicateBlockRequestException();
         } catch (BlockRelationNotFoundException e)
         {
-            session.beginTransaction();
+            session.beginTransaction(); // FIXME: got a {IllegalStateException: Session/EntityManager is closed} error when i wanted to block a user
             session.persist(blockRelation);
             session.getTransaction().commit();
         }

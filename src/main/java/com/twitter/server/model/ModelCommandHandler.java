@@ -69,27 +69,13 @@ public class ModelCommandHandler
                 default -> new Respond(new ServerInvalidCommandException());
             };
         }
-        catch (ServerInvalidObjectException | DataNotFoundException | InvalidPasswordException e)
+        catch (ServerInvalidObjectException | InvalidPasswordException | CountryException | EmailFormatException |
+               TextTooLongException | UnknownException | DuplicateUserNameException | DuplicateLikeRequestException |
+               UserNotFoundException | DuplicateFollowRequestException | FollowRelationNotFoundException |
+               DuplicateBlockRequestException | BlockRelationNotFoundException | TweetNotFoundException |
+               LikeRelationNotFoundException e)
         {
             return new Respond(e);
-        } catch (CountryException e)
-        {
-            throw new RuntimeException(e);
-        } catch (EmailFormatException e)
-        {
-            throw new RuntimeException(e);
-        } catch (TextTooLongException e)
-        {
-            throw new RuntimeException(e);
-        } catch (UnknownException e)
-        {
-            throw new RuntimeException(e);
-        } catch (DuplicateLikeRequestException e)
-        {
-            throw new RuntimeException(e);
-        } catch (DuplicateUserNameException e)
-        {
-            throw new RuntimeException(e);
         }
 
     }

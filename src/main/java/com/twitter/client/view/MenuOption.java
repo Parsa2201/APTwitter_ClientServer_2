@@ -154,9 +154,6 @@ public class MenuOption
         } catch (EmailFormatException e)
         {
             TwitterLog.printlnError("Email format is not valid!");
-        } catch (DataNotFoundException e)
-        {
-            TwitterLog.printlnError("Data not found!");
         } catch (PasswordFormatException e)
         {
             TwitterLog.printlnError("Password format is not valid!");
@@ -196,6 +193,33 @@ public class MenuOption
         } catch (HashtagException e)
         {
             TwitterLog.printlnError("Something went wrong with the hashtag processing!");
+        } catch (UserNotFoundException e)
+        {
+            TwitterLog.printlnError("User not found!");
+        } catch (DuplicateLikeRequestException e)
+        {
+            TwitterLog.printlnError("You have already liked this tweet!");
+        } catch (BlockRelationNotFoundException e)
+        {
+            TwitterLog.printlnError("The user is unblocked already!");
+        } catch (LikeRelationNotFoundException e)
+        {
+            TwitterLog.printlnError("The user is not liked yet!");
+        } catch (DuplicateUserNameException e)
+        {
+            TwitterLog.printlnError("This username is already taken!");
+        } catch (DuplicateBlockRequestException e)
+        {
+            TwitterLog.printlnError("You have already blocked this user!");
+        } catch (DuplicateFollowRequestException e)
+        {
+            TwitterLog.printlnError("You have already followed this user!");
+        } catch (TweetNotFoundException e)
+        {
+            TwitterLog.printlnError("Tweet not found!");
+        } catch (FollowRelationNotFoundException e)
+        {
+            TwitterLog.printlnError("The user is not followed yet!");
         }
     }
 
