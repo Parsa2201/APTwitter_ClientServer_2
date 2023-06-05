@@ -290,12 +290,12 @@ public class ControllerCommands
     {
         User user = getCurrentUser();
         long id = Long.parseLong(tweetId);
-        Tweet tweet = Data.getInstance().getTimeLine().getTweet(id);
+        //Tweet tweet = Data.getInstance().getTimeLine().getTweet(id);
 
         ImageContent imageContent = imagePath == null ? null : new ImageContent(imagePath);
-        Quote quote = new Quote(tweet, user.toMiniUser(), new TextContent(text), imageContent);
+        Quote quote = new Quote(null, user.toMiniUser(), new TextContent(text), imageContent);
 
-        modelCommands.sendQuote(quote);
+        modelCommands.sendQuote(id, quote);
     }
 
     public void sendReply(String tweetId, String text) throws PermissionDeniedException, TextTooLongException, ServerConnectionFailedException, ServerRespondFailedException, UnknownException, InvalidPasswordException, ServerInvalidCommandException, DatabaseFailedException, ServerInvalidObjectException, CountryException, UserNotFoundException, EmailFormatException, DuplicateLikeRequestException, BlockRelationNotFoundException, LikeRelationNotFoundException, DuplicateUserNameException, DuplicateBlockRequestException, DuplicateFollowRequestException, TweetNotFoundException, FollowRelationNotFoundException

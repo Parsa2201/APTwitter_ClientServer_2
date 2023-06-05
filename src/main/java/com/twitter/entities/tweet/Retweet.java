@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 public class Retweet extends BaseTweet implements Serializable
 {
     @OneToOne
-    private final Tweet tweet;
+    protected Tweet tweet;
 
     public Retweet(Tweet tweet, MiniUser retweetedBy)
     {

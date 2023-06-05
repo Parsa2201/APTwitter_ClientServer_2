@@ -279,11 +279,12 @@ public class ModelCommands
         }
     }
 
-    public void sendQuote(Quote quote) throws ServerConnectionFailedException, ServerInvalidObjectException, ServerRespondFailedException, UnknownException, InvalidPasswordException, TextTooLongException, ServerInvalidCommandException, DatabaseFailedException, CountryException, UserNotFoundException, EmailFormatException, DuplicateLikeRequestException, BlockRelationNotFoundException, LikeRelationNotFoundException, DuplicateUserNameException, DuplicateBlockRequestException, DuplicateFollowRequestException, TweetNotFoundException, FollowRelationNotFoundException
+    public void sendQuote(Long id, Quote quote) throws ServerConnectionFailedException, ServerInvalidObjectException, ServerRespondFailedException, UnknownException, InvalidPasswordException, TextTooLongException, ServerInvalidCommandException, DatabaseFailedException, CountryException, UserNotFoundException, EmailFormatException, DuplicateLikeRequestException, BlockRelationNotFoundException, LikeRelationNotFoundException, DuplicateUserNameException, DuplicateBlockRequestException, DuplicateFollowRequestException, TweetNotFoundException, FollowRelationNotFoundException
     {
         try (ServerConnectionHandler serverConnectionHandler = new ServerConnectionHandler())
         {
             serverConnectionHandler.sendCommend("send-quote");
+            serverConnectionHandler.sendObject(id);
             serverConnectionHandler.sendObject(quote);
             Respond respond = serverConnectionHandler.getRespond();
             respond.check();

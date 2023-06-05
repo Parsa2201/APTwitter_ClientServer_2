@@ -251,8 +251,9 @@ public class ModelCommands
 
     public Respond sendQuote(ObjectInputStream objectInputStream) throws ServerInvalidObjectException, TweetNotFoundException
     {
+        Long id = ObjectGetter.getObject(objectInputStream, Long.class);
         Quote quote = ObjectGetter.getObject(objectInputStream, Quote.class);
-        databaseCommands.sendQuote(quote);
+        databaseCommands.sendQuote(id, quote);
         return new Respond(RespondCode.SUCCESS);
     }
 

@@ -49,4 +49,9 @@ public class Quote extends Retweet implements Serializable
     {
         return imageContent;
     }
+
+    public void setTweet(Tweet tweet)
+    {
+        this.tweet = tweet;
+    }
 }
