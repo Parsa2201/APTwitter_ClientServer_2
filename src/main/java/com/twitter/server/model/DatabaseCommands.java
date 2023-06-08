@@ -20,6 +20,7 @@ import org.hibernate.Session;
 import org.hibernate.query.Query;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DatabaseCommands
@@ -428,24 +429,35 @@ public class DatabaseCommands
         for (BaseTweet b : timeLine)
         {
             b.setOwner(databaseManager.findUser(b.getUserName(), session).toMiniUser());
+            if(b instanceof Tweet)
+            {
+                Query<Reply> replyQuery = session.createQuery("select r from Reply r where r.tweet.id = :id", Reply.class);
+                replyQuery.setParameter("id", b.getId());
+                ((Tweet) b).setReplies(new ArrayList<>());
+                for (Reply r : replyQuery.list())
+                {
+                    ((Tweet) b).getReplies().add(r);
+                }
+                if(((Tweet) b).getReplies() != null)
+                {
+                    for (Reply r : ((Tweet) b).getReplies())
+                    {
+                        r.setReplier(databaseManager.findUser(r.getUserName(), session).toMiniUser());
+                    }
+                }
+                Hibernate.initialize(((Tweet) b).getHashtags().getHashtags());
+                Hibernate.initialize(((Tweet) b).getHashtags());
+            }
             if(b instanceof Retweet)
             {
                 ((Retweet) b).getTweet().setOwner(databaseManager.findUser(((Retweet) b).getTweet().getUserName(), session).toMiniUser());
-                Hibernate.initialize(((Retweet) b).getTweet().getReplies());
+                Hibernate.initialize(((Retweet) b).getTweet().getHashtags().getHashtags());
+                Hibernate.initialize(((Retweet) b).getTweet().getHashtags());
+                ((Retweet) b).getTweet().setReplies(new ArrayList<>());
                 for (Reply r : ((Retweet) b).getTweet().getReplies())
                 {
                     r.setReplier(databaseManager.findUser(r.getUserName(), session).toMiniUser());
                 }
-            }
-            if(b instanceof Tweet)
-            {
-                Hibernate.initialize(((Tweet) b).getReplies());
-                for (Reply r : ((Tweet) b).getReplies())
-                {
-                    r.setReplier(databaseManager.findUser(r.getUserName(), session).toMiniUser());
-                }
-                Hibernate.initialize(((Tweet) b).getHashtags().getHashtags());
-                Hibernate.initialize(((Tweet) b).getHashtags());
             }
         }
         timeLine.sort();
@@ -538,11 +550,17 @@ public class DatabaseCommands
         tweetQuery.setParameter("id", id);
         try
         {
-            return tweetQuery.list().get(0);
+            Tweet temp = tweetQuery.list().get(0);
+            temp.setReplies(new ArrayList<>());
+            return temp;
         }
         catch (IndexOutOfBoundsException e)
         {
             throw new TweetNotFoundException();
+        }
+        finally
+        {
+            session.close();
         }
     }
 

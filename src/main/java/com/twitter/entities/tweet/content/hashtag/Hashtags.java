@@ -21,7 +21,7 @@ public class Hashtags implements Iterable<Hashtag>, Serializable
     @Column(name = "hashtags_id")
     private Long id;
 
-    @OneToMany//(mappedBy = "hashtags", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY)//(mappedBy = "hashtags", cascade = CascadeType.ALL, orphanRemoval = true)
     private final List<Hashtag> hashtags;
 
     public List<Hashtag> getHashtags()

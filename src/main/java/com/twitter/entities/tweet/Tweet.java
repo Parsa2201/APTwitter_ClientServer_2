@@ -24,9 +24,9 @@ public class Tweet extends BaseTweet implements Serializable
     private int retweetCount;
     private int quoteCount;
     private boolean isFavstar;
-    @OneToMany
-    private final List<Reply> replies;
-    @OneToOne
+    @Transient
+    private List<Reply> replies;
+    @OneToOne(fetch = FetchType.LAZY)
     private final Hashtags hashtags;
 
     public Tweet(MiniUser owner, TextContent textContent, ImageContent imageContent) throws HashtagException
@@ -94,6 +94,8 @@ public class Tweet extends BaseTweet implements Serializable
     {
         this.retweetCount = retweetCount;
     }
+
+    public void setReplies(List<Reply> replies){this.replies = replies;}
 
     public int getQuoteCount()
     {
